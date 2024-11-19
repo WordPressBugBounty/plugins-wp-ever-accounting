@@ -1,0 +1,11 @@
+﻿expense_id,payment_id,transfer_date,amount,currency,payment_method,reference,note
+"EXP-001","PAY-1001","2024-01-15",250.00,USD,cash,"REF-001",""
+"EXP-002","PAY-1002","2024-02-20",500.00,EUR,check,"REF-002",""
+"EXP-003","PAY-1003","2024-03-10",75.50,USD,credit,"REF-003",""
+"EXP-004","PAY-1004","2024-04-25",1200.00,EUR,debit,"REF-004",""
+"EXP-005","PAY-1005","2024-05-05",300.75,USD,bank,"REF-005",""
+"EXP-006","PAY-1006","2024-06-15",450.00,EUR,paypal,"REF-006",""
+"EXP-007","PAY-1007","2024-07-20",60.00,USD,other,"REF-007",""
+"EXP-008","PAY-1008","2024-08-01",850.00,USD,cash,"REF-008",""
+"EXP-009","PAY-1009","2024-09-15",90.50,EUR,check,"REF-009",""
+"EXP-010","PAY-1010","2024-10-05",135.25,USD,credit,"REF-010",""

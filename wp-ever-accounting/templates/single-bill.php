@@ -1,33 +1,28 @@
 <?php
 /**
- * Single bill page.
+ * The Template for displaying a bill.
  *
- * This template can be overridden by copying it to yourtheme/eaccounting/single-bill.php.
+ * This template can be overridden by copying it to yourtheme/eac/bill.php
  *
- * @version 1.1.0
- * @var int $bill_id
- * @var string $key
- * @package EverAccounting
+ * HOWEVER, on occasion EverAccounting will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see     https://wpeveraccounting.com/docs/
+ * @package EverAccounting\Templates
+ * @version 1.0.0
+ *
+ * @var \EverAccounting\Models\Bill $bill The bill object.
  */
 
-defined( 'ABSPATH' ) || exit();
+defined( 'ABSPATH' ) || exit;
 
-if ( empty( $key ) || empty( $bill_id ) ) {
-	eaccounting_get_template( 'unauthorized.php' );
-	exit();
-}
-$bill = eaccounting_get_bill( $bill_id );
-if ( empty( $bill ) || ! $bill->is_key_valid( $key ) ) {
-	eaccounting_get_template( 'unauthorized.php' );
-	exit();
-}
-?>
+defined( 'ABSPATH' ) || exit;
 
+do_action( 'eac_page_header' );
 
-<?php do_action( 'eaccounting_public_before_bill', $bill ); ?>
-<div class="ea-card">
-	<div class="ea-card__inside">
-		<?php eaccounting_get_template( 'bill/bill.php', array( 'bill' => $bill ) ); ?>
-	</div>
-</div>
-<?php do_action( 'eaccounting_public_after_bill', $bill ); ?>
+eac_get_template( 'content-bill.php', array( 'bill' => $bill ) );
+
+do_action( 'eac_page_footer' );

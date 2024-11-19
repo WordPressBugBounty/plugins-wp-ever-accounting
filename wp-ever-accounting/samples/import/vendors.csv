@@ -1,0 +1,11 @@
+﻿name,company,email,phone,website,address,city,state,postcode,country,tax_number,currency
+Alice Johnson,Johnson Supplies,alice.j@johnsonsupply.com,+1-555-234-5678,www.johnsonsupply.com,123 Elm St,New York,NY,10001,US,US123456789,USD
+Michael O'Neil,O'Neil Manufacturing,m.oneil@oneilmanufacturing.co.uk,+44-20-8765-4321,www.oneilmanufacturing.co.uk,45 Queen St,London,London,EC1A 1BB,GB,GB987654321,EUR
+Karen Wright,Wright Electronics,k.wright@wrightelectronics.com,+1-555-345-6789,www.wrightelectronics.com,789 Maple Ave,Los Angeles,CA,90001,US,US234567890,USD
+Emma Taylor,Taylor Textiles,emma.taylor@taylortextiles.co.uk,+44-20-5678-1234,www.taylortextiles.co.uk,102 Market Rd,Manchester,Manchester,M1 2AB,GB,GB123456789,EUR
+Samuel Thompson,Thompson Hardware,s.thompson@thompsonhardware.com,+1-555-456-7890,www.thompsonhardware.com,456 Oak St,Chicago,IL,60605,US,US345678901,USD
+Laura Baker,Baker Furnishings,laura.b@bakerfurnishings.co.uk,+44-20-1234-5678,www.bakerfurnishings.co.uk,76 High St,Glasgow,Glasgow,G1 1AA,GB,GB234567890,EUR
+David Green,Green Construction,d.green@greenconstruction.com,+1-555-567-8901,www.greenconstruction.com,890 Pine Rd,Miami,FL,33101,US,US456789012,USD
+Sophia Brown,Brown Machinery,sophia.brown@brownmachinery.co.uk,+44-20-6789-2345,www.brownmachinery.co.uk,58 River Rd,Bristol,Bristol,BS1 5AH,GB,GB345678901,EUR
+Robert King,King Auto Parts,robert.king@kingautoparts.com,+1-555-678-9012,www.kingautoparts.com,301 Cedar St,San Francisco,CA,94103,US,US567890123,USD
+Olivia Wilson,Wilson Logistics,olivia.wilson@wilsonlogistics.co.uk,+44-20-7890-3456,www.wilsonlogistics.co.uk,95 King St,Edinburgh,Edinburgh,EH1 3AA,GB,GB456789012,EUR

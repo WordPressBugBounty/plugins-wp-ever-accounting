@@ -1,0 +1,11 @@
+﻿number,payment_date,amount,currency,exchange_rate,reference,note,payment_method,account_id,contact_id,category_id,attachment_id,editable
+"INV-0001","2023-01-15","100.00","USD","1.00","REF001","Payment for services rendered","cash","","","","","1"
+"INV-0002","2023-02-20","200.00","EUR","0.85","REF002","Invoice payment","check","","","","","0"
+"INV-0003","2023-03-10","150.00","USD","1.00","REF003","Monthly subscription","credit","","","","","1"
+"INV-0004","2023-04-05","300.00","EUR","0.85","REF004","Consulting fee","debit","","","","","0"
+"INV-0005","2023-05-12","250.00","USD","1.00","REF005","Project milestone payment","bank","","","","","1"
+"INV-0006","2023-06-18","400.00","EUR","0.85","REF006","Payment for goods","paypal","","","","","0"
+"INV-0007","2023-07-22","500.00","USD","1.00","REF007","Final payment","other","","","","","1"
+"INV-0008","2023-08-30","600.00","EUR","0.85","REF008","Service contract","cash","","","","","0"
+"INV-0009","2023-09-15","700.00","USD","1.00","REF009","Retainer fee","check","","","","","1"
+"INV-0010","2023-10-10","800.00","EUR","0.85","REF010","Payment for consulting","credit","","","","","0"

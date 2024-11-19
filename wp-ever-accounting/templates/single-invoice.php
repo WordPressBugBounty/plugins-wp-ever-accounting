@@ -1,33 +1,26 @@
 <?php
 /**
- * Single invoice page.
+ * The Template for displaying an invoice.
  *
- * This template can be overridden by copying it to yourtheme/eaccounting/single-invoice.php.
+ * This template can be overridden by copying it to yourtheme/eac/single-invoice.php
  *
- * @version 1.1.0
- * @var int $invoice_id
- * @var string $key
- * @package EverAccounting
+ * HOWEVER, on occasion EverAccounting will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see     https://wpeveraccounting.com/docs/
+ * @package EverAccounting\Templates
+ * @version 1.0.0
+ *
+ * @var \EverAccounting\Models\Invoice $invoice The invoice object.
  */
 
-defined( 'ABSPATH' ) || exit();
+defined( 'ABSPATH' ) || exit;
 
-if ( empty( $key ) || empty( $invoice_id ) ) {
-	eaccounting_get_template( 'unauthorized.php' );
-	exit();
-}
-$invoice = eaccounting_get_invoice( $invoice_id );
-if ( empty( $invoice ) || ! $invoice->is_key_valid( $key ) ) {
-	eaccounting_get_template( 'unauthorized.php' );
-	exit();
-}
-?>
+do_action( 'eac_page_header' );
 
+eac_get_template( 'content-invoice.php', array( 'invoice' => $invoice ) );
 
-<?php do_action( 'eaccounting_public_before_invoice', $invoice ); ?>
-<div class="ea-card">
-	<div class="ea-card__inside">
-		<?php eaccounting_get_template( 'invoice/invoice.php', array( 'invoice' => $invoice ) ); ?>
-	</div>
-</div>
-<?php do_action( 'eaccounting_public_after_invoice', $invoice ); ?>
+do_action( 'eac_page_footer' );

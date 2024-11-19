@@ -1,0 +1,11 @@
+﻿name,company,email,phone,website,address,city,state,postcode,country,tax_number,currency
+John Smith,Smith Solutions,john.smith@smithsolutions.com,"+1-555-123-4567","www.smithsolutions.com",123 Main St,New York,New York,10001,US,US123456789,USD
+Emma Brown,Brown Consulting,emma.brown@brownconsulting.co.uk,"+44-20-1234-5678","www.brownconsulting".co.uk,45 Queen St,London,London,EC1A 1BB,GB,GB987654321,EUR
+Michael Johnson,Tech Innovations,m.johnson@techinnovations.com,"+1-555-234-5678","www.techinnovations".com,456 Elm St,San Francisco,CA,94103,US,US234567890,USD
+Sarah Williams,Williams Design,s.williams@williamsdesign.co.uk,"+44-20-8765-4321","www.williamsdesign.co.uk",78 High St,Manchester,M1 2AB,UG,GB123456789,EUR
+David Lee,Lee Manufacturing,d.lee@leemanufacturing.com,"+1-555-345-6789","www.leemanufacturing.com",789 Pine St,Chicago,IL,60605,US,US345678901,USD
+Charlotte Taylor,Taylor Marketing,charlotte.taylor@taylormarketing.co.uk,"+44-20-4321-8765","www.taylormarketing.co.uk",101 King St,Edinburgh,Edinburgh,EH1 3AA,GB,GB234567890,EUR
+Lisa Martin,Martin Holdings,l.martin@martinholdings.com,"+1-555-456-7890","www.martinholdings.com",202 Maple Ave,Miami,FL,33101,US,US456789012,USD
+James Wilson,Wilson Financial,j.wilson@wilsonfinancial.co.uk,"+44-20-5678-1234","www.wilsonfinancial.co.uk",305 Baker St,Bristol,BS1 5AH,GB,GB345678901,EUR
+Rebecca Scott,Scott Analytics,rebecca.scott@scottanalytics.com,"+1-555-567-8901","www.scottanalytics.com",404 Oak Dr,Los Angeles,CA,90001,US,US567890123,USD
+Andrew Green,Green Solutions,andrew.green@greensolutions.co.uk,"+44-20-6789-2345","www.greensolutions.co.uk",502 River Rd,Glasgow,Glasgow,G1 1AA,GB,GB456789012,EUR

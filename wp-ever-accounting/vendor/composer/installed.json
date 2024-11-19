@@ -1,5 +1,233 @@
 {
-    "packages": [],
+    "packages": [
+        {
+            "name": "byteever/bytekit-models",
+            "version": "v1.0.3",
+            "version_normalized": "1.0.3.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:byteever/bytekit-models.git",
+                "reference": "09841a8995afc413f564f903d9d32586d80da73e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/byteever/bytekit-models/zipball/09841a8995afc413f564f903d9d32586d80da73e",
+                "reference": "09841a8995afc413f564f903d9d32586d80da73e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "byteever/byteever-sniffs": "dev-master",
+                "codeception/module-asserts": "^1.0",
+                "codeception/module-cli": "^1.0",
+                "codeception/module-db": "^1.0",
+                "codeception/module-filesystem": "^1.0",
+                "codeception/module-phpbrowser": "^1.0",
+                "codeception/module-rest": "^2.0",
+                "codeception/module-webdriver": "^1.0",
+                "codeception/util-universalframework": "^1.0",
+                "lucatume/wp-browser": "<3.5"
+            },
+            "time": "2024-11-13T06:33:19+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ByteKit\\Models\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": []
+            },
+            "scripts": {
+                "phpcs": [
+                    "@php ./vendor/bin/phpcs --standard=phpcs.xml -s -v"
+                ],
+                "phpcbf": [
+                    "@php ./vendor/bin/phpcbf --standard=phpcs.xml -v"
+                ],
+                "test:setup": [
+                    "bash bin/install-test-env.sh"
+                ],
+                "test:build": [
+                    "vendor/bin/codecept build"
+                ],
+                "test:wpunit": [
+                    "vendor/bin/codecept run wpunit --"
+                ],
+                "test:functional": [
+                    "vendor/bin/codecept run functional --"
+                ],
+                "test:acceptance": [
+                    "vendor/bin/codecept run acceptance --"
+                ],
+                "test:gen:wpunit": [
+                    "vendor/bin/codecept generate:wpunit wpunit"
+                ],
+                "test:gen:functional": [
+                    "vendor/bin/codecept generate:wpunit functional"
+                ],
+                "test:gen:acceptance": [
+                    "vendor/bin/codecept generate:acceptance acceptance"
+                ],
+                "test": [
+                    "vendor/bin/codecept run wpunit"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Sultan Nasir Uddin",
+                    "email": "manikdrmc@gmail.com"
+                }
+            ],
+            "description": "A package to manage models in WordPress.",
+            "support": {
+                "source": "https://github.com/byteever/bytekit-models/tree/v1.0.3",
+                "issues": "https://github.com/byteever/bytekit-models/issues"
+            },
+            "install-path": "../byteever/bytekit-models"
+        },
+        {
+            "name": "byteever/bytekit-plugin",
+            "version": "v1.0.0",
+            "version_normalized": "1.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:byteever/bytekit-plugin.git",
+                "reference": "251d268b3ec3b2388d991d540bc7dd1eb2e979fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/byteever/bytekit-plugin/zipball/251d268b3ec3b2388d991d540bc7dd1eb2e979fc",
+                "reference": "251d268b3ec3b2388d991d540bc7dd1eb2e979fc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "byteever/byteever-sniffs": "dev-master",
+                "codeception/module-asserts": "^1.0",
+                "codeception/module-cli": "^1.0",
+                "codeception/module-db": "^1.0",
+                "codeception/module-filesystem": "^1.0",
+                "codeception/module-phpbrowser": "^1.0",
+                "codeception/module-rest": "^2.0",
+                "codeception/module-webdriver": "^1.0",
+                "codeception/util-universalframework": "^1.0",
+                "lucatume/wp-browser": "<3.5"
+            },
+            "time": "2024-11-10T15:50:54+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ByteKit\\": "src/"
+                }
+            },
+            "scripts": {
+                "phpcs": [
+                    "@php ./vendor/bin/phpcs --standard=phpcs.xml -s -v"
+                ],
+                "phpcbf": [
+                    "@php ./vendor/bin/phpcbf --standard=phpcs.xml -v"
+                ],
+                "test:setup": [
+                    "bash bin/install-test-env.sh"
+                ],
+                "test:build": [
+                    "vendor/bin/codecept build"
+                ],
+                "test:wpunit": [
+                    "vendor/bin/codecept run wpunit --"
+                ],
+                "test:functional": [
+                    "vendor/bin/codecept run functional --"
+                ],
+                "test:acceptance": [
+                    "vendor/bin/codecept run acceptance --"
+                ],
+                "test:gen:wpunit": [
+                    "vendor/bin/codecept generate:wpunit wpunit"
+                ],
+                "test:gen:functional": [
+                    "vendor/bin/codecept generate:wpunit functional"
+                ],
+                "test:gen:acceptance": [
+                    "vendor/bin/codecept generate:acceptance acceptance"
+                ],
+                "test": [
+                    "vendor/bin/codecept run --"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Sultan Nasir Uddin",
+                    "email": "manikdrmc@gmail.com"
+                }
+            ],
+            "description": "A set of related classes to kick start WordPress plugin development.",
+            "support": {
+                "source": "https://github.com/byteever/bytekit-plugin/tree/v1.0.0",
+                "issues": "https://github.com/byteever/bytekit-plugin/issues"
+            },
+            "install-path": "../byteever/bytekit-plugin"
+        },
+        {
+            "name": "woocommerce/action-scheduler",
+            "version": "3.8.2",
+            "version_normalized": "3.8.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/woocommerce/action-scheduler.git",
+                "reference": "2bc91d88fdbc2c07ab899cbb56b983e11e62cf69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/2bc91d88fdbc2c07ab899cbb56b983e11e62cf69",
+                "reference": "2bc91d88fdbc2c07ab899cbb56b983e11e62cf69",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5",
+                "woocommerce/woocommerce-sniffs": "0.1.0",
+                "wp-cli/wp-cli": "~2.5.0",
+                "yoast/phpunit-polyfills": "^2.0"
+            },
+            "time": "2024-09-12T23:12:58+00:00",
+            "type": "wordpress-plugin",
+            "extra": {
+                "scripts-description": {
+                    "test": "Run unit tests",
+                    "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+                    "phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier"
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "Action Scheduler for WordPress and WooCommerce",
+            "homepage": "https://actionscheduler.org/",
+            "support": {
+                "issues": "https://github.com/woocommerce/action-scheduler/issues",
+                "source": "https://github.com/woocommerce/action-scheduler/tree/3.8.2"
+            },
+            "install-path": "../woocommerce/action-scheduler"
+        }
+    ],
     "dev": false,
     "dev-package-names": []
 }

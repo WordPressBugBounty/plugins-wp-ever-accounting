@@ -1,0 +1,11 @@
+﻿name,rate,compound
+Sales Tax,7.25%,0
+Federal Tax,10%,0
+State Tax (CA),8.5%,0
+Luxury Tax,12%,1
+Environmental Fee,2.5%,0
+VAT (UK),20%,0
+Reduced VAT (UK),5%,0
+Income Tax (UK),25%,1
+Corporate Tax (US),21%,0
+National Insurance (UK),12%,1

@@ -1,0 +1,3 @@
+﻿type,name,number,balance,currency
+"bank","Bank of America",0000000000001,100,USD
+"card","Bank of UK",0000000000002,150,EUR

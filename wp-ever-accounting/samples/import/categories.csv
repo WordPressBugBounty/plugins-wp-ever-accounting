@@ -1,0 +1,11 @@
+﻿name,description,type,taxonomy
+"Office Supplies","Purchase of pens, paper, and other office essentials",expense,category
+"Monthly Rent","Payment for office space",expense,category
+"Product Sales","Revenue from sales of items",item,category
+"Utility Bill","Electricity and water bill for the office",expense,category
+"Consulting Fee","Payment received for consulting services",payment,category
+"Laptop Purchase","Purchase of new laptops for the team",expense,category
+"Product A","Revenue generated from Product A sales",item,category
+"Annual Subscription","Expense for software subscription",expense,category
+"Tax Payment","Quarterly tax payment to the government",payment,category
+"Client Invoice","Invoice payment received from client ABC",payment,category

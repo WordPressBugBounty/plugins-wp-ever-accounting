@@ -1,0 +1,7 @@
+﻿type,name,description,unit,price,cost,tax_ids,category_id
+standard,"Office Chair","Ergonomic office chair with lumbar support",pc,150,100,"",""
+standard,"Standing Desk","Adjustable height desk for ergonomic workspaces",pc,400,300,"",""
+fee,"Shipping Charge","Standard delivery fee for items under 50 lbs",unit,20,5,"",""
+standard,"Annual Subscription","Yearly access to premium services",year,120,80,"",""
+fee,"Installation Service","Setup and installation service for office furniture",hr,75,50,"",""
+standard,"Laptop Computer","15-inch laptop with Intel Core i5",box,800,600,"",""
