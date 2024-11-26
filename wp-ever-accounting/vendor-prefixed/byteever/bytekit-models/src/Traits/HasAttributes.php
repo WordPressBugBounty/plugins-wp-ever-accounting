@@ -6,7 +6,7 @@ namespace EverAccounting\ByteKit\Models\Traits;
  * A trait to manage model's attributes.
  *
  * @since   1.0.0
- * @version 1.0.3
+ * @version 1.0.4
  * @author  Sultan Nasir Uddin <manikdrmc@gmail.com>
  * @package ByteKit/Models
  * @license GPL-3.0+

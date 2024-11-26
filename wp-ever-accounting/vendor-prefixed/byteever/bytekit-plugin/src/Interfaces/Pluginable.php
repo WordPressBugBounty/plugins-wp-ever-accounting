@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit();
  * Describes a class that can be used as a plugin main class.
  *
  * @since 1.0.0
- * @version 1.0.0
+ * @version 1.0.1
  * @author  Sultan Nasir Uddin <sultan@byteever.com>
  * @package EverAccounting\ByteKit\Plugin
  * @license GPL-3.0+

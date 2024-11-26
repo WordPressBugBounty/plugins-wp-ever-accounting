@@ -8,7 +8,7 @@ use EverAccounting\ByteKit\Models\Model;
  * Has many relation class.
  *
  * @since   1.0.0
- * @version 1.0.3
+ * @version 1.0.4
  * @author  Sultan Nasir Uddin <manikdrmc@gmail.com>
  * @package ByteKit/Models
  * @license GPL-3.0+

@@ -9,7 +9,7 @@ use EverAccounting\ByteKit\Models\Query;
  * A model class for handling relational model.
  *
  * @since   1.0.0
- * @version 1.0.3
+ * @version 1.0.4
  * @author  Sultan Nasir Uddin <manikdrmc@gmail.com>
  * @package ByteKit/Models
  * @license GPL-3.0+

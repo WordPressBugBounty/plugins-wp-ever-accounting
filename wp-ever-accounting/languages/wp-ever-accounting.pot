@@ -1,11 +1,11 @@
-# Copyright (C) 2024 EAccounting
+# Copyright (C) 2024 EverAccounting
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ever Accounting 2.0.0\n"
+"Project-Id-Version: Ever Accounting 2.0.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-ever-accounting\n"
-"POT-Creation-Date: 2024-11-19 04:20:56+00:00\n"
+"POT-Creation-Date: 2024-11-26 04:47:23+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -4535,7 +4535,7 @@ msgid "Manage your business finances right from your WordPress dashboard."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "EAccounting"
+msgid "EverAccounting"
 msgstr ""
 
 #: includes/Admin/views/note-item.php:34
