@@ -51,6 +51,7 @@ class Transfers extends ListTable {
 		$search                = $this->get_request_search();
 		$order_by              = $this->get_request_orderby();
 		$order                 = $this->get_request_order();
+		$date                  = filter_input( INPUT_GET, 'm', FILTER_VALIDATE_INT );
 		$args                  = array(
 			'limit'   => $per_page,
 			'page'    => $paged,
@@ -58,6 +59,15 @@ class Transfers extends ListTable {
 			'orderby' => $order_by,
 			'order'   => $order,
 		);
+
+		if ( ! empty( $date ) ) {
+			$month                          = (int) substr( $date, 4, 2 );
+			$year                           = (int) substr( $date, 0, 4 );
+			$start                          = wp_date( 'Y-m-d H:i:s', mktime( 0, 0, 0, $month, 1, $year ) );
+			$end                            = wp_date( 'Y-m-d H:i:s', mktime( 23, 59, 59, $month + 1, 0, $year ) );
+			$args['transfer_date__between'] = array( $start, $end );
+		}
+
 		/**
 		 * Filter the query arguments for the list table.
 		 *
@@ -105,6 +115,35 @@ class Transfers extends ListTable {
 	 */
 	public function no_items() {
 		esc_html_e( 'No transfers found.', 'wp-ever-accounting' );
+	}
+
+	/**
+	 * Outputs the controls to allow user roles to be changed in bulk.
+	 *
+	 * @param string $which Whether invoked above ("top") or below the table ("bottom").
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	protected function extra_tablenav( $which ) {
+		global $wpdb;
+		static $has_items;
+		if ( ! isset( $has_items ) ) {
+			$has_items = $this->has_items();
+		}
+		echo '<div class="alignleft actions">';
+		if ( 'top' === $which ) {
+			$months = $wpdb->get_results(
+				"SELECT DISTINCT YEAR( transfer_date ) AS year, MONTH( transfer_date ) AS month
+					FROM {$wpdb->prefix}ea_transfers
+					WHERE transfer_date IS NOT NULL
+					ORDER BY transfer_date DESC",
+			);
+
+			$this->date_filter( $months );
+			submit_button( __( 'Filter', 'wp-ever-accounting' ), '', 'filter_action', false );
+		}
+		echo '</div>';
 	}
 
 	/**

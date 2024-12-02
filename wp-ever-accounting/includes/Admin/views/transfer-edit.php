@@ -18,7 +18,7 @@ $transfer = Transfer::make( $id );
 <h1 class="wp-heading-inline">
 	<?php if ( $transfer->exists() ) : ?>
 		<?php esc_html_e( 'Edit Transfer', 'wp-ever-accounting' ); ?>
-		<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-settings&tab=taxes&section=rates&action=add' ) ); ?>" class="button button-small">
+		<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-banking&tab=transfers&action=add' ) ); ?>" class="button button-small">
 			<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
 		</a>
 	<?php else : ?>

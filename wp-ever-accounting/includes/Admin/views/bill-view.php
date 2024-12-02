@@ -26,6 +26,9 @@ $mark_received_url = wp_nonce_url(
 ?>
 <h1 class="wp-heading-inline">
 	<?php esc_html_e( 'View Bill', 'wp-ever-accounting' ); ?>
+	<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-purchases&tab=bills&action=add' ) ); ?>" class="button button-small">
+		<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
+	</a>
 	<a href="<?php echo esc_attr( remove_query_arg( array( 'action', 'id' ) ) ); ?>" title="<?php esc_attr_e( 'Go back', 'wp-ever-accounting' ); ?>">
 		<span class="dashicons dashicons-undo"></span>
 	</a>
@@ -61,7 +64,7 @@ $mark_received_url = wp_nonce_url(
 
 			<div class="eac-card__body">
 				<?php if ( $bill->is_status( 'draft' ) ) : ?>
-					<a href="<?php echo esc_url( $mark_received_url ); ?>" class="button button-small button-block">
+					<a href="<?php echo esc_url( $mark_received_url ); ?>" class="button button-primary button-small button-block">
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Mark Received', 'wp-ever-accounting' ); ?>
 					</a>
 				<?php elseif ( ! $bill->is_status( 'draft' ) && ! $bill->is_paid() ) : ?>

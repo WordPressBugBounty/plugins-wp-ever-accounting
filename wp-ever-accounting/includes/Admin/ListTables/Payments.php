@@ -52,7 +52,7 @@ class Payments extends ListTable {
 		$account_id  = filter_input( INPUT_GET, 'account_id', FILTER_VALIDATE_INT );
 		$category_id = filter_input( INPUT_GET, 'category_id', FILTER_VALIDATE_INT );
 		$contact_id  = filter_input( INPUT_GET, 'customer_id', FILTER_VALIDATE_INT );
-		$date        = filter_input( INPUT_GET, 'date', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$date        = filter_input( INPUT_GET, 'm', FILTER_VALIDATE_INT );
 		$args        = array(
 			'limit'       => $per_page,
 			'page'        => $paged,
@@ -63,8 +63,16 @@ class Payments extends ListTable {
 			'account_id'  => $account_id,
 			'category_id' => $category_id,
 			'contact_id'  => $contact_id,
-			'date'        => $date,
 		);
+
+		if ( ! empty( $date ) ) {
+			$month                         = (int) substr( $date, 4, 2 );
+			$year                          = (int) substr( $date, 0, 4 );
+			$start                         = wp_date( 'Y-m-d H:i:s', mktime( 0, 0, 0, $month, 1, $year ) );
+			$end                           = wp_date( 'Y-m-d H:i:s', mktime( 23, 59, 59, $month + 1, 0, $year ) );
+			$args['payment_date__between'] = array( $start, $end );
+		}
+
 		/**
 		 * Filter the query arguments for the list table.
 		 *
@@ -97,7 +105,7 @@ class Payments extends ListTable {
 		$performed = 0;
 		foreach ( $ids as $id ) {
 			if ( EAC()->payments->delete( $id ) ) {
-				++ $performed;
+				++$performed;
 			}
 		}
 		if ( ! empty( $performed ) ) {
@@ -139,14 +147,25 @@ class Payments extends ListTable {
 	 * @return void
 	 */
 	protected function extra_tablenav( $which ) {
+		global $wpdb;
 		static $has_items;
 		if ( ! isset( $has_items ) ) {
 			$has_items = $this->has_items();
 		}
 		echo '<div class="alignleft actions">';
 		if ( 'top' === $which ) {
-			$this->date_filter();
-			$this->year_filter();
+			$months = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT DISTINCT YEAR( payment_date ) AS year, MONTH( payment_date ) AS month
+					FROM {$wpdb->prefix}ea_transactions
+					WHERE type = %s AND payment_date IS NOT NULL
+					ORDER BY payment_date DESC",
+					'payment'
+				)
+			);
+
+			$this->date_filter( $months );
+			$this->contact_filter( 'customer' );
 			$this->account_filter();
 			$this->category_filter( 'payment' );
 			submit_button( __( 'Filter', 'wp-ever-accounting' ), '', 'filter_action', false );

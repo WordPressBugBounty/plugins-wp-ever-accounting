@@ -51,6 +51,7 @@ class Invoices extends ListTable {
 		$order_by   = $this->get_request_orderby();
 		$order      = $this->get_request_order();
 		$contact_id = filter_input( INPUT_GET, 'customer_id', FILTER_VALIDATE_INT );
+		$date       = filter_input( INPUT_GET, 'm', FILTER_VALIDATE_INT );
 		$args       = array(
 			'limit'      => $per_page,
 			'page'       => $paged,
@@ -60,6 +61,14 @@ class Invoices extends ListTable {
 			'status'     => $this->get_request_status(),
 			'contact_id' => $contact_id,
 		);
+
+		if ( ! empty( $date ) ) {
+			$month                       = (int) substr( $date, 4, 2 );
+			$year                        = (int) substr( $date, 0, 4 );
+			$start                       = wp_date( 'Y-m-d H:i:s', mktime( 0, 0, 0, $month, 1, $year ) );
+			$end                         = wp_date( 'Y-m-d H:i:s', mktime( 23, 59, 59, $month + 1, 0, $year ) );
+			$args['issue_date__between'] = array( $start, $end );
+		}
 
 		/**
 		 * Filter the query arguments for the list table.
@@ -194,7 +203,7 @@ class Invoices extends ListTable {
 	 * @return void
 	 */
 	protected function extra_tablenav( $which ) {
-		// TODO: Need to include invoicesTable filters 'Select Month', 'Select Account', 'Select Category', 'Select Customer'.
+		global $wpdb;
 		static $has_items;
 		if ( ! isset( $has_items ) ) {
 			$has_items = $this->has_items();
@@ -203,6 +212,16 @@ class Invoices extends ListTable {
 		echo '<div class="alignleft actions">';
 
 		if ( 'top' === $which ) {
+			$months = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT DISTINCT YEAR( issue_date ) AS year, MONTH( issue_date ) AS month
+					FROM {$wpdb->prefix}ea_documents
+					WHERE type = %s AND issue_date IS NOT NULL
+					ORDER BY issue_date DESC",
+					'invoice'
+				)
+			);
+			$this->date_filter( $months );
 			$this->contact_filter( 'customer' );
 			submit_button( __( 'Filter', 'wp-ever-accounting' ), '', 'filter_action', false );
 		}

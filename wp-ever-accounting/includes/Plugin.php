@@ -50,7 +50,14 @@ class Plugin extends \EverAccounting\ByteKit\Plugin {
 	 * @since 1.0.0
 	 */
 	protected function __construct( $data ) {
-		$data['prefix'] = 'eac';
+		$data = array_merge(
+			$data,
+			array(
+				'prefix'       => 'eac',
+				'settings_url' => admin_url( 'admin.php?page=eac-settings' ),
+			),
+		);
+
 		parent::__construct( $data );
 		$this->define_constants();
 		$this->includes();
@@ -178,7 +185,7 @@ class Plugin extends \EverAccounting\ByteKit\Plugin {
 				'EverAccounting\Admin\Taxes',
 				'EverAccounting\Admin\Categories',
 				'EverAccounting\Admin\Extensions',
-				//'EverAccounting\Admin\Setup',
+				// 'EverAccounting\Admin\Setup',
 			);
 			foreach ( $handles as $handle ) {
 				$this->services->add( $handle );

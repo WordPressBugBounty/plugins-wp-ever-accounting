@@ -267,21 +267,39 @@ abstract class ListTable extends \WP_List_Table {
 	}
 
 	/**
-	 * Currency filter
+	 * Date filter
 	 *
-	 * @since 1.2.1
+	 * @param array $months Months.
+	 *
+	 * @since 2.0.0
 	 * @return void
 	 */
-	protected function currency_filter() {
-		$currency_id = filter_input( INPUT_GET, 'currency_id', FILTER_SANITIZE_NUMBER_INT );
-		$currency    = empty( $currency_id ) ? null : eac_get_currency( $currency_id );
+	protected function date_filter( $months ) {
+		$m           = filter_input( INPUT_GET, 'm', FILTER_SANITIZE_NUMBER_INT );
+		$month_count = count( $months );
+		if ( ! $month_count || ( 1 === $month_count && 0 === (int) $months[0]->month ) ) {
+			return;
+		}
 		?>
-		<select class="eac_select2" name="currency_id" id="filter-by-currency" data-action="eac_json_search" data-type="currency" data-placeholder="<?php esc_attr_e( 'Filter by currency', 'wp-ever-accounting' ); ?>">
-			<?php if ( ! empty( $currency ) ) : ?>
-				<option value="<?php echo esc_attr( $currency->id ); ?>" <?php selected( $currency_id, $currency->id ); ?>>
-					<?php echo esc_html( $currency->name ); ?>
-				</option>
-			<?php endif; ?>
+		<select name="m" id="filter-by-date" class="eac_select2" data-placeholder="<?php esc_attr_e( 'Filter by date', 'wp-ever-accounting' ); ?>">
+			<option<?php selected( $m, 0 ); ?> style='display: none'><?php esc_attr_e( 'Filter by date', 'wp-ever-accounting' ); ?></option>
+			<?php
+			foreach ( $months as $arc_row ) {
+				if ( 0 === (int) $arc_row->year || 0 === (int) $arc_row->month ) {
+					continue;
+				}
+
+				$month = zeroise( $arc_row->month, 2 );
+				$year  = $arc_row->year;
+
+				printf(
+					"<option %s value='%s'>%s</option>\n",
+					selected( $m, $year . $month, false ),
+					esc_attr( $arc_row->year . $month ),
+					esc_html( wp_date( 'M Y', strtotime( $year . '-' . $month . '-01' ) ) )
+				);
+			}
+			?>
 		</select>
 		<?php
 	}

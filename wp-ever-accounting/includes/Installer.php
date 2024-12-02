@@ -605,6 +605,18 @@ KEY expense_id (expense_id)
 			$wp_roles->add_cap( 'administrator', 'eac_manage_import' );
 			$wp_roles->add_cap( 'administrator', 'eac_manage_export' );
 		}
+
+		// remove all the legacy caps that starts with 'ea_'.
+		require_once ABSPATH . 'wp-admin/includes/user.php';
+		$roles = get_editable_roles();
+		foreach ( $roles as $role => $details ) {
+			$role = get_role( $role );
+			foreach ( $role->capabilities as $cap => $value ) {
+				if ( strpos( $cap, 'ea_' ) === 0 ) {
+					$role->remove_cap( $cap );
+				}
+			}
+		}
 	}
 
 	/**
