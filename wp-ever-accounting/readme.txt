@@ -4,7 +4,7 @@ Tags: accounting, invoice, CRM, business, finance
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -289,6 +289,9 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.0.3 = (1 December 2024)
+* Fix: Remove legacy roles those are not used anymore.
+
 = 2.0.2 = (30 November 2024)
 * New: Add filter by date for payments, invoices, expenses, transfers, and bills.
 * New: Add button for adding new items in the payment, invoice, expense, transfer, and bill view/edit page.

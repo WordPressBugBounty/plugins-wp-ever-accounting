@@ -617,6 +617,13 @@ KEY expense_id (expense_id)
 				}
 			}
 		}
+		// remove legacy roles that starts with 'ea_'.
+		$roles = wp_roles()->roles;
+		foreach ( $roles as $role => $details ) {
+			if ( strpos( $role, 'ea_' ) === 0 ) {
+				remove_role( $role );
+			}
+		}
 	}
 
 	/**
