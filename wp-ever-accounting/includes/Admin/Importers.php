@@ -39,7 +39,7 @@ class Importers {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'manage_options' ) ) {
+		if ( current_user_can( 'eac_manage_import' ) ) {  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			$tabs['import'] = __( 'Import', 'wp-ever-accounting' );
 		}
 

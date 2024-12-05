@@ -328,3 +328,48 @@ function eac_update_120_misc() {
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}ea_currencies" );
 	update_option( 'eac_setup_wizard_completed', 'yes' );
 }
+
+/**
+ * Update roles to 2.0.4
+ */
+function eac_update_204_roles() {
+	// remove all the legacy caps that starts with 'ea_'.
+	require_once ABSPATH . 'wp-admin/includes/user.php';
+	$roles = get_editable_roles();
+	foreach ( $roles as $role => $details ) {
+		$role = get_role( $role );
+		foreach ( $role->capabilities as $cap => $value ) {
+			if ( strpos( $cap, 'ea_' ) === 0 ) {
+				$role->remove_cap( $cap );
+			}
+		}
+	}
+	// get users with 'ea_accountant' role and assign 'eac_accountant' role.
+	$users = get_users(
+		array(
+			'role' => 'ea_accountant',
+		)
+	);
+	foreach ( $users as $user ) {
+		$user->remove_role( 'ea_accountant' );
+		$user->add_role( 'eac_accountant' );
+	}
+	// get users with 'ea_manager' role and assign 'eac_manager' role.
+	$users = get_users(
+		array(
+			'role' => 'ea_manager',
+		)
+	);
+	foreach ( $users as $user ) {
+		$user->remove_role( 'ea_manager' );
+		$user->add_role( 'eac_manager' );
+	}
+
+	// remove legacy roles that starts with 'ea_'.
+	$roles = wp_roles()->roles;
+	foreach ( $roles as $role => $details ) {
+		if ( strpos( $role, 'ea_' ) === 0 ) {
+			remove_role( $role );
+		}
+	}
+}

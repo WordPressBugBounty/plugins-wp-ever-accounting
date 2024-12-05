@@ -34,7 +34,7 @@ class Utilities extends Controller {
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'get_currencies' ),
 				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
+					return current_user_can( 'manage_accounting' );  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 				},
 			)
 		);
@@ -46,7 +46,7 @@ class Utilities extends Controller {
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'get_countries' ),
 				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
+					return current_user_can( 'manage_accounting' );  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 				},
 			)
 		);

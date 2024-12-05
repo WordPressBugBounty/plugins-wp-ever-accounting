@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ever Accounting 2.0.3\n"
+"Project-Id-Version: Ever Accounting 2.0.4\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-ever-accounting\n"
-"POT-Creation-Date: 2024-12-03 11:58:07+00:00\n"
+"POT-Creation-Date: 2024-12-05 10:49:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -649,7 +649,7 @@ msgid "The customer cannot be deleted."
 msgstr ""
 
 #: includes/API/Customers.php:430 includes/Admin/Admin.php:188
-#: includes/Admin/Dashboard.php:443 includes/Admin/ListTables/Invoices.php:244
+#: includes/Admin/Dashboard.php:446 includes/Admin/ListTables/Invoices.php:244
 #: includes/Admin/ListTables/Payments.php:189
 #: includes/Admin/views/invoice-edit.php:45
 #: includes/Admin/views/payment-edit.php:150
@@ -922,7 +922,7 @@ msgid "The item cannot be deleted."
 msgstr ""
 
 #: includes/API/Items.php:465 includes/Admin/Admin.php:168
-#: includes/Admin/Dashboard.php:377 includes/Controllers/Bills.php:111
+#: includes/Admin/Dashboard.php:380 includes/Controllers/Bills.php:111
 #: includes/Controllers/Categories.php:86 includes/Controllers/Invoices.php:106
 msgid "Item"
 msgstr ""
@@ -1350,7 +1350,7 @@ msgid "The vendor cannot be deleted."
 msgstr ""
 
 #: includes/API/Vendors.php:450 includes/Admin/Admin.php:192
-#: includes/Admin/Dashboard.php:509 includes/Admin/ListTables/Bills.php:307
+#: includes/Admin/Dashboard.php:512 includes/Admin/ListTables/Bills.php:307
 #: includes/Admin/ListTables/Expenses.php:190
 #: includes/Admin/views/bill-edit.php:47
 #: includes/Admin/views/expense-edit.php:150
@@ -1377,12 +1377,12 @@ msgid "Number of accounts per page:"
 msgstr ""
 
 #: includes/Admin/Accounts.php:180 includes/Admin/Accounts.php:206
-#: includes/Admin/Dashboard.php:60
+#: includes/Admin/Dashboard.php:63
 msgid "Incoming"
 msgstr ""
 
 #: includes/Admin/Accounts.php:187 includes/Admin/Accounts.php:211
-#: includes/Admin/Dashboard.php:64
+#: includes/Admin/Dashboard.php:67
 msgid "Outgoing"
 msgstr ""
 
@@ -1391,7 +1391,7 @@ msgid "Balance"
 msgstr ""
 
 #: includes/Admin/Accounts.php:218 includes/Admin/Customers.php:210
-#: includes/Admin/Dashboard.php:107 includes/Admin/Vendors.php:267
+#: includes/Admin/Dashboard.php:110 includes/Admin/Vendors.php:267
 #: includes/Admin/views/account-view.php:22
 #: includes/Admin/views/customer-view.php:22
 #: includes/Admin/views/vendor-view.php:24
@@ -1448,14 +1448,14 @@ msgid "Updated"
 msgstr ""
 
 #: includes/Admin/Accounts.php:297 includes/Admin/Customers.php:319
-#: includes/Admin/Dashboard.php:199
+#: includes/Admin/Dashboard.php:202
 msgid "Recent Payments"
 msgstr ""
 
 #: includes/Admin/Accounts.php:302 includes/Admin/Accounts.php:352
 #: includes/Admin/Customers.php:324 includes/Admin/Customers.php:376
-#: includes/Admin/Dashboard.php:209 includes/Admin/Dashboard.php:259
-#: includes/Admin/Dashboard.php:310 includes/Admin/ListTables/Accounts.php:192
+#: includes/Admin/Dashboard.php:212 includes/Admin/Dashboard.php:262
+#: includes/Admin/Dashboard.php:313 includes/Admin/ListTables/Accounts.php:192
 #: includes/Admin/ListTables/Customers.php:159
 #: includes/Admin/ListTables/Expenses.php:188
 #: includes/Admin/ListTables/Items.php:195
@@ -1484,9 +1484,9 @@ msgid "Reference"
 msgstr ""
 
 #: includes/Admin/Accounts.php:304 includes/Admin/Accounts.php:354
-#: includes/Admin/Customers.php:326 includes/Admin/Dashboard.php:210
-#: includes/Admin/Dashboard.php:260 includes/Admin/Dashboard.php:311
-#: includes/Admin/Dashboard.php:444 includes/Admin/Dashboard.php:510
+#: includes/Admin/Customers.php:326 includes/Admin/Dashboard.php:213
+#: includes/Admin/Dashboard.php:263 includes/Admin/Dashboard.php:314
+#: includes/Admin/Dashboard.php:447 includes/Admin/Dashboard.php:513
 #: includes/Admin/ListTables/Expenses.php:193
 #: includes/Admin/ListTables/Payments.php:192
 #: includes/Admin/ListTables/Transfers.php:176 includes/Admin/Vendors.php:322
@@ -1501,16 +1501,16 @@ msgid "Amount"
 msgstr ""
 
 #: includes/Admin/Accounts.php:322 includes/Admin/Customers.php:344
-#: includes/Admin/Dashboard.php:225 includes/Admin/ListTables/Payments.php:123
+#: includes/Admin/Dashboard.php:228 includes/Admin/ListTables/Payments.php:123
 msgid "No payments found."
 msgstr ""
 
-#: includes/Admin/Accounts.php:347 includes/Admin/Dashboard.php:249
+#: includes/Admin/Accounts.php:347 includes/Admin/Dashboard.php:252
 #: includes/Admin/Vendors.php:315
 msgid "Recent Expenses"
 msgstr ""
 
-#: includes/Admin/Accounts.php:373 includes/Admin/Dashboard.php:275
+#: includes/Admin/Accounts.php:373 includes/Admin/Dashboard.php:278
 #: includes/Admin/ListTables/Expenses.php:124 includes/Admin/Vendors.php:341
 msgid "No expenses found."
 msgstr ""
@@ -1569,7 +1569,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: includes/Admin/Admin.php:148 includes/Admin/Dashboard.php:83
+#: includes/Admin/Admin.php:148 includes/Admin/Dashboard.php:86
 #: includes/Admin/Reports/Profits.php:36 includes/Admin/Reports.php:36
 #: includes/Admin/Settings/Sales.php:20 includes/Admin/Utilities.php:30
 #: includes/Admin/Utilities.php:31
@@ -1836,7 +1836,7 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: includes/Admin/Customers.php:371 includes/Admin/Dashboard.php:300
+#: includes/Admin/Customers.php:371 includes/Admin/Dashboard.php:303
 msgid "Recent Invoices"
 msgstr ""
 
@@ -1854,16 +1854,16 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: includes/Admin/Customers.php:396 includes/Admin/Dashboard.php:326
+#: includes/Admin/Customers.php:396 includes/Admin/Dashboard.php:329
 #: includes/Admin/ListTables/Invoices.php:147
 msgid "No invoices found."
 msgstr ""
 
-#: includes/Admin/Dashboard.php:68 includes/Admin/Reports/Profits.php:128
+#: includes/Admin/Dashboard.php:71 includes/Admin/Reports/Profits.php:128
 msgid "Profit"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:87 includes/Admin/Expenses.php:37
+#: includes/Admin/Dashboard.php:90 includes/Admin/Expenses.php:37
 #: includes/Admin/Reports/Expenses.php:32 includes/Admin/Reports/Profits.php:40
 #: includes/Admin/Reports/Profits.php:120 includes/Admin/Reports.php:37
 #: includes/Admin/views/account-view.php:30
@@ -1872,65 +1872,65 @@ msgstr ""
 msgid "Expenses"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:95 includes/Admin/Reports/Profits.php:48
+#: includes/Admin/Dashboard.php:98 includes/Admin/Reports/Profits.php:48
 msgid "Profit/Loss"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:127
+#: includes/Admin/Dashboard.php:130
 msgid "Percentage of profit"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:164
+#: includes/Admin/Dashboard.php:167
 msgid "Receivable"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:169
+#: includes/Admin/Dashboard.php:172
 msgid "Payable"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:174
+#: includes/Admin/Dashboard.php:177
 msgid "Upcoming"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:201 includes/Admin/Dashboard.php:251
-#: includes/Admin/Dashboard.php:302 includes/Admin/Dashboard.php:370
-#: includes/Admin/Dashboard.php:436 includes/Admin/Dashboard.php:502
+#: includes/Admin/Dashboard.php:204 includes/Admin/Dashboard.php:254
+#: includes/Admin/Dashboard.php:305 includes/Admin/Dashboard.php:373
+#: includes/Admin/Dashboard.php:439 includes/Admin/Dashboard.php:505
 msgid "View all"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:208 includes/Admin/ListTables/Payments.php:186
+#: includes/Admin/Dashboard.php:211 includes/Admin/ListTables/Payments.php:186
 #: includes/Admin/views/payment-edit.php:56 templates/content-bill.php:259
 #: templates/content-invoice.php:259
 msgid "Payment #"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:258 includes/Admin/ListTables/Expenses.php:187
+#: includes/Admin/Dashboard.php:261 includes/Admin/ListTables/Expenses.php:187
 #: includes/Admin/views/expense-edit.php:56
 msgid "Expense #"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:309
+#: includes/Admin/Dashboard.php:312
 msgid "Invoice #"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:368
+#: includes/Admin/Dashboard.php:371
 msgid "Top Items"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:378
+#: includes/Admin/Dashboard.php:381
 msgid "Total Sales"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:396 includes/Admin/Dashboard.php:462
-#: includes/Admin/Dashboard.php:528
+#: includes/Admin/Dashboard.php:399 includes/Admin/Dashboard.php:465
+#: includes/Admin/Dashboard.php:531
 msgid "No data found."
 msgstr ""
 
-#: includes/Admin/Dashboard.php:434
+#: includes/Admin/Dashboard.php:437
 msgid "Top Customers"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:500
+#: includes/Admin/Dashboard.php:503
 msgid "Top Vendors"
 msgstr ""
 
@@ -4281,7 +4281,7 @@ msgstr ""
 msgid "Opening Balance"
 msgstr ""
 
-#: includes/Installer.php:123
+#: includes/Installer.php:126
 msgid "Ever Accounting is updating the database in the background. Please wait."
 msgstr ""
 
@@ -4549,12 +4549,12 @@ msgctxt "Delete"
 msgid "Delete"
 msgstr ""
 
-#: includes/Installer.php:534
+#: includes/Installer.php:537
 msgctxt "User role"
 msgid "Accounting Manager"
 msgstr ""
 
-#: includes/Installer.php:535
+#: includes/Installer.php:538
 msgctxt "User role"
 msgid "Accountant"
 msgstr ""

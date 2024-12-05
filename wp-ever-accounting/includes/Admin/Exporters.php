@@ -41,7 +41,7 @@ class Exporters {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'manage_options' ) ) {
+		if ( current_user_can( 'eac_manage_export' ) ) {  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			$tabs['export'] = __( 'Export', 'wp-ever-accounting' );
 		}
 

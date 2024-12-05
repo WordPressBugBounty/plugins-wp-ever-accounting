@@ -20,7 +20,7 @@ class Utilities {
 	public static function get_menus() {
 		$menus = array(
 			array(
-				'capability' => 'manage_options',
+				'capability' => 'eac_manage_item',
 				'menu_slug'  => 'eac-items',
 				'menu_title' => __( 'Items', 'wp-ever-accounting' ),
 				'page_title' => __( 'Items', 'wp-ever-accounting' ),
@@ -29,42 +29,42 @@ class Utilities {
 			array(
 				'page_title' => __( 'Sales', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Sales', 'wp-ever-accounting' ),
-				'capability' => 'manage_options',
+				'capability' => 'manage_accounting',
 				'menu_slug'  => 'eac-sales',
 				'position'   => 30,
 			),
 			array(
 				'page_title' => __( 'Purchases', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Purchases', 'wp-ever-accounting' ),
-				'capability' => 'manage_options',
+				'capability' => 'manage_accounting',
 				'menu_slug'  => 'eac-purchases',
 				'position'   => 40,
 			),
 			array(
 				'page_title' => __( 'Banking', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Banking', 'wp-ever-accounting' ),
-				'capability' => 'manage_options',
+				'capability' => 'manage_accounting',
 				'menu_slug'  => 'eac-banking',
 				'position'   => 50,
 			),
 			array(
 				'page_title' => __( 'Tools', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Tools', 'wp-ever-accounting' ),
-				'capability' => 'manage_options',
+				'capability' => 'manage_accounting',
 				'menu_slug'  => 'eac-tools',
 				'position'   => 60,
 			),
 			array(
 				'page_title' => __( 'Reports', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Reports', 'wp-ever-accounting' ),
-				'capability' => 'manage_options',
+				'capability' => 'eac_manage_report',
 				'menu_slug'  => 'eac-reports',
 				'position'   => 90,
 			),
 			array(
 				'page_title' => __( 'Settings', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Settings', 'wp-ever-accounting' ),
-				'capability' => 'manage_options',
+				'capability' => 'eac_manage_options',
 				'menu_slug'  => 'eac-settings',
 				'position'   => 100,
 			),

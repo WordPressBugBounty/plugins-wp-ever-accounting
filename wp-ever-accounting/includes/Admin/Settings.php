@@ -63,7 +63,7 @@ class Settings {
 
 		check_admin_referer( 'eac_save_settings' );
 
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'eac_manage_options' ) ) {  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			return;
 		}
 

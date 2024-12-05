@@ -31,6 +31,9 @@ class Installer {
 			'eac_update_120_notes',
 			'eac_update_120_misc',
 		),
+		'2.0.4' => array(
+			'eac_update_204_roles',
+		),
 	);
 
 	/**
@@ -133,7 +136,7 @@ class Installer {
 	 * @return void
 	 */
 	public function activation_redirect() {
-		if ( ! get_transient( 'eac_installed' ) || ! current_user_can( 'manage_options' ) ) {
+		if ( ! get_transient( 'eac_installed' ) || ! current_user_can( 'eac_manage_options' ) ) {  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			return;
 		}
 		delete_transient( 'eac_installed' );
@@ -604,25 +607,6 @@ KEY expense_id (expense_id)
 			$wp_roles->add_cap( 'administrator', 'eac_manage_tax' );
 			$wp_roles->add_cap( 'administrator', 'eac_manage_import' );
 			$wp_roles->add_cap( 'administrator', 'eac_manage_export' );
-		}
-
-		// remove all the legacy caps that starts with 'ea_'.
-		require_once ABSPATH . 'wp-admin/includes/user.php';
-		$roles = get_editable_roles();
-		foreach ( $roles as $role => $details ) {
-			$role = get_role( $role );
-			foreach ( $role->capabilities as $cap => $value ) {
-				if ( strpos( $cap, 'ea_' ) === 0 ) {
-					$role->remove_cap( $cap );
-				}
-			}
-		}
-		// remove legacy roles that starts with 'ea_'.
-		$roles = wp_roles()->roles;
-		foreach ( $roles as $role => $details ) {
-			if ( strpos( $role, 'ea_' ) === 0 ) {
-				remove_role( $role );
-			}
 		}
 	}
 
