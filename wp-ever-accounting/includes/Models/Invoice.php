@@ -181,7 +181,7 @@ class Invoice extends Document {
 		}
 
 		// if status is not paid or partial, remove payments.
-		if ( ! in_array( $this->status, array( 'paid', 'partial' ), true ) ) {
+		if ( ! in_array( $this->status, array( 'paid', 'partial', 'overdue' ), true ) ) {
 			$this->payments()->delete();
 		}
 

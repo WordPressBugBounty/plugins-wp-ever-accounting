@@ -178,6 +178,11 @@ class Bill extends Document {
 			$this->payment_date = null;
 		}
 
+		// if status is not paid or partial, remove payments.
+		if ( ! in_array( $this->status, array( 'paid', 'partial', 'overdue' ), true ) ) {
+			$this->payments()->delete();
+		}
+
 		return parent::save();
 	}
 
