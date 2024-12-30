@@ -4,7 +4,7 @@ Tags: accounting, invoice, CRM, business, finance
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -289,6 +289,9 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.0.6 = (30th December 2024)
+* Fix: Resolved a language compatibility issue with the report charts.
+
 = 2.0.5 = (23th December 2024)
 * Fix: When Invoice/Bill is marked as overdue, the associated payments are deleted.
 

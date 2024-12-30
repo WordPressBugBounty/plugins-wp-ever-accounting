@@ -156,7 +156,7 @@ class ReportsUtil {
 		$start  = new \DateTime( $start_date );
 		$end    = new \DateTime( $end_date );
 		while ( $start <= $end ) {
-			$months[] = $start->format( $format );
+			$months[] = wp_date( 'M, y', strtotime( $start->format( 'Y-m-01' ) ) );
 			$start->modify( 'first day of next month' );
 		}
 
@@ -331,6 +331,7 @@ class ReportsUtil {
 				$category_id = $transaction->category_id;
 				$amount      = round( $transaction->amount, 2 );
 				$month_year  = wp_date( $date_format, strtotime( $trans_year . '-' . $month . '-01' ) );
+
 				// Total.
 				$data['total_amount'] += round( $amount, 2 );
 				++$data['total_count'];
