@@ -322,7 +322,10 @@ class Invoice extends Document {
 	 */
 	public function get_paid_amount() {
 		$paid = 0;
+
+
 		foreach ( $this->payments as $payment ) {
+			$amount = $payment->amount;
 			$paid += eac_convert_currency( $payment->amount, $payment->exchange_rate, $this->exchange_rate );
 		}
 

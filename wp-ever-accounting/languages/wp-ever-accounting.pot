@@ -1,15 +1,15 @@
-# Copyright (C) 2024 EverAccounting
+# Copyright (C) 2025 EverAccounting
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ever Accounting 2.0.6\n"
+"Project-Id-Version: Ever Accounting 2.0.7\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-ever-accounting\n"
-"POT-Creation-Date: 2024-12-30 04:23:55+00:00\n"
+"POT-Creation-Date: 2025-01-06 08:19:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2025-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -424,13 +424,13 @@ msgid "Category"
 msgstr ""
 
 #: includes/API/Categories.php:433 includes/API/Contacts.php:28
-#: includes/API/Expenses.php:689 includes/API/Payments.php:684
+#: includes/API/Expenses.php:689 includes/API/Payments.php:691
 #: includes/API/Transactions.php:111
 msgid "Unique identifier for the category."
 msgstr ""
 
 #: includes/API/Categories.php:442 includes/API/Expenses.php:699
-#: includes/API/Payments.php:694 includes/API/Transactions.php:121
+#: includes/API/Payments.php:701 includes/API/Transactions.php:121
 msgid "Category name."
 msgstr ""
 
@@ -616,7 +616,7 @@ msgstr ""
 msgid "currency position."
 msgstr ""
 
-#: includes/API/Customers.php:62 includes/API/Payments.php:663
+#: includes/API/Customers.php:62 includes/API/Payments.php:664
 msgid "Unique identifier for the customer."
 msgstr ""
 
@@ -784,7 +784,7 @@ msgstr ""
 msgid "Customer ID of the payment."
 msgstr ""
 
-#: includes/API/Expenses.php:663 includes/API/Payments.php:658
+#: includes/API/Expenses.php:663 includes/API/Payments.php:659
 msgid "Customer of the payment."
 msgstr ""
 
@@ -792,7 +792,7 @@ msgstr ""
 msgid "Unique identifier for the vendor."
 msgstr ""
 
-#: includes/API/Expenses.php:677 includes/API/Payments.php:672
+#: includes/API/Expenses.php:677 includes/API/Payments.php:673
 msgid "Vendor name."
 msgstr ""
 
@@ -808,7 +808,7 @@ msgstr ""
 msgid "Parent expense ID."
 msgstr ""
 
-#: includes/API/Expenses.php:716 includes/API/Payments.php:711
+#: includes/API/Expenses.php:716 includes/API/Payments.php:718
 msgid "Whether the payment is editable."
 msgstr ""
 
@@ -1123,35 +1123,39 @@ msgstr ""
 msgid "Invoice name."
 msgstr ""
 
-#: includes/API/Payments.php:679
+#: includes/API/Payments.php:680
+msgid "Category ID of the payment."
+msgstr ""
+
+#: includes/API/Payments.php:686
 msgid "Category of the payment."
 msgstr ""
 
-#: includes/API/Payments.php:701
+#: includes/API/Payments.php:708
 msgid "Attachment ID of the payment."
 msgstr ""
 
-#: includes/API/Payments.php:706
+#: includes/API/Payments.php:713
 msgid "Parent payment ID."
 msgstr ""
 
-#: includes/API/Payments.php:716
+#: includes/API/Payments.php:723
 msgid "UUID of the payment."
 msgstr ""
 
-#: includes/API/Payments.php:722
+#: includes/API/Payments.php:729
 msgid "Created via of the payment."
 msgstr ""
 
-#: includes/API/Payments.php:727
+#: includes/API/Payments.php:734
 msgid "Author ID of the payment."
 msgstr ""
 
-#: includes/API/Payments.php:733
+#: includes/API/Payments.php:740
 msgid "The date the payment was last updated, in the site's timezone."
 msgstr ""
 
-#: includes/API/Payments.php:739
+#: includes/API/Payments.php:746
 msgid "The date the payment was created, in the site's timezone."
 msgstr ""
 
@@ -1526,8 +1530,8 @@ msgstr ""
 #: includes/Admin/views/invoice-edit.php:183
 #: includes/Admin/views/transfer-edit.php:176
 #: includes/Admin/views/vendor-view.php:36 templates/content-bill.php:248
-#: templates/content-expense.php:139 templates/content-invoice.php:248
-#: templates/content-payment.php:139
+#: templates/content-expense.php:141 templates/content-invoice.php:248
+#: templates/content-payment.php:141
 msgid "Notes"
 msgstr ""
 
@@ -1607,56 +1611,56 @@ msgstr ""
 msgid "You do not have permission to add payment."
 msgstr ""
 
-#: includes/Admin/Ajax.php:331
+#: includes/Admin/Ajax.php:332
 msgid "Invoice not found."
 msgstr ""
 
-#: includes/Admin/Ajax.php:336
+#: includes/Admin/Ajax.php:337
 msgid "Account not found."
 msgstr ""
 
-#: includes/Admin/Ajax.php:365
+#: includes/Admin/Ajax.php:367
 msgid "Payment added successfully."
 msgstr ""
 
-#: includes/Admin/Ajax.php:587 includes/Admin/Exporters.php:66
+#: includes/Admin/Ajax.php:591 includes/Admin/Exporters.php:66
 msgid "Invalid export type."
 msgstr ""
 
-#: includes/Admin/Ajax.php:592
+#: includes/Admin/Ajax.php:596
 msgid "You do not have enough privileges to export this."
 msgstr ""
 
-#: includes/Admin/Ajax.php:614
+#: includes/Admin/Ajax.php:618
 #. translators: %d: total items.
 msgid "Total %d items exported"
 msgstr ""
 
-#: includes/Admin/Ajax.php:642 includes/Admin/Ajax.php:717
+#: includes/Admin/Ajax.php:646 includes/Admin/Ajax.php:721
 msgid "You do not have permission to import."
 msgstr ""
 
-#: includes/Admin/Ajax.php:646 includes/Admin/Ajax.php:690
+#: includes/Admin/Ajax.php:650 includes/Admin/Ajax.php:694
 msgid "Missing import file. Please provide an import file."
 msgstr ""
 
-#: includes/Admin/Ajax.php:652 includes/Admin/Ajax.php:667
+#: includes/Admin/Ajax.php:656 includes/Admin/Ajax.php:671
 msgid "Something went wrong during the upload process, please try again."
 msgstr ""
 
-#: includes/Admin/Ajax.php:658
+#: includes/Admin/Ajax.php:662
 msgid "The file you uploaded does not appear to be a CSV file."
 msgstr ""
 
-#: includes/Admin/Ajax.php:699
+#: includes/Admin/Ajax.php:703
 msgid "Invalid import type."
 msgstr ""
 
-#: includes/Admin/Ajax.php:708
+#: includes/Admin/Ajax.php:712
 msgid "The file does not exist."
 msgstr ""
 
-#: includes/Admin/Ajax.php:732
+#: includes/Admin/Ajax.php:736
 #. translators: %d: imported items.
 msgid "%d items imported."
 msgstr ""
@@ -4236,7 +4240,7 @@ msgstr ""
 msgid "Week"
 msgstr ""
 
-#: includes/Documents.php:100 includes/Documents.php:166
+#: includes/Documents.php:101 includes/Documents.php:167
 #. translators: %s: status.
 msgid "Status changed to %s"
 msgstr ""

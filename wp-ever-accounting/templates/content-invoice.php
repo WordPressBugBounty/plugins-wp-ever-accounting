@@ -265,7 +265,11 @@ if ( ! $invoice->is_taxed() ) {
 				<tbody>
 				<?php foreach ( $invoice->payments as $payment ) : ?>
 					<tr>
-						<td><?php echo esc_html( $payment->number ); ?></td>
+						<td>
+							<a href="<?php echo esc_url( is_admin() ? $payment->get_view_url() : $payment->get_public_url() ); ?>">
+								<?php echo esc_html( $payment->number ); ?>
+							</a>
+						</td>
 						<td><?php echo esc_html( $payment->payment_date ? wp_date( get_option( 'date_format' ), strtotime( $payment->payment_date ) ) : 'N/A' ); ?></td>
 						<td><?php echo esc_html( $payment->payment_method_label ? $payment->payment_method_label : 'N/A' ); ?></td>
 						<td><?php echo esc_html( eac_format_amount( eac_convert_currency( $payment->amount, $payment->currency, $invoice->currency ), $invoice->currency ) ); ?></td>

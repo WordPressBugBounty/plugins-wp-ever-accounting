@@ -653,6 +653,7 @@ class Payments extends Transactions {
 					'description' => __( 'Customer ID of the payment.', 'wp-ever-accounting' ),
 					'type'        => 'integer',
 					'context'     => array( 'edit' ),
+
 				),
 				'customer'         => array(
 					'description' => __( 'Customer of the payment.', 'wp-ever-accounting' ),
@@ -674,6 +675,12 @@ class Payments extends Transactions {
 							'context'     => array( 'view', 'embed', 'edit' ),
 						),
 					),
+				),
+				'category_id' 	=> array(
+					'description' => __( 'Category ID of the payment.', 'wp-ever-accounting' ),
+					'type'        => ['integer', 'null', 'string'],
+					'context'     => array( 'edit' ),
+					'sanitize_callback' => 'intval',
 				),
 				'category'         => array(
 					'description' => __( 'Category of the payment.', 'wp-ever-accounting' ),

@@ -321,6 +321,7 @@ class Ajax {
 
 		$invoice_id = isset( $_POST['invoice_id'] ) ? absint( wp_unslash( $_POST['invoice_id'] ) ) : 0;
 		$account_id = isset( $_POST['account_id'] ) ? absint( wp_unslash( $_POST['account_id'] ) ) : 0;
+		$category_id = isset( $_POST['category_id'] ) ? absint( wp_unslash( $_POST['category_id'] ) ) : 0;
 		$exchange   = isset( $_POST['exchange_rate'] ) ? floatval( wp_unslash( $_POST['exchange_rate'] ) ) : '';
 		$date       = isset( $_POST['payment_date'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_date'] ) ) : '';
 		$reference  = isset( $_POST['reference'] ) ? sanitize_text_field( wp_unslash( $_POST['reference'] ) ) : '';
@@ -342,6 +343,7 @@ class Ajax {
 		$payment = EAC()->payments->insert(
 			array(
 				'account_id'   => $account_id,
+				'category_id'  => $category_id,
 				'exchange'     => $exchange,
 				'amount'       => $amount,
 				'payment_date' => $date,
@@ -386,6 +388,7 @@ class Ajax {
 		}
 		$bill                     = new Bill();
 		$bill->contact_id         = $vendor_id;
+		$bill->contact_company    = $vendor->company;
 		$bill->contact_name       = $vendor->name;
 		$bill->contact_email      = $vendor->email;
 		$bill->contact_phone      = $vendor->phone;
@@ -489,6 +492,7 @@ class Ajax {
 		}
 		$invoice                     = new Invoice();
 		$invoice->contact_id         = $customer_id;
+		$invoice->contact_company    = $customer->company;
 		$invoice->contact_name       = $customer->name;
 		$invoice->contact_email      = $customer->email;
 		$invoice->contact_phone      = $customer->phone;
@@ -623,7 +627,7 @@ class Ajax {
 		} else {
 			wp_send_json_success(
 				array(
-					'step'       => ++$step,
+					'step'       => ++ $step,
 					'percentage' => $exporter->get_percent_complete(),
 				)
 			);
@@ -732,6 +736,7 @@ class Ajax {
 					'message'  => sprintf( esc_html__( '%d items imported.', 'wp-ever-accounting' ), absint( $imported ) ),
 				)
 			);
+
 			return;
 		}
 

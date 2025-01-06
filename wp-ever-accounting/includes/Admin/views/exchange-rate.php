@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 	</td>
 	<td class="rate">
 		<div>
-			1 <?php echo esc_html( eac_base_currency() ); ?> = <input type="number" step="0.0001" name="eac_exchange_rates[<?php echo esc_attr( $code ); ?>]" value="<?php echo esc_attr( $rate ); ?>" required>
+			1 <?php echo esc_html( eac_base_currency() ); ?> = <input type="number" step="any" name="eac_exchange_rates[<?php echo esc_attr( $code ); ?>]" value="<?php echo esc_attr( $rate ); ?>" required>
 		</div>
 	</td>
 	<td class="actions">

@@ -126,7 +126,9 @@ $business_name  = get_option( 'eac_business_name', get_bloginfo( 'name' ) );
 				<tr>
 					<th scope="row"><?php esc_html_e( 'Invoice', 'wp-ever-accounting' ); ?></th>
 					<td>
-						<?php echo esc_html( $payment->invoice->number ); ?>
+						<a href="<?php echo esc_url( is_admin() ? $payment->invoice->get_view_url() : $payment->invoice->get_public_url() ); ?>">
+							<?php echo esc_html( $payment->invoice->number ); ?>
+						</a>
 					</td>
 				</tr>
 			<?php endif; ?>

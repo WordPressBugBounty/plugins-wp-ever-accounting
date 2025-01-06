@@ -191,7 +191,7 @@ class Document extends Model {
 		'tax'            => 'double',
 		'total'          => 'double',
 		'contact_id'     => 'int',
-		'exchange_rate'  => 'float',
+		'exchange_rate'  => 'double',
 		'transaction_id' => 'int',
 		'attachment_id'  => 'int',
 		'parent_id'      => 'int',
