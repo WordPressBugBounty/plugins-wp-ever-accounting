@@ -157,7 +157,7 @@ abstract class Exporter {
 
 		$file = $this->get_file();
 
-		if ( 100 === $this->get_percent_complete() ) {
+		if ( 100 <= $this->get_percent_complete() ) {
 			$file = chr( 239 ) . chr( 187 ) . chr( 191 ) . $this->get_column_headers() . $file;
 		}
 
