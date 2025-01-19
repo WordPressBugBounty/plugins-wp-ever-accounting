@@ -37,7 +37,7 @@ class Vendors {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'eac_manage_vendor' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( current_user_can( 'eac_read_vendors' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			$tabs['vendors'] = __( 'Vendors', 'wp-ever-accounting' );
 		}
 
@@ -52,7 +52,7 @@ class Vendors {
 	 */
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_vendor' );
-		if ( ! current_user_can( 'eac_manage_vendor' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_vendors' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to edit vendors.', 'wp-ever-accounting' ) );
 		}
 		$referer = wp_get_referer();

@@ -29,7 +29,7 @@ class Invoices extends Documents {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_read_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view invoices.', 'wp-ever-accounting' ),
@@ -49,7 +49,7 @@ class Invoices extends Documents {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to create invoices.', 'wp-ever-accounting' ),
@@ -61,7 +61,7 @@ class Invoices extends Documents {
 	}
 
 	/**
-	 * Checks if a given request has access to read a invoice.
+	 * Checks if a given request has access to read an invoice.
 	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 *
@@ -71,7 +71,7 @@ class Invoices extends Documents {
 	public function get_item_permissions_check( $request ) {
 		$invoice = EAC()->invoices->get( $request['id'] );
 
-		if ( empty( $invoice ) || ! current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $invoice ) || ! current_user_can( 'eac_read_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view this invoice.', 'wp-ever-accounting' ),
@@ -93,7 +93,7 @@ class Invoices extends Documents {
 	public function update_item_permissions_check( $request ) {
 		$invoice = EAC()->invoices->get( $request['id'] );
 
-		if ( empty( $invoice ) || ! current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $invoice ) || ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to update this invoice.', 'wp-ever-accounting' ),
@@ -115,7 +115,7 @@ class Invoices extends Documents {
 	public function delete_item_permissions_check( $request ) {
 		$invoice = EAC()->invoices->get( $request['id'] );
 
-		if ( empty( $invoice ) || ! current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $invoice ) || ! current_user_can( 'eac_delete_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to delete this invoice.', 'wp-ever-accounting' ),

@@ -34,7 +34,7 @@ class Payments {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'eac_manage_payment' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( current_user_can( 'eac_read_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			$tabs['payments'] = __( 'Payments', 'wp-ever-accounting' );
 		}
 
@@ -49,7 +49,7 @@ class Payments {
 	 */
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_payment' );
-		if ( ! current_user_can( 'eac_manage_payment' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to edit payments.', 'wp-ever-accounting' ) );
 		}
 
@@ -91,7 +91,7 @@ class Payments {
 	 */
 	public static function handle_update() {
 		check_admin_referer( 'eac_update_payment' );
-		if ( ! current_user_can( 'eac_manage_payment' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to update payments.', 'wp-ever-accounting' ) );
 		}
 

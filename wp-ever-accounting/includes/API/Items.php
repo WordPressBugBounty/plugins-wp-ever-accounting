@@ -93,7 +93,7 @@ class Items extends Controller {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_item' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_read_items' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view items.', 'wp-ever-accounting' ),
@@ -113,7 +113,7 @@ class Items extends Controller {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_item' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_edit_items' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to create items.', 'wp-ever-accounting' ),
@@ -135,7 +135,7 @@ class Items extends Controller {
 	public function get_item_permissions_check( $request ) {
 		$item = EAC()->items->get( $request['id'] );
 
-		if ( empty( $item ) || ! current_user_can( 'eac_manage_item' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $item ) || ! current_user_can( 'eac_read_items' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view this item.', 'wp-ever-accounting' ),
@@ -157,7 +157,7 @@ class Items extends Controller {
 	public function update_item_permissions_check( $request ) {
 		$item = EAC()->items->get( $request['id'] );
 
-		if ( empty( $item ) || ! current_user_can( 'eac_manage_item' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $item ) || ! current_user_can( 'eac_edit_items' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to update this item.', 'wp-ever-accounting' ),
@@ -179,7 +179,7 @@ class Items extends Controller {
 	public function delete_item_permissions_check( $request ) {
 		$item = EAC()->items->get( $request['id'] );
 
-		if ( empty( $item ) || ! current_user_can( 'eac_manage_item' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $item ) || ! current_user_can( 'eac_delete_items' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to delete this item.', 'wp-ever-accounting' ),

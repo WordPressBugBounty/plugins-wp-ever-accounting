@@ -34,7 +34,7 @@ class Invoices {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( current_user_can( 'eac_read_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			$tabs['invoices'] = __( 'Invoices', 'wp-ever-accounting' );
 		}
 
@@ -50,7 +50,7 @@ class Invoices {
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_invoice' );
 
-		if ( ! current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to edit invoices.', 'wp-ever-accounting' ) );
 		}
 
@@ -117,7 +117,7 @@ class Invoices {
 	 */
 	public static function handle_action( $posted ) {
 		check_admin_referer( 'eac_invoice_action' );
-		if ( ! current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to perform this action.', 'wp-ever-accounting' ) );
 		}
 

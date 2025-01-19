@@ -319,13 +319,13 @@ class Ajax {
 			wp_send_json_error( array( 'message' => __( 'You do not have permission to add payment.', 'wp-ever-accounting' ) ) );
 		}
 
-		$invoice_id = isset( $_POST['invoice_id'] ) ? absint( wp_unslash( $_POST['invoice_id'] ) ) : 0;
-		$account_id = isset( $_POST['account_id'] ) ? absint( wp_unslash( $_POST['account_id'] ) ) : 0;
+		$invoice_id  = isset( $_POST['invoice_id'] ) ? absint( wp_unslash( $_POST['invoice_id'] ) ) : 0;
+		$account_id  = isset( $_POST['account_id'] ) ? absint( wp_unslash( $_POST['account_id'] ) ) : 0;
 		$category_id = isset( $_POST['category_id'] ) ? absint( wp_unslash( $_POST['category_id'] ) ) : 0;
-		$exchange   = isset( $_POST['exchange_rate'] ) ? floatval( wp_unslash( $_POST['exchange_rate'] ) ) : '';
-		$date       = isset( $_POST['payment_date'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_date'] ) ) : '';
-		$reference  = isset( $_POST['reference'] ) ? sanitize_text_field( wp_unslash( $_POST['reference'] ) ) : '';
-		$note       = isset( $_POST['note'] ) ? sanitize_text_field( wp_unslash( $_POST['note'] ) ) : '';
+		$exchange    = isset( $_POST['exchange_rate'] ) ? floatval( wp_unslash( $_POST['exchange_rate'] ) ) : '';
+		$date        = isset( $_POST['payment_date'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_date'] ) ) : '';
+		$reference   = isset( $_POST['reference'] ) ? sanitize_text_field( wp_unslash( $_POST['reference'] ) ) : '';
+		$note        = isset( $_POST['note'] ) ? sanitize_text_field( wp_unslash( $_POST['note'] ) ) : '';
 
 		$invoice = EAC()->invoices->get( $invoice_id );
 		if ( ! $invoice ) {
@@ -627,7 +627,7 @@ class Ajax {
 		} else {
 			wp_send_json_success(
 				array(
-					'step'       => ++ $step,
+					'step'       => ++$step,
 					'percentage' => $exporter->get_percent_complete(),
 				)
 			);

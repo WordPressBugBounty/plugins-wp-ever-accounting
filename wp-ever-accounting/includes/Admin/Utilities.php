@@ -20,7 +20,7 @@ class Utilities {
 	public static function get_menus() {
 		$menus = array(
 			array(
-				'capability' => 'eac_manage_item',
+				'capability' => 'eac_read_items',
 				'menu_slug'  => 'eac-items',
 				'menu_title' => __( 'Items', 'wp-ever-accounting' ),
 				'page_title' => __( 'Items', 'wp-ever-accounting' ),

@@ -4,7 +4,7 @@ Tags: accounting, invoice, CRM, business, finance
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.8
+Stable tag: 2.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -289,6 +289,10 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.0.9 = (19th January 2025)
+* Enhance: Improved user roles and capabilities to manage Accounting.
+* Fix: Few minor bug fixes.
+
 = 2.0.8 = (6th January 2025)
 * Fix: Invoice/Bill not showing contact company name.
 * Fix: Missing header row in the exported CSV file containing customer data.
@@ -419,6 +423,9 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 * Initial release
 
 == Upgrade Notice ==
+= 2.0.9 =
+This is a minor update. Please backup your data before updating. If you encounter any issues, don't hesitate to get in touch with support. Thank you.
+
 = 2.0.0 =
 This is a major update. Please backup your data before updating. This update includes a complete redesign and rewrite of the plugin. Please test the plugin on a staging site before updating your live site. If you encounter any issues, don't hesitate to get in touch with support. Thank you.
 

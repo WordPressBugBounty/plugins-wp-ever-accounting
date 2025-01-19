@@ -33,7 +33,9 @@ class Categories {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		$tabs['categories'] = __( 'Categories', 'wp-ever-accounting' );
+		if ( current_user_can( 'eac_read_categories' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+			$tabs['categories'] = __( 'Categories', 'wp-ever-accounting' );
+		}
 
 		return $tabs;
 	}
@@ -46,6 +48,9 @@ class Categories {
 	 */
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_category' );
+		if ( ! current_user_can( 'eac_edit_categories' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+			wp_die( esc_html__( 'You do not have permission to edit categories.', 'wp-ever-accounting' ) );
+		}
 		$referer = wp_get_referer();
 		$data    = array(
 			'id'          => isset( $_POST['id'] ) ? absint( wp_unslash( $_POST['id'] ) ) : 0,

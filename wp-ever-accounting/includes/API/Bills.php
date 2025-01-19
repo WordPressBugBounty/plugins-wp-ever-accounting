@@ -29,7 +29,7 @@ class Bills extends Documents {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_bill' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_read_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view bills.', 'wp-ever-accounting' ),
@@ -49,7 +49,7 @@ class Bills extends Documents {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_bill' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to create bills.', 'wp-ever-accounting' ),
@@ -71,7 +71,7 @@ class Bills extends Documents {
 	public function get_item_permissions_check( $request ) {
 		$bill = EAC()->bills->get( $request['id'] );
 
-		if ( empty( $bill ) || ! current_user_can( 'eac_manage_bill' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $bill ) || ! current_user_can( 'eac_read_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view this bill.', 'wp-ever-accounting' ),
@@ -93,7 +93,7 @@ class Bills extends Documents {
 	public function update_item_permissions_check( $request ) {
 		$bill = EAC()->bills->get( $request['id'] );
 
-		if ( empty( $bill ) || ! current_user_can( 'eac_manage_bill' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $bill ) || ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to update this bill.', 'wp-ever-accounting' ),
@@ -115,7 +115,7 @@ class Bills extends Documents {
 	public function delete_item_permissions_check( $request ) {
 		$bill = EAC()->bills->get( $request['id'] );
 
-		if ( empty( $bill ) || ! current_user_can( 'eac_manage_bill' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $bill ) || ! current_user_can( 'eac_delete_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to delete this bill.', 'wp-ever-accounting' ),

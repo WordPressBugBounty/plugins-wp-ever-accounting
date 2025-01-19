@@ -30,6 +30,9 @@ class Taxes {
 	 */
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_tax' );
+		if ( ! current_user_can( 'eac_edit_taxes' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+			wp_die( esc_html__( 'You do not have permission to edit taxes.', 'wp-ever-accounting' ) );
+		}
 		$referer  = wp_get_referer();
 		$id       = isset( $_POST['id'] ) ? absint( wp_unslash( $_POST['id'] ) ) : 0;
 		$name     = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';

@@ -34,7 +34,7 @@ class Items {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'eac_manage_item' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( current_user_can( 'eac_read_items' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			$tabs['items'] = __( 'Items', 'wp-ever-accounting' );
 		}
 
@@ -49,7 +49,7 @@ class Items {
 	 */
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_item' );
-		if ( ! current_user_can( 'eac_manage_item' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_items' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to edit items.', 'wp-ever-accounting' ) );
 		}
 

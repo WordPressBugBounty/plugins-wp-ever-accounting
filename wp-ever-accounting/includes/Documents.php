@@ -57,7 +57,9 @@ class Documents {
 		if ( $payment->invoice_id && $payment->invoice ) {
 			$invoice = $payment->invoice;
 			$invoice->calculate_totals();
-			//$invoice->editable = 'paid' === $invoice->status;
+			// phpcs:disable
+			// $invoice->editable = 'paid' === $invoice->status;
+			// phpcs:enable
 			$invoice->save();
 		}
 	}

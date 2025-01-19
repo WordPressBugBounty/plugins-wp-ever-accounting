@@ -41,7 +41,7 @@ class Accounts {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'eac_manage_account' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( current_user_can( 'eac_read_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			$tabs['accounts'] = __( 'Account', 'wp-ever-accounting' );
 		}
 
@@ -56,7 +56,7 @@ class Accounts {
 	 */
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_account' );
-		if ( ! current_user_can( 'eac_manage_account' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to edit accounts.', 'wp-ever-accounting' ) );
 		}
 

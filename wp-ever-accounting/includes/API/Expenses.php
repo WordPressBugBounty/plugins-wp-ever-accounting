@@ -92,7 +92,7 @@ class Expenses extends Transactions {
 	 * @return true|\WP_Error True if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_expense' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_read_expenses' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view expenses.', 'wp-ever-accounting' ),
@@ -112,7 +112,7 @@ class Expenses extends Transactions {
 	 * @return true|\WP_Error True if the request has read access, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_expense' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_edit_expenses' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to create expenses.', 'wp-ever-accounting' ),
@@ -134,7 +134,7 @@ class Expenses extends Transactions {
 	public function get_item_permissions_check( $request ) {
 		$expense = EAC()->expenses->get( $request['id'] );
 
-		if ( empty( $expense ) || ! current_user_can( 'eac_manage_expense' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $expense ) || ! current_user_can( 'eac_read_expenses' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view this expense.', 'wp-ever-accounting' ),
@@ -156,7 +156,7 @@ class Expenses extends Transactions {
 	public function update_item_permissions_check( $request ) {
 		$expense = EAC()->expenses->get( $request['id'] );
 
-		if ( empty( $expense ) || ! current_user_can( 'eac_manage_expense' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $expense ) || ! current_user_can( 'eac_edit_expenses' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to update this expense.', 'wp-ever-accounting' ),
@@ -178,7 +178,7 @@ class Expenses extends Transactions {
 	public function delete_item_permissions_check( $request ) {
 		$expense = EAC()->expenses->get( $request['id'] );
 
-		if ( empty( $expense ) || ! current_user_can( 'eac_manage_expense' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $expense ) || ! current_user_can( 'eac_delete_expenses' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to delete this expense.', 'wp-ever-accounting' ),

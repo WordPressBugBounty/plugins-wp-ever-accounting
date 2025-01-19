@@ -20,7 +20,7 @@ abstract class Importer {
 	 * @since  1.0.0
 	 * @var    string
 	 */
-	protected $capability = 'manage_options';
+	protected $capability = 'eac_manage_import';
 
 	/**
 	 * The file being imported.

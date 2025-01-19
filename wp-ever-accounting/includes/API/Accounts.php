@@ -93,7 +93,7 @@ class Accounts extends Controller {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_account' ) ) {  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_read_accounts' ) ) {  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view accounts.', 'wp-ever-accounting' ),
@@ -113,7 +113,7 @@ class Accounts extends Controller {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_account' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_edit_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to create account.', 'wp-ever-accounting' ),
@@ -135,7 +135,7 @@ class Accounts extends Controller {
 	public function get_item_permissions_check( $request ) {
 		$account = EAC()->accounts->get( $request['id'] );
 
-		if ( empty( $account ) || ! current_user_can( 'eac_manage_account' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $account ) || ! current_user_can( 'eac_read_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view this account.', 'wp-ever-accounting' ),
@@ -157,7 +157,7 @@ class Accounts extends Controller {
 	public function update_item_permissions_check( $request ) {
 		$account = EAC()->accounts->get( $request['id'] );
 
-		if ( empty( $account ) || ! current_user_can( 'eac_manage_account' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $account ) || ! current_user_can( 'eac_edit_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to update this account.', 'wp-ever-accounting' ),
@@ -179,7 +179,7 @@ class Accounts extends Controller {
 	public function delete_item_permissions_check( $request ) {
 		$account = EAC()->accounts->get( $request['id'] );
 
-		if ( empty( $account ) || ! current_user_can( 'eac_manage_account' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $account ) || ! current_user_can( 'eac_delete_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to delete this account.', 'wp-ever-accounting' ),

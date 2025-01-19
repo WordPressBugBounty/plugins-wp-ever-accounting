@@ -93,7 +93,7 @@ class Categories extends Controller {
 	 * @since 2.0.0
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_category' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_read_categories' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view categories.', 'wp-ever-accounting' ),
@@ -113,7 +113,7 @@ class Categories extends Controller {
 	 * @since 2.0.0
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_category' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_edit_categories' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to create categories.', 'wp-ever-accounting' ),
@@ -135,7 +135,7 @@ class Categories extends Controller {
 	public function get_item_permissions_check( $request ) {
 		$category = EAC()->categories->get( $request['id'] );
 
-		if ( empty( $category ) || ! current_user_can( 'eac_manage_category' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $category ) || ! current_user_can( 'eac_read_categories' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view this category.', 'wp-ever-accounting' ),
@@ -157,7 +157,7 @@ class Categories extends Controller {
 	public function update_item_permissions_check( $request ) {
 		$category = EAC()->categories->get( $request['id'] );
 
-		if ( empty( $category ) || ! current_user_can( 'eac_manage_category' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $category ) || ! current_user_can( 'eac_edit_categories' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to update this category.', 'wp-ever-accounting' ),
@@ -179,7 +179,7 @@ class Categories extends Controller {
 	public function delete_item_permissions_check( $request ) {
 		$category = EAC()->categories->get( $request['id'] );
 
-		if ( empty( $category ) || ! current_user_can( 'eac_manage_category' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $category ) || ! current_user_can( 'eac_delete_categories' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to delete this category.', 'wp-ever-accounting' ),

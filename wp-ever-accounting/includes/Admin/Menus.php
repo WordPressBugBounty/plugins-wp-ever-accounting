@@ -76,7 +76,7 @@ class Menus {
 		add_menu_page(
 			__( 'Accounting', 'wp-ever-accounting' ),
 			__( 'Accounting', 'wp-ever-accounting' ),
-			'manage_accounting',  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			'read_accounting',  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			self::PARENT_SLUG,
 			null,
 			$icon,
@@ -89,7 +89,7 @@ class Menus {
 			array(
 				'menu_title' => __( 'Dashboard', 'wp-ever-accounting' ),
 				'page_title' => __( 'Dashboard', 'wp-ever-accounting' ),
-				'capability' => 'manage_accounting',
+				'capability' => 'read_accounting',
 				'menu_slug'  => self::PARENT_SLUG,
 				'callback'   => array( Dashboard::class, 'render_page' ),
 			)

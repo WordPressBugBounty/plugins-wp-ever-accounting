@@ -334,6 +334,14 @@ class Transfers extends ListTable {
 			),
 		);
 
+		if ( ! current_user_can( 'eac_delete_transfers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			unset( $actions['delete'] );
+		}
+
+		if ( ! current_user_can( 'eac_edit_transfers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			unset( $actions['edit'] );
+		}
+
 		return $this->row_actions( $actions );
 	}
 }

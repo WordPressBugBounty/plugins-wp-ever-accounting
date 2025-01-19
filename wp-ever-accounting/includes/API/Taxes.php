@@ -93,7 +93,7 @@ class Taxes extends Controller {
 	 * @return true|\WP_Error True if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_tax' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_read_taxes' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view taxes.', 'wp-ever-accounting' ),
@@ -113,7 +113,7 @@ class Taxes extends Controller {
 	 * @return true|\WP_Error True if the request has read access, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_tax' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_edit_taxes' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to create taxes.', 'wp-ever-accounting' ),
@@ -135,7 +135,7 @@ class Taxes extends Controller {
 	public function get_item_permissions_check( $request ) {
 		$tax = EAC()->taxes->get( $request['id'] );
 
-		if ( empty( $tax ) || ! current_user_can( 'eac_manage_tax' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $tax ) || ! current_user_can( 'eac_read_taxes' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view this tax.', 'wp-ever-accounting' ),
@@ -157,7 +157,7 @@ class Taxes extends Controller {
 	public function update_item_permissions_check( $request ) {
 		$tax = EAC()->taxes->get( $request['id'] );
 
-		if ( empty( $tax ) || ! current_user_can( 'eac_manage_tax' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $tax ) || ! current_user_can( 'eac_edit_taxes' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to update this tax.', 'wp-ever-accounting' ),
@@ -179,7 +179,7 @@ class Taxes extends Controller {
 	public function delete_item_permissions_check( $request ) {
 		$tax = EAC()->taxes->get( $request['id'] );
 
-		if ( empty( $tax ) || ! current_user_can( 'eac_manage_tax' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $tax ) || ! current_user_can( 'eac_delete_taxes' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to delete this tax.', 'wp-ever-accounting' ),

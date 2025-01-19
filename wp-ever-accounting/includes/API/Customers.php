@@ -93,7 +93,7 @@ class Customers extends Contacts {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_customer' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_read_customers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view customers.', 'wp-ever-accounting' ),
@@ -113,7 +113,7 @@ class Customers extends Contacts {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_customer' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_edit_customers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to create customers.', 'wp-ever-accounting' ),
@@ -135,7 +135,7 @@ class Customers extends Contacts {
 	public function get_item_permissions_check( $request ) {
 		$customer = EAC()->customers->get( $request['id'] );
 
-		if ( empty( $customer ) || ! current_user_can( 'eac_manage_customer' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $customer ) || ! current_user_can( 'eac_read_customers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view this customer.', 'wp-ever-accounting' ),
@@ -157,7 +157,7 @@ class Customers extends Contacts {
 	public function update_item_permissions_check( $request ) {
 		$customer = EAC()->customers->get( $request['id'] );
 
-		if ( empty( $customer ) || ! current_user_can( 'eac_manage_customer' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $customer ) || ! current_user_can( 'eac_edit_customers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to update this customer.', 'wp-ever-accounting' ),
@@ -179,7 +179,7 @@ class Customers extends Contacts {
 	public function delete_item_permissions_check( $request ) {
 		$customer = EAC()->customers->get( $request['id'] );
 
-		if ( empty( $customer ) || ! current_user_can( 'eac_manage_customer' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $customer ) || ! current_user_can( 'eac_delete_customers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to delete this customer.', 'wp-ever-accounting' ),

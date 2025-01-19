@@ -418,7 +418,11 @@ class Invoices extends ListTable {
 			),
 		);
 
-		if ( ! $item->editable ) {
+		if ( ! current_user_can( 'eac_delete_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			unset( $actions['delete'] );
+		}
+
+		if ( ! $item->editable || ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			unset( $actions['edit'] );
 		}
 

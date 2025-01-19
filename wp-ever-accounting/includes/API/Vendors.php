@@ -93,7 +93,7 @@ class Vendors extends Contacts {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_vendor' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_read_vendors' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view Vendors.', 'wp-ever-accounting' ),
@@ -113,7 +113,7 @@ class Vendors extends Contacts {
 	 * @return true|\WP_Error True, if the request has read access, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'eac_manage_vendor' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( ! current_user_can( 'eac_edit_vendors' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to create vendor.', 'wp-ever-accounting' ),
@@ -135,7 +135,7 @@ class Vendors extends Contacts {
 	public function update_item_permissions_check( $request ) {
 		$vendor = EAC()->vendors->get( $request['id'] );
 
-		if ( empty( $vendor ) || ! current_user_can( 'eac_manage_vendor' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $vendor ) || ! current_user_can( 'eac_edit_vendors' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to update this vendor.', 'wp-ever-accounting' ),
@@ -157,7 +157,7 @@ class Vendors extends Contacts {
 	public function get_item_permissions_check( $request ) {
 		$vendor = EAC()->vendors->get( $request['id'] );
 
-		if ( empty( $vendor ) || ! current_user_can( 'eac_manage_vendor' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $vendor ) || ! current_user_can( 'eac_read_vendors' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to view this vendor.', 'wp-ever-accounting' ),
@@ -179,7 +179,7 @@ class Vendors extends Contacts {
 	public function delete_item_permissions_check( $request ) {
 		$vendor = EAC()->vendors->get( $request['id'] );
 
-		if ( empty( $vendor ) || ! current_user_can( 'eac_manage_vendor' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
+		if ( empty( $vendor ) || ! current_user_can( 'eac_delete_vendors' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability
 			return new \WP_Error(
 				'rest_forbidden_context',
 				__( 'Sorry, you are not allowed to delete this vendor.', 'wp-ever-accounting' ),

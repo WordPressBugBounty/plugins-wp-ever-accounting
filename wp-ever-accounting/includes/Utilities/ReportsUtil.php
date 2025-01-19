@@ -151,7 +151,7 @@ class ReportsUtil {
 	 * @since 1.0.0
 	 * @return array
 	 */
-	public static function get_months_in_range( $start_date, $end_date, $format = 'F,y' ) {
+	public static function get_months_in_range( $start_date, $end_date, $format = 'F,y' ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
 		$months = array();
 		$start  = new \DateTime( $start_date );
 		$end    = new \DateTime( $end_date );

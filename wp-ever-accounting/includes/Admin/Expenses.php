@@ -33,7 +33,7 @@ class Expenses {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'eac_manage_expense' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( current_user_can( 'eac_read_expenses' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			$tabs['expenses'] = __( 'Expenses', 'wp-ever-accounting' );
 		}
 
@@ -48,7 +48,7 @@ class Expenses {
 	 */
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_expense' );
-		if ( ! current_user_can( 'eac_manage_expense' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_expenses' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to edit expenses.', 'wp-ever-accounting' ) );
 		}
 
@@ -90,7 +90,7 @@ class Expenses {
 	 */
 	public static function handle_update() {
 		check_admin_referer( 'eac_update_expense' );
-		if ( ! current_user_can( 'eac_manage_expense' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_expenses' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to update expense.', 'wp-ever-accounting' ) );
 		}
 

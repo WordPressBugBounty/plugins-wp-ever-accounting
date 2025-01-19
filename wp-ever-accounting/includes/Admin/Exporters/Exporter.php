@@ -26,7 +26,7 @@ abstract class Exporter {
 	 * @since  1.0.2
 	 * @var    string
 	 */
-	public $capability = 'manage_options';
+	public $capability = 'eac_manage_export';
 
 	/**
 	 * Filename to export to.

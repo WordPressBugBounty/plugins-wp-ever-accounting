@@ -35,7 +35,7 @@ class Transfers {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'eac_manage_transfer' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( current_user_can( 'eac_read_transfers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			$tabs['transfers'] = __( 'Transfers', 'wp-ever-accounting' );
 		}
 
@@ -51,7 +51,7 @@ class Transfers {
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_transfer' );
 
-		if ( ! current_user_can( 'eac_manage_transfer' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_transfers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to edit transfers.', 'wp-ever-accounting' ) );
 		}
 
