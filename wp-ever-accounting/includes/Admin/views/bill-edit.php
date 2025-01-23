@@ -50,7 +50,6 @@ defined( 'ABSPATH' ) || exit;
 								'options'          => array( $bill->vendor ),
 								'value'            => $bill->vendor_id,
 								'required'         => true,
-								'readonly'         => true,
 								'class'            => 'eac_select2',
 								'option_value'     => 'id',
 								'option_label'     => 'formatted_name',

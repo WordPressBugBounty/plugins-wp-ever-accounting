@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ever Accounting 2.0.9\n"
+"Project-Id-Version: Ever Accounting 2.1.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-ever-accounting\n"
-"POT-Creation-Date: 2025-01-19 11:40:56+00:00\n"
+"POT-Creation-Date: 2025-01-23 08:52:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1435,9 +1435,9 @@ msgstr ""
 #: includes/Admin/Accounts.php:253 includes/Admin/Currencies.php:67
 #: includes/Admin/Customers.php:273 includes/Admin/Settings/General.php:35
 #: includes/Admin/Vendors.php:253 includes/Admin/views/account-edit.php:80
-#: includes/Admin/views/bill-edit.php:120
+#: includes/Admin/views/bill-edit.php:119
 #: includes/Admin/views/exchange-rates.php:15
-#: includes/Admin/views/invoice-edit.php:118
+#: includes/Admin/views/invoice-edit.php:117
 msgid "Currency"
 msgstr ""
 
@@ -1519,15 +1519,15 @@ msgstr ""
 msgid "No expenses found."
 msgstr ""
 
-#: includes/Admin/Accounts.php:404 includes/Admin/Bills.php:249
+#: includes/Admin/Accounts.php:404 includes/Admin/Bills.php:251
 #: includes/Admin/Customers.php:424 includes/Admin/Expenses.php:263
-#: includes/Admin/Invoices.php:247 includes/Admin/Items.php:165
+#: includes/Admin/Invoices.php:249 includes/Admin/Items.php:165
 #: includes/Admin/Payments.php:272 includes/Admin/Settings/Purchases.php:132
 #: includes/Admin/Settings/Sales.php:131 includes/Admin/Vendors.php:418
 #: includes/Admin/views/account-view.php:34
-#: includes/Admin/views/bill-edit.php:185
+#: includes/Admin/views/bill-edit.php:184
 #: includes/Admin/views/customer-view.php:34
-#: includes/Admin/views/invoice-edit.php:183
+#: includes/Admin/views/invoice-edit.php:182
 #: includes/Admin/views/transfer-edit.php:176
 #: includes/Admin/views/vendor-view.php:36 templates/content-bill.php:248
 #: templates/content-expense.php:141 templates/content-invoice.php:248
@@ -1536,19 +1536,19 @@ msgid "Notes"
 msgstr ""
 
 #: includes/Admin/Accounts.php:407 includes/Admin/Accounts.php:411
-#: includes/Admin/Bills.php:253 includes/Admin/Bills.php:257
+#: includes/Admin/Bills.php:255 includes/Admin/Bills.php:259
 #: includes/Admin/Customers.php:426 includes/Admin/Customers.php:430
 #: includes/Admin/Expenses.php:267 includes/Admin/Expenses.php:271
-#: includes/Admin/Invoices.php:251 includes/Admin/Invoices.php:255
+#: includes/Admin/Invoices.php:253 includes/Admin/Invoices.php:257
 #: includes/Admin/Items.php:169 includes/Admin/Items.php:173
 #: includes/Admin/Payments.php:276 includes/Admin/Payments.php:280
 #: includes/Admin/Vendors.php:420 includes/Admin/Vendors.php:424
 msgid "Add Note"
 msgstr ""
 
-#: includes/Admin/Accounts.php:408 includes/Admin/Bills.php:254
+#: includes/Admin/Accounts.php:408 includes/Admin/Bills.php:256
 #: includes/Admin/Customers.php:427 includes/Admin/Expenses.php:268
-#: includes/Admin/Invoices.php:252 includes/Admin/Items.php:170
+#: includes/Admin/Invoices.php:254 includes/Admin/Items.php:170
 #: includes/Admin/Payments.php:277 includes/Admin/Vendors.php:421
 msgid "Enter Note"
 msgstr ""
@@ -1675,42 +1675,42 @@ msgstr ""
 msgid "You do not have permission to edit bills."
 msgstr ""
 
-#: includes/Admin/Bills.php:104
+#: includes/Admin/Bills.php:106
 msgid "Bill saved successfully."
 msgstr ""
 
-#: includes/Admin/Bills.php:123 includes/Admin/Invoices.php:121
+#: includes/Admin/Bills.php:125 includes/Admin/Invoices.php:123
 msgid "You do not have permission to perform this action."
 msgstr ""
 
-#: includes/Admin/Bills.php:131 includes/Admin/Invoices.php:129
+#: includes/Admin/Bills.php:133 includes/Admin/Invoices.php:131
 msgid "Invalid request."
 msgstr ""
 
-#: includes/Admin/Bills.php:136
+#: includes/Admin/Bills.php:138
 msgid "You attempted to perform an action on an bill that does not exist."
 msgstr ""
 
-#: includes/Admin/Bills.php:143
+#: includes/Admin/Bills.php:145
 msgid "Invoice marked as received."
 msgstr ""
 
-#: includes/Admin/Bills.php:145
+#: includes/Admin/Bills.php:147
 msgid "Failed to mark bill as received."
 msgstr ""
 
-#: includes/Admin/Bills.php:177
+#: includes/Admin/Bills.php:179
 msgid ""
 "You attempted to retrieve a bill that does not exist. Perhaps it was "
 "deleted?"
 msgstr ""
 
-#: includes/Admin/Bills.php:180
+#: includes/Admin/Bills.php:182
 msgid "You attempted to edit a bill that is not editable."
 msgstr ""
 
-#: includes/Admin/Bills.php:191 includes/Admin/Customers.php:121
-#: includes/Admin/Expenses.php:183 includes/Admin/Invoices.php:189
+#: includes/Admin/Bills.php:193 includes/Admin/Customers.php:121
+#: includes/Admin/Expenses.php:183 includes/Admin/Invoices.php:191
 #: includes/Admin/Items.php:110 includes/Admin/Payments.php:187
 #: includes/Admin/Transfers.php:115 includes/Admin/Vendors.php:120
 msgid "Number of items per page:"
@@ -1969,10 +1969,10 @@ msgid ""
 msgstr ""
 
 #: includes/Admin/Expenses.php:228 includes/Admin/Payments.php:231
-#: includes/Admin/views/bill-edit.php:261
+#: includes/Admin/views/bill-edit.php:260
 #: includes/Admin/views/bill-view.php:101
 #: includes/Admin/views/expense-edit.php:267
-#: includes/Admin/views/invoice-edit.php:259
+#: includes/Admin/views/invoice-edit.php:258
 #: includes/Admin/views/invoice-view.php:101
 #: includes/Admin/views/payment-edit.php:267
 msgid "Attachment"
@@ -2220,29 +2220,29 @@ msgstr ""
 msgid "You do not have permission to edit invoices."
 msgstr ""
 
-#: includes/Admin/Invoices.php:102
+#: includes/Admin/Invoices.php:104
 msgid "Invoice saved successfully."
 msgstr ""
 
-#: includes/Admin/Invoices.php:134
+#: includes/Admin/Invoices.php:136
 msgid "You attempted to perform an action on an invoice that does not exist."
 msgstr ""
 
-#: includes/Admin/Invoices.php:141
+#: includes/Admin/Invoices.php:143
 msgid "Invoice marked as sent."
 msgstr ""
 
-#: includes/Admin/Invoices.php:143
+#: includes/Admin/Invoices.php:145
 msgid "Failed to mark invoice as sent."
 msgstr ""
 
-#: includes/Admin/Invoices.php:175
+#: includes/Admin/Invoices.php:177
 msgid ""
 "You attempted to retrieve an invoice that does not exist. Perhaps it was "
 "deleted?"
 msgstr ""
 
-#: includes/Admin/Invoices.php:178
+#: includes/Admin/Invoices.php:180
 msgid "You attempted to edit an invoice that is not editable."
 msgstr ""
 
@@ -2314,12 +2314,12 @@ msgstr ""
 #: includes/Admin/ListTables/Vendors.php:116
 #: includes/Admin/ListTables/Vendors.php:263
 #: includes/Admin/views/account-edit.php:127
-#: includes/Admin/views/bill-edit.php:250 includes/Admin/views/bill-view.php:95
+#: includes/Admin/views/bill-edit.php:249 includes/Admin/views/bill-view.php:95
 #: includes/Admin/views/category-edit.php:97
 #: includes/Admin/views/customer-edit.php:215
 #: includes/Admin/views/expense-edit.php:256
 #: includes/Admin/views/expense-view.php:78
-#: includes/Admin/views/invoice-edit.php:248
+#: includes/Admin/views/invoice-edit.php:247
 #: includes/Admin/views/invoice-view.php:95
 #: includes/Admin/views/item-edit.php:190
 #: includes/Admin/views/payment-edit.php:256
@@ -2410,8 +2410,8 @@ msgstr ""
 
 #: includes/Admin/ListTables/Bills.php:305
 #: includes/Admin/ListTables/Invoices.php:242
-#: includes/Admin/views/bill-edit.php:74
-#: includes/Admin/views/invoice-edit.php:72
+#: includes/Admin/views/bill-edit.php:73
+#: includes/Admin/views/invoice-edit.php:71
 msgid "Issue Date"
 msgstr ""
 
@@ -2493,8 +2493,8 @@ msgstr ""
 
 #: includes/Admin/ListTables/Invoices.php:243
 #: includes/Admin/Settings/Purchases.php:111
-#: includes/Admin/Settings/Sales.php:111 includes/Admin/views/bill-edit.php:99
-#: includes/Admin/views/invoice-edit.php:97
+#: includes/Admin/Settings/Sales.php:111 includes/Admin/views/bill-edit.php:98
+#: includes/Admin/views/invoice-edit.php:96
 msgid "Due Date"
 msgstr ""
 
@@ -3063,8 +3063,8 @@ msgid "Thank you for your business!"
 msgstr ""
 
 #: includes/Admin/Settings/Purchases.php:142
-#: includes/Admin/Settings/Sales.php:140 includes/Admin/views/bill-edit.php:197
-#: includes/Admin/views/invoice-edit.php:195
+#: includes/Admin/Settings/Sales.php:140 includes/Admin/views/bill-edit.php:196
+#: includes/Admin/views/invoice-edit.php:194
 msgid "Terms"
 msgstr ""
 
@@ -3501,12 +3501,12 @@ msgid "Select Currency"
 msgstr ""
 
 #: includes/Admin/views/account-edit.php:110
-#: includes/Admin/views/bill-edit.php:228 includes/Admin/views/bill-view.php:57
+#: includes/Admin/views/bill-edit.php:227 includes/Admin/views/bill-view.php:57
 #: includes/Admin/views/category-edit.php:93
 #: includes/Admin/views/customer-edit.php:192
 #: includes/Admin/views/expense-edit.php:234
 #: includes/Admin/views/expense-view.php:51
-#: includes/Admin/views/invoice-edit.php:226
+#: includes/Admin/views/invoice-edit.php:225
 #: includes/Admin/views/invoice-view.php:57
 #: includes/Admin/views/item-edit.php:172
 #: includes/Admin/views/payment-edit.php:234
@@ -3590,69 +3590,69 @@ msgstr ""
 msgid "Add Bill"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:57
+#: includes/Admin/views/bill-edit.php:56
 #: includes/Admin/views/expense-edit.php:158
 msgid "Select a vendor"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:86
+#: includes/Admin/views/bill-edit.php:85
 msgid "Bill Number"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:110
-#: includes/Admin/views/invoice-edit.php:108
+#: includes/Admin/views/bill-edit.php:109
+#: includes/Admin/views/invoice-edit.php:107
 msgid "Order Number"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:128
-#: includes/Admin/views/invoice-edit.php:126
+#: includes/Admin/views/bill-edit.php:127
+#: includes/Admin/views/invoice-edit.php:125
 msgid "Select a currency"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:136
+#: includes/Admin/views/bill-edit.php:135
 #: includes/Admin/views/bill-view.php:148
 #: includes/Admin/views/expense-edit.php:92
-#: includes/Admin/views/invoice-edit.php:134
+#: includes/Admin/views/invoice-edit.php:133
 #: includes/Admin/views/invoice-view.php:148
 #: includes/Admin/views/payment-edit.php:92
 msgid "Exchange Rate"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:171
-#: includes/Admin/views/invoice-edit.php:169
+#: includes/Admin/views/bill-edit.php:170
+#: includes/Admin/views/invoice-edit.php:168
 msgid "Select an item"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:190
-#: includes/Admin/views/invoice-edit.php:188
+#: includes/Admin/views/bill-edit.php:189
+#: includes/Admin/views/invoice-edit.php:187
 msgid "Add notes"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:202
-#: includes/Admin/views/invoice-edit.php:200
+#: includes/Admin/views/bill-edit.php:201
+#: includes/Admin/views/invoice-edit.php:199
 msgid "Add terms"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:231
+#: includes/Admin/views/bill-edit.php:230
 #: includes/Admin/views/customer-edit.php:195
 #: includes/Admin/views/expense-edit.php:237
-#: includes/Admin/views/invoice-edit.php:229
+#: includes/Admin/views/invoice-edit.php:228
 #: includes/Admin/views/payment-edit.php:237
 #: includes/Admin/views/vendor-edit.php:194
 msgid "View"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:252
+#: includes/Admin/views/bill-edit.php:251
 #: includes/Admin/views/expense-edit.php:258
-#: includes/Admin/views/invoice-edit.php:250
+#: includes/Admin/views/invoice-edit.php:249
 #: includes/Admin/views/item-edit.php:191
 #: includes/Admin/views/payment-edit.php:258
 msgid "Update"
 msgstr ""
 
-#: includes/Admin/views/bill-edit.php:254
+#: includes/Admin/views/bill-edit.php:253
 #: includes/Admin/views/expense-edit.php:260
-#: includes/Admin/views/invoice-edit.php:252
+#: includes/Admin/views/invoice-edit.php:251
 #: includes/Admin/views/item-edit.php:193
 #: includes/Admin/views/payment-edit.php:260
 #: includes/Admin/views/transfer-edit.php:200
@@ -3929,12 +3929,12 @@ msgstr ""
 msgid "Add Invoice"
 msgstr ""
 
-#: includes/Admin/views/invoice-edit.php:55
+#: includes/Admin/views/invoice-edit.php:54
 #: includes/Admin/views/payment-edit.php:158
 msgid "Select a customer"
 msgstr ""
 
-#: includes/Admin/views/invoice-edit.php:84
+#: includes/Admin/views/invoice-edit.php:83
 msgid "Invoice Number"
 msgstr ""
 

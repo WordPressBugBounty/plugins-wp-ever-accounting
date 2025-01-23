@@ -1,10 +1,8 @@
 === Ever Accounting - WordPress Accounting and Invoice Plugin ===
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
-Requires at least: 5.0
 Tested up to: 6.7
-Requires PHP: 7.4
-Stable tag: 2.0.9
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -289,6 +287,11 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.1.0 = (23rd January 2025)
+* Fix: Invoice/Bill issue date and due date not saving.
+* Fix: Invoice/Bill customer/vendor name marked as required.
+* Fix: Bills date filter not working.
+
 = 2.0.9 = (19th January 2025)
 * Enhance: Improved user roles and capabilities to manage Accounting.
 * Fix: Few minor bug fixes.

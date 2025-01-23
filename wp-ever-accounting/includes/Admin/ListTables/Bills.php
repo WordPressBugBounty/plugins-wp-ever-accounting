@@ -281,7 +281,7 @@ class Bills extends ListTable {
 					FROM {$wpdb->prefix}ea_documents
 					WHERE type = %s AND issue_date IS NOT NULL
 					ORDER BY issue_date DESC",
-					'invoice'
+					'bill'
 				)
 			);
 			$this->date_filter( $months );
