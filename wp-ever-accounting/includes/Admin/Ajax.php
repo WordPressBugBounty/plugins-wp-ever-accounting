@@ -315,7 +315,7 @@ class Ajax {
 	public function add_invoice_payment() {
 		check_ajax_referer( 'eac_add_invoice_payment' );
 
-		if ( ! current_user_can( 'eac_manage_payment' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_send_json_error( array( 'message' => __( 'You do not have permission to add payment.', 'wp-ever-accounting' ) ) );
 		}
 
@@ -377,7 +377,7 @@ class Ajax {
 	public function get_bill_address() {
 		check_ajax_referer( 'eac_edit_bill' );
 
-		if ( ! current_user_can( 'eac_manage_bill' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( - 1 );
 		}
 
@@ -425,7 +425,7 @@ class Ajax {
 	public function get_recalculated_bill() {
 		check_ajax_referer( 'eac_edit_bill' );
 
-		if ( ! current_user_can( 'eac_manage_bill' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( - 1 );
 		}
 
@@ -481,7 +481,7 @@ class Ajax {
 	public function get_invoice_address() {
 		check_ajax_referer( 'eac_edit_invoice' );
 
-		if ( ! current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( - 1 );
 		}
 
@@ -529,7 +529,7 @@ class Ajax {
 	public function get_recalculated_invoice() {
 		check_ajax_referer( 'eac_edit_invoice' );
 
-		if ( ! current_user_can( 'eac_manage_invoice' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( - 1 );
 		}
 

@@ -2,7 +2,7 @@
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
 Tested up to: 6.7
-Stable tag: 2.1.0
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -287,6 +287,14 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.1.2 = (25rd January 2025)
+* Fix: Minor PHP error fixed.
+
+= 2.1.1 = (25rd January 2025)
+* Fix: Invoice/Bill not adding items.
+* Fix: Invoice/Bill not adding payments.
+* Fix: PHP 8.2 compatibility issue.
+
 = 2.1.0 = (23rd January 2025)
 * Fix: Invoice/Bill issue date and due date not saving.
 * Fix: Invoice/Bill customer/vendor name marked as required.

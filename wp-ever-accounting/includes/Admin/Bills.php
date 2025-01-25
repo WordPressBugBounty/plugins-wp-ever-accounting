@@ -121,7 +121,7 @@ class Bills {
 	 */
 	public static function handle_action( $posted ) {
 		check_admin_referer( 'eac_bill_action' );
-		if ( ! current_user_can( 'eac_manage_bill' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to perform this action.', 'wp-ever-accounting' ) );
 		}
 
