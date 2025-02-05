@@ -102,6 +102,11 @@ class Payments extends ListTable {
 	 * @return void
 	 */
 	protected function bulk_delete( $ids ) {
+		if ( ! current_user_can( 'eac_delete_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			EAC()->flash->error( __( 'You do not have permission to delete payments.', 'wp-ever-accounting' ) );
+			return;
+		}
+
 		$performed = 0;
 		foreach ( $ids as $id ) {
 			if ( EAC()->payments->delete( $id ) ) {
@@ -131,9 +136,11 @@ class Payments extends ListTable {
 	 * @return array Array of bulk action labels keyed by their action.
 	 */
 	protected function get_bulk_actions() {
-		$actions = array(
-			'delete' => __( 'Delete', 'wp-ever-accounting' ),
-		);
+		$actions = array();
+
+		if ( current_user_can( 'eac_delete_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			$actions['delete'] = __( 'Delete', 'wp-ever-accounting' );
+		}
 
 		return $actions;
 	}

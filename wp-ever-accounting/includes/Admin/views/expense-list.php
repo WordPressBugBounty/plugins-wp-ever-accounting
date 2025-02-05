@@ -12,12 +12,16 @@ global $list_table;
 ?>
 	<h1 class="wp-heading-inline">
 		<?php esc_html_e( 'Expenses', 'wp-ever-accounting' ); ?>
-		<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-purchases&tab=expenses&action=add' ) ); ?>" class="button button-small">
-			<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
-		</a>
-		<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-tools' ) ); ?>" class="button button-small">
-			<?php esc_html_e( 'Import', 'wp-ever-accounting' ); ?>
-		</a>
+		<?php if ( current_user_can( 'eac_edit_expenses' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+			<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-purchases&tab=expenses&action=add' ) ); ?>" class="button button-small">
+				<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
+			</a>
+		<?php endif; ?>
+		<?php if ( current_user_can( 'eac_manage_import' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+			<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-tools' ) ); ?>" class="button button-small">
+				<?php esc_html_e( 'Import', 'wp-ever-accounting' ); ?>
+			</a>
+		<?php endif; ?>
 		<?php if ( $list_table->get_request_search() ) : ?>
 			<?php // translators: %s: search term. ?>
 			<span class="subtitle"><?php echo esc_html( sprintf( __( 'Search results for "%s"', 'wp-ever-accounting' ), esc_html( $list_table->get_request_search() ) ) ); ?></span>

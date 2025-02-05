@@ -163,7 +163,9 @@ class Payments {
 		global $list_table;
 		switch ( $action ) {
 			case 'add':
-				// Nothing to do here.
+				if ( ! current_user_can( 'eac_edit_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+					wp_die( esc_html__( 'You do not have permission to add payments.', 'wp-ever-accounting' ) );
+				}
 				break;
 
 			case 'view':
@@ -174,6 +176,9 @@ class Payments {
 				}
 				if ( 'edit' === $action && ! EAC()->payments->get( $id )->editable ) {
 					wp_die( esc_html__( 'You attempted to edit a payment that is not editable.', 'wp-ever-accounting' ) );
+				}
+				if ( 'edit' === $action && ! current_user_can( 'eac_edit_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+					wp_die( esc_html__( 'You do not have permission to edit payments.', 'wp-ever-accounting' ) );
 				}
 				break;
 
@@ -272,13 +277,16 @@ class Payments {
 				<h3 class="eac-card__title"><?php esc_html_e( 'Notes', 'wp-ever-accounting' ); ?></h3>
 			</div>
 			<div class="eac-card__body">
-				<div class="eac-form-field">
-					<label for="eac-note"><?php esc_html_e( 'Add Note', 'wp-ever-accounting' ); ?></label>
-					<textarea id="eac-note" cols="30" rows="2" placeholder="<?php esc_attr_e( 'Enter Note', 'wp-ever-accounting' ); ?>"></textarea>
-				</div>
-				<button id="eac-add-note" type="button" class="button tw-mb-[20px]" data-parent_id="<?php echo esc_attr( $payment->id ); ?>" data-parent_type="payment" data-nonce="<?php echo esc_attr( wp_create_nonce( 'eac_add_note' ) ); ?>">
-					<?php esc_html_e( 'Add Note', 'wp-ever-accounting' ); ?>
-				</button>
+
+				<?php if ( current_user_can( 'eac_edit_notes' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
+					<div class="eac-form-field">
+						<label for="eac-note"><?php esc_html_e( 'Add Note', 'wp-ever-accounting' ); ?></label>
+						<textarea id="eac-note" cols="30" rows="2" placeholder="<?php esc_attr_e( 'Enter Note', 'wp-ever-accounting' ); ?>"></textarea>
+					</div>
+					<button id="eac-add-note" type="button" class="button tw-mb-[20px]" data-parent_id="<?php echo esc_attr( $payment->id ); ?>" data-parent_type="payment" data-nonce="<?php echo esc_attr( wp_create_nonce( 'eac_add_note' ) ); ?>">
+						<?php esc_html_e( 'Add Note', 'wp-ever-accounting' ); ?>
+					</button>
+				<?php endif; ?>
 
 				<?php include __DIR__ . '/views/note-list.php'; ?>
 			</div>

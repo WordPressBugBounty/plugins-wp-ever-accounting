@@ -3,6 +3,8 @@
  * Admin View: Customer view
  *
  * @since 1.0.0
+ *
+ * @subpackage EverAccounting/Admin/Views
  * @package EverAccounting
  * @var $customer Customer Customer object.
  */
@@ -68,7 +70,9 @@ $current_section = ! array_key_exists( $section, $sections ) ? current( array_ke
 			</p>
 		</div>
 	</div>
-	<a class="eac-profile-header__edit" href="<?php echo esc_url( $customer->get_edit_url() ); ?>"><span class="dashicons dashicons-edit"></span></a>
+	<?php if ( current_user_can( 'eac_edit_customers' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
+		<a class="eac-profile-header__edit" href="<?php echo esc_url( $customer->get_edit_url() ); ?>"><span class="dashicons dashicons-edit"></span></a>
+	<?php endif; ?>
 </div>
 
 <div class="eac-profile-sections">

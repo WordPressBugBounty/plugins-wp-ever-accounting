@@ -32,7 +32,7 @@ class Reports {
 	 * @return array
 	 */
 	public static function register_tabs( $tabs ) {
-		if ( current_user_can( 'eac_manage_report' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( current_user_can( 'eac_read_reports' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			$tabs['sales']    = __( 'Sales', 'wp-ever-accounting' );
 			$tabs['expenses'] = __( 'Expenses', 'wp-ever-accounting' );
 			$tabs['profits']  = __( 'Profits', 'wp-ever-accounting' );

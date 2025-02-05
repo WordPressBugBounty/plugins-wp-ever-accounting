@@ -29,21 +29,21 @@ class Utilities {
 			array(
 				'page_title' => __( 'Sales', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Sales', 'wp-ever-accounting' ),
-				'capability' => 'manage_accounting',
+				'capability' => 'read_accounting',
 				'menu_slug'  => 'eac-sales',
 				'position'   => 30,
 			),
 			array(
 				'page_title' => __( 'Purchases', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Purchases', 'wp-ever-accounting' ),
-				'capability' => 'manage_accounting',
+				'capability' => 'read_accounting',
 				'menu_slug'  => 'eac-purchases',
 				'position'   => 40,
 			),
 			array(
 				'page_title' => __( 'Banking', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Banking', 'wp-ever-accounting' ),
-				'capability' => 'manage_accounting',
+				'capability' => 'read_accounting',
 				'menu_slug'  => 'eac-banking',
 				'position'   => 50,
 			),
@@ -57,7 +57,7 @@ class Utilities {
 			array(
 				'page_title' => __( 'Reports', 'wp-ever-accounting' ),
 				'menu_title' => __( 'Reports', 'wp-ever-accounting' ),
-				'capability' => 'eac_manage_report',
+				'capability' => 'eac_read_reports',
 				'menu_slug'  => 'eac-reports',
 				'position'   => 90,
 			),

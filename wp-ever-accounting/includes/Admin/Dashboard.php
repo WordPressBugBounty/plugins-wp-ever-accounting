@@ -49,7 +49,7 @@ class Dashboard {
 	 * @return void
 	 */
 	public static function overview_widget() {
-		if ( ! current_user_can( 'eac_manage_report' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+		if ( ! current_user_can( 'eac_read_reports' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			return;
 		}
 		$report   = ReportsUtil::get_profits_report( wp_date( 'Y' ), true );

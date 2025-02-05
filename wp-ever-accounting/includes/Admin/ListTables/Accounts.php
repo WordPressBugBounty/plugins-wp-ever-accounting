@@ -88,6 +88,11 @@ class Accounts extends ListTable {
 	 * @return void
 	 */
 	protected function bulk_update_balance( $ids ) {
+		if ( ! current_user_can( 'eac_edit_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			EAC()->flash->error( __( 'You do not have permission to update account balance.', 'wp-ever-accounting' ) );
+			return;
+		}
+
 		$performed = 0;
 		foreach ( $ids as $id ) {
 			$account = EAC()->accounts->get( $id );
@@ -111,6 +116,11 @@ class Accounts extends ListTable {
 	 * @return void
 	 */
 	protected function bulk_delete( $ids ) {
+		if ( ! current_user_can( 'eac_delete_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			EAC()->flash->error( __( 'You do not have permission to delete accounts.', 'wp-ever-accounting' ) );
+			return;
+		}
+
 		$performed = 0;
 		foreach ( $ids as $id ) {
 			if ( EAC()->accounts->delete( $id ) ) {
@@ -169,10 +179,15 @@ class Accounts extends ListTable {
 	 * @return array Array of bulk action labels keyed by their action.
 	 */
 	protected function get_bulk_actions() {
-		$actions = array(
-			'update_balance' => __( 'Update Balance', 'wp-ever-accounting' ),
-			'delete'         => __( 'Delete', 'wp-ever-accounting' ),
-		);
+		$actions = array();
+
+		if ( current_user_can( 'eac_edit_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			$actions['update_balance'] = __( 'Update Balance', 'wp-ever-accounting' );
+		}
+
+		if ( current_user_can( 'eac_delete_accounts' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			$actions['delete'] = __( 'Delete', 'wp-ever-accounting' );
+		}
 
 		return $actions;
 	}

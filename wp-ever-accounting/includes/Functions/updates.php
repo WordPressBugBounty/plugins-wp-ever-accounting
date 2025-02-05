@@ -438,7 +438,7 @@ function eac_update_209_roles() {
 			'eac_edit_vendors',
 			'eac_delete_vendors',
 		),
-		'eac_manage_report'   => array(),
+		'eac_read_reports'    => array(),
 		'eac_manage_options'  => array(),
 		'eac_manage_currency' => array(),
 		'eac_manage_import'   => array(),
@@ -451,6 +451,62 @@ function eac_update_209_roles() {
 				$role = get_role( $r );
 				foreach ( $children as $child ) {
 					$role->add_cap( $child );
+				}
+			}
+		}
+	}
+}
+
+/**
+ * Update roles to 2.1.3
+ */
+function eac_update_213_roles() {
+	require_once ABSPATH . 'wp-admin/includes/user.php';
+
+	// Caps to be added.
+	$add_caps = array(
+		'read_accounting'   => array(
+			'eac_read_reports',
+			'eac_read_notes',
+		),
+		'manage_accounting' => array(
+			'eac_edit_notes',
+			'eac_delete_notes',
+		),
+	);
+
+	// Caps to be removed.
+	$remove_caps = array(
+		'eac_manage_report',
+	);
+
+	foreach ( wp_roles()->roles as $r => $details ) {
+		// Add caps.
+		foreach ( $add_caps as $cap => $caps ) {
+			if ( isset( $details['capabilities'][ $cap ] ) ) {
+				$role = get_role( $r );
+
+				// Add caps for eac_accountant role separately.
+				if ( 'eac_accountant' === $r ) {
+					$role->add_cap( 'eac_read_notes' );
+					$role->add_cap( 'eac_edit_notes' );
+					break;
+				}
+
+				if ( $role ) {
+					foreach ( $caps as $c ) {
+						$role->add_cap( $c );
+					}
+				}
+			}
+		}
+
+		// Remove caps.
+		foreach ( $remove_caps as $cap ) {
+			if ( isset( $details['capabilities'][ $cap ] ) ) {
+				$role = get_role( $r );
+				if ( $role ) {
+					$role->remove_cap( $cap );
 				}
 			}
 		}

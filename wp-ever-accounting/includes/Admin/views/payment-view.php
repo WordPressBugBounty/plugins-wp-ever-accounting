@@ -21,9 +21,11 @@ $payment = EAC()->payments->get( $id );
 
 <h1 class="wp-heading-inline">
 	<?php esc_html_e( 'View Payment', 'wp-ever-accounting' ); ?>
-	<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-sales&tab=payments&action=add' ) ); ?>" class="button button-small">
-		<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
-	</a>
+	<?php if ( current_user_can( 'eac_edit_payments' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
+		<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-sales&tab=payments&action=add' ) ); ?>" class="button button-small">
+			<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
+		</a>
+	<?php endif; ?>
 	<a href="<?php echo esc_attr( remove_query_arg( array( 'action', 'id' ) ) ); ?>" title="<?php esc_attr_e( 'Go back', 'wp-ever-accounting' ); ?>">
 		<span class="dashicons dashicons-undo"></span>
 	</a>
@@ -51,7 +53,7 @@ $payment = EAC()->payments->get( $id );
 		<div class="eac-card">
 			<div class="eac-card__header">
 				<h2 class="eac-card__title"><?php esc_html_e( 'Actions', 'wp-ever-accounting' ); ?></h2>
-				<?php if ( $payment->editable ) : ?>
+				<?php if ( $payment->editable && current_user_can( 'eac_edit_payments' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
 					<a href="<?php echo esc_url( $payment->get_edit_url() ); ?>">
 						<?php esc_html_e( 'Edit', 'wp-ever-accounting' ); ?>
 					</a>
@@ -76,9 +78,11 @@ $payment = EAC()->payments->get( $id );
 				</a>
 			</div>
 			<div class="eac-card__footer">
-				<a class="del del_confirm" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'action', 'delete', $payment->get_edit_url() ), 'bulk-payments' ) ); ?>">
-					<?php esc_html_e( 'Delete', 'wp-ever-accounting' ); ?>
-				</a>
+				<?php if ( current_user_can( 'eac_delete_payments' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
+					<a class="del del_confirm" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'action', 'delete', $payment->get_edit_url() ), 'bulk-payments' ) ); ?>">
+						<?php esc_html_e( 'Delete', 'wp-ever-accounting' ); ?>
+					</a>
+				<?php endif; ?>
 			</div>
 		</div>
 

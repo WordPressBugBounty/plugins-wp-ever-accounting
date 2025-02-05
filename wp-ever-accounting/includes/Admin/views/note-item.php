@@ -30,8 +30,10 @@ if ( $note->author_id ) {
 			<?php // translators: %s: note author. ?>
 			<?php echo esc_html( sprintf( ' ' . __( 'by %s', 'wp-ever-accounting' ), $author ) ); ?>
 		</abbr>
-		<a href="#" class="note__delete" data-nonce="<?php echo esc_attr( wp_create_nonce( 'eac_delete_note' ) ); ?>" data-note_id="<?php echo esc_attr( $note->id ); ?>">
-			<?php echo esc_html_x( 'Delete', 'Delete', 'wp-ever-accounting' ); ?>
-		</a>
+		<?php if ( current_user_can( 'eac_delete_notes' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
+			<a href="#" class="note__delete" data-nonce="<?php echo esc_attr( wp_create_nonce( 'eac_delete_note' ) ); ?>" data-note_id="<?php echo esc_attr( $note->id ); ?>">
+				<?php echo esc_html_x( 'Delete', 'Delete', 'wp-ever-accounting' ); ?>
+			</a>
+		<?php endif; ?>
 	</div>
 </li>

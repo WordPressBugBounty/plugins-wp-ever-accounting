@@ -2,7 +2,7 @@
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
 Tested up to: 6.7
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -287,6 +287,11 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.1.3 = (4th February 2025)
+* Enhance: Improved user roles and capabilities to manage Accounting.
+* New: Add new role "Accounting Auditor" with read-only capabilities.
+* Fix: Few minor bug fixes.
+
 = 2.1.2 = (25rd January 2025)
 * Fix: Minor PHP error fixed.
 
@@ -434,6 +439,9 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 * Initial release
 
 == Upgrade Notice ==
+= 2.1.3 =
+This is a major update. Please backup your data before updating. This update includes a complete redesign and rewrite of the plugin. Please test the plugin on a staging site before updating your live site. If you encounter any issues, don't hesitate to get in touch with support. Thank you.
+
 = 2.0.9 =
 This is a minor update. Please backup your data before updating. If you encounter any issues, don't hesitate to get in touch with support. Thank you.
 

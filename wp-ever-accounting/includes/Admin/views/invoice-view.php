@@ -27,9 +27,11 @@ $mark_sent_url = wp_nonce_url(
 ?>
 <h1 class="wp-heading-inline">
 	<?php esc_html_e( 'View Invoice', 'wp-ever-accounting' ); ?>
-	<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-sales&tab=invoices&action=add' ) ); ?>" class="button button-small">
-		<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
-	</a>
+	<?php if ( current_user_can( 'eac_edit_invoices' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+		<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-sales&tab=invoices&action=add' ) ); ?>" class="button button-small">
+			<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
+		</a>
+	<?php endif; ?>
 	<a href="<?php echo esc_attr( remove_query_arg( array( 'action', 'id' ) ) ); ?>" title="<?php esc_attr_e( 'Go back', 'wp-ever-accounting' ); ?>">
 		<span class="dashicons dashicons-undo"></span>
 	</a>
@@ -55,7 +57,7 @@ $mark_sent_url = wp_nonce_url(
 		<div class="eac-card">
 			<div class="eac-card__header">
 				<h2 class="eac-card__title"><?php esc_html_e( 'Actions', 'wp-ever-accounting' ); ?></h2>
-				<?php if ( $invoice->editable ) : ?>
+				<?php if ( $invoice->editable && current_user_can( 'eac_edit_invoices' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
 					<a href="<?php echo esc_url( $invoice->get_edit_url() ); ?>">
 						<?php esc_html_e( 'Edit', 'wp-ever-accounting' ); ?>
 					</a>
@@ -63,11 +65,11 @@ $mark_sent_url = wp_nonce_url(
 			</div>
 
 			<div class="eac-card__body">
-				<?php if ( $invoice->is_status( 'draft' ) ) : ?>
+				<?php if ( $invoice->is_status( 'draft' ) && current_user_can( 'eac_edit_invoices' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
 					<a href="<?php echo esc_url( $mark_sent_url ); ?>" class="button button-primary button-small button-block">
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Mark Sent', 'wp-ever-accounting' ); ?>
 					</a>
-				<?php elseif ( ! $invoice->is_status( 'draft' ) && ! $invoice->is_paid() ) : ?>
+				<?php elseif ( ! $invoice->is_status( 'draft' ) && ! $invoice->is_paid() && current_user_can( 'eac_edit_invoices' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
 					<a href="#" class="button button-primary button-small button-block eac-add-invoice-payment" data-id="<?php echo esc_attr( $invoice->id ); ?>">
 						<span class="dashicons dashicons-money-alt"></span> <?php esc_html_e( 'Add Payment', 'wp-ever-accounting' ); ?>
 					</a>
@@ -92,7 +94,9 @@ $mark_sent_url = wp_nonce_url(
 			</div>
 
 			<div class="eac-card__footer">
-				<a class="del del_confirm" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'action', 'delete', $invoice->get_edit_url() ), 'bulk-invoices' ) ); ?>"><?php esc_html_e( 'Delete', 'wp-ever-accounting' ); ?></a>
+				<?php if ( current_user_can( 'eac_delete_invoices' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
+					<a class="del del_confirm" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'action', 'delete', $invoice->get_edit_url() ), 'bulk-invoices' ) ); ?>"><?php esc_html_e( 'Delete', 'wp-ever-accounting' ); ?></a>
+				<?php endif; ?>
 			</div>
 		</div>
 

@@ -18,12 +18,13 @@ $id      = isset( $_GET['id'] ) ? absint( wp_unslash( $_GET['id'] ) ) : 0;
 $expense = EAC()->expenses->get( $id );
 
 ?>
-
 <h1 class="wp-heading-inline">
 	<?php esc_html_e( 'View Expense', 'wp-ever-accounting' ); ?>
-	<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-purchases&tab=expenses&action=add' ) ); ?>" class="button button-small">
-		<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
-	</a>
+	<?php if ( current_user_can( 'eac_edit_expenses' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+		<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-purchases&tab=expenses&action=add' ) ); ?>" class="button button-small">
+			<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
+		</a>
+	<?php endif; ?>
 	<a href="<?php echo esc_attr( remove_query_arg( array( 'action', 'id' ) ) ); ?>" title="<?php esc_attr_e( 'Go back', 'wp-ever-accounting' ); ?>">
 		<span class="dashicons dashicons-undo"></span>
 	</a>
@@ -49,7 +50,7 @@ $expense = EAC()->expenses->get( $id );
 		<div class="eac-card">
 			<div class="eac-card__header">
 				<h2 class="eac-card__title"><?php esc_html_e( 'Actions', 'wp-ever-accounting' ); ?></h2>
-				<?php if ( $expense->editable ) : ?>
+				<?php if ( $expense->editable && current_user_can( 'eac_edit_expenses' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
 					<a href="<?php echo esc_url( $expense->get_edit_url() ); ?>">
 						<?php esc_html_e( 'Edit', 'wp-ever-accounting' ); ?>
 					</a>
@@ -74,9 +75,11 @@ $expense = EAC()->expenses->get( $id );
 				</a>
 			</div>
 			<div class="eac-card__footer">
+				<?php if ( current_user_can( 'eac_delete_expenses' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
 				<a class="del del_confirm" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'action', 'delete', $expense->get_edit_url() ), 'bulk-expenses' ) ); ?>">
 					<?php esc_html_e( 'Delete', 'wp-ever-accounting' ); ?>
 				</a>
+				<?php endif; ?>
 			</div>
 		</div>
 

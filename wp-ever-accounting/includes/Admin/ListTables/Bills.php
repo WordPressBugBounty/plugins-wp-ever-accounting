@@ -99,6 +99,11 @@ class Bills extends ListTable {
 	 * @return void
 	 */
 	protected function bulk_set_draft( $ids ) {
+		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			EAC()->flash->error( __( 'You do not have permission to perform this action.', 'wp-ever-accounting' ) );
+			return;
+		}
+
 		$performed = 0;
 		foreach ( $ids as $id ) {
 			$bill = EAC()->bills->get( $id );
@@ -121,6 +126,11 @@ class Bills extends ListTable {
 	 * @return void
 	 */
 	protected function bulk_set_received( $ids ) {
+		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			EAC()->flash->error( __( 'You do not have permission to perform this action.', 'wp-ever-accounting' ) );
+			return;
+		}
+
 		$performed = 0;
 		foreach ( $ids as $id ) {
 			$bill = EAC()->bills->get( $id );
@@ -143,6 +153,11 @@ class Bills extends ListTable {
 	 * @return void
 	 */
 	protected function bulk_set_overdue( $ids ) {
+		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			EAC()->flash->error( __( 'You do not have permission to perform this action.', 'wp-ever-accounting' ) );
+			return;
+		}
+
 		$performed = 0;
 		foreach ( $ids as $id ) {
 			$bill = EAC()->bills->get( $id );
@@ -165,6 +180,11 @@ class Bills extends ListTable {
 	 * @return void
 	 */
 	protected function bulk_set_cancelled( $ids ) {
+		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			EAC()->flash->error( __( 'You do not have permission to perform this action.', 'wp-ever-accounting' ) );
+			return;
+		}
+
 		$performed = 0;
 		foreach ( $ids as $id ) {
 			$bill = EAC()->bills->get( $id );
@@ -187,6 +207,11 @@ class Bills extends ListTable {
 	 * @return void
 	 */
 	protected function bulk_delete( $ids ) {
+		if ( ! current_user_can( 'eac_delete_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			EAC()->flash->error( __( 'You do not have permission to delete bills.', 'wp-ever-accounting' ) );
+			return;
+		}
+
 		$performed = 0;
 		foreach ( $ids as $id ) {
 			if ( EAC()->bills->delete( $id ) ) {
@@ -246,13 +271,18 @@ class Bills extends ListTable {
 	 * @return array Array of bulk action labels keyed by their action.
 	 */
 	protected function get_bulk_actions() {
-		$actions = array(
-			'set_draft'     => __( 'Set Draft', 'wp-ever-accounting' ),
-			'set_received'  => __( 'Set Received', 'wp-ever-accounting' ),
-			'set_overdue'   => __( 'Set Overdue', 'wp-ever-accounting' ),
-			'set_cancelled' => __( 'Set Cancelled', 'wp-ever-accounting' ),
-			'delete'        => __( 'Delete', 'wp-ever-accounting' ),
-		);
+		$actions = array();
+
+		if ( current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			$actions['set_draft']     = __( 'Set Draft', 'wp-ever-accounting' );
+			$actions['set_received']  = __( 'Set Received', 'wp-ever-accounting' );
+			$actions['set_overdue']   = __( 'Set Overdue', 'wp-ever-accounting' );
+			$actions['set_cancelled'] = __( 'Set Cancelled', 'wp-ever-accounting' );
+		}
+
+		if ( current_user_can( 'eac_delete_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+			$actions['delete'] = __( 'Delete', 'wp-ever-accounting' );
+		}
 
 		return $actions;
 	}

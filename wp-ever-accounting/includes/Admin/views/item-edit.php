@@ -17,9 +17,11 @@ $item = Item::make( $id );
 <h1 class="wp-heading-inline">
 	<?php if ( $item->exists() ) : ?>
 		<?php esc_html_e( 'Edit Item', 'wp-ever-accounting' ); ?>
-		<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-items&action=add' ) ); ?>" class="button button-small">
-			<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
-		</a>
+		<?php if ( current_user_can( 'eac_edit_items' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+			<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-items&action=add' ) ); ?>" class="button button-small">
+				<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
+			</a>
+		<?php endif; ?>
 	<?php else : ?>
 		<?php esc_html_e( 'Add Item', 'wp-ever-accounting' ); ?>
 	<?php endif; ?>
@@ -186,10 +188,10 @@ $item = Item::make( $id );
 					</div>
 				<?php endif; ?>
 				<div class="eac-card__footer">
-					<?php if ( $item->exists() ) : ?>
+					<?php if ( $item->exists() && current_user_can( 'eac_delete_items' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
 						<a class="del del_confirm" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'action', 'delete', $item->get_edit_url() ), 'bulk-items' ) ); ?>"><?php esc_html_e( 'Delete', 'wp-ever-accounting' ); ?></a>
 						<button class="button button-primary"><?php esc_html_e( 'Update', 'wp-ever-accounting' ); ?></button>
-					<?php else : ?>
+					<?php elseif ( current_user_can( 'eac_edit_items' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
 						<button class="button button-primary button-block"><?php esc_html_e( 'Save', 'wp-ever-accounting' ); ?></button>
 					<?php endif; ?>
 				</div>

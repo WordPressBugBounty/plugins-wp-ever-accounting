@@ -2,6 +2,7 @@
 /**
  * Edit vendor view.
  *
+ * @since 1.0.0
  * @package EverAccounting
  * @var $item \EverAccounting\Models\Item
  */

@@ -18,9 +18,11 @@ $transfer = Transfer::make( $id );
 <h1 class="wp-heading-inline">
 	<?php if ( $transfer->exists() ) : ?>
 		<?php esc_html_e( 'Edit Transfer', 'wp-ever-accounting' ); ?>
-		<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-banking&tab=transfers&action=add' ) ); ?>" class="button button-small">
-			<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
-		</a>
+		<?php if ( current_user_can( 'eac_edit_transfers' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+			<a href="<?php echo esc_attr( admin_url( 'admin.php?page=eac-banking&tab=transfers&action=add' ) ); ?>" class="button button-small">
+				<?php esc_html_e( 'Add New', 'wp-ever-accounting' ); ?>
+			</a>
+		<?php endif; ?>
 	<?php else : ?>
 		<?php esc_html_e( 'Add Transfer', 'wp-ever-accounting' ); ?>
 	<?php endif; ?>
@@ -217,12 +219,18 @@ $transfer = Transfer::make( $id );
 
 				<div class="eac-card__footer">
 					<?php if ( $transfer->exists() ) : ?>
-						<a class="del del_confirm" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'action', 'delete', $transfer->get_edit_url() ), 'bulk-transfers' ) ); ?>">
-							<?php esc_html_e( 'Delete', 'wp-ever-accounting' ); ?>
-						</a>
-						<button class="button button-primary"><?php esc_html_e( 'Update Transfer', 'wp-ever-accounting' ); ?></button>
+						<?php if ( current_user_can( 'eac_delete_transfers' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+							<a class="del del_confirm" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'action', 'delete', $transfer->get_edit_url() ), 'bulk-transfers' ) ); ?>">
+								<?php esc_html_e( 'Delete', 'wp-ever-accounting' ); ?>
+							</a>
+						<?php endif; ?>
+						<?php if ( current_user_can( 'eac_edit_transfers' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+							<button class="button button-primary"><?php esc_html_e( 'Update Transfer', 'wp-ever-accounting' ); ?></button>
+						<?php endif; ?>
 					<?php else : ?>
+						<?php if ( current_user_can( 'eac_edit_transfers' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
 						<button class="button button-primary button-large tw-w-full"><?php esc_html_e( 'Save Transfer', 'wp-ever-accounting' ); ?></button>
+						<?php endif; ?>
 					<?php endif; ?>
 				</div>
 			</div><!-- .eac-card -->

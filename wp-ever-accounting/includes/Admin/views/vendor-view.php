@@ -49,7 +49,9 @@ $current_section = ! array_key_exists( $section, $sections ) ? current( array_ke
 			<span class="dashicons dashicons-undo"></span>
 		</a>
 	</h1>
-	<a href="<?php echo esc_url( $vendor->get_edit_url() ); ?>" class="page-title-action"><?php esc_html_e( 'Edit Vendor', 'wp-ever-accounting' ); ?></a>
+	<?php if ( current_user_can( 'eac_edit_vendors' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+		<a href="<?php echo esc_url( $vendor->get_edit_url() ); ?>" class="page-title-action"><?php esc_html_e( 'Edit Vendor', 'wp-ever-accounting' ); ?></a>
+	<?php endif; ?>
 </div>
 
 
@@ -74,7 +76,9 @@ $current_section = ! array_key_exists( $section, $sections ) ? current( array_ke
 			</p>
 		</div>
 	</div>
-	<a class="eac-profile-header__edit" href="<?php echo esc_url( $vendor->get_edit_url() ); ?>"><span class="dashicons dashicons-edit"></span></a>
+	<?php if ( current_user_can( 'eac_edit_vendors' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
+		<a class="eac-profile-header__edit" href="<?php echo esc_url( $vendor->get_edit_url() ); ?>"><span class="dashicons dashicons-edit"></span></a>
+	<?php endif; ?>
 </div>
 
 <div class="eac-profile-sections">

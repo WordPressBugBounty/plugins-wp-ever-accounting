@@ -239,7 +239,7 @@ class Ajax {
 	public function handle_add_note() {
 		check_ajax_referer( 'eac_add_note', 'nonce' );
 
-		if ( ! current_user_can( 'manage_accounting' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_edit_notes' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( - 1 );
 		}
 
@@ -290,7 +290,7 @@ class Ajax {
 	public function handle_delete_note() {
 		check_ajax_referer( 'eac_delete_note', 'nonce' );
 
-		if ( ! current_user_can( 'manage_accounting' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'eac_delete_notes' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( - 1 );
 		}
 
@@ -315,8 +315,8 @@ class Ajax {
 	public function add_invoice_payment() {
 		check_ajax_referer( 'eac_add_invoice_payment' );
 
-		if ( ! current_user_can( 'eac_edit_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
-			wp_send_json_error( array( 'message' => __( 'You do not have permission to add payment.', 'wp-ever-accounting' ) ) );
+		if ( ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to add payment for invoice.', 'wp-ever-accounting' ) ) );
 		}
 
 		$invoice_id  = isset( $_POST['invoice_id'] ) ? absint( wp_unslash( $_POST['invoice_id'] ) ) : 0;
@@ -377,7 +377,7 @@ class Ajax {
 	public function get_bill_address() {
 		check_ajax_referer( 'eac_edit_bill' );
 
-		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'read_accounting' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( - 1 );
 		}
 
@@ -481,7 +481,7 @@ class Ajax {
 	public function get_invoice_address() {
 		check_ajax_referer( 'eac_edit_invoice' );
 
-		if ( ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+		if ( ! current_user_can( 'read_accounting' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( - 1 );
 		}
 

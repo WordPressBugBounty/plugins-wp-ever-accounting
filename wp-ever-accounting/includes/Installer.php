@@ -37,6 +37,9 @@ class Installer {
 		'2.0.9' => array(
 			'eac_update_209_roles',
 		),
+		'2.1.3' => array(
+			'eac_update_213_roles',
+		),
 	);
 
 	/**
@@ -98,14 +101,14 @@ class Installer {
 							'version'  => $version,
 						)
 					);
-					++$loop;
+					++ $loop;
 				}
 			}
-			++$loop;
+			++ $loop;
 		}
 
 		if ( version_compare( EAC()->get_db_version(), EAC()->get_version(), '<' ) &&
-			! EAC()->queue()->get_next( 'eac_update_db_version' ) ) {
+			 ! EAC()->queue()->get_next( 'eac_update_db_version' ) ) {
 			EAC()->queue()->schedule_single(
 				time() + $loop,
 				'eac_update_db_version',
@@ -537,8 +540,32 @@ KEY expense_id (expense_id)
 		}
 
 		// Dummy gettext calls to get strings in the catalog.
+		_x( 'Accounting Auditor', 'User role', 'wp-ever-accounting' );
 		_x( 'Accounting Manager', 'User role', 'wp-ever-accounting' );
 		_x( 'Accountant', 'User role', 'wp-ever-accounting' );
+
+		// Add the Accounting Auditor role.
+		add_role(
+			'eac_auditor',
+			'Accounting Auditor',
+			array(
+				'read_accounting'     => true,
+				'eac_read_vendors'    => true,
+				'eac_read_accounts'   => true,
+				'eac_read_payments'   => true,
+				'eac_read_expenses'   => true,
+				'eac_read_transfers'  => true,
+				'eac_read_categories' => true,
+				'eac_read_items'      => true,
+				'eac_read_customers'  => true,
+				'eac_read_invoices'   => true,
+				'eac_read_bills'      => true,
+				'eac_read_taxes'      => true,
+				'eac_read_notes'      => true,
+				'eac_read_reports'    => true,
+				'read'                => true,
+			)
+		);
 
 		// Accountant role.
 		add_role(
@@ -581,6 +608,8 @@ KEY expense_id (expense_id)
 				'eac_read_taxes'        => true,
 				'eac_edit_taxes'        => true,
 				'eac_delete_taxes'      => true,
+				'eac_read_notes'        => true,
+				'eac_edit_notes'        => true,
 				'read'                  => true,
 			)
 		);
@@ -592,9 +621,8 @@ KEY expense_id (expense_id)
 			array(
 				'read_accounting'       => true,
 				'manage_accounting'     => true,
-				'eac_manage_report'     => true,
+				'eac_read_reports'      => true,
 				'eac_manage_options'    => true,
-				'eac_manage_product'    => true,
 				'eac_read_vendors'      => true,
 				'eac_edit_vendors'      => true,
 				'eac_delete_vendors'    => true,
@@ -631,6 +659,9 @@ KEY expense_id (expense_id)
 				'eac_delete_taxes'      => true,
 				'eac_manage_import'     => true,
 				'eac_manage_export'     => true,
+				'eac_read_notes'        => true,
+				'eac_edit_notes'        => true,
+				'eac_delete_notes'      => true,
 				'read'                  => true,
 			)
 		);
@@ -641,7 +672,7 @@ KEY expense_id (expense_id)
 		if ( is_object( $wp_roles ) ) {
 			$wp_roles->add_cap( 'administrator', 'read_accounting' );
 			$wp_roles->add_cap( 'administrator', 'manage_accounting' );
-			$wp_roles->add_cap( 'administrator', 'eac_manage_report' );
+			$wp_roles->add_cap( 'administrator', 'eac_read_reports' );
 			$wp_roles->add_cap( 'administrator', 'eac_manage_options' );
 			$wp_roles->add_cap( 'administrator', 'eac_read_customers' );
 			$wp_roles->add_cap( 'administrator', 'eac_edit_customers' );
@@ -679,6 +710,9 @@ KEY expense_id (expense_id)
 			$wp_roles->add_cap( 'administrator', 'eac_delete_taxes' );
 			$wp_roles->add_cap( 'administrator', 'eac_manage_import' );
 			$wp_roles->add_cap( 'administrator', 'eac_manage_export' );
+			$wp_roles->add_cap( 'administrator', 'eac_read_notes' );
+			$wp_roles->add_cap( 'administrator', 'eac_edit_notes' );
+			$wp_roles->add_cap( 'administrator', 'eac_delete_notes' );
 		}
 	}
 

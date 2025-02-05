@@ -95,7 +95,9 @@ class Transfers {
 		global $list_table;
 		switch ( $action ) {
 			case 'add':
-				// Nothing to do here.
+				if ( ! current_user_can( 'eac_edit_transfers' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
+					wp_die( esc_html__( 'You do not have permission to add transfers.', 'wp-ever-accounting' ) );
+				}
 				break;
 
 			case 'edit':
