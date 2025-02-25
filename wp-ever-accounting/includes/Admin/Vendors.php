@@ -310,7 +310,7 @@ class Vendors {
 	public static function expenses_section( $vendor ) {
 		$expenses = EAC()->expenses->query(
 			array(
-				'vendor_id' => $vendor->id,
+				'contact_id' => $vendor->id,
 				'orderby'   => 'payment_date',
 				'order'     => 'DESC',
 				'limit'     => 20,
@@ -361,7 +361,7 @@ class Vendors {
 	public static function bills_section( $vendor ) {
 		$bills = EAC()->bills->query(
 			array(
-				'vendor_id' => $vendor->id,
+				'contact_id' => $vendor->id,
 				'orderby'   => 'date_created',
 				'order'     => 'DESC',
 				'limit'     => 20,

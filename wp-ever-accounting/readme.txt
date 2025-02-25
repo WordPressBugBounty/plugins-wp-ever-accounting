@@ -2,7 +2,7 @@
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
 Tested up to: 6.7
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -287,6 +287,10 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.1.4 = (25th February 2025)
+* Fix: Vendor expenses page is not showing the vendor-specific expenses.
+* Fix: Vendor bills page is not showing the vendor-specific bills.
+
 = 2.1.3 = (4th February 2025)
 * Enhance: Improved user roles and capabilities to manage Accounting.
 * New: Add new role "Accounting Auditor" with read-only capabilities.
