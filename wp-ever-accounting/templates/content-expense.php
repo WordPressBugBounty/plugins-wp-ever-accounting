@@ -57,6 +57,28 @@ $business_name  = get_option( 'eac_business_name', get_bloginfo( 'name' ) );
 			<h3><?php esc_html_e( 'From', 'wp-ever-accounting' ); ?></h3>
 			<p>
 				<?php
+				$address = eac_get_formatted_address(
+					array(
+						'name'       => get_option( 'eac_business_name', get_bloginfo( 'name' ) ),
+						'address'    => get_option( 'eac_business_address' ),
+						'city'       => get_option( 'eac_business_city' ),
+						'state'      => get_option( 'eac_business_state' ),
+						'postcode'   => get_option( 'eac_business_postcode' ),
+						'country'    => get_option( 'eac_business_country' ),
+						'email'      => get_option( 'eac_business_email' ),
+						'phone'      => get_option( 'eac_business_phone' ),
+						'tax_number' => get_option( 'eac_business_tax_number' ),
+					)
+				);
+
+				echo wp_kses_post( $address );
+				?>
+			</p>
+		</div>
+		<div class="eac-document__billing">
+			<h3><?php esc_html_e( 'To', 'wp-ever-accounting' ); ?></h3>
+			<p>
+				<?php
 				$vendor = $expense->vendor;
 				if ( $vendor ) {
 					$address = eac_get_formatted_address(
@@ -75,28 +97,6 @@ $business_name  = get_option( 'eac_business_name', get_bloginfo( 'name' ) );
 				} else {
 					echo esc_html( 'N/A' );
 				}
-				?>
-			</p>
-		</div>
-		<div class="eac-document__billing">
-			<h3><?php esc_html_e( 'To', 'wp-ever-accounting' ); ?></h3>
-			<p>
-				<?php
-				$address = eac_get_formatted_address(
-					array(
-						'name'       => get_option( 'eac_business_name', get_bloginfo( 'name' ) ),
-						'address'    => get_option( 'eac_business_address' ),
-						'city'       => get_option( 'eac_business_city' ),
-						'state'      => get_option( 'eac_business_state' ),
-						'postcode'   => get_option( 'eac_business_postcode' ),
-						'country'    => get_option( 'eac_business_country' ),
-						'email'      => get_option( 'eac_business_email' ),
-						'phone'      => get_option( 'eac_business_phone' ),
-						'tax_number' => get_option( 'eac_business_tax_number' ),
-					)
-				);
-
-				echo wp_kses_post( $address );
 				?>
 			</p>
 		</div>

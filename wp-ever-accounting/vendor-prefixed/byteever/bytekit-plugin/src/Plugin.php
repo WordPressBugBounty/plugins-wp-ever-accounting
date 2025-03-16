@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit();
  * Template for encapsulating some of the most often required abilities of a plugin instance.
  *
  * @since   1.0.0
- * @version 1.0.1
+ * @version 1.0.2
  * @author  Sultan Nasir Uddin <manikdrmc@gmail.com>
  * @package ByteKit/Plugin
  * @license GPL-3.0+

@@ -94,17 +94,17 @@
         },
         {
             "name": "byteever/bytekit-plugin",
-            "version": "v1.0.1",
-            "version_normalized": "1.0.1.0",
+            "version": "v1.0.2",
+            "version_normalized": "1.0.2.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:byteever/bytekit-plugin.git",
-                "reference": "38f7aa0311e49a33d8f62e54b9fc118eb1ad32b5"
+                "reference": "794ec9834ecac6cead6b1064a605ff930864950b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/byteever/bytekit-plugin/zipball/38f7aa0311e49a33d8f62e54b9fc118eb1ad32b5",
-                "reference": "38f7aa0311e49a33d8f62e54b9fc118eb1ad32b5",
+                "url": "https://api.github.com/repos/byteever/bytekit-plugin/zipball/794ec9834ecac6cead6b1064a605ff930864950b",
+                "reference": "794ec9834ecac6cead6b1064a605ff930864950b",
                 "shasum": ""
             },
             "require": {
@@ -122,7 +122,7 @@
                 "codeception/util-universalframework": "^1.0",
                 "lucatume/wp-browser": "<3.5"
             },
-            "time": "2024-11-26T04:25:16+00:00",
+            "time": "2025-02-27T09:59:41+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -176,24 +176,24 @@
             ],
             "description": "A set of related classes to kick start WordPress plugin development.",
             "support": {
-                "source": "https://github.com/byteever/bytekit-plugin/tree/v1.0.1",
+                "source": "https://github.com/byteever/bytekit-plugin/tree/v1.0.2",
                 "issues": "https://github.com/byteever/bytekit-plugin/issues"
             },
             "install-path": "../byteever/bytekit-plugin"
         },
         {
             "name": "woocommerce/action-scheduler",
-            "version": "3.9.0",
-            "version_normalized": "3.9.0.0",
+            "version": "3.9.2",
+            "version_normalized": "3.9.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/woocommerce/action-scheduler.git",
-                "reference": "90b98e6fe97d455679b1d288f050cad8f6f79771"
+                "reference": "efbb7953f72a433086335b249292f280dd43ddfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/90b98e6fe97d455679b1d288f050cad8f6f79771",
-                "reference": "90b98e6fe97d455679b1d288f050cad8f6f79771",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/efbb7953f72a433086335b249292f280dd43ddfe",
+                "reference": "efbb7953f72a433086335b249292f280dd43ddfe",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 "wp-cli/wp-cli": "~2.5.0",
                 "yoast/phpunit-polyfills": "^2.0"
             },
-            "time": "2024-11-15T00:11:39+00:00",
+            "time": "2025-02-03T09:09:30+00:00",
             "type": "wordpress-plugin",
             "extra": {
                 "scripts-description": {
@@ -223,7 +223,7 @@
             "homepage": "https://actionscheduler.org/",
             "support": {
                 "issues": "https://github.com/woocommerce/action-scheduler/issues",
-                "source": "https://github.com/woocommerce/action-scheduler/tree/3.9.0"
+                "source": "https://github.com/woocommerce/action-scheduler/tree/3.9.2"
             },
             "install-path": "../woocommerce/action-scheduler"
         }

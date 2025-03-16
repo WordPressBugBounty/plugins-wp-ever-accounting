@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit();
  *  A simple Service Container used to collect and organize Services used by the application and its modules.
  *
  * @since   1.0.0
- * @version 1.0.1
+ * @version 1.0.2
  * @author  Sultan Nasir Uddin <manikdrmc@gmail.com>
  * @package ByteKit/Plugin
  * @license GPL-3.0+

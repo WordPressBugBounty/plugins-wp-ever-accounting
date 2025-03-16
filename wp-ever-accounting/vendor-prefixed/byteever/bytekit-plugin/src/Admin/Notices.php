@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit();
  * Admin Notice Handler Class.
  *
  * @since   1.0.0
- * @version 1.0.1
+ * @version 1.0.2
  * @author  Sultan Nasir Uddin <manikdrmc@gmail.com>
  * @package ByteKit/Plugin
  * @license GPL-3.0+
@@ -195,9 +195,7 @@ class Notices {
 	 * @return bool
 	 */
 	public function is_dismissed( $id ) {
-		if ( 'yes' === get_option( $id ) ) {
-			return true;
-		} elseif ( 'yes' === get_transient( $id ) ) {
+		if ( 'yes' === get_option( $id ) || 'yes' === get_option( '_transient_' . $id ) ) {
 			return true;
 		} else {
 			return false;
