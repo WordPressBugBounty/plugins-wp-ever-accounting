@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ever Accounting 2.1.5\n"
+"Project-Id-Version: Ever Accounting 2.1.6\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-ever-accounting\n"
-"POT-Creation-Date: 2025-03-16 09:42:44+00:00\n"
+"POT-Creation-Date: 2025-04-06 04:19:37+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3332,32 +3332,32 @@ msgstr ""
 msgid "Itemized"
 msgstr ""
 
-#: includes/Admin/Settings.php:307
+#: includes/Admin/Settings.php:306
 msgid "Select an option&hellip;"
 msgstr ""
 
-#: includes/Admin/Settings.php:478
+#: includes/Admin/Settings.php:477
 msgid "Day(s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:479
+#: includes/Admin/Settings.php:478
 msgid "Week(s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:480
+#: includes/Admin/Settings.php:479
 msgid "Month(s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:481
+#: includes/Admin/Settings.php:480
 msgid "Year(s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:548
+#: includes/Admin/Settings.php:547
 #. translators: 1: page name 2: page ID
 msgid "%1$s (ID: %2$s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:565
+#: includes/Admin/Settings.php:564
 msgid "Search for a page&hellip;"
 msgstr ""
 

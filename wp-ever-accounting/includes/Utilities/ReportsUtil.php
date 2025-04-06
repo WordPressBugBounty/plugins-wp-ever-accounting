@@ -114,7 +114,7 @@ class ReportsUtil {
 		$day        = ! empty( $dates[1] ) ? $dates[1] : '01';
 		$year       = empty( $year ) ? (int) wp_date( 'Y' ) : absint( $year );
 
-		return wp_date( 'Y-m-d', mktime( 0, 0, 0, $month, $day, $year ) );
+		return wp_date( 'Y-m-d', mktime( 0, 0, 0, absint( $month ), absint( $day ), $year ) );
 	}
 
 	/**
