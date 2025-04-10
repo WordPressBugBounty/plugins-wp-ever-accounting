@@ -164,6 +164,23 @@ class License {
 	}
 
 	/**
+	 * Is set magic method.
+	 *
+	 * @param string $property Property name.
+	 *
+	 * @return bool
+	 */
+	public function __isset( $property ) {
+		if ( property_exists( $this, $property ) ) {
+			return isset( $this->$property );
+		} elseif ( isset( $this->data[ $property ] ) ) {
+			return isset( $this->data[ $property ] );
+		}
+
+		return false;
+	}
+
+	/**
 	 * Get an error message.
 	 *
 	 * @param string $status The status.
@@ -227,7 +244,7 @@ class License {
 	 * @return bool
 	 */
 	public function is_valid() {
-		return 'valid' === $this->data['status'];
+		return 'valid' === $this->data['status'] && !empty( $this->data['key'] );
 	}
 
 	/**

@@ -60,10 +60,10 @@ class Admin {
 		// determine if the current page is plugins.php.
 		$screens = get_current_screen();
 		if ( ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'] )
-			|| ( $screens && 'plugins' !== $screens->id )
-			|| $this->license->is_valid()
-			|| ! current_user_can( 'manage_options' )
-			|| apply_filters( 'eac_hide_license_notices', false, $this->license ) ) {
+			 || ( $screens && 'plugins' !== $screens->id )
+			 || $this->license->is_valid()
+			 || ! current_user_can( 'manage_options' )
+			 || apply_filters( 'eac_hide_license_notices', false, $this->license ) ) {
 			return;
 		}
 
@@ -154,7 +154,7 @@ class Admin {
 						class="regular-text license-key"
 						type="text"
 						placeholder="<?php esc_attr_e( 'Enter your license key', 'wp-ever-accounting' ); ?>"
-						value="<?php echo esc_attr( $this->license->license ); ?>"
+						value="<?php echo esc_attr( $this->license->key ); ?>"
 						style="width: 18em;margin-right:-10px; border-top-right-radius:0; border-bottom-right-radius:0; border-right:0;"
 					>
 					<button
@@ -233,21 +233,22 @@ class Admin {
 		}
 		$operation = isset( $_POST['operation'] ) ? sanitize_text_field( wp_unslash( $_POST['operation'] ) ) : '';
 		$license   = isset( $_POST['license_key'] ) ? sanitize_text_field( wp_unslash( $_POST['license_key'] ) ) : '';
-
-		if ( empty( $license ) ) {
-			wp_send_json_error( array( 'message' => __( 'Please enter a valid license key and try again.', 'wp-ever-accounting' ) ) );
-		}
-
 		switch ( $operation ) {
 			case 'activate':
+				if ( empty( $license ) ) {
+					wp_send_json_error( array( 'message' => __( 'Please enter a valid license key and try again.', 'wp-ever-accounting' ) ) );
+				}
 				$data            = array();
 				$host            = wp_parse_url( site_url(), PHP_URL_HOST );
-				$response        = $this->license->client->activate( $license, $this->license->item_id, $host );
+				$response        = $this->license->make_request( array(
+					'license'    => $license,
+					'edd_action' => 'activate_license',
+				) );
 				$is_valid        = $response->success && $response->license && 'valid' === $response->license;
 				$data['url']     = $host;
 				$data['status']  = ! $response->success && ! empty( $response->error ) ? sanitize_key( $response->error ) : sanitize_key( $response->license );
 				$data['expires'] = ! empty( $response->expires ) ? $response->expires : '';
-				$data['license'] = $is_valid ? $license : '';
+				$data['key']     = $is_valid ? $license : '';
 
 				$this->license->update( $data );
 				set_site_transient( 'update_plugins', null );
@@ -261,10 +262,12 @@ class Admin {
 
 				break;
 			case 'deactivate':
-				if ( empty( $this->license->license ) ) {
-					wp_send_json_error( array( 'message' => esc_html__( 'Your license key is missing.', 'wp-ever-accounting' ) ) );
+				if ( empty( $this->license->key ) ) {
+					wp_send_json_error( array( 'message' => esc_html__( 'You do not have license key to deactivate.', 'wp-ever-accounting' ) ) );
 				}
-				$response = $this->license->client->deactivate( $license, $this->license->item_id, home_url() );
+				$response = $this->license->make_request( array(
+					'edd_action' => 'deactivate_license',
+				) );
 				set_site_transient( 'update_plugins', null );
 				if ( $response->success ) {
 					$this->license->update(
