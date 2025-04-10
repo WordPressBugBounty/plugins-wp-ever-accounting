@@ -13,6 +13,26 @@ defined( 'ABSPATH' ) || exit;
 class ColorsUtil {
 
 	/**
+	 * Convert RGB to HEX.
+	 *
+	 * @param mixed $color Color.
+	 *
+	 * @return array
+	 */
+	public static function rgb_from_hex( $color ) {
+		$color = str_replace( '#', '', $color ?? '000' );
+		// Convert shorthand colors to full format, e.g. "FFF" -> "FFFFFF".
+		$color = preg_replace( '~^(.)(.)(.)$~', '$1$1$2$2$3$3', $color );
+
+		$rgb      = array();
+		$rgb['R'] = hexdec( $color[0] . $color[1] );
+		$rgb['G'] = hexdec( $color[2] . $color[3] );
+		$rgb['B'] = hexdec( $color[4] . $color[5] );
+
+		return $rgb;
+	}
+
+	/**
 	 * Make HEX color darker.
 	 *
 	 * @param mixed $color  Color.
@@ -21,7 +41,7 @@ class ColorsUtil {
 	 * @return string
 	 */
 	public static function darken( $color, $factor = 30 ) {
-		$base  = wc_rgb_from_hex( $color );
+		$base  = self::rgb_from_hex( $color );
 		$color = '#';
 
 		foreach ( $base as $k => $v ) {
@@ -48,7 +68,7 @@ class ColorsUtil {
 	 * @return string
 	 */
 	public static function lighten( $color, $factor = 30 ) {
-		$base  = wc_rgb_from_hex( $color );
+		$base  = self::rgb_from_hex( $color );
 		$color = '#';
 
 		foreach ( $base as $k => $v ) {

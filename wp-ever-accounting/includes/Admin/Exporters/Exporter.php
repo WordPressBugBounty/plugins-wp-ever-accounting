@@ -294,7 +294,7 @@ abstract class Exporter {
 
 		if ( $use_mb ) {
 			$encoding = mb_detect_encoding( $data, 'UTF-8, ISO-8859-1', true );
-			$data     = 'UTF-8' === $encoding ? $data : utf8_encode( $data );
+			$data     = 'UTF-8' === $encoding ? $data : mb_convert_encoding( $data, 'UTF-8', $encoding );
 		}
 
 		return $this->escape_data( $data );

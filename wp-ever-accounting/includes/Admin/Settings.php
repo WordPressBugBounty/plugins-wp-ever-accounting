@@ -308,13 +308,13 @@ class Settings {
 						$value['name'] .= '[]';
 						$attrs[]        = 'multiple="multiple"';
 					}
-					if ( ! empty( $value['option_key'] ) && ! empty( $value['option_value'] ) ) {
+					if ( ! empty( $value['option_label'] ) && ! empty( $value['option_value'] ) ) {
 						// verify options is an array otherwise we will make it an array.
 						if ( ! is_array( $value['options'] ) ) {
 							$value['options'] = array();
 						}
 						$value['options'] = array_filter( $value['options'] );
-						$value['options'] = wp_list_pluck( $value['options'], $value['option_value'], $value['option_key'] );
+						$value['options'] = wp_list_pluck( $value['options'], $value['option_label'], $value['option_value'] );
 					}
 					?>
 					<tr valign="top">

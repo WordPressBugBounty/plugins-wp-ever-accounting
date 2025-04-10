@@ -169,7 +169,7 @@ class Bills {
 		global $list_table;
 		switch ( $action ) {
 			case 'add':
-				if ( ! current_user_can( 'eac_edit_bills' ) ) {
+				if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 					wp_die( esc_html__( 'You do not have permission to add bills.', 'wp-ever-accounting' ) );
 				}
 				break;
@@ -183,7 +183,7 @@ class Bills {
 				if ( 'edit' === $action && ! EAC()->bills->get( $id )->editable ) {
 					wp_die( esc_html__( 'You attempted to edit a bill that is not editable.', 'wp-ever-accounting' ) );
 				}
-				if ( 'edit' === $action && ! current_user_can( 'eac_edit_bills' ) ) {
+				if ( 'edit' === $action && ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 					wp_die( esc_html__( 'You do not have permission to edit bills.', 'wp-ever-accounting' ) );
 				}
 				break;
@@ -257,7 +257,7 @@ class Bills {
 			</div>
 			<div class="eac-card__body">
 
-				<?php if ( current_user_can( 'eac_edit_notes' ) ) : ?>
+				<?php if ( current_user_can( 'eac_edit_notes' ) ) : ?> <?php // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability. ?>
 					<div class="eac-form-field">
 						<label for="eac-note"><?php esc_html_e( 'Add Note', 'wp-ever-accounting' ); ?></label>
 						<textarea id="eac-note" cols="30" rows="2" placeholder="<?php esc_attr_e( 'Enter Note', 'wp-ever-accounting' ); ?>"></textarea>

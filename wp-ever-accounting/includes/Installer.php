@@ -101,14 +101,14 @@ class Installer {
 							'version'  => $version,
 						)
 					);
-					++ $loop;
+					++$loop;
 				}
 			}
-			++ $loop;
+			++$loop;
 		}
 
 		if ( version_compare( EAC()->get_db_version(), EAC()->get_version(), '<' ) &&
-			 ! EAC()->queue()->get_next( 'eac_update_db_version' ) ) {
+			! EAC()->queue()->get_next( 'eac_update_db_version' ) ) {
 			EAC()->queue()->schedule_single(
 				time() + $loop,
 				'eac_update_db_version',

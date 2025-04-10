@@ -210,15 +210,15 @@ class Dashboard {
 				<tr>
 					<th><?php esc_html_e( 'Payment #', 'wp-ever-accounting' ); ?></th>
 					<th><?php esc_html_e( 'Date', 'wp-ever-accounting' ); ?></th>
-					<th><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
+					<th class="is--last-item"><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
 				</tr>
 				</thead>
 				<tbody>
 					<?php foreach ( $payments as $payment ) : ?>
 						<tr>
 							<td><a href="<?php echo esc_url( $payment->get_view_url() ); ?>"><?php echo esc_html( $payment->number ); ?></a></td>
-							<td><?php echo esc_html( date_i18n( eac_date_format(), strtotime( $payment->date ) ) ); ?></td>
-							<td><?php echo esc_html( $payment->formatted_amount ); ?></td>
+							<td><?php echo esc_html( date_i18n( eac_date_format(), strtotime( $payment->payment_date ) ) ); ?></td>
+							<td class="is--last-item"><?php echo esc_html( $payment->formatted_amount ); ?></td>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
@@ -260,7 +260,7 @@ class Dashboard {
 					<tr>
 						<th><?php esc_html_e( 'Expense #', 'wp-ever-accounting' ); ?></th>
 						<th><?php esc_html_e( 'Date', 'wp-ever-accounting' ); ?></th>
-						<th><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
+						<th class="is--last-item"><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -268,7 +268,7 @@ class Dashboard {
 						<tr>
 							<td><a href="<?php echo esc_url( $expense->get_view_url() ); ?>"><?php echo esc_html( $expense->number ); ?></a></td>
 							<td><?php echo esc_html( date_i18n( eac_date_format(), strtotime( $expense->payment_date ) ) ); ?></td>
-							<td><?php echo esc_html( $expense->formatted_amount ); ?></td>
+							<td class="is--last-item"><?php echo esc_html( $expense->formatted_amount ); ?></td>
 						</tr>
 					<?php endforeach; ?>
 					</tbody>
@@ -311,7 +311,7 @@ class Dashboard {
 				<tr>
 					<th><?php esc_html_e( 'Invoice #', 'wp-ever-accounting' ); ?></th>
 					<th><?php esc_html_e( 'Date', 'wp-ever-accounting' ); ?></th>
-					<th><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
+					<th class="is--last-item"><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -319,7 +319,7 @@ class Dashboard {
 						<tr>
 							<td><a href="<?php echo esc_url( $invoice->get_view_url() ); ?>"><?php echo esc_html( $invoice->number ); ?></a></td>
 							<td><?php echo esc_html( date_i18n( eac_date_format(), strtotime( $invoice->issue_date ) ) ); ?></td>
-							<td><?php echo esc_html( $invoice->formatted_total ); ?></td>
+							<td class="is--last-item"><?php echo esc_html( $invoice->formatted_total ); ?></td>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
@@ -378,7 +378,7 @@ class Dashboard {
 				<thead>
 				<tr>
 					<th><?php esc_html_e( 'Item', 'wp-ever-accounting' ); ?></th>
-					<th><?php esc_html_e( 'Total Sales', 'wp-ever-accounting' ); ?></th>
+					<th class="is--last-item"><?php esc_html_e( 'Total Sales', 'wp-ever-accounting' ); ?></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -389,7 +389,7 @@ class Dashboard {
 									<?php echo esc_html( $item->name ); ?>
 								</a>
 							</td>
-							<td><?php echo esc_html( eac_format_amount( $item->total_sales ) ); ?></td>
+							<td class="is--last-item"><?php echo esc_html( eac_format_amount( $item->total_sales ) ); ?></td>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
@@ -444,7 +444,7 @@ class Dashboard {
 				<thead>
 				<tr>
 					<th><?php esc_html_e( 'Customer', 'wp-ever-accounting' ); ?></th>
-					<th><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
+					<th class="is--last-item"><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -455,7 +455,7 @@ class Dashboard {
 									<?php echo esc_html( $customer->formatted_name ); ?>
 								</a>
 							</td>
-							<td><?php echo esc_html( eac_format_amount( $customer->amount ) ); ?></td>
+							<td class="is--last-item"><?php echo esc_html( eac_format_amount( $customer->amount ) ); ?></td>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
@@ -510,7 +510,7 @@ class Dashboard {
 				<thead>
 				<tr>
 					<th><?php esc_html_e( 'Vendor', 'wp-ever-accounting' ); ?></th>
-					<th><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
+					<th class="is--last-item"><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -521,7 +521,7 @@ class Dashboard {
 									<?php echo esc_html( $vendor->formatted_name ); ?>
 								</a>
 							</td>
-							<td><?php echo esc_html( eac_format_amount( $vendor->amount ) ); ?></td>
+							<td class="is--last-item"><?php echo esc_html( eac_format_amount( $vendor->amount ) ); ?></td>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>

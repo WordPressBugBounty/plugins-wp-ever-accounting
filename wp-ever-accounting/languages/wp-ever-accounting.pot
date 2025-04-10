@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ever Accounting 2.1.6\n"
+"Project-Id-Version: Ever Accounting 2.1.7\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-ever-accounting\n"
-"POT-Creation-Date: 2025-04-06 04:19:37+00:00\n"
+"POT-Creation-Date: 2025-04-10 06:12:01+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1687,11 +1687,12 @@ msgstr ""
 #: includes/Admin/ListTables/Bills.php:103
 #: includes/Admin/ListTables/Bills.php:130
 #: includes/Admin/ListTables/Bills.php:157
-#: includes/Admin/ListTables/Bills.php:184
+#: includes/Admin/ListTables/Bills.php:184 includes/Licensing/Admin.php:232
 msgid "You do not have permission to perform this action."
 msgstr ""
 
 #: includes/Admin/Bills.php:133 includes/Admin/Invoices.php:131
+#: includes/Licensing/License.php:304
 msgid "Invalid request."
 msgstr ""
 
@@ -3054,15 +3055,15 @@ msgstr ""
 msgid "Exchange Rates"
 msgstr ""
 
-#: includes/Admin/Settings/Page.php:65
+#: includes/Admin/Settings/Page.php:70
 msgid "Settings saved."
 msgstr ""
 
-#: includes/Admin/Settings/Page.php:120 includes/Admin/Settings/Page.php:121
+#: includes/Admin/Settings/Page.php:125 includes/Admin/Settings/Page.php:126
 msgid "Save changes"
 msgstr ""
 
-#: includes/Admin/Settings/Page.php:141
+#: includes/Admin/Settings/Page.php:146
 #: includes/Admin/Settings/Purchases.php:31
 #: includes/Admin/Settings/Sales.php:31 includes/Admin/Settings/Taxes.php:32
 msgid "Options"
@@ -4380,6 +4381,162 @@ msgstr ""
 
 #: includes/Installer.php:132
 msgid "Ever Accounting is updating the database in the background. Please wait."
+msgstr ""
+
+#: includes/Licensing/Admin.php:73
+#. translators: the extension name.
+msgid ""
+"Your license key for %1$s is missing. Please %2$s enter your license key "
+"%3$s to continue receiving updates and support."
+msgstr ""
+
+#: includes/Licensing/Admin.php:83
+#. translators: the extension name.
+msgid ""
+"Your license key for %1$s has expired. Please renew your license to "
+"continue receiving updates and support."
+msgstr ""
+
+#: includes/Licensing/Admin.php:91
+#. translators: the extension name.
+msgid ""
+"You no longer have a valid license for %1$s. Please renew your license to "
+"continue receiving updates and support."
+msgstr ""
+
+#: includes/Licensing/Admin.php:99
+#. translators: the extension name.
+msgid ""
+"%1$s - Your license key is not valid for this site. Please deactivate the "
+"license and activate it again."
+msgstr ""
+
+#: includes/Licensing/Admin.php:122
+msgid "License"
+msgstr ""
+
+#: includes/Licensing/Admin.php:148
+msgid "License is valid."
+msgstr ""
+
+#: includes/Licensing/Admin.php:156
+msgid "Enter your license key"
+msgstr ""
+
+#: includes/Licensing/Admin.php:167
+msgid "Activate"
+msgstr ""
+
+#: includes/Licensing/Admin.php:177
+msgid "Deactivate"
+msgstr ""
+
+#: includes/Licensing/Admin.php:238
+msgid "Please enter a valid license key and try again."
+msgstr ""
+
+#: includes/Licensing/Admin.php:257
+msgid "License key activated successfully."
+msgstr ""
+
+#: includes/Licensing/Admin.php:265 includes/Licensing/License.php:178
+msgid "Your license key is missing."
+msgstr ""
+
+#: includes/Licensing/Admin.php:279
+msgid "License key deactivated successfully."
+msgstr ""
+
+#: includes/Licensing/Admin.php:285
+msgid "Failed to deactivate the license key."
+msgstr ""
+
+#: includes/Licensing/Admin.php:290
+msgid "Invalid operation."
+msgstr ""
+
+#: includes/Licensing/License.php:181
+msgid "Your license key is valid."
+msgstr ""
+
+#: includes/Licensing/License.php:189
+#. translators: %s: license expiration date.
+msgid "Your license key has expired on %s."
+msgstr ""
+
+#: includes/Licensing/License.php:193
+msgid "Your license key has expired."
+msgstr ""
+
+#: includes/Licensing/License.php:198
+msgid "Your license key has been disabled."
+msgstr ""
+
+#: includes/Licensing/License.php:201
+msgid "Your license key is not valid for this site."
+msgstr ""
+
+#: includes/Licensing/License.php:207
+msgid "This appears to be an invalid license key."
+msgstr ""
+
+#: includes/Licensing/License.php:210
+msgid "Your license key has reached its activation limit."
+msgstr ""
+
+#: includes/Licensing/License.php:213
+msgid ""
+"The key you entered belongs to a bundle, please use the product specific "
+"license key."
+msgstr ""
+
+#: includes/Licensing/License.php:216
+msgid "Your license key is invalid."
+msgstr ""
+
+#: includes/Licensing/License.php:343
+msgid "Invalid response."
+msgstr ""
+
+#: includes/Licensing/Updater.php:157
+#. translators: %1$s: plugin name.
+msgid "There is a new version of %1$s available."
+msgstr ""
+
+#: includes/Licensing/Updater.php:163
+msgid "Contact your network administrator to install the update."
+msgstr ""
+
+#: includes/Licensing/Updater.php:168
+#. translators: %1$s: opening anchor tag, %2$s: new version number, %3$s:
+#. closing anchor tag.
+msgid "%1$sView version %2$s details%3$s."
+msgstr ""
+
+#: includes/Licensing/Updater.php:177
+#. translators: %1$s: opening anchor tag, %2$s: new version number, %3$s:
+#. closing anchor tag, %4$s: opening anchor tag, %5$s: closing anchor tag.
+msgid "%1$sView version %2$s details%3$s or %4$supdate now%5$s."
+msgstr ""
+
+#: includes/Licensing/Updater.php:187
+#. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
+msgid "%1$sUpdate now%2$s."
+msgstr ""
+
+#: includes/Licensing/Updater.php:230
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: includes/Licensing/Updater.php:230
+msgid "Error"
+msgstr ""
+
+#: includes/Licensing/Updater.php:311
+#. translators: %s: plugin name.
+msgid ""
+"Please activate your license key for %s to get the latest updates and "
+"changelog."
 msgstr ""
 
 #: includes/Models/Account.php:181

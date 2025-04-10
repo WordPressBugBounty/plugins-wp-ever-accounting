@@ -2,7 +2,7 @@
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
 Tested up to: 6.7
-Stable tag: 2.1.6
+Stable tag: 2.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -287,6 +287,11 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.1.7 = (10th April 2025)
+* Fix: Recent Payments report is not showing the correct data.
+* Enhance: Improved the dashboard UI for better usability and readability.
+* Fix: Fixed few minor bugs and issues.
+
 = 2.1.6 = (6th April 2025)
 * Fix: Fix security issue on settings page.
 * Fix: Fix compatibility with php v8.4

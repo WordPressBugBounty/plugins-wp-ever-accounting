@@ -112,7 +112,7 @@ function eac_update_120_transactions() {
 	// Now any transaction that id is either in expense_id or payment_id set editable to 0.
 	$table = $wpdb->prefix . 'ea_transactions';
 	$wpdb->query(
-		"UPDATE $table JOIN {$wpdb->prefix }ea_transfers AS transfer ON transfer.expense_id = $table.id OR transfer.payment_id = $table.id SET $table.editable = 0"
+		"UPDATE $table JOIN {$wpdb->prefix }ea_transfers AS transfer ON transfer.expense_id = $table.id OR transfer.payment_id = $table.id SET $table.editable = 0" // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Reason: We are not passing any user input.
 	);
 }
 

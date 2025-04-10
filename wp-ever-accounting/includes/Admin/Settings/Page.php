@@ -47,6 +47,11 @@ abstract class Page {
 		$this->id      = $id;
 		$this->label   = $label;
 		$this->section = (string) filter_input( INPUT_GET, 'section', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		// if the section found is not valid, set it to the first section.
+		if ( ! array_key_exists( $this->section, $this->get_sections() ) ) {
+			$sections      = $this->get_sections();
+			$this->section = key( $sections );
+		}
 
 		add_action( 'eac_settings_save_' . $this->id, array( $this, 'save_settings' ) );
 		add_action( 'eac_settings_page_' . $this->id . '_content', array( $this, 'render_sections' ) );

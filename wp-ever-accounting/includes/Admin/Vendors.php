@@ -311,9 +311,9 @@ class Vendors {
 		$expenses = EAC()->expenses->query(
 			array(
 				'contact_id' => $vendor->id,
-				'orderby'   => 'payment_date',
-				'order'     => 'DESC',
-				'limit'     => 20,
+				'orderby'    => 'payment_date',
+				'order'      => 'DESC',
+				'limit'      => 20,
 			)
 		);
 		?>
@@ -362,9 +362,9 @@ class Vendors {
 		$bills = EAC()->bills->query(
 			array(
 				'contact_id' => $vendor->id,
-				'orderby'   => 'date_created',
-				'order'     => 'DESC',
-				'limit'     => 20,
+				'orderby'    => 'date_created',
+				'order'      => 'DESC',
+				'limit'      => 20,
 			)
 		);
 		?>
