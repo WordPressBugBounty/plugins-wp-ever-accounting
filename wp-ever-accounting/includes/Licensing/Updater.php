@@ -35,7 +35,6 @@ class Updater {
 	 */
 	public function __construct( $license ) {
 		$this->license = $license;
-		$basename      = $this->license->basename;
 		add_filter( 'plugins_api', array( $this, 'plugins_api_filter' ), 10, 3 );
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ) );
 		add_action( 'after_plugin_row', array( $this, 'update_notification' ), 10, 2 );
@@ -275,7 +274,7 @@ class Updater {
 		if ( $force || false === $data ) {
 			$api_params = array(
 				'edd_action' => 'get_version',
-				'license'    => $this->license->license,
+				'license'    => $this->license->key,
 				'item_id'    => $this->license->item_id,
 				'slug'       => $this->license->slug,
 				'is_ssl'     => is_ssl(),

@@ -1,11 +1,11 @@
 number,payment_date,amount,currency,exchange_rate,reference,note,payment_method,account_id,contact_id,category_id,attachment_id,editable
-INV-00012,2023-01-15,100.00,USD,1.00,"REF001",Payment for services rendered,cash,1,,,,1
-INV-00022,2023-02-20,200.00,EUR,0.85,"REF002",Invoice payment,check,1,,,,0
-INV-00032,2023-03-10,150.00,USD,1.00,"REF003",Monthly subscription,credit,1,,,,1
-INV-00042,2023-04-05,300.00,EUR,0.85,"REF004",Consulting fee,debit,1,,,,0
-INV-00052,2023-05-12,250.00,USD,1.00,"REF005",Project milestone payment,bank,1,,,,1
-INV-00062,2023-06-18,400.00,EUR,0.85,"REF006",Payment for goods,paypal,1,,,,0
-INV-00072,2023-07-22,500.00,USD,1.00,"REF007",Final payment,other,1,,,,1
-INV-00082,2023-08-30,600.00,EUR,0.85,"REF008",Service contract,cash,1,,,,0
-INV-00092,2023-09-15,700.00,USD,1.00,"REF009",Retainer fee,check,1,,,,1
-INV-00102,2023-10-10,800.00,EUR,0.85,"REF010",Payment for consulting,credit,1,,,,0
+PAY-0001,2024-01-15,1000.00,USD,1.0000,"REF001",Payment for services rendered,cash,1,,,,1
+PAY-0002,2024-02-20,2000.00,EUR,0.9100,"REF002",Invoice payment,check,2,,,,0
+PAY-0003,2024-03-10,1500.00,USD,1.0000,"REF003",Monthly subscription,credit,1,,,,1
+PAY-0004,2024-04-05,3000.00,EUR,0.9100,"REF004",Consulting fee,debit,2,,,,0
+PAY-0005,2024-05-12,2500.00,USD,1.0000,"REF005",Project milestone payment,bank,1,,,,1
+PAY-0006,2024-06-18,4000.00,EUR,0.9100,"REF006",Payment for goods,paypal,2,,,,0
+PAY-0007,2024-07-22,5000.00,USD,1.0000,"REF007",Final payment,other,1,,,,1
+PAY-0008,2024-08-30,6000.00,EUR,0.9100,"REF008",Service contract,cash,2,,,,0
+PAY-0009,2024-09-15,7000.00,USD,1.0000,"REF009",Retainer fee,check,1,,,,1
+PAY-0010,2024-10-10,8000.00,EUR,0.9100,"REF010",Payment for consulting,credit,2,,,,0

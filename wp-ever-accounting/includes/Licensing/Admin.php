@@ -233,32 +233,39 @@ class Admin {
 		}
 		$operation = isset( $_POST['operation'] ) ? sanitize_text_field( wp_unslash( $_POST['operation'] ) ) : '';
 		$license   = isset( $_POST['license_key'] ) ? sanitize_text_field( wp_unslash( $_POST['license_key'] ) ) : '';
+		error_log( print_r( $_POST, true ) );
 		switch ( $operation ) {
 			case 'activate':
 				if ( empty( $license ) ) {
 					wp_send_json_error( array( 'message' => __( 'Please enter a valid license key and try again.', 'wp-ever-accounting' ) ) );
 				}
-				$data            = array();
-				$host            = wp_parse_url( site_url(), PHP_URL_HOST );
-				$response        = $this->license->make_request( array(
+				$response = $this->license->make_request( array(
 					'license'    => $license,
 					'edd_action' => 'activate_license',
 				) );
-				$is_valid        = $response->success && $response->license && 'valid' === $response->license;
-				$data['url']     = $host;
-				$data['status']  = ! $response->success && ! empty( $response->error ) ? sanitize_key( $response->error ) : sanitize_key( $response->license );
-				$data['expires'] = ! empty( $response->expires ) ? $response->expires : '';
-				$data['key']     = $is_valid ? $license : '';
 
-				$this->license->update( $data );
-				set_site_transient( 'update_plugins', null );
+				if ( $response->success && 'valid' === $response->license ) {
+					$this->license->update( array(
+						'key'     => $license,
+						'status'  => 'valid',
+						'expires' => ! empty( $response->expires ) ? $response->expires : '',
+					) );
+					set_site_transient( 'update_plugins', null );
+					wp_send_json_success(
+						array(
+							'message' => esc_html__( 'License key activated successfully.', 'wp-ever-accounting' ),
+							'reload'  => true,
+						)
+					);
+				}
 
-				wp_send_json_success(
-					array(
-						'message' => esc_html__( 'License key activated successfully.', 'wp-ever-accounting' ),
-						'reload'  => true,
-					)
-				);
+				if ( ! $response->success && ! empty( $response->error ) ) {
+					wp_send_json_error( array( 'message' => esc_html( $this->license->get_message( $response->error ) ) ) );
+				}
+
+				if ( is_wp_error( $response ) ) {
+					wp_send_json_error( array( 'message' => esc_html( $response->get_error_message() ) ) );
+				}
 
 				break;
 			case 'deactivate':

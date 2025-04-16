@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ever Accounting 2.1.8\n"
+"Project-Id-Version: Ever Accounting 2.1.9\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-ever-accounting\n"
-"POT-Creation-Date: 2025-04-10 18:46:42+00:00\n"
+"POT-Creation-Date: 2025-04-16 09:58:55+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1599,7 +1599,7 @@ msgid "New"
 msgstr ""
 
 #: includes/Admin/Admin.php:198
-#: vendor-prefixed/byteever/bytekit-plugin/src/Traits/HasPlugin.php:223
+#: vendor-prefixed/byteever/bytekit-plugin/src/Traits/HasPlugin.php:214
 msgid "Support"
 msgstr ""
 
@@ -3482,7 +3482,7 @@ msgid "Reports"
 msgstr ""
 
 #: includes/Admin/Utilities.php:65 includes/Admin/Utilities.php:66
-#: vendor-prefixed/byteever/bytekit-plugin/src/Traits/HasPlugin.php:255
+#: vendor-prefixed/byteever/bytekit-plugin/src/Traits/HasPlugin.php:238
 msgid "Settings"
 msgstr ""
 
@@ -4109,6 +4109,53 @@ msgstr ""
 msgid "No notes found."
 msgstr ""
 
+#: includes/Admin/views/notices/eac-woocommerce.php:18
+msgid "🎉 The wait is over!"
+msgstr ""
+
+#: includes/Admin/views/notices/eac-woocommerce.php:25
+#. translators: %1$s: WP Ever Accounting Plugin link, %2$s: WordPress.org
+#. review link.
+msgid ""
+"The %1$s for %2$s is finally here — bringing you deeper insights, smarter "
+"reports, and seamless sales syncing. 💥 Enjoy an <strong>early bird %3$s "
+"discount</strong> with code <code>EARLYBRD</code> — limited time only. %4$s"
+msgstr ""
+
+#: includes/Admin/views/notices/eac-woocommerce.php:39
+msgid "Get the Extension"
+msgstr ""
+
+#: includes/Admin/views/notices/eac-woocommerce.php:43
+#: includes/Admin/views/notices/review.php:41
+msgid "Maybe later"
+msgstr ""
+
+#: includes/Admin/views/notices/eac-woocommerce.php:47
+msgid "Close permanently"
+msgstr ""
+
+#: includes/Admin/views/notices/review.php:18
+msgid "Enjoying Ever Accounting?"
+msgstr ""
+
+#: includes/Admin/views/notices/review.php:25
+#. translators: %1$s: WP Ever Accounting Plugin link, %2$s: WordPress.org
+#. review link.
+msgid ""
+"We hope you had a wonderful experience using %1$s. Please take a moment to "
+"show us your support by leaving a 5-star review on <a href=\"%2$s\" "
+"target=\"_blank\"><strong>WordPress.org</strong></a>. Thank you! 😊"
+msgstr ""
+
+#: includes/Admin/views/notices/review.php:37
+msgid "Sure, I'd love to help!"
+msgstr ""
+
+#: includes/Admin/views/notices/review.php:45
+msgid "I've already left a review"
+msgstr ""
+
 #: includes/Admin/views/payment-edit.php:20
 msgid "Edit Payment"
 msgstr ""
@@ -4431,27 +4478,27 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-#: includes/Licensing/Admin.php:239
+#: includes/Licensing/Admin.php:240
 msgid "Please enter a valid license key and try again."
 msgstr ""
 
-#: includes/Licensing/Admin.php:258
+#: includes/Licensing/Admin.php:256
 msgid "License key activated successfully."
 msgstr ""
 
-#: includes/Licensing/Admin.php:266
+#: includes/Licensing/Admin.php:273
 msgid "You do not have license key to deactivate."
 msgstr ""
 
-#: includes/Licensing/Admin.php:282
+#: includes/Licensing/Admin.php:289
 msgid "License key deactivated successfully."
 msgstr ""
 
-#: includes/Licensing/Admin.php:288
+#: includes/Licensing/Admin.php:295
 msgid "Failed to deactivate the license key."
 msgstr ""
 
-#: includes/Licensing/Admin.php:293
+#: includes/Licensing/Admin.php:300
 msgid "Invalid operation."
 msgstr ""
 
@@ -4502,41 +4549,41 @@ msgstr ""
 msgid "Invalid response."
 msgstr ""
 
-#: includes/Licensing/Updater.php:157
+#: includes/Licensing/Updater.php:156
 #. translators: %1$s: plugin name.
 msgid "There is a new version of %1$s available."
 msgstr ""
 
-#: includes/Licensing/Updater.php:163
+#: includes/Licensing/Updater.php:162
 msgid "Contact your network administrator to install the update."
 msgstr ""
 
-#: includes/Licensing/Updater.php:168
+#: includes/Licensing/Updater.php:167
 #. translators: %1$s: opening anchor tag, %2$s: new version number, %3$s:
 #. closing anchor tag.
 msgid "%1$sView version %2$s details%3$s."
 msgstr ""
 
-#: includes/Licensing/Updater.php:177
+#: includes/Licensing/Updater.php:176
 #. translators: %1$s: opening anchor tag, %2$s: new version number, %3$s:
 #. closing anchor tag, %4$s: opening anchor tag, %5$s: closing anchor tag.
 msgid "%1$sView version %2$s details%3$s or %4$supdate now%5$s."
 msgstr ""
 
-#: includes/Licensing/Updater.php:187
+#: includes/Licensing/Updater.php:186
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 msgid "%1$sUpdate now%2$s."
 msgstr ""
 
-#: includes/Licensing/Updater.php:230
+#: includes/Licensing/Updater.php:229
 msgid "You do not have permission to install plugin updates"
 msgstr ""
 
-#: includes/Licensing/Updater.php:230
+#: includes/Licensing/Updater.php:229
 msgid "Error"
 msgstr ""
 
-#: includes/Licensing/Updater.php:311
+#: includes/Licensing/Updater.php:310
 #. translators: %s: plugin name.
 msgid ""
 "Please activate your license key for %s to get the latest updates and "
@@ -4778,15 +4825,15 @@ msgstr ""
 msgid "Payment Receipt"
 msgstr ""
 
-#: vendor-prefixed/byteever/bytekit-plugin/src/Admin/Notices.php:130
+#: vendor-prefixed/byteever/bytekit-plugin/src/Admin/Notices.php:113
 msgid "Dismiss this notice"
 msgstr ""
 
-#: vendor-prefixed/byteever/bytekit-plugin/src/Traits/HasPlugin.php:216
+#: vendor-prefixed/byteever/bytekit-plugin/src/Traits/HasPlugin.php:211
 msgid "Documentation"
 msgstr ""
 
-#: vendor-prefixed/byteever/bytekit-plugin/src/Traits/HasPlugin.php:230
+#: vendor-prefixed/byteever/bytekit-plugin/src/Traits/HasPlugin.php:217
 msgid "Review"
 msgstr ""
 
