@@ -60,10 +60,10 @@ class Admin {
 		// determine if the current page is plugins.php.
 		$screens = get_current_screen();
 		if ( ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'] )
-			 || ( $screens && 'plugins' !== $screens->id )
-			 || $this->license->is_valid()
-			 || ! current_user_can( 'manage_options' )
-			 || apply_filters( 'eac_hide_license_notices', false, $this->license ) ) {
+			|| ( $screens && 'plugins' !== $screens->id )
+			|| $this->license->is_valid()
+			|| ! current_user_can( 'manage_options' )
+			|| apply_filters( 'eac_hide_license_notices', false, $this->license ) ) {
 			return;
 		}
 
@@ -233,23 +233,26 @@ class Admin {
 		}
 		$operation = isset( $_POST['operation'] ) ? sanitize_text_field( wp_unslash( $_POST['operation'] ) ) : '';
 		$license   = isset( $_POST['license_key'] ) ? sanitize_text_field( wp_unslash( $_POST['license_key'] ) ) : '';
-		error_log( print_r( $_POST, true ) );
 		switch ( $operation ) {
 			case 'activate':
 				if ( empty( $license ) ) {
 					wp_send_json_error( array( 'message' => __( 'Please enter a valid license key and try again.', 'wp-ever-accounting' ) ) );
 				}
-				$response = $this->license->make_request( array(
-					'license'    => $license,
-					'edd_action' => 'activate_license',
-				) );
+				$response = $this->license->make_request(
+					array(
+						'license'    => $license,
+						'edd_action' => 'activate_license',
+					)
+				);
 
 				if ( $response->success && 'valid' === $response->license ) {
-					$this->license->update( array(
-						'key'     => $license,
-						'status'  => 'valid',
-						'expires' => ! empty( $response->expires ) ? $response->expires : '',
-					) );
+					$this->license->update(
+						array(
+							'key'     => $license,
+							'status'  => 'valid',
+							'expires' => ! empty( $response->expires ) ? $response->expires : '',
+						)
+					);
 					set_site_transient( 'update_plugins', null );
 					wp_send_json_success(
 						array(
@@ -272,9 +275,11 @@ class Admin {
 				if ( empty( $this->license->key ) ) {
 					wp_send_json_error( array( 'message' => esc_html__( 'You do not have license key to deactivate.', 'wp-ever-accounting' ) ) );
 				}
-				$response = $this->license->make_request( array(
-					'edd_action' => 'deactivate_license',
-				) );
+				$response = $this->license->make_request(
+					array(
+						'edd_action' => 'deactivate_license',
+					)
+				);
 				set_site_transient( 'update_plugins', null );
 				if ( $response->success ) {
 					$this->license->update(

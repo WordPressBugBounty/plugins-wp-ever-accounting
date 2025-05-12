@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ever Accounting 2.1.9\n"
+"Project-Id-Version: Ever Accounting 2.2.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-ever-accounting\n"
-"POT-Creation-Date: 2025-04-16 09:58:55+00:00\n"
+"POT-Creation-Date: 2025-05-12 10:48:30+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3333,32 +3333,32 @@ msgstr ""
 msgid "Itemized"
 msgstr ""
 
-#: includes/Admin/Settings.php:306
+#: includes/Admin/Settings.php:305
 msgid "Select an option&hellip;"
 msgstr ""
 
-#: includes/Admin/Settings.php:477
+#: includes/Admin/Settings.php:476
 msgid "Day(s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:478
+#: includes/Admin/Settings.php:477
 msgid "Week(s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:479
+#: includes/Admin/Settings.php:478
 msgid "Month(s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:480
+#: includes/Admin/Settings.php:479
 msgid "Year(s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:547
+#: includes/Admin/Settings.php:546
 #. translators: 1: page name 2: page ID
 msgid "%1$s (ID: %2$s)"
 msgstr ""
 
-#: includes/Admin/Settings.php:564
+#: includes/Admin/Settings.php:563
 msgid "Search for a page&hellip;"
 msgstr ""
 
@@ -4478,27 +4478,27 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-#: includes/Licensing/Admin.php:240
+#: includes/Licensing/Admin.php:239
 msgid "Please enter a valid license key and try again."
 msgstr ""
 
-#: includes/Licensing/Admin.php:256
+#: includes/Licensing/Admin.php:259
 msgid "License key activated successfully."
 msgstr ""
 
-#: includes/Licensing/Admin.php:273
+#: includes/Licensing/Admin.php:276
 msgid "You do not have license key to deactivate."
 msgstr ""
 
-#: includes/Licensing/Admin.php:289
+#: includes/Licensing/Admin.php:294
 msgid "License key deactivated successfully."
 msgstr ""
 
-#: includes/Licensing/Admin.php:295
+#: includes/Licensing/Admin.php:300
 msgid "Failed to deactivate the license key."
 msgstr ""
 
-#: includes/Licensing/Admin.php:300
+#: includes/Licensing/Admin.php:305
 msgid "Invalid operation."
 msgstr ""
 

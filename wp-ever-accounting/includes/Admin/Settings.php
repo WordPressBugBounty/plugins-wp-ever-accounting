@@ -61,8 +61,7 @@ class Settings {
 			return;
 		}
 
-
-		if (! check_admin_referer( 'eac_save_settings' ) ||  ! current_user_can( 'eac_manage_options' ) ) {  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
+		if ( ! check_admin_referer( 'eac_save_settings' ) || ! current_user_can( 'eac_manage_options' ) ) {  // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			return;
 		}
 

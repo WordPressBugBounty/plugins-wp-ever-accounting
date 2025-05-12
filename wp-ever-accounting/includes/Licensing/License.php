@@ -244,7 +244,7 @@ class License {
 	 * @return bool
 	 */
 	public function is_valid() {
-		return 'valid' === $this->data['status'] && !empty( $this->data['key'] );
+		return 'valid' === $this->data['status'] && ! empty( $this->data['key'] );
 	}
 
 	/**

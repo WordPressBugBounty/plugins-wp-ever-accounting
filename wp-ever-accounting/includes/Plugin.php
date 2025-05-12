@@ -108,6 +108,7 @@ class Plugin extends \EverAccounting\ByteKit\Plugin {
 	public function init_hooks() {
 		register_activation_hook( $this->get_file(), array( Installer::class, 'install' ) );
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), -1 );
+		add_action( 'plugins_loaded', array( $this, 'load_compatibilities' ) );
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
 	}
 
@@ -230,6 +231,24 @@ class Plugin extends \EverAccounting\ByteKit\Plugin {
 			if ( class_exists( $controller ) ) {
 				$this->$controller = new $controller();
 				$this->$controller->register_routes();
+			}
+		}
+	}
+
+	/**
+	 * Load compatibility classes.
+	 *
+	 * @since 2.2.0
+	 * @return void
+	 */
+	public function load_compatibilities() {
+		$compatibilities = array(
+			'EverAccounting\Compatibility\Plugins\WooCommerce',
+		);
+
+		foreach ( $compatibilities as $compatibility ) {
+			if ( class_exists( $compatibility ) ) {
+				new $compatibility();
 			}
 		}
 	}

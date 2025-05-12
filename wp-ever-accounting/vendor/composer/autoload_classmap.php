@@ -117,6 +117,8 @@ return array(
     'EverAccounting\\Admin\\Vendors' => $baseDir . '/includes/Admin/Vendors.php',
     'EverAccounting\\Banking' => $baseDir . '/includes/Banking.php',
     'EverAccounting\\Caches' => $baseDir . '/includes/Caches.php',
+    'EverAccounting\\Compatibility\\Plugins\\Plugin' => $baseDir . '/includes/Compatibility/Plugins/Plugin.php',
+    'EverAccounting\\Compatibility\\Plugins\\WooCommerce' => $baseDir . '/includes/Compatibility/Plugins/WooCommerce.php',
     'EverAccounting\\Contacts' => $baseDir . '/includes/Contacts.php',
     'EverAccounting\\Controllers\\Accounts' => $baseDir . '/includes/Controllers/Accounts.php',
     'EverAccounting\\Controllers\\Bills' => $baseDir . '/includes/Controllers/Bills.php',

@@ -2,7 +2,7 @@
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
 Tested up to: 6.8
-Stable tag: 2.1.9
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -287,6 +287,9 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.2.0 = (12th May 2025)
+* Fix: When WooCommerce is active, accounting related roles redirect to WooCommerce my account page.
+
 = 2.1.9 = (16th April 2025)
 * Fix: Updated the sample CSV import files to include the correct column headers for better compatibility.
 * Compatibility: Checked compatibility with the latest version of WordPress.

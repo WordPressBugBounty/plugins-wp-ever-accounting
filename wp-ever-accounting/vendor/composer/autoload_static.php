@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit55fb7d5092a2d7331de8ffb78b897efb
+class ComposerStaticInit51a659dd902bfe558705553c416f5a37
 {
     public static $prefixLengthsPsr4 = array (
         'E' => 
@@ -145,6 +145,8 @@ class ComposerStaticInit55fb7d5092a2d7331de8ffb78b897efb
         'EverAccounting\\Admin\\Vendors' => __DIR__ . '/../..' . '/includes/Admin/Vendors.php',
         'EverAccounting\\Banking' => __DIR__ . '/../..' . '/includes/Banking.php',
         'EverAccounting\\Caches' => __DIR__ . '/../..' . '/includes/Caches.php',
+        'EverAccounting\\Compatibility\\Plugins\\Plugin' => __DIR__ . '/../..' . '/includes/Compatibility/Plugins/Plugin.php',
+        'EverAccounting\\Compatibility\\Plugins\\WooCommerce' => __DIR__ . '/../..' . '/includes/Compatibility/Plugins/WooCommerce.php',
         'EverAccounting\\Contacts' => __DIR__ . '/../..' . '/includes/Contacts.php',
         'EverAccounting\\Controllers\\Accounts' => __DIR__ . '/../..' . '/includes/Controllers/Accounts.php',
         'EverAccounting\\Controllers\\Bills' => __DIR__ . '/../..' . '/includes/Controllers/Bills.php',
@@ -214,9 +216,9 @@ class ComposerStaticInit55fb7d5092a2d7331de8ffb78b897efb
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit55fb7d5092a2d7331de8ffb78b897efb::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit55fb7d5092a2d7331de8ffb78b897efb::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit55fb7d5092a2d7331de8ffb78b897efb::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit51a659dd902bfe558705553c416f5a37::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit51a659dd902bfe558705553c416f5a37::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit51a659dd902bfe558705553c416f5a37::$classMap;
 
         }, null, ClassLoader::class);
     }

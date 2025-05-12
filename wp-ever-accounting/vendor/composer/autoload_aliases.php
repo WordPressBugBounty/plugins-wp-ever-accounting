@@ -4,24 +4,18 @@
 
 function autoloadAliases( $classname ): void {
   switch( $classname ) {
-    case 'ByteKit\\Plugin':
-      class_alias(\EverAccounting\ByteKit\Plugin::class, \ByteKit\Plugin::class);
+    case 'ByteKit\\Scripts':
+      class_alias(\EverAccounting\ByteKit\Scripts::class, \ByteKit\Scripts::class);
       break;
     case 'ByteKit\\Services':
       class_alias(\EverAccounting\ByteKit\Services::class, \ByteKit\Services::class);
       break;
-    case 'ByteKit\\Scripts':
-      class_alias(\EverAccounting\ByteKit\Scripts::class, \ByteKit\Scripts::class);
+    case 'ByteKit\\Plugin':
+      class_alias(\EverAccounting\ByteKit\Plugin::class, \ByteKit\Plugin::class);
       break;
     case 'ByteKit\\Traits\\HasPlugin':
       $includeFile = '<?php namespace ByteKit\Traits; trait HasPlugin { use \EverAccounting\ByteKit\Traits\HasPlugin };';
       include "data://text/plain;base64," . base64_encode($includeFile);
-      break;
-    case 'ByteKit\\Admin\\Flash':
-      class_alias(\EverAccounting\ByteKit\Admin\Flash::class, \ByteKit\Admin\Flash::class);
-      break;
-    case 'ByteKit\\Admin\\Notices':
-      class_alias(\EverAccounting\ByteKit\Admin\Notices::class, \ByteKit\Admin\Notices::class);
       break;
     case 'ByteKit\\Interfaces\\Pluginable':
       $includeFile = '<?php namespace ByteKit\Interfaces; interface Pluginable extends \EverAccounting\ByteKit\Interfaces\Pluginable {};';
@@ -31,16 +25,37 @@ function autoloadAliases( $classname ): void {
       $includeFile = '<?php namespace ByteKit\Interfaces; interface Scriptable extends \EverAccounting\ByteKit\Interfaces\Scriptable {};';
       include "data://text/plain;base64," . base64_encode($includeFile);
       break;
+    case 'ByteKit\\Admin\\Notices':
+      class_alias(\EverAccounting\ByteKit\Admin\Notices::class, \ByteKit\Admin\Notices::class);
+      break;
+    case 'ByteKit\\Admin\\Flash':
+      class_alias(\EverAccounting\ByteKit\Admin\Flash::class, \ByteKit\Admin\Flash::class);
+      break;
+    case 'ByteKit\\Models\\Relations\\Relation':
+      class_alias(\EverAccounting\ByteKit\Models\Relations\Relation::class, \ByteKit\Models\Relations\Relation::class);
+      break;
+    case 'ByteKit\\Models\\Relations\\BelongsTo':
+      class_alias(\EverAccounting\ByteKit\Models\Relations\BelongsTo::class, \ByteKit\Models\Relations\BelongsTo::class);
+      break;
+    case 'ByteKit\\Models\\Relations\\HasMany':
+      class_alias(\EverAccounting\ByteKit\Models\Relations\HasMany::class, \ByteKit\Models\Relations\HasMany::class);
+      break;
+    case 'ByteKit\\Models\\Relations\\HasOne':
+      class_alias(\EverAccounting\ByteKit\Models\Relations\HasOne::class, \ByteKit\Models\Relations\HasOne::class);
+      break;
+    case 'ByteKit\\Models\\Relations\\BelongsToMany':
+      class_alias(\EverAccounting\ByteKit\Models\Relations\BelongsToMany::class, \ByteKit\Models\Relations\BelongsToMany::class);
+      break;
     case 'ByteKit\\Models\\Traits\\HasMetaData':
       $includeFile = '<?php namespace ByteKit\Models\Traits; trait HasMetaData { use \EverAccounting\ByteKit\Models\Traits\HasMetaData };';
       include "data://text/plain;base64," . base64_encode($includeFile);
       break;
-    case 'ByteKit\\Models\\Traits\\HasAttributes':
-      $includeFile = '<?php namespace ByteKit\Models\Traits; trait HasAttributes { use \EverAccounting\ByteKit\Models\Traits\HasAttributes };';
-      include "data://text/plain;base64," . base64_encode($includeFile);
-      break;
     case 'ByteKit\\Models\\Traits\\HasRelations':
       $includeFile = '<?php namespace ByteKit\Models\Traits; trait HasRelations { use \EverAccounting\ByteKit\Models\Traits\HasRelations };';
+      include "data://text/plain;base64," . base64_encode($includeFile);
+      break;
+    case 'ByteKit\\Models\\Traits\\HasAttributes':
+      $includeFile = '<?php namespace ByteKit\Models\Traits; trait HasAttributes { use \EverAccounting\ByteKit\Models\Traits\HasAttributes };';
       include "data://text/plain;base64," . base64_encode($includeFile);
       break;
     case 'ByteKit\\Models\\Query':
@@ -51,21 +66,6 @@ function autoloadAliases( $classname ): void {
       break;
     case 'ByteKit\\Models\\Model':
       class_alias(\EverAccounting\ByteKit\Models\Model::class, \ByteKit\Models\Model::class);
-      break;
-    case 'ByteKit\\Models\\Relations\\BelongsTo':
-      class_alias(\EverAccounting\ByteKit\Models\Relations\BelongsTo::class, \ByteKit\Models\Relations\BelongsTo::class);
-      break;
-    case 'ByteKit\\Models\\Relations\\BelongsToMany':
-      class_alias(\EverAccounting\ByteKit\Models\Relations\BelongsToMany::class, \ByteKit\Models\Relations\BelongsToMany::class);
-      break;
-    case 'ByteKit\\Models\\Relations\\HasOne':
-      class_alias(\EverAccounting\ByteKit\Models\Relations\HasOne::class, \ByteKit\Models\Relations\HasOne::class);
-      break;
-    case 'ByteKit\\Models\\Relations\\Relation':
-      class_alias(\EverAccounting\ByteKit\Models\Relations\Relation::class, \ByteKit\Models\Relations\Relation::class);
-      break;
-    case 'ByteKit\\Models\\Relations\\HasMany':
-      class_alias(\EverAccounting\ByteKit\Models\Relations\HasMany::class, \ByteKit\Models\Relations\HasMany::class);
       break;
     default:
       // Not in this autoloader.
