@@ -11,11 +11,6 @@ class ComposerStaticInit51a659dd902bfe558705553c416f5a37
         array (
             'EverAccounting\\' => 15,
         ),
-        'B' => 
-        array (
-            'ByteKit\\Models\\' => 15,
-            'ByteKit\\' => 8,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -23,36 +18,9 @@ class ComposerStaticInit51a659dd902bfe558705553c416f5a37
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
-        'ByteKit\\Models\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/byteever/bytekit-models/src',
-        ),
-        'ByteKit\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/byteever/bytekit-plugin/src',
-        ),
     );
 
     public static $classMap = array (
-        'ByteKit\\Admin\\Flash' => __DIR__ . '/..' . '/byteever/bytekit-plugin/src/Admin/Flash.php',
-        'ByteKit\\Admin\\Notices' => __DIR__ . '/..' . '/byteever/bytekit-plugin/src/Admin/Notices.php',
-        'ByteKit\\Interfaces\\Pluginable' => __DIR__ . '/..' . '/byteever/bytekit-plugin/src/Interfaces/Pluginable.php',
-        'ByteKit\\Interfaces\\Scriptable' => __DIR__ . '/..' . '/byteever/bytekit-plugin/src/Interfaces/Scriptable.php',
-        'ByteKit\\Models\\Model' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Model.php',
-        'ByteKit\\Models\\Post' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Post.php',
-        'ByteKit\\Models\\Query' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Query.php',
-        'ByteKit\\Models\\Relations\\BelongsTo' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Relations/BelongsTo.php',
-        'ByteKit\\Models\\Relations\\BelongsToMany' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Relations/BelongsToMany.php',
-        'ByteKit\\Models\\Relations\\HasMany' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Relations/HasMany.php',
-        'ByteKit\\Models\\Relations\\HasOne' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Relations/HasOne.php',
-        'ByteKit\\Models\\Relations\\Relation' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Relations/Relation.php',
-        'ByteKit\\Models\\Traits\\HasAttributes' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Traits/HasAttributes.php',
-        'ByteKit\\Models\\Traits\\HasMetaData' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Traits/HasMetaData.php',
-        'ByteKit\\Models\\Traits\\HasRelations' => __DIR__ . '/..' . '/byteever/bytekit-models/src/Traits/HasRelations.php',
-        'ByteKit\\Plugin' => __DIR__ . '/..' . '/byteever/bytekit-plugin/src/Plugin.php',
-        'ByteKit\\Scripts' => __DIR__ . '/..' . '/byteever/bytekit-plugin/src/Scripts.php',
-        'ByteKit\\Services' => __DIR__ . '/..' . '/byteever/bytekit-plugin/src/Services.php',
-        'ByteKit\\Traits\\HasPlugin' => __DIR__ . '/..' . '/byteever/bytekit-plugin/src/Traits/HasPlugin.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'EverAccounting\\API\\Accounts' => __DIR__ . '/../..' . '/includes/API/Accounts.php',
         'EverAccounting\\API\\Bills' => __DIR__ . '/../..' . '/includes/API/Bills.php',

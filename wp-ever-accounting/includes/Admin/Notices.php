@@ -30,11 +30,22 @@ class Notices {
 		$installed_time = absint( get_option( 'eac_install_date' ) );
 		$current_time   = absint( wp_date( 'U' ) );
 
+		if ( ! defined( 'EAC_ESTIMATES_VERSION' ) && is_plugin_active( 'wp-ever-accounting/wp-ever-accounting.php' ) ) {
+			EAC()->notices->add(
+				array(
+					'message'     => __DIR__ . '/views/notices/eac-estimates.php',
+					'notice_id'   => 'eac_estimates_flash50_04062025',
+					'style'       => 'border-left-color: #77B82E;',
+					'dismissible' => true,
+				)
+			);
+		}
+
 		if ( ! defined( 'EAC_WC_VERSION' ) && is_plugin_active( 'wp-ever-accounting/wp-ever-accounting.php' ) && class_exists( 'WooCommerce' ) ) {
 			EAC()->notices->add(
 				array(
 					'message'     => __DIR__ . '/views/notices/eac-woocommerce.php',
-					'notice_id'   => 'eac_woocommerce_early_bird_sale',
+					'notice_id'   => 'eac_woocommerce_flash50_04062025', // Old IDs: eac_woocommerce_early_bird_sale.
 					'style'       => 'border-left-color: #77B82E;',
 					'dismissible' => true,
 				)

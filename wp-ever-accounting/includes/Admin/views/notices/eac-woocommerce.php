@@ -22,10 +22,10 @@ defined( 'ABSPATH' ) || exit;
 			echo wp_kses_post(
 				sprintf(
 				// translators: %1$s: WP Ever Accounting Plugin link, %2$s: WordPress.org review link.
-					__( 'The %1$s for %2$s is finally here — bringing you deeper insights, smarter reports, and seamless sales syncing. 💥 Enjoy an <strong>early bird %3$s discount</strong> with code <code>EARLYBRD</code> — limited time only. %4$s', 'wp-ever-accounting' ),
+					__( 'The %1$s for %2$s is finally here — bringing you deeper insights, smarter reports, and seamless sales syncing. 💥 Enjoy <strong>%3$s discount</strong> with code <code>FLASH50</code> — limited time only. %4$s', 'wp-ever-accounting' ),
 					'<a href="https://wpeveraccounting.com/extensions/woocommerce/?utm_source=plugin&utm_medium=notice&utm_campaign=early-bird-sale" target="_blank"><strong>WooCommerce Extension</strong></a>',
 					'<a href="https://wordpress.org/plugins/wp-ever-accounting/" target="_blank"><strong>WP Ever Accounting</strong></a>',
-					'10%',
+					'50%',
 					'<a href="https://wpeveraccounting.com/extensions/woocommerce/?utm_source=plugin&utm_medium=notice&utm_campaign=early-bird-sale" target="_blank" style="text-decoration: none; font-weight: bold; margin-top: 5px; display: inline-block;">Get the Extension →</a>'
 				)
 			);

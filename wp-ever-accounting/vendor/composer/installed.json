@@ -35,7 +35,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "EverAccounting\\ByteKit\\Models\\": "src/"
+                    "ByteKit\\Models\\": "src/"
                 }
             },
             "autoload-dev": {
@@ -90,7 +90,7 @@
                 "source": "https://github.com/byteever/bytekit-models/tree/v1.0.4",
                 "issues": "https://github.com/byteever/bytekit-models/issues"
             },
-            "install-path": "../../vendor-prefixed/byteever/bytekit-models/"
+            "install-path": "../byteever/bytekit-models"
         },
         {
             "name": "byteever/bytekit-plugin",
@@ -127,7 +127,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "EverAccounting\\ByteKit\\": "src/"
+                    "ByteKit\\": "src/"
                 }
             },
             "scripts": {
@@ -179,7 +179,7 @@
                 "source": "https://github.com/byteever/bytekit-plugin/tree/v1.0.2",
                 "issues": "https://github.com/byteever/bytekit-plugin/issues"
             },
-            "install-path": "../../vendor-prefixed/byteever/bytekit-plugin/"
+            "install-path": "../byteever/bytekit-plugin"
         },
         {
             "name": "woocommerce/action-scheduler",
