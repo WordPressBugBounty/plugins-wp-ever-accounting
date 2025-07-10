@@ -164,9 +164,11 @@ class Accounts {
 		global $wpdb;
 		$start_date   = ReportsUtil::get_year_start_date();
 		$end_date     = ReportsUtil::get_year_end_date();
+		$date_column  = ReportsUtil::get_localized_time_sql( 't.payment_date' );
 		$transactions = $wpdb->get_results(
+			// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$wpdb->prepare(
-				"SELECT t.amount amount, MONTH(t.payment_date) AS month, YEAR(t.payment_date) AS year, t.type
+				"SELECT t.amount amount, MONTH({$date_column}) AS month, YEAR({$date_column}) AS year, t.type
 					FROM {$wpdb->prefix}ea_transactions AS t
 					LEFT JOIN {$wpdb->prefix}ea_transfers AS it ON t.id = it.payment_id OR t.id = it.expense_id
 					WHERE it.payment_id IS NULL
@@ -175,29 +177,30 @@ class Accounts {
 					AND t.payment_date BETWEEN %s AND %s
 					ORDER BY t.payment_date ASC",
 				$account->id,
-				$start_date,
-				$end_date
+				get_gmt_from_date( $start_date ),
+				get_gmt_from_date( $end_date )
 			)
+			// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		);
-		$stats[]      = array(
+		$stats[] = array(
 			'label' => __( 'Incoming', 'wp-ever-accounting' ),
 			'value' => eac_format_amount( array_sum( wp_list_pluck( wp_list_filter( $transactions, array( 'type' => 'payment' ) ), 'amount' ) ), $account->currency ),
 			'meta'  => array(
-				wp_date( 'Y', strtotime( $start_date ) ),
+				eac_format_datetime( get_gmt_from_date( $start_date ), 'Y' ),
 			),
 		);
-		$stats[]      = array(
+		$stats[] = array(
 			'label' => __( 'Outgoing', 'wp-ever-accounting' ),
 			'value' => eac_format_amount( array_sum( wp_list_pluck( wp_list_filter( $transactions, array( 'type' => 'expense' ) ), 'amount' ) ), $account->currency ),
 			'meta'  => array(
-				wp_date( 'Y', strtotime( $start_date ) ),
+				eac_format_datetime( get_gmt_from_date( $start_date ), 'Y' ),
 			),
 		);
-		$stats[]      = array(
+		$stats[] = array(
 			'label' => __( 'Balance', 'wp-ever-accounting' ),
 			'value' => $account->formatted_balance,
 		);
-		$stats        = apply_filters( 'eac_account_overview_stats', $stats );
+		$stats   = apply_filters( 'eac_account_overview_stats', $stats );
 
 		$payments = ReportsUtil::annualize_data( wp_list_filter( $transactions, array( 'type' => 'payment' ) ) );
 		$expenses = ReportsUtil::annualize_data( wp_list_filter( $transactions, array( 'type' => 'expense' ) ) );
@@ -219,7 +222,9 @@ class Accounts {
 		);
 		?>
 		<h2 class="has--border"><?php echo esc_html__( 'Overview', 'wp-ever-accounting' ); ?></h2>
-		<canvas class="eac-chart" id="eac-account-chart" style="height: 300px;margin-bottom: 20px;" data-datasets="<?php echo esc_attr( wp_json_encode( $chart ) ); ?>" data-currency="<?php echo esc_attr( EAC()->currencies->get_symbol( $account->currency ) ); ?>"></canvas>
+		<div class="eac-chart">
+			<canvas class="eac-chart" id="eac-account-chart" style="height: 300px;margin-bottom: 20px;" data-datasets="<?php echo esc_attr( wp_json_encode( $chart ) ); ?>" data-currency="<?php echo esc_attr( EAC()->currencies->get_symbol( $account->currency ) ); ?>"></canvas>
+		</div>
 		<div class="eac-stats stats--3">
 			<?php foreach ( $stats as $stat ) : ?>
 				<div class="eac-stat">
@@ -258,11 +263,11 @@ class Accounts {
 			),
 			'created'  => array(
 				'label' => __( 'Created', 'wp-ever-accounting' ),
-				'value' => wp_date( eac_date_format(), strtotime( $account->date_created ) ),
+				'value' => $account->date_created ? eac_format_datetime( $account->date_created, eac_date_format() ) : '&mdash;',
 			),
 			array(
 				'label' => __( 'Updated', 'wp-ever-accounting' ),
-				'value' => wp_date( eac_date_format(), strtotime( $account->date_updated ) ),
+				'value' => $account->date_updated ? eac_format_datetime( $account->date_updated, eac_date_format() ) : '&mdash;',
 			),
 		)
 		?>
@@ -368,12 +373,12 @@ class Accounts {
 						</td>
 						<td><?php echo esc_html( wp_date( eac_date_format(), strtotime( $expense->payment_date ) ) ); ?></td>
 						<td><?php echo esc_html( $expense->reference ? $expense->reference : '&mdash;' ); ?></td>
-						<td><?php echo esc_html( eac_format_amount( $expense->amount ) ); ?></td>
+						<td><?php echo esc_html( $expense->formatted_amount ); ?></td>
 					</tr>
 				<?php endforeach; ?>
 			<?php else : ?>
 				<tr>
-					<td colspan="3"><?php esc_html_e( 'No expenses found.', 'wp-ever-accounting' ); ?></td>
+					<td colspan="4"><?php esc_html_e( 'No expenses found.', 'wp-ever-accounting' ); ?></td>
 				</tr>
 			<?php endif; ?>
 		</table>

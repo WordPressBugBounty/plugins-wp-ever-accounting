@@ -2,7 +2,7 @@
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
 Tested up to: 6.8
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,9 +13,9 @@ Efficiently manage your payments and expenses, and send professional invoices in
 = Ultimate Accounting Solution for Small Businesses =
 **[WP Ever Accounting](https://wpeveraccounting.com/?utm_source=product-page-wordpress.org&utm_medium=product-page-wordpress.org&utm_campaign=product-page-wordpress.org)** is the best WordPress accounting plugin. Keep track of your income, expense, send professional invoices in multi-currencies. WP Ever Accounting offers everything you need to run your business confidently.
 
-It offers a one-stop accounting solution for small businesses. The plugin's primary goal is to provide an easy yet professional solution for a business to manage finances, keep logs of income and expenses, and offer details and powerful reports to understand its financial position.
+It offers a one-stop accounting solution for small businesses. The plugin's primary goal is to provide an easy yet professional solution for a business to manage finances, keep logs of income and expenses, and offer detailed and powerful reports to understand its financial position.
 
-The plugin will allow you to manage your income and expenses without any prior accounting knowledge. It will help you overcome the accounting related problems and focus more on other business operations.
+The plugin allows you to manage your income and expenses without any prior accounting knowledge. It will help you overcome the accounting-related problems and focus more on other business operations.
 
 Managing a small business has many challenges, and adopting a proper tool can save you from some of the hardships and challenges. Keeping track of the cash flow is one of the most important tasks for all businesses.
 
@@ -29,7 +29,7 @@ The plugin is designed to be user-friendly and easy to use. It is suitable for s
 
 * **Small Business Owners**: Manage your finances with ease and focus on growing your business.
 * **Freelancers**: Keep track of your income and expenses and send professional invoices.
-* **Startups**: Get a clear view of your financial position and make smarter decisions.
+* **Startups**: Get a clear view of your financial position and make more informed decisions.
 * **SMEs**: Manage your cash flow, track expenses, and generate detailed reports.
 * **Accountants**: Simplify your accounting tasks and save time with powerful features.
 * **Entrepreneurs**: Stay on top of your finances and make informed decisions for your business.
@@ -63,7 +63,7 @@ The plugin is designed to be user-friendly and easy to use. It is suitable for s
 &#9989; **Custom User Roles**: Assign roles with tailored permissions for secure management.
 
 = Discover More =
-Learn more about the **WP Ever Accounting** plugin from our website.
+Learn more about the **WP Ever Accounting** plugin on our website.
 - 🌐 [EverAccounting](https://wpeveraccounting.com/)
 - 💻 [Live Demo Site](https://demo.wpeveraccounting.com/)
 - 📄 [Plugin Documentation](https://wpeveraccounting.com/docs)
@@ -72,16 +72,16 @@ Learn more about the **WP Ever Accounting** plugin from our website.
 == ✨ Features of WP Ever Accounting ==
 
 **Multi-Currency Accounting**
-Do business all over the world with multi-currency accounting. Track income or expense in any currency you want and let the plugin convert them into your main currency.
+Do business all over the world with multi-currency accounting. Track income or expense in any currency you want and let the plugin convert them into your base currency.
 
 **Cash Flow Monitoring**
-Get a realtime view of your Cash flow. Stay on top of your Cash flow and make smarter decisions about your business anytime. Know how your incomes, expenses & revenues are flowing in realtime.
+Get a real-time view of your Cash flow. Stay on top of your Cash flow and make smarter decisions about your business anytime. Know how your incomes, expenses & revenues are flowing in real-time.
 
 **Easy Invoicing**
-Generate, print, and share professional invoices, including tax and discount options, in your clients' currency.
+Generate, print, and share professional invoices, including tax and discount options, in your customers' currency.
 
 **Billable Expenses**
-Create and manage bills, so your finances are always accurate and healthy. Print and share the bill with your vendor. Bill also supports tax calculation & discount.
+Create and manage bills to ensure your finances are always accurate and healthy. Print and share the bill with your vendor. Bill also supports tax calculation & discount.
 
 **Expense Tracking**
 Keep accurate and up-to-date records of business expenses in any currency to maintain a clear financial picture.
@@ -93,41 +93,41 @@ Record all income transactions to monitor what and when you're getting paid.
 List items as products or services for streamlined invoicing and billing.
 
 **Transaction Categorization**
-Group transactions into categories for quick insights into where your money is going and coming from. Track which category is your business is spending most as well as making money.
+Group transactions into categories for quick insights into where your money is going and coming from. Track which category your business is spending the most on, as well as making money.
 
 **Powerful Reporting**
-Generate detailed financial reports that give you a clear view of your business performance. Tailor smart financial reports and budgets to understanding and track what matters most.
+Generate detailed financial reports that give you a clear view of your business performance. Tailor smart financial reports and budgets to understand and track what matters most.
 
 **Vendor & Customer Profiles**
 Organize essential information about your business contacts to keep track of interactions and transactions.
 
 **Customer Management**
-Create customers to assign revenues, and later you can filter the transactions you made with them. You can store the name, address, email, phone number, etc., of a customer.
+Create customers to assign payments, and later you can filter the transactions you made with them. You can store the name, address, email, phone number, etc., of a customer.
 
 **Vendor Management**
-Create vendors to assign payments, and later you can filter the transactions you made with them. You can store the name, address, email, phone number, etc., of a vendor.
+Create vendors to assign expenses, and later you can filter the transactions you made with them. You can store the name, address, email, phone number, and other relevant information about a vendor.
 
-**Bank Account Management**
-Manage unlimited bank and cash accounts with ease, and track opening and current balances. You can use it with any currency that you want. Ever Accounting will take care of the currency.
+**Account Management**
+Manage unlimited cash accounts with ease, and track the current balances. You can use it with any currency that you want. Ever Accounting will handle the currency conversion.
 
 **Deposits & Transfers**
 Add deposits and make transfers across accounts to keep finances organized. The transferred amount will automatically adjust to the account currency.
 
 **Bulk Import**
-Quickly import data like customers, vendors, revenues, payments, accounts, and transactions to/from other systems.
+Quickly import data, including customers, vendors, categories, taxes, items, accounts, transfers, payments, and expenses from other systems.
 
 **Bulk Export**
-Ever Accounting lets you export most of your accounting records like customers, vendors, revenues, payments, accounts in CSV format, which you can import later or analyze.
+WP Ever Accounting lets you export most of your accounting records, like customers, vendors, categories, taxes, items, accounts, transfers, payments, and expenses in CSV format, which you can import later or analyze.
 
 **Custom User Roles**
-Assign user roles like 'Accounting Manager' and 'Accountant' with controlled permissions to enhance security. WP Ever Accounting has a built-in fine-grained permission's setup. By default, it supports 2 user roles "Accounting Manager" & "Accountant". Control permissions to protect and simplify your management experience.
+WP Ever Accounting comes with a built-in, fine-grained permission system to help you manage your team securely and efficiently. By default, it offers three dedicated user roles: ‘Accounting Manager’, ‘Accountant’, and ‘Accounting Auditor’. Each role is designed with predefined capabilities to ensure that users only access what they need. This role-based access control simplifies your workflow while strengthening security across your accounting operations.
 
 **Open-Source & Secure**
-WP Ever Accounting is an open-source project and hosted in your space. You must be sure that data is safe, and nobody can abuse them. Open Source software provides you full privacy.
+WP Ever Accounting is an open-source project and is hosted in your space. You must ensure that the data is secure and that nobody can access or misuse it. Open-source software offers complete privacy.
 
 == How WP Ever Accounting Works ==
 
-Once installed, **WP Ever Accounting** adds an **Accounting** menu to your WordPress dashboard. From here, access essential submenus such as Dashboard, Items, Transactions, Contacts, Payments, Revenues, Accounts, Transfers, Categories, and Settings. Each section provides powerful tools and data to keep your finances organized. The dashboard is dedicated to a detailed summary with highlights of the most important and recent accounting events.
+Once installed, **WP Ever Accounting** adds an **Accounting** menu to your WordPress dashboard. From here, you can access essential submenus, including Dashboard, Items, Sales, Purchases, Banking, Tools, Reports, and Settings. Each section provides powerful tools and data to keep your finances organized. The dashboard provides a detailed summary with highlights of the most important and recent accounting events. It also features an intuitive graphical interface that visually represents your Sales, Expenses, and Profit/Loss for the current year, providing instant insights at a glance.
 
 == Installation ==
 
@@ -287,6 +287,12 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.2.2 = (10th July 2025)
+* Enhance: Improved date handling for better compatibility across various time zones.
+* Fix: Resolved a minor issue affecting certain date formats.
+* Fix: Chart rendering issues in Account overview page.
+* Fix: Expense has missing attachment in the view page.
+
 = 2.2.1 = (4th June 2025)
 * Enhance: Update the plugin notices to be more user-friendly and informative.
 

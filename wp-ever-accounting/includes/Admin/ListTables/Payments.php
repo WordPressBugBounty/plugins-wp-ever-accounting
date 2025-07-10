@@ -3,6 +3,7 @@
 namespace EverAccounting\Admin\ListTables;
 
 use EverAccounting\Models\Payment;
+use EverAccounting\Utilities\ReportsUtil;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -52,7 +53,7 @@ class Payments extends ListTable {
 		$account_id  = filter_input( INPUT_GET, 'account_id', FILTER_VALIDATE_INT );
 		$category_id = filter_input( INPUT_GET, 'category_id', FILTER_VALIDATE_INT );
 		$contact_id  = filter_input( INPUT_GET, 'customer_id', FILTER_VALIDATE_INT );
-		$date        = filter_input( INPUT_GET, 'm', FILTER_VALIDATE_INT );
+		$year_month  = filter_input( INPUT_GET, 'm', FILTER_VALIDATE_INT );
 		$args        = array(
 			'limit'       => $per_page,
 			'page'        => $paged,
@@ -65,11 +66,11 @@ class Payments extends ListTable {
 			'contact_id'  => $contact_id,
 		);
 
-		if ( ! empty( $date ) ) {
-			$month                         = (int) substr( $date, 4, 2 );
-			$year                          = (int) substr( $date, 0, 4 );
-			$start                         = wp_date( 'Y-m-d H:i:s', mktime( 0, 0, 0, $month, 1, $year ) );
-			$end                           = wp_date( 'Y-m-d H:i:s', mktime( 23, 59, 59, $month + 1, 0, $year ) );
+		if ( ! empty( $year_month ) && preg_match( '/^[0-9]{6}$/', $year_month ) ) {
+			$year                          = (int) substr( $year_month, 0, 4 );
+			$month                         = (int) substr( $year_month, 4, 2 );
+			$start                         = get_gmt_from_date( "$year-$month-01 00:00:00" );
+			$end                           = get_gmt_from_date( date_create( "$year-$month" )->format( 'Y-m-t 23:59:59' ) );
 			$args['payment_date__between'] = array( $start, $end );
 		}
 
@@ -104,6 +105,7 @@ class Payments extends ListTable {
 	protected function bulk_delete( $ids ) {
 		if ( ! current_user_can( 'eac_delete_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			EAC()->flash->error( __( 'You do not have permission to delete payments.', 'wp-ever-accounting' ) );
+
 			return;
 		}
 
@@ -161,14 +163,17 @@ class Payments extends ListTable {
 		}
 		echo '<div class="alignleft actions">';
 		if ( 'top' === $which ) {
-			$months = $wpdb->get_results(
+			$date_column = ReportsUtil::get_localized_time_sql( 'payment_date' );
+			$months      = $wpdb->get_results(
+				// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				$wpdb->prepare(
-					"SELECT DISTINCT YEAR( payment_date ) AS year, MONTH( payment_date ) AS month
+					"SELECT DISTINCT YEAR( $date_column ) AS year, MONTH( $date_column ) AS month
 					FROM {$wpdb->prefix}ea_transactions
 					WHERE type = %s AND payment_date IS NOT NULL
 					ORDER BY payment_date DESC",
 					'payment'
 				)
+				// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			);
 
 			$this->date_filter( $months );
@@ -266,7 +271,7 @@ class Payments extends ListTable {
 	 * @return string Displays the name.
 	 */
 	public function column_date( $item ) {
-		return $item->payment_date ? wp_date( eac_date_format(), strtotime( $item->payment_date ) ) : '&mdash;';
+		return $item->payment_date ? eac_format_datetime( $item->payment_date, eac_date_format() ) : '&mdash;';
 	}
 
 	/**

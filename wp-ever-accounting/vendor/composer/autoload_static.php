@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit51a659dd902bfe558705553c416f5a37
+class ComposerStaticInitc2b89a9de881cf31aa05e168ab53fd78
 {
     public static $prefixLengthsPsr4 = array (
         'E' => 
@@ -46,6 +46,7 @@ class ComposerStaticInit51a659dd902bfe558705553c416f5a37
         'EverAccounting\\Admin\\Ajax' => __DIR__ . '/../..' . '/includes/Admin/Ajax.php',
         'EverAccounting\\Admin\\Bills' => __DIR__ . '/../..' . '/includes/Admin/Bills.php',
         'EverAccounting\\Admin\\Categories' => __DIR__ . '/../..' . '/includes/Admin/Categories.php',
+        'EverAccounting\\Admin\\Changelog' => __DIR__ . '/../..' . '/includes/Admin/Changelog.php',
         'EverAccounting\\Admin\\Currencies' => __DIR__ . '/../..' . '/includes/Admin/Currencies.php',
         'EverAccounting\\Admin\\Customers' => __DIR__ . '/../..' . '/includes/Admin/Customers.php',
         'EverAccounting\\Admin\\Dashboard' => __DIR__ . '/../..' . '/includes/Admin/Dashboard.php',
@@ -142,6 +143,8 @@ class ComposerStaticInit51a659dd902bfe558705553c416f5a37
         'EverAccounting\\Emails' => __DIR__ . '/../..' . '/includes/Emails.php',
         'EverAccounting\\Emails\\Email' => __DIR__ . '/../..' . '/includes/Emails/Email.php',
         'EverAccounting\\Extensions' => __DIR__ . '/../..' . '/includes/Extensions.php',
+        'EverAccounting\\Foundation\\DateTime' => __DIR__ . '/../..' . '/includes/Foundation/DateTime.php',
+        'EverAccounting\\Foundation\\Queue' => __DIR__ . '/../..' . '/includes/Foundation/Queue.php',
         'EverAccounting\\Frontend\\Frontend' => __DIR__ . '/../..' . '/includes/Frontend/Frontend.php',
         'EverAccounting\\Frontend\\Rewrites' => __DIR__ . '/../..' . '/includes/Frontend/Rewrites.php',
         'EverAccounting\\Installer' => __DIR__ . '/../..' . '/includes/Installer.php',
@@ -174,7 +177,7 @@ class ComposerStaticInit51a659dd902bfe558705553c416f5a37
         'EverAccounting\\Transfers' => __DIR__ . '/../..' . '/includes/Transfers.php',
         'EverAccounting\\Utilities\\ColorsUtil' => __DIR__ . '/../..' . '/includes/Utilities/ColorsUtil.php',
         'EverAccounting\\Utilities\\DatabaseUtil' => __DIR__ . '/../..' . '/includes/Utilities/DatabaseUtil.php',
-        'EverAccounting\\Utilities\\FileUtil' => __DIR__ . '/../..' . '/includes/Utilities/FileUtil.php',
+        'EverAccounting\\Utilities\\FileSystemUtil' => __DIR__ . '/../..' . '/includes/Utilities/FileSystemUtil.php',
         'EverAccounting\\Utilities\\I18nUtil' => __DIR__ . '/../..' . '/includes/Utilities/I18nUtil.php',
         'EverAccounting\\Utilities\\NumberUtil' => __DIR__ . '/../..' . '/includes/Utilities/NumberUtil.php',
         'EverAccounting\\Utilities\\ReportsUtil' => __DIR__ . '/../..' . '/includes/Utilities/ReportsUtil.php',
@@ -184,9 +187,9 @@ class ComposerStaticInit51a659dd902bfe558705553c416f5a37
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit51a659dd902bfe558705553c416f5a37::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit51a659dd902bfe558705553c416f5a37::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit51a659dd902bfe558705553c416f5a37::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc2b89a9de881cf31aa05e168ab53fd78::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc2b89a9de881cf31aa05e168ab53fd78::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc2b89a9de881cf31aa05e168ab53fd78::$classMap;
 
         }, null, ClassLoader::class);
     }

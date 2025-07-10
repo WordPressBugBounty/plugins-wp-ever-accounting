@@ -87,8 +87,8 @@ class Invoice extends Document {
 			$this->attributes,
 			array(
 				'type'       => $this->get_object_type(),
-				'issue_date' => current_time( 'mysql' ),
-				'due_date'   => wp_date( 'Y-m-d', strtotime( '+' . $due_after . ' days' ) ),
+				'issue_date' => current_time( 'mysql', true ),
+				'due_date'   => wp_date( 'Y-m-d', strtotime( '+' . $due_after . ' days' ), new \DateTimeZone( 'UTC' ) ),
 				'note'       => get_option( 'eac_invoice_note', '' ),
 				'currency'   => eac_base_currency(),
 				'uuid'       => wp_generate_uuid4(),

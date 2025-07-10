@@ -143,10 +143,10 @@ $transfer = Transfer::make( $id );
 							'name'        => 'transfer_date',
 							'label'       => __( 'Date', 'wp-ever-accounting' ),
 							'placeholder' => 'YYYY-MM-DD',
-							'value'       => $transfer->transfer_date,
-							'default'     => wp_date( 'Y-m-d' ),
+							'default'     => eac_format_datetime(),
+							'value'       => eac_format_datetime( $transfer->transfer_date ),
 							'required'    => true,
-							'class'       => 'eac_datepicker',
+							'class'       => 'eac_datetimepicker',
 						)
 					);
 

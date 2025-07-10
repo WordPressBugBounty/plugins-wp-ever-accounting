@@ -530,6 +530,32 @@ class Controller extends \WP_REST_Controller {
 	}
 
 	/**
+	 * Prepares a date for the database.
+	 *
+	 * @param string|null $date Date. Default null.
+	 * @param string      $format Date format. Default 'Y-m-d H:i:s'.
+	 *
+	 * @since 2.2.1
+	 *
+	 * @return string|null GMT datetime if valid, null otherwise.
+	 */
+	protected function prepare_date_for_database( $date = null, $format = 'Y-m-d H:i:s' ) {
+		$timestamp = null;
+		if ( is_numeric( $date ) ) {
+			$timestamp = (int) $date;
+		} elseif ( 1 === preg_match( '/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(Z|((-|\+)\d{2}:\d{2}))$/', $date, $date_bits ) ) {
+			$offset    = ! empty( $date_bits[7] ) ? iso8601_timezone_to_offset( $date_bits[7] ) : wc_timezone_offset();
+			$timestamp = gmmktime( $date_bits[4], $date_bits[5], $date_bits[6], $date_bits[2], $date_bits[3], $date_bits[1] ) - $offset;
+		} elseif ( ! empty( $date ) && false !== strtotime( $date ) ) {
+			$timestamp = get_gmt_from_date( gmdate( 'Y-m-d H:i:s', strtotime( $date ) ), 'U' );
+		}
+
+		return isset( $timestamp )
+			? ( new \DateTime( "@{$timestamp}", new \DateTimeZone( 'UTC' ) ) )->format( $format )
+			: null;
+	}
+
+	/**
 	 * Retrieves the query params for the items' collection.
 	 *
 	 * @since 2.0.0
@@ -597,11 +623,12 @@ class Controller extends \WP_REST_Controller {
 	 * Get data from a WooCommerce API endpoint.
 	 * This method used to be part of the WooCommerce Legacy REST API.
 	 *
-	 * @since 2.0.0
-	 *
 	 * @param string $endpoint Endpoint.
 	 * @param array  $params Params to pass with request.
 	 * @param string $method Request method.
+	 *
+	 * @since 2.0.0
+	 *
 	 * @return array|\WP_Error
 	 */
 	public function get_endpoint_data( $endpoint, $params = array(), $method = 'GET' ) {
@@ -614,6 +641,7 @@ class Controller extends \WP_REST_Controller {
 		$response = rest_do_request( $request );
 		$server   = rest_get_server();
 		$json     = wp_json_encode( $server->response_to_data( $response, false ) );
+
 		return json_decode( $json, true );
 	}
 }

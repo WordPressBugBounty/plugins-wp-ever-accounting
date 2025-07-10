@@ -168,19 +168,28 @@ class Customers {
 	public static function overview_section( $customer ) {
 		global $wpdb;
 		wp_enqueue_script( 'eac-chartjs' );
-		$year_start_date = EAC()->business->get_year_start_date();
-		$year_end_date   = EAC()->business->get_year_end_date();
-		$results         = $wpdb->get_results(
+		$year_start_date = ReportsUtil::get_year_start_date();
+		$year_end_date   = ReportsUtil::get_year_end_date();
+		$date_column     = ReportsUtil::get_localized_time_sql( 't.payment_date' );
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT SUM(amount/exchange_rate) as amount, MONTH(payment_date) AS month, YEAR(payment_date) AS year
-				FROM {$wpdb->prefix}ea_transactions WHERE contact_id = %d
-			    AND payment_date BETWEEN %s AND %s AND type='payment'",
+				"SELECT SUM(t.amount/t.exchange_rate) AS amount,
+		        MONTH($date_column) AS month,
+		        YEAR($date_column) AS year
+		 	    FROM {$wpdb->prefix}ea_transactions AS t
+		 		WHERE t.contact_id = %d
+		   	 	AND t.type = 'payment'
+		   		AND t.payment_date BETWEEN %s AND %s
+		 		GROUP BY YEAR($date_column), MONTH($date_column)
+		 		ORDER BY YEAR($date_column), MONTH($date_column)",
 				$customer->id,
-				$year_start_date,
-				$year_end_date
+				get_gmt_from_date( $year_start_date ),
+				get_gmt_from_date( $year_end_date )
 			)
 		);
-		$invoices        = $wpdb->get_var(
+
+		$invoices = $wpdb->get_var(
 			$wpdb->prepare(
 				"SELECT SUM(total/exchange_rate) as total FROM {$wpdb->prefix}ea_documents WHERE contact_id = %d AND contact_id !='' AND type='invoice' AND status != 'draft'",
 				$customer->id
@@ -194,8 +203,7 @@ class Customers {
 			)
 		);
 
-		$due = empty( $invoices ) ? 0 : max( $invoices - $paid, 0 );
-
+		$due        = empty( $invoices ) ? 0 : max( $invoices - $paid, 0 );
 		$chart_data = ReportsUtil::annualize_data( $results );
 		$chart      = array(
 			'type'     => 'line',
@@ -213,7 +221,6 @@ class Customers {
 		?>
 
 		<h2 class="has--border"><?php esc_html_e( 'Overview', 'wp-ever-accounting' ); ?></h2>
-
 		<div class="eac-chart">
 			<canvas class="eac-chart" id="eac-customer-chart" style="height: 300px;margin-bottom: 20px;" data-datasets="<?php echo esc_attr( wp_json_encode( $chart ) ); ?>" data-currency="<?php echo esc_attr( EAC()->currencies->get_symbol( eac_base_currency() ) ); ?>"></canvas>
 		</div>
@@ -280,11 +287,11 @@ class Customers {
 			),
 			array(
 				'label' => __( 'Created', 'wp-ever-accounting' ),
-				'value' => wp_date( eac_date_format(), strtotime( $customer->date_created ) ),
+				'value' => $customer->date_created ? eac_format_datetime( $customer->date_created, eac_date_format() ) : '&mdash;',
 			),
 			array(
 				'label' => __( 'Updated', 'wp-ever-accounting' ),
-				'value' => wp_date( eac_date_format(), strtotime( $customer->date_updated ) ),
+				'value' => $customer->date_updated ? eac_format_datetime( $customer->date_updated, eac_date_format() ) : '&mdash;',
 			),
 		);
 		?>
@@ -339,6 +346,7 @@ class Customers {
 							<a href="<?php echo esc_url( $payment->get_view_url() ); ?>">
 								<?php echo esc_html( $payment->number ); ?>
 							</a>
+						</td>
 						<td><?php echo esc_html( $payment->payment_date ? wp_date( eac_date_format(), strtotime( $payment->payment_date ) ) : '&mdash;' ); ?></td>
 						<td><?php echo esc_html( $payment->reference ? $payment->reference : '&mdash;' ); ?></td>
 						<td><?php echo esc_html( $payment->formatted_amount ); ?></td>

@@ -188,6 +188,7 @@ class Plugin extends \EverAccounting\ByteKit\Plugin {
 				'EverAccounting\Admin\Extensions',
 				// 'EverAccounting\Admin\Setup',
 				'EverAccounting\Admin\Notices',
+				'EverAccounting\Admin\Changelog',
 			);
 			foreach ( $handles as $handle ) {
 				$this->services->add( $handle );
@@ -257,9 +258,33 @@ class Plugin extends \EverAccounting\ByteKit\Plugin {
 	 * Get queue instance.
 	 *
 	 * @since 1.0.0
-	 * @return \EverAccounting\Core\Queue
+	 * @return \EverAccounting\Foundation\Queue
 	 */
 	public function queue() {
-		return Core\Queue::instance();
+		return Foundation\Queue::instance();
+	}
+
+	/**
+	 * Get assets path.
+	 *
+	 * @param string $file Optional. File name.
+	 *
+	 * @since 1.0.0
+	 * @return string
+	 */
+	public function get_assets_path( $file = '' ) {
+		return $this->get_dir_path( 'assets/' . $file );
+	}
+
+	/**
+	 * Get assets url.
+	 *
+	 * @param string $file Optional. File name.
+	 *
+	 * @since 1.0.0
+	 * @return string
+	 */
+	public function get_assets_url( $file = '' ) {
+		return $this->get_dir_url( 'assets/' . $file );
 	}
 }

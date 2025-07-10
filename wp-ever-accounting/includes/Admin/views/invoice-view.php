@@ -140,7 +140,7 @@ $mark_sent_url = wp_nonce_url(
 		<div class="eac-modal-body">
 			<div class="eac-form-field">
 				<label for="payment_date"><?php esc_html_e( 'Payment Date', 'wp-ever-accounting' ); ?>&nbsp;<abbr title="required"></abbr></label>
-				<input type="text" name="payment_date" id="payment_date" value="<?php echo esc_attr( date_i18n( get_option( 'date_format' ) ) ); ?>" class="eac_datepicker" required>
+				<input type="text" name="payment_date" id="payment_date" value="<?php echo esc_attr( eac_format_datetime() ); ?>" class="eac_datetimepicker" required>
 			</div>
 			<div class="eac-form-field">
 				<label for="account_id"><?php esc_html_e( 'Account', 'wp-ever-accounting' ); ?>&nbsp;<abbr title="required"></abbr></label>
@@ -183,6 +183,7 @@ $mark_sent_url = wp_nonce_url(
 			<button type="button" class="button" data-modal-close><?php esc_html_e( 'Cancel', 'wp-ever-accounting' ); ?></button>
 		</div>
 
+		<input type="hidden" name="currency" value="<?php echo esc_attr( $invoice->currency ); ?>">
 		<input type="hidden" name="invoice_id" value="<?php echo esc_attr( $invoice->id ); ?>">
 		<input type="hidden" name="customer_id" value="<?php echo esc_attr( $invoice->contact_id ); ?>">
 	</form>

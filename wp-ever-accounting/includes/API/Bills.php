@@ -316,6 +316,14 @@ class Bills extends Documents {
 			$value = $request[ $key ];
 			if ( ! is_null( $value ) ) {
 				switch ( $key ) {
+					case 'issue_date':
+					case 'due_date':
+					case 'sent_date':
+					case 'payment_date':
+					case 'date_created':
+					case 'date_updated':
+						$props[ $key ] = $this->prepare_date_for_database( $value );
+						break;
 					default:
 						$props[ $key ] = $value;
 						break;

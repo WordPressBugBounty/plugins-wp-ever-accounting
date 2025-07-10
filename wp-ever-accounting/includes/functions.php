@@ -73,20 +73,6 @@ function eac_get_currencies() {
 }
 
 /**
- * Get currency config.
- *
- * @param string $currency The currency to get config for.
- *
- * @since 1.0.0
- * @return array
- */
-function eac_get_currency_config( $currency = null ) {
-	$currencies = eac_get_currencies();
-
-	return array_key_exists( $currency, $currencies ) ? $currencies[ $currency ] : $currencies[ eac_base_currency() ];
-}
-
-/**
  * Format amount with currency code & number format
  *
  * @param string $amount Amount.
@@ -128,9 +114,8 @@ function eac_sanitize_amount( $amount, $currency = null ) {
 
 		// Remove currency symbol.
 		$amount = str_replace( $data['symbol'], '', $amount );
-
 		// Remove any non-numeric characters except a thousand and decimal separators.
-		$amount = preg_replace( '/[^0-9\\' . $data['thousand'] . '\\' . $data['decimal'] . '\-\+]/', '', $amount );
+		$amount = preg_replace( '/[^0-9' . $data['thousand'] . '' . $data['decimal'] . '\-\+]/', '', $amount );
 		// Replace a thousand and decimal separators with empty string and dot respectively.
 		$amount = str_replace( array( $data['thousand'], $data['decimal'] ), array( '', '.' ), $amount );
 
@@ -256,4 +241,30 @@ function eac_get_payment_methods() {
 			'other'  => esc_html__( 'Other', 'wp-ever-accounting' ),
 		)
 	);
+}
+
+/**
+ * Format a date/time string, with optional timezone adjustment.
+ *
+ * @param string                   $date Optional. Date/time string to format. Default 'now'.
+ * @param string                   $format Optional. Format of the date to return. Default 'Y-m-d H:i:s'.
+ * @param \DateTimeZone|null|false $timezone Optional. Timezone to output in. Null defaults to site timezone. False skips timezone conversion.
+ *
+ * @since 1.0.0
+ * @return string|false Formatted date string, or false on failure.
+ */
+function eac_format_datetime( $date = 'now', $format = 'Y-m-d H:i:s', $timezone = null ) {
+	if ( 'now' === $date ) {
+		$date = current_time( 'mysql', true );
+	} elseif ( empty( $date ) ) {
+		return '';
+	}
+
+	$datetime = date_create( $date, new DateTimeZone( 'UTC' ) );
+
+	if ( false === $datetime ) {
+		return false;
+	}
+
+	return wp_date( $format, $datetime->getTimestamp(), $timezone );
 }

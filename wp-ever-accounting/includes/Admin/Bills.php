@@ -60,8 +60,8 @@ class Bills {
 		$id                       = isset( $_POST['id'] ) ? absint( wp_unslash( $_POST['id'] ) ) : 0;
 		$items                    = isset( $_POST['items'] ) ? map_deep( wp_unslash( $_POST['items'] ), 'sanitize_text_field' ) : array();
 		$bill                     = Bill::make( $id );
-		$bill->issue_date         = isset( $_POST['issue_date'] ) ? sanitize_text_field( wp_unslash( $_POST['issue_date'] ) ) : '';
-		$bill->due_date           = isset( $_POST['due_date'] ) ? sanitize_text_field( wp_unslash( $_POST['due_date'] ) ) : '';
+		$bill->issue_date         = isset( $_POST['issue_date'] ) ? get_gmt_from_date( sanitize_text_field( wp_unslash( $_POST['issue_date'] ) ) ) : '';
+		$bill->due_date           = isset( $_POST['due_date'] ) ? get_gmt_from_date( sanitize_text_field( wp_unslash( $_POST['due_date'] ) ) ) : '';
 		$bill->contact_id         = isset( $_POST['contact_id'] ) ? absint( wp_unslash( $_POST['contact_id'] ) ) : 0;
 		$bill->contact_name       = isset( $_POST['contact_name'] ) ? sanitize_text_field( wp_unslash( $_POST['contact_name'] ) ) : '';
 		$bill->contact_company    = isset( $_POST['contact_company'] ) ? sanitize_text_field( wp_unslash( $_POST['contact_company'] ) ) : '';

@@ -29,25 +29,27 @@ class Scripts {
 	 */
 	public function register_scripts() {
 		// 3rd party scripts.
-		EAC()->scripts->register_script( 'eac-chartjs', 'js/chartjs.js', array( 'jquery' ), true );
-		EAC()->scripts->register_script( 'eac-inputmask', 'js/inputmask.js', array( 'jquery' ), true );
-		EAC()->scripts->register_script( 'eac-select2', 'js/select2.js', array( 'jquery' ), true );
-		EAC()->scripts->register_script( 'eac-tiptip', 'js/tiptip.js', array( 'jquery' ), true );
-		EAC()->scripts->register_script( 'eac-printthis', 'js/printthis.js', array( 'jquery' ), true );
+		EAC()->scripts->register_script( 'eac-chartjs', 'scripts/chartjs.js', array( 'jquery' ), true );
+		EAC()->scripts->register_script( 'eac-inputmask', 'scripts/inputmask.js', array( 'jquery' ), true );
+		EAC()->scripts->register_script( 'eac-select2', 'scripts/select2.js', array( 'jquery' ), true );
+		EAC()->scripts->register_script( 'eac-tiptip', 'scripts/tiptip.js', array( 'jquery' ), true );
+		EAC()->scripts->register_script( 'eac-printthis', 'scripts/printthis.js', array( 'jquery' ), true );
+		EAC()->scripts->register_script( 'eac-timepicker', 'scripts/timepicker.js', array( 'jquery', 'jquery-ui-datepicker' ), true );
 
 		// Packages.
-		EAC()->scripts->register_script( 'eac-money', 'client/money.js' );
+		EAC()->scripts->register_script( 'eac-money', 'packages/money.js' );
+		EAC()->scripts->enqueue_script( 'eac-autonumeric', 'https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.10.8/autoNumeric.min.js', array(), true );
 
 		// Plugins.
-		EAC()->scripts->register_script( 'eac-modal', 'js/modal.js', array( 'jquery' ), true );
-		EAC()->scripts->register_script( 'eac-form', 'js/form.js', array( 'jquery' ), true );
-		EAC()->scripts->register_script( 'eac-api', 'js/api.js', array( 'wp-backbone' ), true );
+		EAC()->scripts->register_script( 'eac-modal', 'scripts/modal.js', array( 'jquery' ), true );
+		EAC()->scripts->register_script( 'eac-form', 'scripts/form.js', array( 'jquery' ), true );
+		EAC()->scripts->register_script( 'eac-api', 'scripts/api.js', array( 'wp-backbone' ), true );
 
 		// Plugin scripts.
-		EAC()->scripts->register_script( 'eac-admin', 'js/admin.js', array( 'jquery', 'eac-inputmask', 'eac-select2', 'eac-printthis', 'eac-tiptip', 'jquery-ui-datepicker', 'jquery-ui-tooltip', 'eac-money', 'wp-ajax-response' ), true );
+		EAC()->scripts->register_script( 'eac-admin', 'scripts/admin.js', array( 'jquery', 'eac-inputmask', 'eac-select2', 'eac-printthis', 'eac-tiptip', 'eac-timepicker', 'jquery-ui-tooltip', 'eac-money', 'wp-ajax-response' ), true );
 
-		EAC()->scripts->register_style( 'eac-jquery-ui', 'css/jquery-ui.css' );
-		EAC()->scripts->register_style( 'eac-admin', 'css/admin.css', array( 'eac-jquery-ui' ) );
+		EAC()->scripts->register_style( 'eac-jquery-ui', 'styles/jquery-ui.css' );
+		EAC()->scripts->register_style( 'eac-admin', 'styles/admin.css', array( 'eac-jquery-ui' ) );
 	}
 
 	/**
@@ -59,6 +61,7 @@ class Scripts {
 	 * @return void
 	 */
 	public function enqueue_scripts( $hook ) {
+		global $wp_scripts;
 		if ( ! in_array( $hook, Utilities::get_screen_ids(), true ) ) {
 			return;
 		}
@@ -97,7 +100,7 @@ class Scripts {
 			)
 		);
 
-		if ( 'toplevel_page_ever-accounting' === $hook || 'ever-accounting_page_eac-reports' === $hook ) {
+		if ( 'toplevel_page_ever-accounting' === $hook || 'ever-accounting_page_eac-reports' === $hook || 'ever-accounting_page_eac-banking' === $hook ) {
 			wp_enqueue_script( 'eac-chartjs' );
 		}
 	}

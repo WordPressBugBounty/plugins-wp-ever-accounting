@@ -296,7 +296,7 @@ abstract class ListTable extends \WP_List_Table {
 					"<option %s value='%s'>%s</option>\n",
 					selected( $m, $year . $month, false ),
 					esc_attr( $arc_row->year . $month ),
-					esc_html( wp_date( 'M Y', strtotime( $year . '-' . $month . '-01' ) ) )
+					esc_html( \DateTime::createFromFormat( 'Y-m', $year . '-' . $month )->format( 'M Y' ) )
 				);
 			}
 			?>

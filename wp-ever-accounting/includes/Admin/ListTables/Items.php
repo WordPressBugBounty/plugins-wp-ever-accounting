@@ -322,7 +322,7 @@ class Items extends ListTable {
 	 * @return string Displays the date.
 	 */
 	public function column_date_created( $item ) {
-		return esc_html( wp_date( 'Y-m-d', strtotime( $item->date_created ) ) );
+		return $item->date_created ? eac_format_datetime( $item->date_created, eac_date_format() ) : '&mdash;';
 	}
 
 	/**

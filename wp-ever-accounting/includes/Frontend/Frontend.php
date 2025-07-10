@@ -53,7 +53,7 @@ class Frontend {
 	 * @return void
 	 */
 	public static function enqueue_scripts() {
-		EAC()->scripts->register_style( 'eac-frontend', 'css/frontend.css' );
+		EAC()->scripts->register_style( 'eac-frontend', 'styles/frontend.css' );
 	}
 
 	/**

@@ -27,7 +27,7 @@ class ActionScheduler_WPCLI_Scheduler_command extends WP_CLI_Command {
 				WP_CLI::success(
 					sprintf(
 						/* translators: %s refers to the schema name*/
-						__( 'Registered schema for %s', 'wp-ever-accounting' ),
+						__( 'Registered schema for %s', 'action-scheduler' ),
 						$classname
 					)
 				);
@@ -147,7 +147,7 @@ class ActionScheduler_WPCLI_Scheduler_command extends WP_CLI_Command {
 		WP_CLI::log(
 			sprintf(
 				/* translators: %d refers to how many scheduled tasks were found to run */
-				_n( 'Found %d scheduled task', 'Found %d scheduled tasks', $total, 'wp-ever-accounting' ),
+				_n( 'Found %d scheduled task', 'Found %d scheduled tasks', $total, 'action-scheduler' ),
 				$total
 			)
 		);
@@ -162,7 +162,7 @@ class ActionScheduler_WPCLI_Scheduler_command extends WP_CLI_Command {
 		WP_CLI::log(
 			sprintf(
 				/* translators: %d refers to the total number of batches executed */
-				_n( '%d batch executed.', '%d batches executed.', $batches_completed, 'wp-ever-accounting' ),
+				_n( '%d batch executed.', '%d batches executed.', $batches_completed, 'action-scheduler' ),
 				$batches_completed
 			)
 		);
@@ -179,7 +179,7 @@ class ActionScheduler_WPCLI_Scheduler_command extends WP_CLI_Command {
 		WP_CLI::error(
 			sprintf(
 				/* translators: %s refers to the exception error message */
-				__( 'There was an error running the action scheduler: %s', 'wp-ever-accounting' ),
+				__( 'There was an error running the action scheduler: %s', 'action-scheduler' ),
 				$e->getMessage()
 			)
 		);
@@ -194,7 +194,7 @@ class ActionScheduler_WPCLI_Scheduler_command extends WP_CLI_Command {
 		WP_CLI::success(
 			sprintf(
 				/* translators: %d refers to the total number of tasks completed */
-				_n( '%d scheduled task completed.', '%d scheduled tasks completed.', $actions_completed, 'wp-ever-accounting' ),
+				_n( '%d scheduled task completed.', '%d scheduled tasks completed.', $actions_completed, 'action-scheduler' ),
 				$actions_completed
 			)
 		);

@@ -4,7 +4,7 @@ namespace EverAccounting\Admin;
 
 use EverAccounting\Models\Bill;
 use EverAccounting\Models\Invoice;
-use EverAccounting\Utilities\FileUtil;
+use EverAccounting\Utilities\FileSystemUtil;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -688,7 +688,7 @@ class Ajax {
 		$file     = isset( $_POST['file'] ) ? sanitize_text_field( wp_unslash( $_POST['file'] ) ) : '';
 		$position = isset( $_POST['position'] ) ? absint( wp_unslash( $_POST['position'] ) ) : 0;
 
-		if ( empty( $file ) || ! FileUtil::file_exists( $file ) ) {
+		if ( empty( $file ) || ! FileSystemUtil::file_exists( $file ) ) {
 			wp_send_json_error(
 				array(
 					'message' => __( 'Missing import file. Please provide an import file.', 'wp-ever-accounting' ),
@@ -706,7 +706,7 @@ class Ajax {
 		}
 
 		// validate file.
-		if ( ! FileUtil::file_exists( $file ) ) {
+		if ( ! FileSystemUtil::file_exists( $file ) ) {
 			wp_send_json_error(
 				array(
 					'message' => __( 'The file does not exist.', 'wp-ever-accounting' ),

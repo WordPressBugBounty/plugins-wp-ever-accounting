@@ -268,7 +268,7 @@ abstract class ActionScheduler {
 		if ( ! self::$data_store_initialized && ! empty( $function_name ) ) {
 			$message = sprintf(
 				/* translators: %s function name. */
-				__( '%s() was called before the Action Scheduler data store was initialized', 'wp-ever-accounting' ),
+				__( '%s() was called before the Action Scheduler data store was initialized', 'action-scheduler' ),
 				esc_attr( $function_name )
 			);
 			_doing_it_wrong( esc_html( $function_name ), esc_html( $message ), '3.1.6' );

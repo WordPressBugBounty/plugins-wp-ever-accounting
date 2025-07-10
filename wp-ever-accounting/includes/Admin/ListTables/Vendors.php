@@ -236,6 +236,18 @@ class Vendors extends ListTable {
 	}
 
 	/**
+	 * Renders the date column.
+	 *
+	 * @param Vendor $item The current object.
+	 *
+	 * @since  1.0.0
+	 * @return string Displays the date.
+	 */
+	public function column_date_created( $item ) {
+		return $item->date_created ? eac_format_datetime( $item->date_created, eac_date_format() ) : '&mdash;';
+	}
+
+	/**
 	 * Generates and displays row actions links.
 	 *
 	 * @param Vendor $item The vendor object.

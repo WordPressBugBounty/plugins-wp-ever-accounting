@@ -105,7 +105,7 @@ class ReportsUtil {
 	 */
 	public static function get_year_start_date( $year = '' ) {
 		if ( empty( $year ) ) {
-			$year = wp_date( 'Y' );
+			$year = gmdate( 'Y' );
 		}
 
 		$year_start = get_option( 'eac_year_start_date', '01-01' );
@@ -114,7 +114,7 @@ class ReportsUtil {
 		$day        = ! empty( $dates[1] ) ? $dates[1] : '01';
 		$year       = empty( $year ) ? (int) wp_date( 'Y' ) : absint( $year );
 
-		return wp_date( 'Y-m-d', mktime( 0, 0, 0, absint( $month ), absint( $day ), $year ) );
+		return gmdate( 'Y-m-d 00:00:00', mktime( 0, 0, 0, absint( $month ), absint( $day ), $year ) );
 	}
 
 	/**
@@ -133,11 +133,7 @@ class ReportsUtil {
 		$start_date = self::get_year_start_date( $year );
 		// if the year is current year, then end date is today.
 
-		if ( wp_date( 'Y' ) === $year ) {
-			return wp_date( 'Y-m-d' );
-		}
-
-		return wp_date( 'Y-m-d', strtotime( $start_date . ' +1 year -1 day' ) );
+		return gmdate( 'Y-m-d 23:59:59', strtotime( $start_date . ' +1 year -1 day' ) );
 	}
 
 
@@ -156,7 +152,7 @@ class ReportsUtil {
 		$start  = new \DateTime( $start_date );
 		$end    = new \DateTime( $end_date );
 		while ( $start <= $end ) {
-			$months[] = wp_date( 'M, y', strtotime( $start->format( 'Y-m-01' ) ) );
+			$months[] = gmdate( 'M, y', strtotime( $start->format( 'Y-m-01' ) ) );
 			$start->modify( 'first day of next month' );
 		}
 
@@ -198,20 +194,20 @@ class ReportsUtil {
 		$gap = count( self::get_dates_range( $start_date, $end_date ) );
 		// if the gap is less than 7 days, then set the previous start and end date as 7 days before.
 		if ( $gap <= 7 ) {
-			$start = wp_date( 'Y-m-d', strtotime( $start_date . ' -7 days' ) );
-			$end   = wp_date( 'Y-m-d', strtotime( $end_date . ' -7 days' ) );
+			$start = gmdate( 'Y-m-d', strtotime( $start_date . ' -7 days' ) );
+			$end   = gmdate( 'Y-m-d', strtotime( $end_date . ' -7 days' ) );
 		} elseif ( $gap <= 30 ) {
-			$start = wp_date( 'Y-m-d', strtotime( $start_date . ' -1 month' ) );
-			$end   = wp_date( 'Y-m-d', strtotime( $end_date . ' -1 month' ) );
+			$start = gmdate( 'Y-m-d', strtotime( $start_date . ' -1 month' ) );
+			$end   = gmdate( 'Y-m-d', strtotime( $end_date . ' -1 month' ) );
 		} elseif ( $gap <= 90 ) {
-			$start = wp_date( 'Y-m-d', strtotime( $start_date . ' -3 months' ) );
-			$end   = wp_date( 'Y-m-d', strtotime( $end_date . ' -3 months' ) );
+			$start = gmdate( 'Y-m-d', strtotime( $start_date . ' -3 months' ) );
+			$end   = gmdate( 'Y-m-d', strtotime( $end_date . ' -3 months' ) );
 		} elseif ( $gap <= 180 ) {
-			$start = wp_date( 'Y-m-d', strtotime( $start_date . ' -6 months' ) );
-			$end   = wp_date( 'Y-m-d', strtotime( $end_date . ' -6 months' ) );
+			$start = gmdate( 'Y-m-d', strtotime( $start_date . ' -6 months' ) );
+			$end   = gmdate( 'Y-m-d', strtotime( $end_date . ' -6 months' ) );
 		} else {
-			$start = wp_date( 'Y-m-d', strtotime( $start_date . ' -1 year' ) );
-			$end   = wp_date( 'Y-m-d', strtotime( $end_date . ' -1 year' ) );
+			$start = gmdate( 'Y-m-d', strtotime( $start_date . ' -1 year' ) );
+			$end   = gmdate( 'Y-m-d', strtotime( $end_date . ' -1 year' ) );
 		}
 
 		return array(
@@ -299,9 +295,11 @@ class ReportsUtil {
 		$date_format = 'M, y';
 
 		if ( $force || empty( $reports[ $year ] ) ) {
+			$date_column = self::get_localized_time_sql( 't.payment_date' );
+			// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$transactions = $wpdb->get_results(
 				$wpdb->prepare(
-					"SELECT (t.amount/t.exchange_rate) amount, MONTH(t.payment_date) AS month, YEAR(t.payment_date) AS year, t.category_id
+					"SELECT (t.amount/t.exchange_rate) amount, MONTH($date_column) AS month, YEAR($date_column) AS year, t.category_id
 					FROM {$wpdb->prefix}ea_transactions AS t
 					LEFT JOIN {$wpdb->prefix}ea_transfers AS it ON t.id = it.payment_id OR t.id = it.expense_id
 					WHERE t.type = 'payment'
@@ -309,14 +307,15 @@ class ReportsUtil {
 					AND it.expense_id IS NULL
 					AND t.payment_date BETWEEN %s AND %s
 					ORDER BY t.payment_date ASC",
-					$start_date,
-					$end_date
+					get_gmt_from_date( $start_date ),
+					get_gmt_from_date( $end_date )
 				)
 			);
-			$months       = array_fill_keys( self::get_months_in_range( $start_date, $end_date, $date_format ), 0 );
-			$month_count  = count( $months );
-			$date_count   = count( self::get_dates_range( $start_date, $end_date ) );
-			$data         = array(
+			// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$months      = array_fill_keys( self::get_months_in_range( $start_date, $end_date, $date_format ), 0 );
+			$month_count = count( $months );
+			$date_count  = count( self::get_dates_range( $start_date, $end_date ) );
+			$data        = array(
 				'total_amount' => 0,
 				'total_count'  => 0,
 				'daily_avg'    => 0,
@@ -330,7 +329,7 @@ class ReportsUtil {
 				$month       = $transaction->month;
 				$category_id = $transaction->category_id;
 				$amount      = round( $transaction->amount, 2 );
-				$month_year  = wp_date( $date_format, strtotime( $trans_year . '-' . $month . '-01' ) );
+				$month_year  = \DateTime::createFromFormat( 'Y-m', $trans_year . '-' . $month )->format( $date_format );
 
 				// Total.
 				$data['total_amount'] += round( $amount, 2 );
@@ -375,7 +374,7 @@ class ReportsUtil {
 	 * @since 1.0.0
 	 * @return array
 	 */
-	public static function get_expenses_report( $year = null, $force = false ) {
+	public static function get_expenses_report( $year = null, $force = true ) {
 		global $wpdb;
 		$reports     = get_transient( 'get_expenses_report' );
 		$reports     = ! is_array( $reports ) ? array() : $reports;
@@ -385,9 +384,11 @@ class ReportsUtil {
 		$date_format = 'M, y';
 
 		if ( $force || ! isset( $reports[ $year ] ) ) {
+			$date_column = self::get_localized_time_sql( 't.payment_date' );
+			// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$transactions = $wpdb->get_results(
 				$wpdb->prepare(
-					"SELECT (t.amount/t.exchange_rate) amount, MONTH(t.payment_date) AS month, YEAR(t.payment_date) AS year, t.category_id
+					"SELECT (t.amount/t.exchange_rate) amount, MONTH($date_column) AS month, YEAR($date_column) AS year, t.category_id
 					FROM {$wpdb->prefix}ea_transactions AS t
 					LEFT JOIN {$wpdb->prefix}ea_transfers AS it ON t.id = it.payment_id OR t.id = it.expense_id
 					WHERE t.type = 'expense'
@@ -395,10 +396,11 @@ class ReportsUtil {
 					AND it.expense_id IS NULL
 					AND t.payment_date BETWEEN %s AND %s
 					ORDER BY t.payment_date ASC",
-					$start_date,
-					$end_date
+					get_gmt_from_date( $start_date ),
+					get_gmt_from_date( $end_date )
 				)
 			);
+			// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
 			$months      = array_fill_keys( self::get_months_in_range( $start_date, $end_date, $date_format ), 0 );
 			$month_count = count( $months );
@@ -417,7 +419,7 @@ class ReportsUtil {
 				$month       = $transaction->month;
 				$category_id = $transaction->category_id;
 				$amount      = round( $transaction->amount, 2 );
-				$month_year  = wp_date( $date_format, strtotime( $trans_year . '-' . $month . '-01' ) );
+				$month_year  = \DateTime::createFromFormat( 'Y-m', $trans_year . '-' . $month )->format( $date_format );
 
 				// Total.
 				$data['total_amount'] += round( $amount, 2 );
@@ -471,19 +473,23 @@ class ReportsUtil {
 		$end_date    = self::get_year_end_date( $year );
 		$date_format = 'M, y';
 		if ( $force || ! isset( $reports[ $year ] ) ) {
+			$date_column = self::get_localized_time_sql( 't.payment_date' );
+
+			// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$transactions = $wpdb->get_results(
 				$wpdb->prepare(
-					"SELECT (t.amount/t.exchange_rate) amount, MONTH(t.payment_date) AS month, YEAR(t.payment_date) AS year, t.category_id, t.type
+					"SELECT (t.amount/t.exchange_rate) amount, MONTH($date_column) AS month, YEAR($date_column) AS year, t.category_id, t.type
 					FROM {$wpdb->prefix}ea_transactions AS t
 					LEFT JOIN {$wpdb->prefix}ea_transfers AS it ON t.id = it.payment_id OR t.id = it.expense_id
 					WHERE it.payment_id IS NULL
 					AND it.expense_id IS NULL
 					AND t.payment_date BETWEEN %s AND %s
 					ORDER BY t.payment_date ASC",
-					$start_date,
-					$end_date
+					get_gmt_from_date( $start_date ),
+					get_gmt_from_date( $end_date )
 				)
 			);
+			// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
 			$months      = array_fill_keys( self::get_months_in_range( $start_date, $end_date, $date_format ), 0 );
 			$month_count = count( $months );
@@ -504,7 +510,7 @@ class ReportsUtil {
 				$trans_year = $transaction->year;
 				$month      = $transaction->month;
 				$amount     = round( $transaction->amount, 2 );
-				$month_year = wp_date( $date_format, strtotime( $trans_year . '-' . $month . '-01' ) );
+				$month_year = \DateTime::createFromFormat( 'Y-m', $trans_year . '-' . $month )->format( $date_format );
 
 				// total count.
 				++$data['total_count'];
@@ -551,8 +557,8 @@ class ReportsUtil {
 	 */
 	public static function annualize_data( $data, $year = null, $date_format = 'M, y' ) {
 		$year       = empty( $year ) ? wp_date( 'Y' ) : absint( $year );
-		$start_date = EAC()->business->get_year_start_date( $year );
-		$end_date   = EAC()->business->get_year_end_date( $year );
+		$start_date = self::get_year_start_date( $year );
+		$end_date   = self::get_year_end_date( $year );
 		$months     = array_fill_keys( self::get_months_in_range( $start_date, $end_date, $date_format ), 0 );
 		foreach ( $data as $datum ) {
 			$datum = get_object_vars( $datum );
@@ -565,13 +571,47 @@ class ReportsUtil {
 				)
 			);
 
-			// month and year must be set.
+			// Month and year must be set.
 			if ( ! $datum['month'] || ! $datum['year'] || absint( $datum['year'] ) !== absint( $year ) ) {
 				continue;
 			}
-			$months[ wp_date( 'M, y', mktime( 0, 0, 0, $datum['month'], 1, $datum['year'] ) ) ] = $datum['amount'];
+			$month_year = gmdate( 'M, y', mktime( 0, 0, 0, $datum['month'], 1, $datum['year'] ) );
+			if ( isset( $months[ $month_year ] ) ) {
+				$months[ $month_year ] += round( $datum['amount'], 2 );
+			} else {
+				$months[ $month_year ] = round( $datum['amount'], 2 );
+			}
 		}
 
 		return $months;
+	}
+
+	/**
+	 * Get a MySQL CONVERT_TZ() expression to shift a column from UTC to site timezone.
+	 *
+	 * Used when the database stores UTC and you need to display in site time.
+	 *
+	 * @param string $column Column name to wrap (e.g. `date_created`).
+	 *
+	 * @return string MySQL CONVERT_TZ expression
+	 */
+	public static function get_localized_time_sql( $column = 'date_created' ) {
+		$timezone_string = get_option( 'timezone_string' );
+
+		if ( $timezone_string ) {
+			$datetime       = new \DateTime( 'now', new \DateTimeZone( $timezone_string ) );
+			$offset_seconds = $datetime->getOffset();
+			$hours          = ( $offset_seconds >= 0 ) ? floor( $offset_seconds / 3600 ) : ceil( $offset_seconds / 3600 );
+			$minutes        = abs( $offset_seconds % 3600 ) / 60;
+		} else {
+			$offset_raw = get_option( 'gmt_offset' );
+			$hours      = ( $offset_raw >= 0 ) ? floor( $offset_raw ) : ceil( $offset_raw );
+			$minutes    = abs( $offset_raw - $hours ) * 60;
+		}
+
+		$offset = sprintf( '%+03d:%02d', $hours, $minutes );
+
+		// Return the SQL expression.
+		return "CONVERT_TZ({$column}, '+00:00', '{$offset}')";
 	}
 }

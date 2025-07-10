@@ -164,7 +164,7 @@ class System_Command {
 		$sources = ActionScheduler_SystemInformation::get_sources();
 
 		if ( empty( $sources ) ) {
-			WP_CLI::log( __( 'Detailed information about registered sources is not currently available.', 'wp-ever-accounting' ) );
+			WP_CLI::log( __( 'Detailed information about registered sources is not currently available.', 'action-scheduler' ) );
 			return;
 		}
 

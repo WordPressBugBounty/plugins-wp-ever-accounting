@@ -44,9 +44,10 @@ $expense = Expense::make( $id );
 							'label'       => __( 'Date', 'wp-ever-accounting' ),
 							'type'        => 'date',
 							'name'        => 'payment_date',
-							'value'       => $expense->payment_date,
+							'default'     => eac_format_datetime(),
+							'value'       => eac_format_datetime( $expense->payment_date ),
 							'placeholder' => 'yyyy-mm-dd',
-							'class'       => 'eac_datepicker',
+							'class'       => 'eac_datetimepicker',
 							'required'    => true,
 						)
 					);

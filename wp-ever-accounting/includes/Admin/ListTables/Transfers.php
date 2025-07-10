@@ -3,6 +3,7 @@
 namespace EverAccounting\Admin\ListTables;
 
 use EverAccounting\Models\Transfer;
+use EverAccounting\Utilities\ReportsUtil;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -51,7 +52,7 @@ class Transfers extends ListTable {
 		$search                = $this->get_request_search();
 		$order_by              = $this->get_request_orderby();
 		$order                 = $this->get_request_order();
-		$date                  = filter_input( INPUT_GET, 'm', FILTER_VALIDATE_INT );
+		$year_month            = filter_input( INPUT_GET, 'm', FILTER_VALIDATE_INT );
 		$args                  = array(
 			'limit'   => $per_page,
 			'page'    => $paged,
@@ -60,11 +61,11 @@ class Transfers extends ListTable {
 			'order'   => $order,
 		);
 
-		if ( ! empty( $date ) ) {
-			$month                          = (int) substr( $date, 4, 2 );
-			$year                           = (int) substr( $date, 0, 4 );
-			$start                          = wp_date( 'Y-m-d H:i:s', mktime( 0, 0, 0, $month, 1, $year ) );
-			$end                            = wp_date( 'Y-m-d H:i:s', mktime( 23, 59, 59, $month + 1, 0, $year ) );
+		if ( ! empty( $year_month ) && preg_match( '/^[0-9]{6}$/', $year_month ) ) {
+			$year                           = (int) substr( $year_month, 0, 4 );
+			$month                          = (int) substr( $year_month, 4, 2 );
+			$start                          = get_gmt_from_date( "$year-$month-01 00:00:00" );
+			$end                            = get_gmt_from_date( date_create( "$year-$month" )->format( 'Y-m-t 23:59:59' ) );
 			$args['transfer_date__between'] = array( $start, $end );
 		}
 
@@ -138,11 +139,14 @@ class Transfers extends ListTable {
 		}
 		echo '<div class="alignleft actions">';
 		if ( 'top' === $which ) {
-			$months = $wpdb->get_results(
-				"SELECT DISTINCT YEAR( transfer_date ) AS year, MONTH( transfer_date ) AS month
+			$date_column = ReportsUtil::get_localized_time_sql( 'transfer_date' );
+			$months      = $wpdb->get_results(
+			// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				"SELECT DISTINCT YEAR( $date_column ) AS year, MONTH( $date_column ) AS month
 					FROM {$wpdb->prefix}ea_transfers
 					WHERE transfer_date IS NOT NULL
 					ORDER BY transfer_date DESC",
+			// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			);
 
 			$this->date_filter( $months );
@@ -234,7 +238,7 @@ class Transfers extends ListTable {
 		return sprintf(
 			'<a class="row-title" href="%s">%s</a>',
 			esc_url( $item->get_edit_url() ),
-			esc_html( $item->transfer_date ? wp_date( 'Y-m-d', strtotime( $item->transfer_date ) ) : '&mdash;' )
+			esc_html( $item->transfer_date ? eac_format_datetime( $item->transfer_date, eac_date_format() ) : '&mdash;' )
 		);
 	}
 

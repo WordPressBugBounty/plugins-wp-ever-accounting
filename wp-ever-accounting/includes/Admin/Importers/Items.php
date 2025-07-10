@@ -29,7 +29,17 @@ class Items extends Importer {
 			'date_updated',
 		);
 
-		$data = array_diff_key( $data, array_flip( $protected ) );
+		$data  = array_diff_key( $data, array_flip( $protected ) );
+		$dates = array(
+			'date_created',
+			'date_updated',
+		);
+
+		foreach ( $dates as $date ) {
+			if ( isset( $data[ $date ] ) && ! empty( $data[ $date ] ) ) {
+				$data[ $date ] = get_gmt_from_date( $data[ $date ] );
+			}
+		}
 
 		// if the item have category.
 		if ( ! empty( $data['category'] ) ) {

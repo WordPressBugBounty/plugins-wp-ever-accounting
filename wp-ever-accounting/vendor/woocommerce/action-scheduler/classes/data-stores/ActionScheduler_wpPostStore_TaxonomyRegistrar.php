@@ -19,7 +19,7 @@ class ActionScheduler_wpPostStore_TaxonomyRegistrar {
 	 */
 	protected function taxonomy_args() {
 		$args = array(
-			'label'             => __( 'Action Group', 'wp-ever-accounting' ),
+			'label'             => __( 'Action Group', 'action-scheduler' ),
 			'public'            => false,
 			'hierarchical'      => false,
 			'show_admin_column' => true,

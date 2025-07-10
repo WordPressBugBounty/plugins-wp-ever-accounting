@@ -167,19 +167,29 @@ class Vendors {
 	public static function overview_section( $vendor ) {
 		global $wpdb;
 		wp_enqueue_script( 'eac-chartjs' );
-		$year_start_date = EAC()->business->get_year_start_date();
-		$year_end_date   = EAC()->business->get_year_end_date();
-		$results         = $wpdb->get_results(
+		$year_start_date = ReportsUtil::get_year_start_date();
+		$year_end_date   = ReportsUtil::get_year_end_date();
+		$date_column     = ReportsUtil::get_localized_time_sql( 't.payment_date' );
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT SUM(amount/exchange_rate) as amount, MONTH(payment_date) AS month, YEAR(payment_date) AS year
-				FROM {$wpdb->prefix}ea_transactions WHERE contact_id = %d
-			    AND payment_date BETWEEN %s AND %s AND type='expense'",
+				"SELECT SUM(t.amount/t.exchange_rate) AS amount,
+		        MONTH($date_column) AS month,
+		        YEAR($date_column) AS year
+		 		FROM {$wpdb->prefix}ea_transactions AS t
+		        WHERE t.contact_id = %d
+		   		AND t.type = 'expense'
+		   		AND t.payment_date BETWEEN %s AND %s
+		 		GROUP BY YEAR($date_column), MONTH($date_column)
+		 		ORDER BY YEAR($date_column), MONTH($date_column)",
 				$vendor->id,
-				$year_start_date,
-				$year_end_date
+				get_gmt_from_date( $year_start_date ),
+				get_gmt_from_date( $year_end_date )
 			)
 		);
-		$bill            = $wpdb->get_var(
+		// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+		$bill = $wpdb->get_var(
 			$wpdb->prepare(
 				"SELECT SUM(total/exchange_rate) as total FROM {$wpdb->prefix}ea_documents WHERE contact_id = %d AND contact_id !='' AND type='bill' AND status != 'draft'",
 				$vendor->id
@@ -193,8 +203,7 @@ class Vendors {
 			)
 		);
 
-		$due = empty( $bill ) ? 0 : max( $bill - $paid, 0 );
-
+		$due        = empty( $bill ) ? 0 : max( $bill - $paid, 0 );
 		$chart_data = ReportsUtil::annualize_data( $results );
 		$chart      = array(
 			'type'     => 'line',
@@ -260,11 +269,11 @@ class Vendors {
 			),
 			array(
 				'label' => __( 'Created', 'wp-ever-accounting' ),
-				'value' => wp_date( eac_date_format(), strtotime( $vendor->date_created ) ),
+				'value' => $vendor->date_created ? eac_format_datetime( $vendor->date_created, eac_date_format() ) : '&mdash;',
 			),
 			array(
 				'label' => __( 'Updated', 'wp-ever-accounting' ),
-				'value' => wp_date( eac_date_format(), strtotime( $vendor->date_updated ) ),
+				'value' => $vendor->date_updated ? eac_format_datetime( $vendor->date_updated, eac_date_format() ) : '&mdash;',
 			),
 		);
 		?>
@@ -311,9 +320,9 @@ class Vendors {
 		$expenses = EAC()->expenses->query(
 			array(
 				'contact_id' => $vendor->id,
+				'limit'      => 20,
 				'orderby'    => 'payment_date',
 				'order'      => 'DESC',
-				'limit'      => 20,
 			)
 		);
 		?>
@@ -338,7 +347,7 @@ class Vendors {
 						</td>
 						<td><?php echo esc_html( wp_date( eac_date_format(), strtotime( $expense->payment_date ) ) ); ?></td>
 						<td><?php echo esc_html( $expense->reference ? $expense->reference : '-' ); ?></td>
-						<td><?php echo esc_html( eac_format_amount( $expense->amount ) ); ?></td>
+						<td><?php echo esc_html( $expense->formatted_amount ); ?></td>
 					</tr>
 				<?php endforeach; ?>
 			<?php else : ?>
@@ -346,6 +355,7 @@ class Vendors {
 					<td colspan="4"><?php esc_html_e( 'No expenses found.', 'wp-ever-accounting' ); ?></td>
 				</tr>
 			<?php endif; ?>
+			</tbody>
 		</table>
 		<?php
 	}

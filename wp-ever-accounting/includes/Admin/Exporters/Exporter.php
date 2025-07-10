@@ -2,7 +2,7 @@
 
 namespace EverAccounting\Admin\Exporters;
 
-use EverAccounting\Utilities\FileUtil;
+use EverAccounting\Utilities\FileSystemUtil;
 
 /**
  * Handle exporters.
@@ -147,7 +147,7 @@ abstract class Exporter {
 	 */
 	public function process_step( $step ) {
 		$this->page    = absint( $step );
-		$wp_filesystem = FileUtil::get_fs();
+		$wp_filesystem = FileSystemUtil::get_fs();
 
 		if ( 1 === $this->page ) {
 			$wp_filesystem->delete( $this->get_file_path() );
@@ -173,7 +173,7 @@ abstract class Exporter {
 	public function export() {
 		$this->send_headers();
 		$this->send_content( $this->get_file() );
-		$wp_filesystem = FileUtil::get_fs();
+		$wp_filesystem = FileSystemUtil::get_fs();
 		$wp_filesystem->delete( $this->get_file_path() );
 		die();
 	}
@@ -218,7 +218,7 @@ abstract class Exporter {
 	 */
 	protected function get_file() {
 		$file          = '';
-		$wp_filesystem = FileUtil::get_fs();
+		$wp_filesystem = FileSystemUtil::get_fs();
 		// check if file exists.
 		if ( $wp_filesystem->exists( $this->get_file_path() ) ) {
 			$file = $wp_filesystem->get_contents( $this->get_file_path() );

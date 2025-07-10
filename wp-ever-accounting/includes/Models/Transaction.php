@@ -34,8 +34,8 @@ defined( 'ABSPATH' ) || exit;
  * @property bool            $editable Whether the transaction is editable.
  * @property string          $created_via Created via of the transaction.
  * @property string          $uuid UUID of the transaction.
- * @property string          $date_updated Date the transaction was last updated.
  * @property string          $date_created Date the transaction was created.
+ * @property string          $date_updated Date the transaction was last updated.
  *
  * @property-read string     $formatted_amount Formatted amount of the transaction.
  * @property-read Account    $account Related account.
@@ -89,8 +89,8 @@ class Transaction extends Model {
 		'editable',
 		'created_via',
 		'uuid',
-		'date_updated',
 		'date_created',
+		'date_updated',
 	);
 
 	/**
@@ -113,7 +113,7 @@ class Transaction extends Model {
 		'id'             => 'int',
 		'type'           => 'sanitize_text',
 		'number'         => 'sanitize_text',
-		'payment_date'   => 'date',
+		'payment_date'   => 'datetime',
 		'amount'         => 'float',
 		'currency'       => 'sanitize_text',
 		'exchange_rate'  => 'double',
@@ -305,15 +305,20 @@ class Transaction extends Model {
 	 */
 	public function get_max_number() {
 		global $wpdb;
-		$max = $wpdb->get_var(
+		$number = $wpdb->get_var(
 			$wpdb->prepare(
 				"SELECT `number` FROM {$wpdb->prefix}{$this->table} WHERE `type` = %s ORDER BY `number` DESC", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Already prepared.
 				$this->type
 			)
 		);
 
-		// Get the number part of the max number using regex.
-		return (int) preg_replace( '/[^0-9]/', '', $max );
+		// if number is not empty, using regular expression to extract the number.
+		if ( ! empty( $number ) ) {
+			preg_match( '/\d+$/', $number, $matches );
+			$number = ! empty( $matches ) ? $matches[0] : 0;
+		}
+
+		return (int) $number;
 	}
 
 	/**

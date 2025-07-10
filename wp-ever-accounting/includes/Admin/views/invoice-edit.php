@@ -19,7 +19,6 @@ if ( ! $invoice->is_taxed() ) {
 }
 
 defined( 'ABSPATH' ) || exit;
-
 ?>
 <h1 class="wp-heading-inline">
 	<?php if ( $invoice->exists() ) : ?>
@@ -70,11 +69,12 @@ defined( 'ABSPATH' ) || exit;
 							array(
 								'label'             => esc_html__( 'Issue Date', 'wp-ever-accounting' ),
 								'name'              => 'issue_date',
-								'value'             => $invoice->issue_date,
 								'type'              => 'text',
+								'default'           => eac_format_datetime(),
+								'value'             => eac_format_datetime( $invoice->issue_date ),
 								'placeholder'       => 'YYYY-MM-DD',
 								'required'          => true,
-								'class'             => 'eac_datepicker',
+								'class'             => 'eac_datetimepicker',
 								'attr-autocomplete' => 'off',
 							)
 						);
@@ -95,10 +95,11 @@ defined( 'ABSPATH' ) || exit;
 							array(
 								'label'             => esc_html__( 'Due Date', 'wp-ever-accounting' ),
 								'name'              => 'due_date',
-								'value'             => $invoice->due_date,
 								'type'              => 'text',
+								'default'           => eac_format_datetime(),
+								'value'             => eac_format_datetime( $invoice->due_date ),
 								'placeholder'       => 'YYYY-MM-DD',
-								'class'             => 'eac_datepicker',
+								'class'             => 'eac_datetimepicker',
 								'attr-autocomplete' => 'off',
 							)
 						);

@@ -438,6 +438,7 @@ class Expenses extends Transactions {
 		$data   = array();
 		foreach ( $props as $prop ) {
 			if ( isset( $request[ $prop ] ) ) {
+				$value = $request[ $prop ];
 				switch ( $prop ) {
 					case 'category_id':
 						$category = EAC()->categories->get( $request[ $prop ] );
@@ -514,6 +515,14 @@ class Expenses extends Transactions {
 						if ( ! empty( $attachment_id ) && 'attachment' === get_post_type( $attachment_id ) ) {
 							$data['attachment_id'] = $attachment_id;
 						}
+						break;
+					case 'issue_date':
+					case 'due_date':
+					case 'sent_date':
+					case 'payment_date':
+					case 'date_created':
+					case 'date_updated':
+						$data[ $prop ] = $this->prepare_date_for_database( $value );
 						break;
 					default:
 						$data[ $prop ] = $request[ $prop ];

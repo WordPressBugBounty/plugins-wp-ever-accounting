@@ -171,5 +171,5 @@ function eac_time_format() {
  * @return string
  */
 function eac_date_time_format() {
-	return eac_date_format() . '@' . eac_time_format();
+	return eac_date_format() . ' ' . eac_time_format();
 }

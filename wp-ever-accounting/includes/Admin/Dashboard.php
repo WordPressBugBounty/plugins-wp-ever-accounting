@@ -217,7 +217,7 @@ class Dashboard {
 					<?php foreach ( $payments as $payment ) : ?>
 						<tr>
 							<td><a href="<?php echo esc_url( $payment->get_view_url() ); ?>"><?php echo esc_html( $payment->number ); ?></a></td>
-							<td><?php echo esc_html( date_i18n( eac_date_format(), strtotime( $payment->payment_date ) ) ); ?></td>
+							<td><?php echo esc_html( wp_date( eac_date_format(), strtotime( $payment->payment_date ) ) ); ?></td>
 							<td class="is--last-item"><?php echo esc_html( $payment->formatted_amount ); ?></td>
 						</tr>
 					<?php endforeach; ?>
@@ -267,7 +267,7 @@ class Dashboard {
 					<?php foreach ( $expenses as $expense ) : ?>
 						<tr>
 							<td><a href="<?php echo esc_url( $expense->get_view_url() ); ?>"><?php echo esc_html( $expense->number ); ?></a></td>
-							<td><?php echo esc_html( date_i18n( eac_date_format(), strtotime( $expense->payment_date ) ) ); ?></td>
+							<td><?php echo esc_html( wp_date( eac_date_format(), strtotime( $expense->payment_date ) ) ); ?></td>
 							<td class="is--last-item"><?php echo esc_html( $expense->formatted_amount ); ?></td>
 						</tr>
 					<?php endforeach; ?>
@@ -318,7 +318,7 @@ class Dashboard {
 					<?php foreach ( $invoices as $invoice ) : ?>
 						<tr>
 							<td><a href="<?php echo esc_url( $invoice->get_view_url() ); ?>"><?php echo esc_html( $invoice->number ); ?></a></td>
-							<td><?php echo esc_html( date_i18n( eac_date_format(), strtotime( $invoice->issue_date ) ) ); ?></td>
+							<td><?php echo esc_html( wp_date( eac_date_format(), strtotime( $invoice->issue_date ) ) ); ?></td>
 							<td class="is--last-item"><?php echo esc_html( $invoice->formatted_total ); ?></td>
 						</tr>
 					<?php endforeach; ?>

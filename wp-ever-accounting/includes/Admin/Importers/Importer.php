@@ -2,7 +2,7 @@
 
 namespace EverAccounting\Admin\Importers;
 
-use EverAccounting\Utilities\FileUtil;
+use EverAccounting\Utilities\FileSystemUtil;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -128,7 +128,7 @@ abstract class Importer {
 		$percent = absint( ( $this->position / $count ) * 100 );
 
 		if ( $percent >= 100 ) {
-			FileUtil::delete( $this->file );
+			FileSystemUtil::delete( $this->file );
 		}
 
 		return $percent;
@@ -167,7 +167,7 @@ abstract class Importer {
 			return array();
 		}
 
-		$rows = array_map( 'str_getcsv', FileUtil::file( $file ) );
+		$rows = array_map( 'str_getcsv', FileSystemUtil::file( $file ) );
 		array_walk(
 			$rows,
 			function ( &$a ) use ( $rows ) {

@@ -22,6 +22,7 @@ class Expenses {
 		add_action( 'admin_post_eac_update_expense', array( __CLASS__, 'handle_update' ) );
 		add_action( 'eac_purchases_page_expenses_loaded', array( __CLASS__, 'page_loaded' ) );
 		add_action( 'eac_purchases_page_expenses_content', array( __CLASS__, 'page_content' ) );
+		add_action( 'eac_expense_view_sidebar_content', array( __CLASS__, 'expense_attachment' ) );
 		add_action( 'eac_expense_view_sidebar_content', array( __CLASS__, 'expense_notes' ) );
 	}
 
@@ -57,7 +58,7 @@ class Expenses {
 		$referer = wp_get_referer();
 		$data    = array(
 			'id'             => isset( $_POST['id'] ) ? absint( wp_unslash( $_POST['id'] ) ) : 0,
-			'payment_date'   => isset( $_POST['payment_date'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_date'] ) ) : '',
+			'payment_date'   => isset( $_POST['payment_date'] ) ? get_gmt_from_date( sanitize_text_field( wp_unslash( $_POST['payment_date'] ) ) ) : '',
 			'account_id'     => isset( $_POST['account_id'] ) ? absint( wp_unslash( $_POST['account_id'] ) ) : 0,
 			'amount'         => isset( $_POST['amount'] ) ? floatval( wp_unslash( $_POST['amount'] ) ) : 0,
 			'exchange_rate'  => isset( $_POST['exchange_rate'] ) ? floatval( wp_unslash( $_POST['exchange_rate'] ) ) : 1,
@@ -69,7 +70,6 @@ class Expenses {
 			'note'           => isset( $_POST['note'] ) ? sanitize_textarea_field( wp_unslash( $_POST['note'] ) ) : '',
 			'status'         => isset( $_POST['status'] ) ? sanitize_text_field( wp_unslash( $_POST['status'] ) ) : 'active',
 		);
-
 		$expense = EAC()->expenses->insert( $data );
 		if ( is_wp_error( $expense ) ) {
 			EAC()->flash->error( $expense->get_error_message() );
@@ -230,13 +230,19 @@ class Expenses {
 	 */
 	public static function expense_attachment( $expense ) {
 		?>
-
 		<div class="eac-card">
 			<div class="eac-card__header">
 				<h3 class="eac-card__title"><?php esc_html_e( 'Attachment', 'wp-ever-accounting' ); ?></h3>
 			</div>
 			<div class="eac-card__body">
-				<?php eac_file_uploader( array( 'value' => $expense->attachment_id ) ); ?>
+				<?php
+				eac_file_uploader(
+					array(
+						'value'    => $expense->attachment_id,
+						'readonly' => true,
+					)
+				);
+				?>
 			</div>
 		</div>
 		<?php
@@ -255,7 +261,6 @@ class Expenses {
 		if ( ! $expense ) {
 			return;
 		}
-
 		$notes = EAC()->notes->query(
 			array(
 				'parent_id'   => $expense->id,

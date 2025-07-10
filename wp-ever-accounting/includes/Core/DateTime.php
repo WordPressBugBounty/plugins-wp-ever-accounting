@@ -45,7 +45,7 @@ class DateTime extends DT {
 	 *
 	 * @since 1.0.2
 	 *
-	 * @return \EverAccounting\DateTime
+	 * @return self
 	 */
 	public function copy() {
 		return clone $this;
@@ -80,7 +80,7 @@ class DateTime extends DT {
 	 *
 	 * @since   1.0.2
 	 *
-	 * @return bool
+	 * @return self
 	 */
 	public function setTimezone( $timezone ) {
 		$this->utc_offset = 0;

@@ -512,3 +512,85 @@ function eac_update_213_roles() {
 		}
 	}
 }
+
+/**
+ * Update timezone to 2.2.2
+ */
+function eac_update_222_timezone() {
+	global $wpdb;
+
+	// Step 1: Calculate site timezone offset in ±HH:MM format.
+	$timezone_string = get_option( 'timezone_string' );
+
+	if ( $timezone_string ) {
+		$datetime       = new DateTime( 'now', new DateTimeZone( $timezone_string ) );
+		$offset_seconds = $datetime->getOffset();
+		$hours          = ( $offset_seconds >= 0 ) ? floor( $offset_seconds / 3600 ) : ceil( $offset_seconds / 3600 );
+		$minutes        = abs( $offset_seconds % 3600 ) / 60;
+	} else {
+		$offset_raw = get_option( 'gmt_offset' );
+		$hours      = ( $offset_raw >= 0 ) ? floor( $offset_raw ) : ceil( $offset_raw );
+		$minutes    = abs( $offset_raw - $hours ) * 60;
+	}
+
+	$offset = sprintf( '%+03d:%02d', $hours, $minutes );
+
+	// Step 2: Normalize date fields by merging time from date_created.
+
+	// 2.1 ea_transactions - merge payment_date.
+	$wpdb->query(
+		"
+	UPDATE {$wpdb->prefix}ea_transactions
+	SET payment_date = CONCAT(DATE(payment_date), ' ', TIME(date_created))
+	WHERE payment_date IS NOT NULL AND date_created IS NOT NULL
+"
+	);
+
+	// 2.2 ea_transfers - merge transfer_date.
+	$wpdb->query(
+		"
+	UPDATE {$wpdb->prefix}ea_transfers
+	SET transfer_date = CONCAT(DATE(transfer_date), ' ', TIME(date_created))
+	WHERE transfer_date IS NOT NULL AND date_created IS NOT NULL
+"
+	);
+
+	// 2.3 ea_documents - merge all date fields from date_created time.
+	$wpdb->query(
+		"
+	UPDATE {$wpdb->prefix}ea_documents
+	SET
+		issue_date = CASE WHEN issue_date IS NOT NULL THEN CONCAT(DATE(issue_date), ' ', TIME(date_created)) ELSE issue_date END,
+		due_date = CASE WHEN due_date IS NOT NULL THEN CONCAT(DATE(due_date), ' ', TIME(date_created)) ELSE due_date END,
+		sent_date = CASE WHEN sent_date IS NOT NULL THEN CONCAT(DATE(sent_date), ' ', TIME(date_created)) ELSE sent_date END,
+		payment_date = CASE WHEN payment_date IS NOT NULL THEN CONCAT(DATE(payment_date), ' ', TIME(date_created)) ELSE payment_date END
+	WHERE date_created IS NOT NULL
+"
+	);
+
+	// Step 3: Convert all datetime fields to UTC using CONVERT_TZ().
+
+	$conversion_map = array(
+		'ea_accounts'     => array( 'date_created', 'date_updated' ),
+		'ea_contacts'     => array( 'date_created', 'date_updated' ),
+		'ea_documents'    => array( 'issue_date', 'due_date', 'sent_date', 'payment_date' ),
+		'ea_items'        => array( 'date_created', 'date_updated' ),
+		'ea_notes'        => array( 'date_created', 'date_updated' ),
+		'ea_terms'        => array( 'date_created', 'date_updated' ),
+		'ea_transactions' => array( 'payment_date', 'date_created', 'date_updated' ),
+		'ea_transfers'    => array( 'transfer_date', 'date_created', 'date_updated' ),
+	);
+
+	foreach ( $conversion_map as $table => $columns ) {
+		$set_clauses = array();
+
+		foreach ( $columns as $column ) {
+			$set_clauses[] = "$column = CASE WHEN $column IS NOT NULL THEN CONVERT_TZ($column, %s, '+00:00') ELSE $column END";
+		}
+
+		$sql    = "UPDATE {$wpdb->prefix}$table SET " . implode( ",\n\t\t", $set_clauses );
+		$params = array_fill( 0, count( $columns ), $offset );
+
+		$wpdb->query( $wpdb->prepare( $sql, ...$params ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Reason: already prepared.
+	}
+}

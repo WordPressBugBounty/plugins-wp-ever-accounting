@@ -72,11 +72,12 @@ defined( 'ABSPATH' ) || exit;
 							array(
 								'label'             => esc_html__( 'Issue Date', 'wp-ever-accounting' ),
 								'name'              => 'issue_date',
-								'value'             => $bill->issue_date,
 								'type'              => 'text',
+								'default'           => eac_format_datetime(),
+								'value'             => eac_format_datetime( $bill->issue_date ),
 								'placeholder'       => 'YYYY-MM-DD',
 								'required'          => true,
-								'class'             => 'eac_datepicker',
+								'class'             => 'eac_datetimepicker',
 								'attr-autocomplete' => 'off',
 							)
 						);
@@ -97,10 +98,11 @@ defined( 'ABSPATH' ) || exit;
 							array(
 								'label'             => esc_html__( 'Due Date', 'wp-ever-accounting' ),
 								'name'              => 'due_date',
-								'value'             => $bill->due_date,
 								'type'              => 'text',
+								'default'           => eac_format_datetime(),
+								'value'             => eac_format_datetime( $bill->due_date ),
 								'placeholder'       => 'YYYY-MM-DD',
-								'class'             => 'eac_datepicker',
+								'class'             => 'eac_datetimepicker',
 								'attr-autocomplete' => 'off',
 							)
 						);

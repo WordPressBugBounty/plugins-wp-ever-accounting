@@ -79,7 +79,7 @@ class ActionScheduler_AdminView extends ActionScheduler_AdminView_Deprecated {
 	 * @return array $tabs An associative array of tab key => label, including Action Scheduler's tabs
 	 */
 	public function register_system_status_tab( array $tabs ) {
-		$tabs['action-scheduler'] = __( 'Scheduled Actions', 'wp-ever-accounting' );
+		$tabs['action-scheduler'] = __( 'Scheduled Actions', 'action-scheduler' );
 
 		return $tabs;
 	}
@@ -94,8 +94,8 @@ class ActionScheduler_AdminView extends ActionScheduler_AdminView_Deprecated {
 	public function register_menu() {
 		$hook_suffix = add_submenu_page(
 			'tools.php',
-			__( 'Scheduled Actions', 'wp-ever-accounting' ),
-			__( 'Scheduled Actions', 'wp-ever-accounting' ),
+			__( 'Scheduled Actions', 'action-scheduler' ),
+			__( 'Scheduled Actions', 'action-scheduler' ),
 			'manage_options',
 			'action-scheduler',
 			array( $this, 'render_admin_ui' )
@@ -221,7 +221,7 @@ class ActionScheduler_AdminView extends ActionScheduler_AdminView_Deprecated {
 					'<strong>Action Scheduler:</strong> %1$d <a href="%2$s">past-due action</a> found; something may be wrong. <a href="https://actionscheduler.org/faq/#my-site-has-past-due-actions-what-can-i-do" target="_blank">Read documentation &raquo;</a>',
 					'<strong>Action Scheduler:</strong> %1$d <a href="%2$s">past-due actions</a> found; something may be wrong. <a href="https://actionscheduler.org/faq/#my-site-has-past-due-actions-what-can-i-do" target="_blank">Read documentation &raquo;</a>',
 					$num_pastdue_actions,
-					'wp-ever-accounting'
+					'action-scheduler'
 				),
 				array(
 					'strong' => array(),
@@ -267,23 +267,23 @@ class ActionScheduler_AdminView extends ActionScheduler_AdminView_Deprecated {
 		$screen->add_help_tab(
 			array(
 				'id'      => 'action_scheduler_about',
-				'title'   => __( 'About', 'wp-ever-accounting' ),
+				'title'   => __( 'About', 'action-scheduler' ),
 				'content' =>
 					// translators: %s is the Action Scheduler version.
-					'<h2>' . sprintf( __( 'About Action Scheduler %s', 'wp-ever-accounting' ), $as_version ) . '</h2>' .
+					'<h2>' . sprintf( __( 'About Action Scheduler %s', 'action-scheduler' ), $as_version ) . '</h2>' .
 					'<p>' .
-						__( 'Action Scheduler is a scalable, traceable job queue for background processing large sets of actions. Action Scheduler works by triggering an action hook to run at some time in the future. Scheduled actions can also be scheduled to run on a recurring schedule.', 'wp-ever-accounting' ) .
+						__( 'Action Scheduler is a scalable, traceable job queue for background processing large sets of actions. Action Scheduler works by triggering an action hook to run at some time in the future. Scheduled actions can also be scheduled to run on a recurring schedule.', 'action-scheduler' ) .
 					'</p>' .
-					'<h3>' . esc_html__( 'Source', 'wp-ever-accounting' ) . '</h3>' .
+					'<h3>' . esc_html__( 'Source', 'action-scheduler' ) . '</h3>' .
 					'<p>' .
-						esc_html__( 'Action Scheduler is currently being loaded from the following location. This can be useful when debugging, or if requested by the support team.', 'wp-ever-accounting' ) .
+						esc_html__( 'Action Scheduler is currently being loaded from the following location. This can be useful when debugging, or if requested by the support team.', 'action-scheduler' ) .
 					'</p>' .
 					'<p>' . $as_source_markup . '</p>' .
-					'<h3>' . esc_html__( 'WP CLI', 'wp-ever-accounting' ) . '</h3>' .
+					'<h3>' . esc_html__( 'WP CLI', 'action-scheduler' ) . '</h3>' .
 					'<p>' .
 						sprintf(
 							/* translators: %1$s is WP CLI command (not translatable) */
-							esc_html__( 'WP CLI commands are available: execute %1$s for a list of available commands.', 'wp-ever-accounting' ),
+							esc_html__( 'WP CLI commands are available: execute %1$s for a list of available commands.', 'action-scheduler' ),
 							'<code>wp help action-scheduler</code>'
 						) .
 					'</p>',
@@ -293,17 +293,17 @@ class ActionScheduler_AdminView extends ActionScheduler_AdminView_Deprecated {
 		$screen->add_help_tab(
 			array(
 				'id'      => 'action_scheduler_columns',
-				'title'   => __( 'Columns', 'wp-ever-accounting' ),
+				'title'   => __( 'Columns', 'action-scheduler' ),
 				'content' =>
-					'<h2>' . __( 'Scheduled Action Columns', 'wp-ever-accounting' ) . '</h2>' .
+					'<h2>' . __( 'Scheduled Action Columns', 'action-scheduler' ) . '</h2>' .
 					'<ul>' .
-					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Hook', 'wp-ever-accounting' ), __( 'Name of the action hook that will be triggered.', 'wp-ever-accounting' ) ) .
-					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Status', 'wp-ever-accounting' ), __( 'Action statuses are Pending, Complete, Canceled, Failed', 'wp-ever-accounting' ) ) .
-					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Arguments', 'wp-ever-accounting' ), __( 'Optional data array passed to the action hook.', 'wp-ever-accounting' ) ) .
-					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Group', 'wp-ever-accounting' ), __( 'Optional action group.', 'wp-ever-accounting' ) ) .
-					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Recurrence', 'wp-ever-accounting' ), __( 'The action\'s schedule frequency.', 'wp-ever-accounting' ) ) .
-					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Scheduled', 'wp-ever-accounting' ), __( 'The date/time the action is/was scheduled to run.', 'wp-ever-accounting' ) ) .
-					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Log', 'wp-ever-accounting' ), __( 'Activity log for the action.', 'wp-ever-accounting' ) ) .
+					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Hook', 'action-scheduler' ), __( 'Name of the action hook that will be triggered.', 'action-scheduler' ) ) .
+					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Status', 'action-scheduler' ), __( 'Action statuses are Pending, Complete, Canceled, Failed', 'action-scheduler' ) ) .
+					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Arguments', 'action-scheduler' ), __( 'Optional data array passed to the action hook.', 'action-scheduler' ) ) .
+					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Group', 'action-scheduler' ), __( 'Optional action group.', 'action-scheduler' ) ) .
+					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Recurrence', 'action-scheduler' ), __( 'The action\'s schedule frequency.', 'action-scheduler' ) ) .
+					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Scheduled', 'action-scheduler' ), __( 'The date/time the action is/was scheduled to run.', 'action-scheduler' ) ) .
+					sprintf( '<li><strong>%1$s</strong>: %2$s</li>', __( 'Log', 'action-scheduler' ), __( 'Activity log for the action.', 'action-scheduler' ) ) .
 					'</ul>',
 			)
 		);

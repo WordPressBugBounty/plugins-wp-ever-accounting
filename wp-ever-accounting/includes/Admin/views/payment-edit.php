@@ -13,7 +13,6 @@ defined( 'ABSPATH' ) || exit;
 
 $id      = filter_input( INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT );
 $payment = Payment::make( $id );
-
 ?>
 <h1 class="wp-heading-inline">
 	<?php if ( $payment->exists() ) : ?>
@@ -44,9 +43,10 @@ $payment = Payment::make( $id );
 							'label'       => __( 'Date', 'wp-ever-accounting' ),
 							'type'        => 'date',
 							'name'        => 'payment_date',
-							'value'       => $payment->payment_date,
+							'default'     => eac_format_datetime(),
+							'value'       => eac_format_datetime( $payment->payment_date ),
 							'placeholder' => 'yyyy-mm-dd',
-							'class'       => 'eac_datepicker',
+							'class'       => 'eac_datetimepicker',
 							'required'    => true,
 						)
 					);

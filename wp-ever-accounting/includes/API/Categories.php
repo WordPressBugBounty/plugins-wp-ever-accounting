@@ -399,9 +399,14 @@ class Categories extends Controller {
 		$data   = array();
 		foreach ( $props as $prop ) {
 			if ( isset( $request[ $prop ] ) ) {
+				$value = $request[ $prop ];
 				switch ( $prop ) {
+					case 'date_created':
+					case 'date_updated':
+						$props[ $prop ] = $this->prepare_date_for_database( $value );
+						break;
 					default:
-						$data[ $prop ] = $request[ $prop ];
+						$data[ $prop ] = $value;
 						break;
 				}
 			}

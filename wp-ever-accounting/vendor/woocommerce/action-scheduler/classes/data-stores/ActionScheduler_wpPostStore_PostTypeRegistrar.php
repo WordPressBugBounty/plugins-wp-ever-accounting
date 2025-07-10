@@ -20,8 +20,8 @@ class ActionScheduler_wpPostStore_PostTypeRegistrar {
 	 */
 	protected function post_type_args() {
 		$args = array(
-			'label'        => __( 'Scheduled Actions', 'wp-ever-accounting' ),
-			'description'  => __( 'Scheduled actions are hooks triggered on a certain date and time.', 'wp-ever-accounting' ),
+			'label'        => __( 'Scheduled Actions', 'action-scheduler' ),
+			'description'  => __( 'Scheduled actions are hooks triggered on a certain date and time.', 'action-scheduler' ),
 			'public'       => false,
 			'map_meta_cap' => true,
 			'hierarchical' => false,
@@ -31,19 +31,19 @@ class ActionScheduler_wpPostStore_PostTypeRegistrar {
 			'can_export'   => true,
 			'ep_mask'      => EP_NONE,
 			'labels'       => array(
-				'name'               => __( 'Scheduled Actions', 'wp-ever-accounting' ),
-				'singular_name'      => __( 'Scheduled Action', 'wp-ever-accounting' ),
-				'menu_name'          => _x( 'Scheduled Actions', 'Admin menu name', 'wp-ever-accounting' ),
-				'add_new'            => __( 'Add', 'wp-ever-accounting' ),
-				'add_new_item'       => __( 'Add New Scheduled Action', 'wp-ever-accounting' ),
-				'edit'               => __( 'Edit', 'wp-ever-accounting' ),
-				'edit_item'          => __( 'Edit Scheduled Action', 'wp-ever-accounting' ),
-				'new_item'           => __( 'New Scheduled Action', 'wp-ever-accounting' ),
-				'view'               => __( 'View Action', 'wp-ever-accounting' ),
-				'view_item'          => __( 'View Action', 'wp-ever-accounting' ),
-				'search_items'       => __( 'Search Scheduled Actions', 'wp-ever-accounting' ),
-				'not_found'          => __( 'No actions found', 'wp-ever-accounting' ),
-				'not_found_in_trash' => __( 'No actions found in trash', 'wp-ever-accounting' ),
+				'name'               => __( 'Scheduled Actions', 'action-scheduler' ),
+				'singular_name'      => __( 'Scheduled Action', 'action-scheduler' ),
+				'menu_name'          => _x( 'Scheduled Actions', 'Admin menu name', 'action-scheduler' ),
+				'add_new'            => __( 'Add', 'action-scheduler' ),
+				'add_new_item'       => __( 'Add New Scheduled Action', 'action-scheduler' ),
+				'edit'               => __( 'Edit', 'action-scheduler' ),
+				'edit_item'          => __( 'Edit Scheduled Action', 'action-scheduler' ),
+				'new_item'           => __( 'New Scheduled Action', 'action-scheduler' ),
+				'view'               => __( 'View Action', 'action-scheduler' ),
+				'view_item'          => __( 'View Action', 'action-scheduler' ),
+				'search_items'       => __( 'Search Scheduled Actions', 'action-scheduler' ),
+				'not_found'          => __( 'No actions found', 'action-scheduler' ),
+				'not_found_in_trash' => __( 'No actions found in trash', 'action-scheduler' ),
 			),
 		);
 

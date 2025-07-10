@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
  * @package EverAccounting\Admin\Sales
  */
 class Payments {
+
 	/**
 	 * Payments constructor.
 	 */
@@ -49,6 +50,7 @@ class Payments {
 	 */
 	public static function handle_edit() {
 		check_admin_referer( 'eac_edit_payment' );
+
 		if ( ! current_user_can( 'eac_edit_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to edit payments.', 'wp-ever-accounting' ) );
 		}
@@ -56,7 +58,7 @@ class Payments {
 		$referer = wp_get_referer();
 		$data    = array(
 			'id'             => isset( $_POST['id'] ) ? absint( wp_unslash( $_POST['id'] ) ) : 0,
-			'payment_date'   => isset( $_POST['payment_date'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_date'] ) ) : '',
+			'payment_date'   => isset( $_POST['payment_date'] ) ? get_gmt_from_date( sanitize_text_field( wp_unslash( $_POST['payment_date'] ) ) ) : '',
 			'account_id'     => isset( $_POST['account_id'] ) ? absint( wp_unslash( $_POST['account_id'] ) ) : 0,
 			'amount'         => isset( $_POST['amount'] ) ? floatval( wp_unslash( $_POST['amount'] ) ) : 0,
 			'exchange_rate'  => isset( $_POST['exchange_rate'] ) ? floatval( wp_unslash( $_POST['exchange_rate'] ) ) : 1,
@@ -68,7 +70,6 @@ class Payments {
 			'note'           => isset( $_POST['note'] ) ? sanitize_textarea_field( wp_unslash( $_POST['note'] ) ) : '',
 			'status'         => isset( $_POST['status'] ) ? sanitize_text_field( wp_unslash( $_POST['status'] ) ) : 'active',
 		);
-
 		$payment = EAC()->payments->insert( $data );
 		if ( is_wp_error( $payment ) ) {
 			EAC()->flash->error( $payment->get_error_message() );
@@ -91,6 +92,7 @@ class Payments {
 	 */
 	public static function handle_update() {
 		check_admin_referer( 'eac_update_payment' );
+
 		if ( ! current_user_can( 'eac_edit_payments' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to update payments.', 'wp-ever-accounting' ) );
 		}

@@ -165,7 +165,7 @@ class Business {
 		// if the year is current year, then end date is today.
 
 		if ( wp_date( 'Y' ) === $year ) {
-			return wp_date( 'Y-m-d' );
+			return eac_format_datetime();
 		}
 
 		return wp_date( 'Y-m-d', strtotime( $start_date . ' +1 year -1 day' ) );

@@ -269,7 +269,7 @@ class Customers extends ListTable {
 	 * @return string Displays the date.
 	 */
 	public function column_date( $item ) {
-		return wp_date( eac_date_format(), strtotime( $item->date_created ) );
+		return $item->date_created ? eac_format_datetime( $item->date_created, eac_date_format() ) : '&mdash;';
 	}
 
 	/**

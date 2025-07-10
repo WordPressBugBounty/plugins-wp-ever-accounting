@@ -3,6 +3,7 @@
 namespace EverAccounting\Admin\ListTables;
 
 use EverAccounting\Models\Bill;
+use EverAccounting\Utilities\ReportsUtil;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -51,7 +52,7 @@ class Bills extends ListTable {
 		$order_by   = $this->get_request_orderby();
 		$order      = $this->get_request_order();
 		$contact_id = filter_input( INPUT_GET, 'vendor_id', FILTER_VALIDATE_INT );
-		$date       = filter_input( INPUT_GET, 'm', FILTER_VALIDATE_INT );
+		$year_month = filter_input( INPUT_GET, 'm', FILTER_VALIDATE_INT );
 		$args       = array(
 			'limit'      => $per_page,
 			'page'       => $paged,
@@ -62,11 +63,11 @@ class Bills extends ListTable {
 			'contact_id' => $contact_id,
 		);
 
-		if ( ! empty( $date ) ) {
-			$month                       = (int) substr( $date, 4, 2 );
-			$year                        = (int) substr( $date, 0, 4 );
-			$start                       = wp_date( 'Y-m-d H:i:s', mktime( 0, 0, 0, $month, 1, $year ) );
-			$end                         = wp_date( 'Y-m-d H:i:s', mktime( 23, 59, 59, $month + 1, 0, $year ) );
+		if ( ! empty( $year_month ) && preg_match( '/^[0-9]{6}$/', $year_month ) ) {
+			$year                        = (int) substr( $year_month, 0, 4 );
+			$month                       = (int) substr( $year_month, 4, 2 );
+			$start                       = get_gmt_from_date( "$year-$month-01 00:00:00" );
+			$end                         = get_gmt_from_date( date_create( "$year-$month" )->format( 'Y-m-t 23:59:59' ) );
 			$args['issue_date__between'] = array( $start, $end );
 		}
 
@@ -305,14 +306,17 @@ class Bills extends ListTable {
 		echo '<div class="alignleft actions">';
 
 		if ( 'top' === $which ) {
-			$months = $wpdb->get_results(
+			$date_column = ReportsUtil::get_localized_time_sql( 'issue_date' );
+			$months      = $wpdb->get_results(
+			// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				$wpdb->prepare(
-					"SELECT DISTINCT YEAR( issue_date ) AS year, MONTH( issue_date ) AS month
+					"SELECT DISTINCT YEAR( {$date_column} ) AS year, MONTH( {$date_column} ) AS month
 					FROM {$wpdb->prefix}ea_documents
 					WHERE type = %s AND issue_date IS NOT NULL
 					ORDER BY issue_date DESC",
 					'bill'
 				)
+			// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			);
 			$this->date_filter( $months );
 			$this->contact_filter( 'vendor' );
@@ -402,8 +406,8 @@ class Bills extends ListTable {
 	 * @return string Displays the date.
 	 */
 	public function column_issue_date( $item ) {
-		$date     = $item->issue_date ? esc_html( wp_date( 'd M Y', strtotime( $item->issue_date ) ) ) : '&mdash;';
-		$metadata = $item->due_date ? sprintf( __( 'Due: %s', 'wp-ever-accounting' ), esc_html( wp_date( eac_date_format(), strtotime( $item->due_date ) ) ) ) : ''; // phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment
+		$date     = $item->issue_date ? eac_format_datetime( $item->issue_date, eac_date_format() ) : '&mdash;';
+		$metadata = $item->due_date ? sprintf( /* translators: %s Due Date */ __( 'Due: %s', 'wp-ever-accounting' ), eac_format_datetime( $item->due_date, eac_date_format() ) ) : '';
 
 		return sprintf( '%s%s', $date, $this->column_metadata( $metadata ) );
 	}

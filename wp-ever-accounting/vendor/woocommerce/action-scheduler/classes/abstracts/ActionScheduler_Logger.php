@@ -97,7 +97,7 @@ abstract class ActionScheduler_Logger {
 	 * @param int $action_id Action ID.
 	 */
 	public function log_stored_action( $action_id ) {
-		$this->log( $action_id, __( 'action created', 'wp-ever-accounting' ) );
+		$this->log( $action_id, __( 'action created', 'action-scheduler' ) );
 	}
 
 	/**
@@ -106,7 +106,7 @@ abstract class ActionScheduler_Logger {
 	 * @param int $action_id Action ID.
 	 */
 	public function log_canceled_action( $action_id ) {
-		$this->log( $action_id, __( 'action canceled', 'wp-ever-accounting' ) );
+		$this->log( $action_id, __( 'action canceled', 'action-scheduler' ) );
 	}
 
 	/**
@@ -118,9 +118,9 @@ abstract class ActionScheduler_Logger {
 	public function log_started_action( $action_id, $context = '' ) {
 		if ( ! empty( $context ) ) {
 			/* translators: %s: context */
-			$message = sprintf( __( 'action started via %s', 'wp-ever-accounting' ), $context );
+			$message = sprintf( __( 'action started via %s', 'action-scheduler' ), $context );
 		} else {
-			$message = __( 'action started', 'wp-ever-accounting' );
+			$message = __( 'action started', 'action-scheduler' );
 		}
 		$this->log( $action_id, $message );
 	}
@@ -135,9 +135,9 @@ abstract class ActionScheduler_Logger {
 	public function log_completed_action( $action_id, $action = null, $context = '' ) {
 		if ( ! empty( $context ) ) {
 			/* translators: %s: context */
-			$message = sprintf( __( 'action complete via %s', 'wp-ever-accounting' ), $context );
+			$message = sprintf( __( 'action complete via %s', 'action-scheduler' ), $context );
 		} else {
-			$message = __( 'action complete', 'wp-ever-accounting' );
+			$message = __( 'action complete', 'action-scheduler' );
 		}
 		$this->log( $action_id, $message );
 	}
@@ -152,10 +152,10 @@ abstract class ActionScheduler_Logger {
 	public function log_failed_action( $action_id, Exception $exception, $context = '' ) {
 		if ( ! empty( $context ) ) {
 			/* translators: 1: context 2: exception message */
-			$message = sprintf( __( 'action failed via %1$s: %2$s', 'wp-ever-accounting' ), $context, $exception->getMessage() );
+			$message = sprintf( __( 'action failed via %1$s: %2$s', 'action-scheduler' ), $context, $exception->getMessage() );
 		} else {
 			/* translators: %s: exception message */
-			$message = sprintf( __( 'action failed: %s', 'wp-ever-accounting' ), $exception->getMessage() );
+			$message = sprintf( __( 'action failed: %s', 'action-scheduler' ), $exception->getMessage() );
 		}
 		$this->log( $action_id, $message );
 	}
@@ -168,7 +168,7 @@ abstract class ActionScheduler_Logger {
 	 */
 	public function log_timed_out_action( $action_id, $timeout ) {
 		/* translators: %s: amount of time */
-		$this->log( $action_id, sprintf( __( 'action marked as failed after %s seconds. Unknown error occurred. Check server, PHP and database error logs to diagnose cause.', 'wp-ever-accounting' ), $timeout ) );
+		$this->log( $action_id, sprintf( __( 'action marked as failed after %s seconds. Unknown error occurred. Check server, PHP and database error logs to diagnose cause.', 'action-scheduler' ), $timeout ) );
 	}
 
 	/**
@@ -180,7 +180,7 @@ abstract class ActionScheduler_Logger {
 	public function log_unexpected_shutdown( $action_id, $error ) {
 		if ( ! empty( $error ) ) {
 			/* translators: 1: error message 2: filename 3: line */
-			$this->log( $action_id, sprintf( __( 'unexpected shutdown: PHP Fatal error %1$s in %2$s on line %3$s', 'wp-ever-accounting' ), $error['message'], $error['file'], $error['line'] ) );
+			$this->log( $action_id, sprintf( __( 'unexpected shutdown: PHP Fatal error %1$s in %2$s on line %3$s', 'action-scheduler' ), $error['message'], $error['file'], $error['line'] ) );
 		}
 	}
 
@@ -190,7 +190,7 @@ abstract class ActionScheduler_Logger {
 	 * @param int $action_id Action ID.
 	 */
 	public function log_reset_action( $action_id ) {
-		$this->log( $action_id, __( 'action reset', 'wp-ever-accounting' ) );
+		$this->log( $action_id, __( 'action reset', 'action-scheduler' ) );
 	}
 
 	/**
@@ -202,9 +202,9 @@ abstract class ActionScheduler_Logger {
 	public function log_ignored_action( $action_id, $context = '' ) {
 		if ( ! empty( $context ) ) {
 			/* translators: %s: context */
-			$message = sprintf( __( 'action ignored via %s', 'wp-ever-accounting' ), $context );
+			$message = sprintf( __( 'action ignored via %s', 'action-scheduler' ), $context );
 		} else {
-			$message = __( 'action ignored', 'wp-ever-accounting' );
+			$message = __( 'action ignored', 'action-scheduler' );
 		}
 		$this->log( $action_id, $message );
 	}
@@ -219,9 +219,9 @@ abstract class ActionScheduler_Logger {
 
 		if ( ! is_null( $exception ) ) {
 			/* translators: %s: exception message */
-			$log_message = sprintf( __( 'There was a failure fetching this action: %s', 'wp-ever-accounting' ), $exception->getMessage() );
+			$log_message = sprintf( __( 'There was a failure fetching this action: %s', 'action-scheduler' ), $exception->getMessage() );
 		} else {
-			$log_message = __( 'There was a failure fetching this action', 'wp-ever-accounting' );
+			$log_message = __( 'There was a failure fetching this action', 'action-scheduler' );
 		}
 
 		$this->log( $action_id, $log_message );
@@ -235,7 +235,7 @@ abstract class ActionScheduler_Logger {
 	 */
 	public function log_failed_schedule_next_instance( $action_id, Exception $exception ) {
 		/* translators: %s: exception message */
-		$this->log( $action_id, sprintf( __( 'There was a failure scheduling the next instance of this action: %s', 'wp-ever-accounting' ), $exception->getMessage() ) );
+		$this->log( $action_id, sprintf( __( 'There was a failure scheduling the next instance of this action: %s', 'action-scheduler' ), $exception->getMessage() ) );
 	}
 
 	/**

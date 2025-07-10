@@ -86,20 +86,20 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 		$this->logger = $logger;
 		$this->runner = $runner;
 
-		$this->table_header = __( 'Scheduled Actions', 'wp-ever-accounting' );
+		$this->table_header = __( 'Scheduled Actions', 'action-scheduler' );
 
 		$this->bulk_actions = array(
-			'delete' => __( 'Delete', 'wp-ever-accounting' ),
+			'delete' => __( 'Delete', 'action-scheduler' ),
 		);
 
 		$this->columns = array(
-			'hook'        => __( 'Hook', 'wp-ever-accounting' ),
-			'status'      => __( 'Status', 'wp-ever-accounting' ),
-			'args'        => __( 'Arguments', 'wp-ever-accounting' ),
-			'group'       => __( 'Group', 'wp-ever-accounting' ),
-			'recurrence'  => __( 'Recurrence', 'wp-ever-accounting' ),
-			'schedule'    => __( 'Scheduled Date', 'wp-ever-accounting' ),
-			'log_entries' => __( 'Log', 'wp-ever-accounting' ),
+			'hook'        => __( 'Hook', 'action-scheduler' ),
+			'status'      => __( 'Status', 'action-scheduler' ),
+			'args'        => __( 'Arguments', 'action-scheduler' ),
+			'group'       => __( 'Group', 'action-scheduler' ),
+			'recurrence'  => __( 'Recurrence', 'action-scheduler' ),
+			'schedule'    => __( 'Scheduled Date', 'action-scheduler' ),
+			'log_entries' => __( 'Log', 'action-scheduler' ),
 		);
 
 		$this->sort_by = array(
@@ -119,19 +119,19 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 		if ( empty( $request_status ) ) {
 			$this->sort_by[] = 'status';
 		} elseif ( in_array( $request_status, array( 'in-progress', 'failed' ), true ) ) {
-			$this->columns  += array( 'claim_id' => __( 'Claim ID', 'wp-ever-accounting' ) );
+			$this->columns  += array( 'claim_id' => __( 'Claim ID', 'action-scheduler' ) );
 			$this->sort_by[] = 'claim_id';
 		}
 
 		$this->row_actions = array(
 			'hook' => array(
 				'run'    => array(
-					'name' => __( 'Run', 'wp-ever-accounting' ),
-					'desc' => __( 'Process the action now as if it were run as part of a queue', 'wp-ever-accounting' ),
+					'name' => __( 'Run', 'action-scheduler' ),
+					'desc' => __( 'Process the action now as if it were run as part of a queue', 'action-scheduler' ),
 				),
 				'cancel' => array(
-					'name'  => __( 'Cancel', 'wp-ever-accounting' ),
-					'desc'  => __( 'Cancel the action now to avoid it being run in future', 'wp-ever-accounting' ),
+					'name'  => __( 'Cancel', 'action-scheduler' ),
+					'desc'  => __( 'Cancel the action now to avoid it being run in future', 'action-scheduler' ),
 					'class' => 'cancel trash',
 				),
 			),
@@ -141,37 +141,37 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 			array(
 				'seconds' => YEAR_IN_SECONDS,
 				/* translators: %s: amount of time */
-				'names'   => _n_noop( '%s year', '%s years', 'wp-ever-accounting' ),
+				'names'   => _n_noop( '%s year', '%s years', 'action-scheduler' ),
 			),
 			array(
 				'seconds' => MONTH_IN_SECONDS,
 				/* translators: %s: amount of time */
-				'names'   => _n_noop( '%s month', '%s months', 'wp-ever-accounting' ),
+				'names'   => _n_noop( '%s month', '%s months', 'action-scheduler' ),
 			),
 			array(
 				'seconds' => WEEK_IN_SECONDS,
 				/* translators: %s: amount of time */
-				'names'   => _n_noop( '%s week', '%s weeks', 'wp-ever-accounting' ),
+				'names'   => _n_noop( '%s week', '%s weeks', 'action-scheduler' ),
 			),
 			array(
 				'seconds' => DAY_IN_SECONDS,
 				/* translators: %s: amount of time */
-				'names'   => _n_noop( '%s day', '%s days', 'wp-ever-accounting' ),
+				'names'   => _n_noop( '%s day', '%s days', 'action-scheduler' ),
 			),
 			array(
 				'seconds' => HOUR_IN_SECONDS,
 				/* translators: %s: amount of time */
-				'names'   => _n_noop( '%s hour', '%s hours', 'wp-ever-accounting' ),
+				'names'   => _n_noop( '%s hour', '%s hours', 'action-scheduler' ),
 			),
 			array(
 				'seconds' => MINUTE_IN_SECONDS,
 				/* translators: %s: amount of time */
-				'names'   => _n_noop( '%s minute', '%s minutes', 'wp-ever-accounting' ),
+				'names'   => _n_noop( '%s minute', '%s minutes', 'action-scheduler' ),
 			),
 			array(
 				'seconds' => 1,
 				/* translators: %s: amount of time */
-				'names'   => _n_noop( '%s second', '%s seconds', 'wp-ever-accounting' ),
+				'names'   => _n_noop( '%s second', '%s seconds', 'action-scheduler' ),
 			),
 		);
 
@@ -221,7 +221,7 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 	private static function human_interval( $interval, $periods_to_include = 2 ) {
 
 		if ( $interval <= 0 ) {
-			return __( 'Now!', 'wp-ever-accounting' );
+			return __( 'Now!', 'action-scheduler' );
 		}
 
 		$output           = '';
@@ -258,13 +258,13 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 
 			if ( is_numeric( $recurrence ) ) {
 				/* translators: %s: time interval */
-				return sprintf( __( 'Every %s', 'wp-ever-accounting' ), self::human_interval( $recurrence ) );
+				return sprintf( __( 'Every %s', 'action-scheduler' ), self::human_interval( $recurrence ) );
 			} else {
 				return $recurrence;
 			}
 		}
 
-		return __( 'Non-repeating', 'wp-ever-accounting' );
+		return __( 'Non-repeating', 'action-scheduler' );
 	}
 
 	/**
@@ -362,7 +362,7 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 				if ( ! in_array( $wpdb->prefix . $table_name, $found_tables, true ) ) {
 					$this->admin_notices[] = array(
 						'class'   => 'error',
-						'message' => __( 'It appears one or more database tables were missing. Attempting to re-create the missing table(s).', 'wp-ever-accounting' ),
+						'message' => __( 'It appears one or more database tables were missing. Attempting to re-create the missing table(s).', 'action-scheduler' ),
 					);
 					$this->recreate_tables();
 					parent::display_admin_notices();
@@ -382,7 +382,7 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 						'Maximum simultaneous queues already in progress (%s queue). No additional queues will begin processing until the current queues are complete.',
 						'Maximum simultaneous queues already in progress (%s queues). No additional queues will begin processing until the current queues are complete.',
 						$claim_count,
-						'wp-ever-accounting'
+						'action-scheduler'
 					),
 					$claim_count
 				),
@@ -395,10 +395,10 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 			if ( false === $async_request_lock_expiration || $async_request_lock_expiration < time() ) {
 				$in_progress_url = add_query_arg( 'status', 'in-progress', remove_query_arg( 'status' ) );
 				/* translators: %s: process URL */
-				$async_request_message = sprintf( __( 'A new queue has begun processing. <a href="%s">View actions in-progress &raquo;</a>', 'wp-ever-accounting' ), esc_url( $in_progress_url ) );
+				$async_request_message = sprintf( __( 'A new queue has begun processing. <a href="%s">View actions in-progress &raquo;</a>', 'action-scheduler' ), esc_url( $in_progress_url ) );
 			} else {
 				/* translators: %d: seconds */
-				$async_request_message = sprintf( __( 'The next queue will begin processing in approximately %d seconds.', 'wp-ever-accounting' ), $async_request_lock_expiration - time() );
+				$async_request_message = sprintf( __( 'The next queue will begin processing in approximately %d seconds.', 'action-scheduler' ), $async_request_lock_expiration - time() );
 			}
 
 			$this->admin_notices[] = array(
@@ -420,21 +420,21 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 				switch ( $notification['row_action_type'] ) {
 					case 'run':
 						/* translators: %s: action HTML */
-						$action_message_html = sprintf( __( 'Successfully executed action: %s', 'wp-ever-accounting' ), $action_hook_html );
+						$action_message_html = sprintf( __( 'Successfully executed action: %s', 'action-scheduler' ), $action_hook_html );
 						break;
 					case 'cancel':
 						/* translators: %s: action HTML */
-						$action_message_html = sprintf( __( 'Successfully canceled action: %s', 'wp-ever-accounting' ), $action_hook_html );
+						$action_message_html = sprintf( __( 'Successfully canceled action: %s', 'action-scheduler' ), $action_hook_html );
 						break;
 					default:
 						/* translators: %s: action HTML */
-						$action_message_html = sprintf( __( 'Successfully processed change for action: %s', 'wp-ever-accounting' ), $action_hook_html );
+						$action_message_html = sprintf( __( 'Successfully processed change for action: %s', 'action-scheduler' ), $action_hook_html );
 						break;
 				}
 			} else {
 				$class = 'error';
 				/* translators: 1: action HTML 2: action ID 3: error message */
-				$action_message_html = sprintf( __( 'Could not process change for action: "%1$s" (ID: %2$d). Error: %3$s', 'wp-ever-accounting' ), $action_hook_html, esc_html( $notification['action_id'] ), esc_html( $notification['error_message'] ) );
+				$action_message_html = sprintf( __( 'Could not process change for action: "%1$s" (ID: %2$d). Error: %3$s', 'action-scheduler' ), $action_hook_html, esc_html( $notification['action_id'] ), esc_html( $notification['error_message'] ) );
 			}
 
 			$action_message_html = apply_filters( 'action_scheduler_admin_notice_html', $action_message_html, $action, $notification );
@@ -470,7 +470,7 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 		$schedule_display_string = '';
 
 		if ( is_a( $schedule, 'ActionScheduler_NullSchedule' ) ) {
-			return __( 'async', 'wp-ever-accounting' );
+			return __( 'async', 'action-scheduler' );
 		}
 
 		if ( ! method_exists( $schedule, 'get_date' ) || ! $schedule->get_date() ) {
@@ -484,10 +484,10 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 
 		if ( gmdate( 'U' ) > $next_timestamp ) {
 			/* translators: %s: date interval */
-			$schedule_display_string .= sprintf( __( ' (%s ago)', 'wp-ever-accounting' ), self::human_interval( gmdate( 'U' ) - $next_timestamp ) );
+			$schedule_display_string .= sprintf( __( ' (%s ago)', 'action-scheduler' ), self::human_interval( gmdate( 'U' ) - $next_timestamp ) );
 		} else {
 			/* translators: %s: date interval */
-			$schedule_display_string .= sprintf( __( ' (%s)', 'wp-ever-accounting' ), self::human_interval( $next_timestamp - gmdate( 'U' ) ) );
+			$schedule_display_string .= sprintf( __( ' (%s)', 'action-scheduler' ), self::human_interval( $next_timestamp - gmdate( 'U' ) ) );
 		}
 
 		return $schedule_display_string;
@@ -513,7 +513,7 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 				error_log(
 					sprintf(
 						/* translators: 1: action ID 2: exception message. */
-						__( 'Action Scheduler was unable to delete action %1$d. Reason: %2$s', 'wp-ever-accounting' ),
+						__( 'Action Scheduler was unable to delete action %1$d. Reason: %2$s', 'action-scheduler' ),
 						$id,
 						$e->getMessage()
 					)
@@ -663,7 +663,7 @@ class ActionScheduler_ListTable extends ActionScheduler_Abstract_ListTable {
 	 * Get the text to display in the search box on the list table.
 	 */
 	protected function get_search_box_button_text() {
-		return __( 'Search hook, args and claim ID', 'wp-ever-accounting' );
+		return __( 'Search hook, args and claim ID', 'action-scheduler' );
 	}
 
 	/**

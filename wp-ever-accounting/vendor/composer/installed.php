@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'everaccounting/wp-ever-accounting',
-        'pretty_version' => 'v2.2.1',
-        'version' => '2.2.1.0',
-        'reference' => '46f8bfd94f21f511e94bd42c20084e522e17ef0d',
+        'pretty_version' => 'v2.2.2',
+        'version' => '2.2.2.0',
+        'reference' => '31d4d9d4ac100c9cd73247ebc96aa71bedb52b09',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'byteever/bytekit-models' => array(
-            'pretty_version' => 'v1.0.4',
-            'version' => '1.0.4.0',
-            'reference' => 'eefde4ad8f7dd22fb85a562814d27743c4ece69f',
+            'pretty_version' => 'v1.0.5',
+            'version' => '1.0.5.0',
+            'reference' => 'c110db24b1598c84ba02d75198390dbb997b9569',
             'type' => 'library',
             'install_path' => __DIR__ . '/../byteever/bytekit-models',
             'aliases' => array(),
@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'everaccounting/wp-ever-accounting' => array(
-            'pretty_version' => 'v2.2.1',
-            'version' => '2.2.1.0',
-            'reference' => '46f8bfd94f21f511e94bd42c20084e522e17ef0d',
+            'pretty_version' => 'v2.2.2',
+            'version' => '2.2.2.0',
+            'reference' => '31d4d9d4ac100c9cd73247ebc96aa71bedb52b09',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

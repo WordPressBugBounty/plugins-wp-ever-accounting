@@ -40,6 +40,9 @@ class Installer {
 		'2.1.3' => array(
 			'eac_update_213_roles',
 		),
+		'2.2.2' => array(
+			'eac_update_222_timezone',
+		),
 	);
 
 	/**
@@ -186,6 +189,7 @@ class Installer {
 	 */
 	public function update_db_version( $version ) {
 		EAC()->update_db_version( $version );
+		update_option( 'eac_version_updated', $version );
 	}
 
 	/**

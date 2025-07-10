@@ -77,7 +77,7 @@ class ActionScheduler_Action {
 			throw new Exception(
 				sprintf(
 					/* translators: 1: action hook. */
-					__( 'Scheduled action for %1$s will not be executed as no callbacks are registered.', 'wp-ever-accounting' ),
+					__( 'Scheduled action for %1$s will not be executed as no callbacks are registered.', 'action-scheduler' ),
 					$hook
 				)
 			);

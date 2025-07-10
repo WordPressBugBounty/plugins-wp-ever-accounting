@@ -64,7 +64,7 @@ class Transfers {
 				'to_account_id'      => isset( $_POST['to_account_id'] ) ? absint( wp_unslash( $_POST['to_account_id'] ) ) : 0,
 				'to_exchange_rate'   => isset( $_POST['to_exchange_rate'] ) ? floatval( wp_unslash( $_POST['to_exchange_rate'] ) ) : 1,
 				'amount'             => isset( $_POST['amount'] ) ? floatval( wp_unslash( $_POST['amount'] ) ) : 0,
-				'transfer_date'      => isset( $_POST['transfer_date'] ) ? sanitize_text_field( wp_unslash( $_POST['transfer_date'] ) ) : '',
+				'transfer_date'      => isset( $_POST['transfer_date'] ) ? get_gmt_from_date( sanitize_text_field( wp_unslash( $_POST['transfer_date'] ) ) ) : '',
 				'payment_method'     => isset( $_POST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method'] ) ) : '',
 				'reference'          => isset( $_POST['reference'] ) ? sanitize_text_field( wp_unslash( $_POST['reference'] ) ) : '',
 				'note'               => isset( $_POST['note'] ) ? sanitize_textarea_field( wp_unslash( $_POST['note'] ) ) : '',

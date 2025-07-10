@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Ever Accounting 2.2.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-ever-accounting\n"
-"POT-Creation-Date: 2025-06-04 12:24:07+00:00\n"
+"POT-Creation-Date: 2025-07-07 09:12:29+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -78,7 +78,7 @@ msgstr ""
 #: includes/Admin/ListTables/Payments.php:195
 #: includes/Admin/views/bill-view.php:146
 #: includes/Admin/views/expense-edit.php:69
-#: includes/Admin/views/invoice-view.php:146
+#: includes/Admin/views/invoice-view.php:148
 #: includes/Admin/views/payment-edit.php:69
 msgid "Account"
 msgstr ""
@@ -1484,7 +1484,7 @@ msgstr ""
 #: includes/Admin/ListTables/Transfers.php:182 includes/Admin/Vendors.php:326
 #: includes/Admin/views/bill-view.php:171
 #: includes/Admin/views/expense-edit.php:197
-#: includes/Admin/views/invoice-view.php:171
+#: includes/Admin/views/invoice-view.php:173
 #: includes/Admin/views/payment-edit.php:197
 #: includes/Admin/views/transfer-edit.php:168 templates/content-expense.php:122
 #: templates/content-payment.php:122
@@ -1500,7 +1500,7 @@ msgstr ""
 #: includes/Admin/ListTables/Transfers.php:183 includes/Admin/Vendors.php:327
 #: includes/Admin/Vendors.php:377 includes/Admin/views/bill-view.php:157
 #: includes/Admin/views/expense-edit.php:109
-#: includes/Admin/views/invoice-view.php:157
+#: includes/Admin/views/invoice-view.php:159
 #: includes/Admin/views/payment-edit.php:109
 #: includes/Admin/views/transfer-edit.php:130 templates/content-bill.php:262
 #: templates/content-expense.php:110 templates/content-invoice.php:262
@@ -1598,8 +1598,8 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: includes/Admin/Admin.php:198
-#: vendor-prefixed/byteever/bytekit-plugin/src/Traits/HasPlugin.php:223
+#: includes/Admin/Admin.php:198 includes/Admin/Changelog.php:184
+#: libraries/byteever/bytekit-plugin/src/Traits/HasPlugin.php:214
 msgid "Support"
 msgstr ""
 
@@ -1739,6 +1739,120 @@ msgstr ""
 
 #: includes/Admin/Categories.php:66 includes/Admin/Categories.php:95
 msgid "Category saved successfully."
+msgstr ""
+
+#: includes/Admin/Changelog.php:62 includes/Admin/Changelog.php:83
+#: includes/Admin/Changelog.php:142
+msgid "Changelog"
+msgstr ""
+
+#: includes/Admin/Changelog.php:146
+msgid "Here you can find the changelog for WP Ever Accounting."
+msgstr ""
+
+#: includes/Admin/Changelog.php:158
+#. translators: %s Release date
+msgid "Released on: %s"
+msgstr ""
+
+#: includes/Admin/Changelog.php:187
+msgid "If you have any questions or need support, please visit our support page."
+msgstr ""
+
+#: includes/Admin/Changelog.php:188
+msgid ""
+"Prefer email? Please send your queries to us directly at: "
+"support@wpeveraccounting.com"
+msgstr ""
+
+#: includes/Admin/Changelog.php:191
+msgid "Get Support"
+msgstr ""
+
+#: includes/Admin/Changelog.php:215 includes/Admin/Changelog.php:250
+msgid "New Feature"
+msgstr ""
+
+#: includes/Admin/Changelog.php:216
+msgid "Custom Taxonomies in Reports"
+msgstr ""
+
+#: includes/Admin/Changelog.php:217
+msgid "Added support for custom taxonomies in reports."
+msgstr ""
+
+#: includes/Admin/Changelog.php:221 includes/Admin/Changelog.php:256
+msgid "Bug Fix"
+msgstr ""
+
+#: includes/Admin/Changelog.php:222
+msgid "Fixed Taxonomy Display"
+msgstr ""
+
+#: includes/Admin/Changelog.php:223
+msgid ""
+"Resolved an issue where custom taxonomies were not displaying correctly in "
+"reports."
+msgstr ""
+
+#: includes/Admin/Changelog.php:227 includes/Admin/Changelog.php:262
+msgid "Enhancement"
+msgstr ""
+
+#: includes/Admin/Changelog.php:228
+msgid "Improved Performance"
+msgstr ""
+
+#: includes/Admin/Changelog.php:229
+msgid "Optimized database queries for better performance in reports."
+msgstr ""
+
+#: includes/Admin/Changelog.php:233
+msgid "Security"
+msgstr ""
+
+#: includes/Admin/Changelog.php:234
+msgid "Security Enhancements"
+msgstr ""
+
+#: includes/Admin/Changelog.php:235
+msgid "Implemented security measures to protect against potential vulnerabilities."
+msgstr ""
+
+#: includes/Admin/Changelog.php:239
+msgid "Miscellaneous"
+msgstr ""
+
+#: includes/Admin/Changelog.php:240
+msgid "Documentation Updates"
+msgstr ""
+
+#: includes/Admin/Changelog.php:241
+msgid "Updated documentation to reflect the latest changes and features."
+msgstr ""
+
+#: includes/Admin/Changelog.php:251
+msgid "Enhanced Reporting"
+msgstr ""
+
+#: includes/Admin/Changelog.php:252
+msgid "Added new reporting features for better insights."
+msgstr ""
+
+#: includes/Admin/Changelog.php:257
+msgid "Fixed Minor Bugs"
+msgstr ""
+
+#: includes/Admin/Changelog.php:258
+msgid "Resolved several minor bugs reported by users."
+msgstr ""
+
+#: includes/Admin/Changelog.php:263
+msgid "UI Improvements"
+msgstr ""
+
+#: includes/Admin/Changelog.php:264
+msgid "Improved user interface for better user experience."
 msgstr ""
 
 #: includes/Admin/Currencies.php:68 includes/Admin/ListTables/Taxes.php:136
@@ -4117,38 +4231,22 @@ msgstr ""
 #. translators: %1$s: Extension link, %2$s: WP Ever Accounting Plugin link,
 #. %2$s: Discount percentage, %4$s: Call to action link.
 msgid ""
-"The %1$s for %2$s is now available! 💥 Enjoy an exclusive <strong>%3$s "
-"discount</strong> for a limited time — use <code>FLASH50</code> at "
-"checkout. Don't miss out — %4$s"
+"The %1$s for %2$s is finally here — bringing you deeper insights, smarter "
+"reports, and seamless sales syncing. 💥 Enjoy an <strong>early bird %3$s "
+"discount</strong> with code <code>EARLYBRD</code> — limited time only. %4$s"
 msgstr ""
 
-#: includes/Admin/views/notices/eac-estimates.php:39
 #: includes/Admin/views/notices/eac-woocommerce.php:39
 msgid "Get the Extension"
 msgstr ""
 
-#: includes/Admin/views/notices/eac-estimates.php:43
 #: includes/Admin/views/notices/eac-woocommerce.php:43
 #: includes/Admin/views/notices/review.php:41
 msgid "Maybe later"
 msgstr ""
 
-#: includes/Admin/views/notices/eac-estimates.php:47
 #: includes/Admin/views/notices/eac-woocommerce.php:47
 msgid "Close permanently"
-msgstr ""
-
-#: includes/Admin/views/notices/eac-woocommerce.php:18
-msgid "🎉 The wait is over!"
-msgstr ""
-
-#: includes/Admin/views/notices/eac-woocommerce.php:25
-#. translators: %1$s: WP Ever Accounting Plugin link, %2$s: WordPress.org
-#. review link.
-msgid ""
-"The %1$s for %2$s is finally here — bringing you deeper insights, smarter "
-"reports, and seamless sales syncing. 💥 Enjoy <strong>%3$s "
-"discount</strong> with code <code>FLASH50</code> — limited time only. %4$s"
 msgstr ""
 
 #: includes/Admin/views/notices/review.php:18
@@ -4792,6 +4890,18 @@ msgstr ""
 
 #: includes/functions.php:256
 msgid "Other"
+msgstr ""
+
+#: libraries/byteever/bytekit-plugin/src/Admin/Notices.php:113
+msgid "Dismiss this notice"
+msgstr ""
+
+#: libraries/byteever/bytekit-plugin/src/Traits/HasPlugin.php:211
+msgid "Documentation"
+msgstr ""
+
+#: libraries/byteever/bytekit-plugin/src/Traits/HasPlugin.php:217
+msgid "Review"
 msgstr ""
 
 #: templates/content-bill.php:55

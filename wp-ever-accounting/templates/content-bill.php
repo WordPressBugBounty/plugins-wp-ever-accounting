@@ -64,13 +64,13 @@ if ( ! $bill->is_taxed() ) {
 			<?php if ( $bill->issue_date ) : ?>
 				<p>
 					<strong><?php esc_html_e( 'Issue:', 'wp-ever-accounting' ); ?></strong>
-					<?php echo esc_html( wp_date( eac_date_format(), strtotime( $bill->issue_date ) ) ); ?>
+					<?php echo esc_html( $bill->issue_date ? eac_format_datetime( $bill->issue_date, eac_date_format() ) : 'N/A' ); ?>
 				</p>
 			<?php endif; ?>
 			<?php if ( $bill->due_date ) : ?>
 				<p>
 					<strong><?php esc_html_e( 'Due:', 'wp-ever-accounting' ); ?></strong>
-					<?php echo esc_html( wp_date( eac_date_format(), strtotime( $bill->due_date ) ) ); ?>
+					<?php echo esc_html( $bill->due_date ? eac_format_datetime( $bill->due_date, eac_date_format() ) : 'N/A' ); ?>
 				</p>
 			<?php endif; ?>
 		</div>

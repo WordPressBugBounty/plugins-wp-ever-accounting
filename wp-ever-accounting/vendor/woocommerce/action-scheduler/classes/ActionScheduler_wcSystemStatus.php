@@ -108,22 +108,22 @@ class ActionScheduler_wcSystemStatus {
 		<table class="wc_status_table widefat" cellspacing="0">
 			<thead>
 				<tr>
-					<th colspan="5" data-export-label="Action Scheduler"><h2><?php esc_html_e( 'Action Scheduler', 'wp-ever-accounting' ); ?><?php echo wc_help_tip( esc_html__( 'This section shows details of Action Scheduler.', 'wp-ever-accounting' ) ); ?></h2></th>
+					<th colspan="5" data-export-label="Action Scheduler"><h2><?php esc_html_e( 'Action Scheduler', 'action-scheduler' ); ?><?php echo wc_help_tip( esc_html__( 'This section shows details of Action Scheduler.', 'action-scheduler' ) ); ?></h2></th>
 				</tr>
 				<tr>
-					<td colspan="2" data-export-label="Version"><?php esc_html_e( 'Version:', 'wp-ever-accounting' ); ?></td>
+					<td colspan="2" data-export-label="Version"><?php esc_html_e( 'Version:', 'action-scheduler' ); ?></td>
 					<td colspan="3"><?php echo esc_html( $as_version ); ?></td>
 				</tr>
 				<tr>
-					<td colspan="2" data-export-label="Data store"><?php esc_html_e( 'Data store:', 'wp-ever-accounting' ); ?></td>
+					<td colspan="2" data-export-label="Data store"><?php esc_html_e( 'Data store:', 'action-scheduler' ); ?></td>
 					<td colspan="3"><?php echo esc_html( $as_datastore ); ?></td>
 				</tr>
 				<tr>
-					<td><strong><?php esc_html_e( 'Action Status', 'wp-ever-accounting' ); ?></strong></td>
+					<td><strong><?php esc_html_e( 'Action Status', 'action-scheduler' ); ?></strong></td>
 					<td class="help">&nbsp;</td>
-					<td><strong><?php esc_html_e( 'Count', 'wp-ever-accounting' ); ?></strong></td>
-					<td><strong><?php esc_html_e( 'Oldest Scheduled Date', 'wp-ever-accounting' ); ?></strong></td>
-					<td><strong><?php esc_html_e( 'Newest Scheduled Date', 'wp-ever-accounting' ); ?></strong></td>
+					<td><strong><?php esc_html_e( 'Count', 'action-scheduler' ); ?></strong></td>
+					<td><strong><?php esc_html_e( 'Oldest Scheduled Date', 'action-scheduler' ); ?></strong></td>
+					<td><strong><?php esc_html_e( 'Newest Scheduled Date', 'action-scheduler' ); ?></strong></td>
 				</tr>
 			</thead>
 			<tbody>

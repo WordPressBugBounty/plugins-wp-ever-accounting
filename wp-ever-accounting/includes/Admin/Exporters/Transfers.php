@@ -73,6 +73,18 @@ class Transfers extends Exporter {
 				$row[ $column ] = $value;
 			}
 			if ( ! empty( $row ) ) {
+				$dates = array(
+					'transfer_date',
+					'date_created',
+					'date_updated',
+				);
+
+				foreach ( $dates as $date ) {
+					if ( isset( $row[ $date ] ) && ! empty( $row[ $date ] ) ) {
+						$row[ $date ] = eac_format_datetime( $row[ $date ] );
+					}
+				}
+
 				$rows[] = $row;
 			}
 		}

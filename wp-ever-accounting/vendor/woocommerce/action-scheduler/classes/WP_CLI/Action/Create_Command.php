@@ -105,7 +105,7 @@ class Create_Command extends \ActionScheduler_WPCLI_Command {
 		}
 
 		if ( 0 === $action_id ) {
-			$e = new \Exception( __( 'Unable to create a scheduled action.', 'wp-ever-accounting' ) );
+			$e = new \Exception( __( 'Unable to create a scheduled action.', 'action-scheduler' ) );
 			$this->print_error( $e );
 		}
 
@@ -124,7 +124,7 @@ class Create_Command extends \ActionScheduler_WPCLI_Command {
 		\WP_CLI::success(
 			sprintf(
 				/* translators: %1$s: type of action, %2$d: ID of the created action */
-				__( '%1$s action (%2$d) scheduled.', 'wp-ever-accounting' ),
+				__( '%1$s action (%2$d) scheduled.', 'action-scheduler' ),
 				ucfirst( $action_type ),
 				$action_id
 			)
@@ -142,7 +142,7 @@ class Create_Command extends \ActionScheduler_WPCLI_Command {
 		\WP_CLI::error(
 			sprintf(
 				/* translators: %s refers to the exception error message. */
-				__( 'There was an error creating the scheduled action: %s', 'wp-ever-accounting' ),
+				__( 'There was an error creating the scheduled action: %s', 'action-scheduler' ),
 				$e->getMessage()
 			)
 		);

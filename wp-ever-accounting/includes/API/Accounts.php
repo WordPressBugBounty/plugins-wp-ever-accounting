@@ -402,6 +402,10 @@ class Accounts extends Controller {
 			$value = $request[ $key ];
 			if ( ! is_null( $value ) ) {
 				switch ( $key ) {
+					case 'date_created':
+					case 'date_updated':
+						$props[ $key ] = $this->prepare_date_for_database( $value );
+						break;
 					default:
 						$props[ $key ] = $value;
 						break;
