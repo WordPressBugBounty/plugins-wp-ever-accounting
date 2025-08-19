@@ -2,7 +2,7 @@
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
 Tested up to: 6.8
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,10 +137,10 @@ Once installed, **WP Ever Accounting** adds an **Accounting** menu to your WordP
 4. Configure the settings and start managing your finances.
 
 = What do I need to properly use WP Ever Accounting? =
-Apart from a fully functional WordPress installation, WP Ever Accounting does not have any dependency. The minimum required version of WordPress is 4.7.0.
+Apart from a fully functional WordPress installation, WP Ever Accounting does not have any dependency. The minimum required version of WordPress is 5.0.
 
 = What is the minimum PHP version that I have to maintain to use this plugin? =
-To enjoy the sweet features of this powerful plugin you have to at least have PHP version 5.6 or higher installed. If you have a lower version of PHP then you may face problems.
+To enjoy the sweet features of this powerful plugin you have to at least have PHP version 7.4 or higher installed. If you have a lower version of PHP then you may face problems.
 
 = Can I ask/suggest for a new feature? =
 Yes, of course. We do not create products for ourselves. You are always welcome to suggest new features and improvements.
@@ -287,6 +287,9 @@ Yes, you can contribute to WP Ever Accounting. We welcome contributions from the
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.2.3 = (19th August 2025)
+* Fix: Fixed minor issues.
+
 = 2.2.2 = (10th July 2025)
 * Enhance: Improved date handling for better compatibility across various time zones.
 * Fix: Resolved a minor issue affecting certain date formats.
