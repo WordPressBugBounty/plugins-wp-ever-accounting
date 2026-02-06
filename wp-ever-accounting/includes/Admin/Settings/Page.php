@@ -136,8 +136,8 @@ abstract class Page {
 	 * Get own sections for this page.
 	 * Example:
 	 * return array(
-	 *   ''        => __( 'General', 'woocommerce' ),
-	 *   'foobars' => __( 'Foos & Bars', 'woocommerce' ),
+	 *   ''        => __( 'General', 'wp-ever-accounting' ),
+	 *   'foobars' => __( 'Foos & Bars', 'wp-ever-accounting' ),
 	 * );
 	 *
 	 * @return array An associative array where keys are section identifiers and the values are translated section names.

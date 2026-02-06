@@ -1,0 +1,38 @@
+.eac-changelog{
+	&__item{
+		background: #f0f0f1;
+		padding: 20px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+		&-title{
+			margin-top: 0;
+			margin-bottom: 10px;
+		}
+		&-badge{
+			padding: 3px 8px;
+			border-radius: 100px;
+			font-size: 12px;
+			font-weight: 400;
+			&.badge--feature {
+				background-color: rgba(0, 123, 255, 0.2);
+				color: #007bff;
+			}
+			&.badge--bugfix {
+				background-color: rgba(220, 53, 69, 0.2);
+				color: #dc3545;
+			}
+			&.badge--enhancement {
+				background-color: rgba(40, 167, 69, 0.2);
+				color: #28a745;
+			}
+			&.badge--security {
+				background-color: rgba(255, 193, 7, 0.2);
+				color: #ffc107;
+			}
+			&.badge--misc {
+				background-color: rgba(108, 117, 125, 0.2);
+				color: #6c757d;
+			}
+		}
+	}
+}

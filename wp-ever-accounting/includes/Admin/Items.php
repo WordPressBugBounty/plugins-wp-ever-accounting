@@ -87,7 +87,7 @@ class Items {
 	 * @return void
 	 */
 	public static function page_loaded( $action ) {
-		global $list_table;
+		global $eac_list_table;
 		switch ( $action ) {
 			case 'add':
 				if ( ! current_user_can( 'eac_edit_items' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
@@ -103,9 +103,9 @@ class Items {
 				break;
 
 			default:
-				$screen     = get_current_screen();
-				$list_table = new ListTables\Items();
-				$list_table->prepare_items();
+				$screen         = get_current_screen();
+				$eac_list_table = new ListTables\Items();
+				$eac_list_table->prepare_items();
 				$screen->add_option(
 					'per_page',
 					array(

@@ -38,7 +38,7 @@ class Scripts {
 
 		// Packages.
 		EAC()->scripts->register_script( 'eac-money', 'packages/money.js' );
-		EAC()->scripts->enqueue_script( 'eac-autonumeric', 'https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.10.8/autoNumeric.min.js', array(), true );
+		EAC()->scripts->register_script( 'eac-autonumeric', 'scripts/autonumeric.js', array(), true );
 
 		// Plugins.
 		EAC()->scripts->register_script( 'eac-modal', 'scripts/modal.js', array( 'jquery' ), true );
@@ -61,7 +61,9 @@ class Scripts {
 	 * @return void
 	 */
 	public function enqueue_scripts( $hook ) {
-		global $wp_scripts;
+		// TODO: Remove black friday notice after when the promo is over.
+		EAC()->scripts->enqueue_style( 'eac-black-friday', 'styles/admin-black-friday.css' );
+
 		if ( ! in_array( $hook, Utilities::get_screen_ids(), true ) ) {
 			return;
 		}

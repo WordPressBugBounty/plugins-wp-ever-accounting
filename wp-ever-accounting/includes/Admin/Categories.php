@@ -118,9 +118,9 @@ class Categories {
 				include __DIR__ . '/views/category-edit.php';
 				break;
 			default:
-				global $list_table;
-				$list_table = new ListTables\Categories();
-				$list_table->prepare_items();
+				global $eac_list_table;
+				$eac_list_table = new ListTables\Categories();
+				$eac_list_table->prepare_items();
 				include __DIR__ . '/views/category-list.php';
 				break;
 		}

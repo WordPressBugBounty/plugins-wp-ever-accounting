@@ -21,10 +21,10 @@ defined( 'ABSPATH' ) || exit;
 			<?php
 			echo wp_kses_post(
 				sprintf(
-				// translators: %1$s: WP Ever Accounting Plugin link, %2$s: WordPress.org review link.
-					__( 'We hope you had a wonderful experience using %1$s. Please take a moment to show us your support by leaving a 5-star review on <a href="%2$s" target="_blank"><strong>WordPress.org</strong></a>. Thank you! 😊', 'wp-ever-accounting' ),
-					'<a href="https://wordpress.org/plugins/wp-ever-accounting/" target="_blank"><strong>WP Ever Accounting</strong></a>',
-					'https://wordpress.org/support/plugin/wp-ever-accounting/reviews/?filter=5#new-post'
+				// translators: %1$s: Ever Accounting Plugin link, %2$s: WordPress.org review link.
+					__( 'We hope you had a wonderful experience using %1$s. Please take a moment to show us your support by leaving a review on <a href="%2$s" target="_blank"><strong>WordPress.org</strong></a>. Thank you! 😊', 'wp-ever-accounting' ),
+					'<a href="https://wordpress.org/plugins/wp-ever-accounting/" target="_blank"><strong>Ever Accounting</strong></a>',
+					'https://wordpress.org/support/plugin/wp-ever-accounting/reviews/'
 				)
 			);
 			?>
@@ -32,7 +32,7 @@ defined( 'ABSPATH' ) || exit;
 	</div>
 </div>
 <div class="notice-footer">
-	<a class="primary" href="https://wordpress.org/support/plugin/wp-ever-accounting/reviews/?filter=5#new-post" target="_blank">
+	<a class="primary" href="https://wordpress.org/support/plugin/wp-ever-accounting/reviews/" target="_blank">
 		<span class="dashicons dashicons-heart"></span>
 		<?php esc_html_e( 'Sure, I\'d love to help!', 'wp-ever-accounting' ); ?>
 	</a>

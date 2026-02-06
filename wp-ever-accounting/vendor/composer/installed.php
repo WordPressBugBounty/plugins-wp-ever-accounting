@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'everaccounting/wp-ever-accounting',
-        'pretty_version' => 'v2.2.3',
-        'version' => '2.2.3.0',
-        'reference' => 'ac91baeb95a3bd2e996c02ff7719eecb20104522',
+        'pretty_version' => 'v2.2.7',
+        'version' => '2.2.7.0',
+        'reference' => '5fef8b2b53b2def36f23c7f9fb5f81fe62fa7e99',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'everaccounting/wp-ever-accounting' => array(
-            'pretty_version' => 'v2.2.3',
-            'version' => '2.2.3.0',
-            'reference' => 'ac91baeb95a3bd2e996c02ff7719eecb20104522',
+            'pretty_version' => 'v2.2.7',
+            'version' => '2.2.7.0',
+            'reference' => '5fef8b2b53b2def36f23c7f9fb5f81fe62fa7e99',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

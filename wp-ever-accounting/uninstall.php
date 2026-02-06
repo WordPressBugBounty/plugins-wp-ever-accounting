@@ -1,10 +1,10 @@
 <?php
 /**
- * EVerAccounting Uninstall
+ * EverAccounting Uninstall
  *
  * Uninstalling EAccounting deletes user roles, tables, and options.
  *
- * @package EVerAccounting\Uninstaller
+ * @package EverAccounting\Uninstaller
  * @version 1.1.0
  */
 

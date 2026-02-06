@@ -42,8 +42,7 @@ abstract class ListTable extends \WP_List_Table {
 	 * @return string
 	 */
 	protected function get_request_orderby() {
-		wp_verify_nonce( '_wpnonce' );
-		$orderby = isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : '';
+		$orderby = isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only operation for list table sorting.
 
 		return $orderby;
 	}
@@ -72,8 +71,7 @@ abstract class ListTable extends \WP_List_Table {
 	 * @return string
 	 */
 	protected function get_request_status( $fallback = null ) {
-		wp_verify_nonce( '_wpnonce' );
-		$status = ( ! empty( $_GET['status'] ) ) ? sanitize_text_field( wp_unslash( $_GET['status'] ) ) : '';
+		$status = ( ! empty( $_GET['status'] ) ) ? sanitize_text_field( wp_unslash( $_GET['status'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only operation for list table filtering.
 
 		return empty( $status ) ? $fallback : $status;
 	}
@@ -87,8 +85,7 @@ abstract class ListTable extends \WP_List_Table {
 	 * @return string
 	 */
 	protected function get_request_type( $fallback = null ) {
-		wp_verify_nonce( '_wpnonce' );
-		$type = ( ! empty( $_GET['type'] ) ) ? sanitize_text_field( wp_unslash( $_GET['type'] ) ) : '';
+		$type = ( ! empty( $_GET['type'] ) ) ? sanitize_text_field( wp_unslash( $_GET['type'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only operation for list table filtering.
 
 		return empty( $type ) ? $fallback : $type;
 	}
@@ -100,9 +97,7 @@ abstract class ListTable extends \WP_List_Table {
 	 * @return string
 	 */
 	public function get_request_search() {
-		wp_verify_nonce( '_wpnonce' );
-
-		return ! empty( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
+		return ! empty( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only operation for list table search.
 	}
 
 	/**

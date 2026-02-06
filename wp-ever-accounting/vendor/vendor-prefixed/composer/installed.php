@@ -1,0 +1,42 @@
+<?php return array (
+  'root' => 
+  array (
+    'name' => 'everaccounting/wp-ever-accounting',
+    'pretty_version' => 'v2.2.7',
+    'version' => '2.2.7.0',
+    'reference' => '5fef8b2b53b2def36f23c7f9fb5f81fe62fa7e99',
+    'type' => 'wordpress-plugin',
+    'install_path' => __DIR__ . '/../',
+    'aliases' => 
+    array (
+    ),
+    'dev' => false,
+  ),
+  'versions' => 
+  array (
+    'byteever/bytekit-models' => 
+    array (
+      'pretty_version' => 'v1.0.5',
+      'version' => '1.0.5.0',
+      'reference' => 'c110db24b1598c84ba02d75198390dbb997b9569',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../byteever/bytekit-models',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'byteever/bytekit-plugin' => 
+    array (
+      'pretty_version' => 'v1.0.2',
+      'version' => '1.0.2.0',
+      'reference' => '794ec9834ecac6cead6b1064a605ff930864950b',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../byteever/bytekit-plugin',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+  ),
+);

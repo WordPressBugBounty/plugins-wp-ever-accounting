@@ -84,9 +84,9 @@ class Taxes {
 				include __DIR__ . '/views/tax-edit.php';
 				break;
 			default:
-				global $list_table;
-				$list_table = new ListTables\Taxes();
-				$list_table->prepare_items();
+				global $eac_list_table;
+				$eac_list_table = new ListTables\Taxes();
+				$eac_list_table->prepare_items();
 				include __DIR__ . '/views/tax-list.php';
 				break;
 		}

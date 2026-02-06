@@ -8,7 +8,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-global $list_table;
+global $eac_list_table;
 
 ?>
 	<h1 class="wp-heading-inline">
@@ -21,15 +21,15 @@ global $list_table;
 				<?php esc_html_e( 'Import', 'wp-ever-accounting' ); ?>
 			</a>
 		<?php endif; ?>
-		<?php if ( $list_table->get_request_search() ) : ?>
+		<?php if ( $eac_list_table->get_request_search() ) : ?>
 			<?php // translators: %s: search query. ?>
-			<span class="subtitle"><?php echo esc_html( sprintf( __( 'Search results for "%s"', 'wp-ever-accounting' ), esc_html( $list_table->get_request_search() ) ) ); ?></span>
+			<span class="subtitle"><?php echo esc_html( sprintf( __( 'Search results for "%s"', 'wp-ever-accounting' ), esc_html( $eac_list_table->get_request_search() ) ) ); ?></span>
 		<?php endif; ?>
 	</h1>
 	<form method="get" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>">
-		<?php $list_table->views(); ?>
-		<?php $list_table->search_box( __( 'Search', 'wp-ever-accounting' ), 'search' ); ?>
-		<?php $list_table->display(); ?>
+		<?php $eac_list_table->views(); ?>
+		<?php $eac_list_table->search_box( __( 'Search', 'wp-ever-accounting' ), 'search' ); ?>
+		<?php $eac_list_table->display(); ?>
 		<input type="hidden" name="page" value="eac-items"/>
 		<input type="hidden" name="tab" value="items"/>
 		<input type="hidden" name="type" value="<?php echo esc_attr( filter_input( INPUT_GET, 'type', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ); ?>"/>

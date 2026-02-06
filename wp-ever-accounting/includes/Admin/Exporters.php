@@ -19,7 +19,7 @@ class Exporters {
 	 */
 	public function __construct() {
 		add_filter( 'eac_tools_page_tabs', array( __CLASS__, 'register_tabs' ), - 1 );
-		add_action( 'eac_action_download_export_file', array( __CLASS__, 'handle_csv_download' ) );
+		add_action( 'admin_post_eac_download_export', array( __CLASS__, 'handle_csv_download' ) );
 		add_action( 'eac_tools_page_export_content', array( __CLASS__, 'customers_export' ) );
 		add_action( 'eac_tools_page_export_content', array( __CLASS__, 'vendors_export' ) );
 		add_action( 'eac_tools_page_export_content', array( __CLASS__, 'categories_export' ) );
@@ -52,15 +52,13 @@ class Exporters {
 	/**
 	 * Handle CSV download.
 	 *
-	 * @param array $posted Posted data.
-	 *
 	 * @since 1.0.0
 	 * @return void
 	 */
-	public static function handle_csv_download( $posted ) {
+	public static function handle_csv_download() {
 		check_admin_referer( 'eac_download_file' );
-		$type     = isset( $posted['type'] ) ? sanitize_key( wp_unslash( $posted['type'] ) ) : '';
-		$filename = isset( $posted['filename'] ) ? sanitize_text_field( wp_unslash( $posted['filename'] ) ) : '';
+		$type     = isset( $_GET['type'] ) ? sanitize_key( $_GET['type'] ) : '';
+		$filename = isset( $_GET['filename'] ) ? sanitize_text_field( wp_unslash( $_GET['filename'] ) ) : '';
 		$exporter = self::get_exporter( $type );
 		if ( ! $exporter || ! is_subclass_of( $exporter, Exporters\Exporter::class ) ) {
 			wp_die( esc_html__( 'Invalid export type.', 'wp-ever-accounting' ) );

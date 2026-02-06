@@ -165,7 +165,7 @@ function eac_time_format() {
 }
 
 /**
- * Date Time Format - Allows to change date time format for everything WooCommerce.
+ * Date Time Format - Allows to change date time format for the plugin.
  * Combines date and time formats.
  *
  * @return string

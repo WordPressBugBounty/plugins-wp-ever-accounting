@@ -1,6 +1,13 @@
 <?php
+/**
+ * Plugin main class file.
+ *
+ * @package EverAccounting
+ */
 
 namespace EverAccounting;
+
+defined( 'ABSPATH' ) || exit;
 
 use EverAccounting\Controllers\Accounts;
 use EverAccounting\Controllers\Bills;
@@ -145,7 +152,6 @@ class Plugin extends \EverAccounting\ByteKit\Plugin {
 		}
 
 		$handlers = array(
-			'EverAccounting\Actions',
 			'EverAccounting\Currencies',
 			'EverAccounting\Contacts',
 			'EverAccounting\Crons',
@@ -185,7 +191,6 @@ class Plugin extends \EverAccounting\ByteKit\Plugin {
 				'EverAccounting\Admin\Currencies',
 				'EverAccounting\Admin\Taxes',
 				'EverAccounting\Admin\Categories',
-				'EverAccounting\Admin\Extensions',
 				// 'EverAccounting\Admin\Setup',
 				'EverAccounting\Admin\Notices',
 				'EverAccounting\Admin\Changelog',

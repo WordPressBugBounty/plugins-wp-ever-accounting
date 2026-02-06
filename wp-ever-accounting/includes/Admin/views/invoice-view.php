@@ -10,16 +10,15 @@ use EverAccounting\Models\Invoice;
 
 defined( 'ABSPATH' ) || exit;
 
-wp_verify_nonce( '_wpnonce' );
-$id            = isset( $_GET['id'] ) ? absint( wp_unslash( $_GET['id'] ) ) : 0;
+$id            = filter_input( INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT );
 $invoice       = EAC()->invoices->get( $id );
 $mark_sent_url = wp_nonce_url(
 	add_query_arg(
 		array(
-			'eac_action'     => 'invoice_action',
-			'id'             => $invoice->id,
-			'invoice_action' => 'mark_sent',
-		)
+			'action' => 'eac_invoice_mark_sent',
+			'id'     => $invoice->id,
+		),
+		admin_url( 'admin-post.php' )
 	),
 	'eac_invoice_action'
 );

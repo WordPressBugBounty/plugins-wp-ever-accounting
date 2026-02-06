@@ -292,7 +292,7 @@ function eac_form_field( $field ) {
 			esc_attr( $field['id'] ),
 			esc_html( $field['label'] ),
 			$required,
-			$tooltip,
+			wp_kses_post( $tooltip ),
 			$input
 		);
 	}

@@ -19,7 +19,7 @@ class Invoices {
 	public function __construct() {
 		add_filter( 'eac_sales_page_tabs', array( __CLASS__, 'register_tabs' ) );
 		add_action( 'admin_post_eac_edit_invoice', array( __CLASS__, 'handle_edit' ) );
-		add_action( 'eac_action_invoice_action', array( __CLASS__, 'handle_action' ) );
+		add_action( 'admin_post_eac_invoice_mark_sent', array( __CLASS__, 'handle_mark_sent' ) );
 		add_action( 'eac_sales_page_invoices_loaded', array( __CLASS__, 'page_loaded' ) );
 		add_action( 'eac_sales_page_invoices_content', array( __CLASS__, 'page_content' ) );
 		add_action( 'eac_invoice_view_sidebar_content', array( __CLASS__, 'invoice_notes' ) );
@@ -110,24 +110,19 @@ class Invoices {
 	}
 
 	/**
-	 * Handle action.
+	 * Handle mark sent action.
 	 *
-	 * @param array $posted Posted data.
-	 *
-	 * @since 1.0.0
+	 * @since 2.2.7
 	 * @return void
 	 */
-	public static function handle_action( $posted ) {
+	public static function handle_mark_sent() {
 		check_admin_referer( 'eac_invoice_action' );
 		if ( ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to perform this action.', 'wp-ever-accounting' ) );
 		}
 
-		$id      = isset( $posted['id'] ) ? absint( wp_unslash( $posted['id'] ) ) : 0;
-		$action  = isset( $posted['invoice_action'] ) ? sanitize_text_field( wp_unslash( $posted['invoice_action'] ) ) : '';
-		$referer = wp_get_referer();
-		// if any of the required fields are missing, bail.
-		if ( ! $id || ! $action ) {
+		$id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
+		if ( ! $id ) {
 			wp_die( esc_html__( 'Invalid request.', 'wp-ever-accounting' ) );
 		}
 
@@ -136,20 +131,14 @@ class Invoices {
 			wp_die( esc_html__( 'You attempted to perform an action on an invoice that does not exist.', 'wp-ever-accounting' ) );
 		}
 
-		switch ( $action ) {
-			case 'mark_sent':
-				$invoice->status = 'sent';
-				if ( $invoice->save() ) {
-					EAC()->flash->success( __( 'Invoice marked as sent.', 'wp-ever-accounting' ) );
-				} else {
-					EAC()->flash->error( __( 'Failed to mark invoice as sent.', 'wp-ever-accounting' ) );
-				}
-				break;
-			default:
-				do_action( 'eac_invoice_action_' . $action, $invoice );
+		$invoice->status = 'sent';
+		if ( $invoice->save() ) {
+			EAC()->flash->success( __( 'Invoice marked as sent.', 'wp-ever-accounting' ) );
+		} else {
+			EAC()->flash->error( __( 'Failed to mark invoice as sent.', 'wp-ever-accounting' ) );
 		}
 
-		$referer = remove_query_arg( array( 'eac_action' ), $referer );
+		$referer = add_query_arg( array( 'action' => 'view' ), wp_get_referer() );
 		wp_safe_redirect( $referer );
 		exit;
 	}
@@ -163,7 +152,7 @@ class Invoices {
 	 * @return void
 	 */
 	public static function page_loaded( $action ) {
-		global $list_table;
+		global $eac_list_table;
 		switch ( $action ) {
 			case 'add':
 				if ( ! current_user_can( 'eac_edit_invoices' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
@@ -186,9 +175,9 @@ class Invoices {
 				break;
 
 			default:
-				$screen     = get_current_screen();
-				$list_table = new ListTables\Invoices();
-				$list_table->prepare_items();
+				$screen         = get_current_screen();
+				$eac_list_table = new ListTables\Invoices();
+				$eac_list_table->prepare_items();
 				$screen->add_option(
 					'per_page',
 					array(

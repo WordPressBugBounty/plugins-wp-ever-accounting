@@ -13,9 +13,8 @@ use EverAccounting\Models\Customer;
 
 defined( 'ABSPATH' ) || exit;
 
-wp_verify_nonce( '_wpnonce' );
-$id       = isset( $_GET['id'] ) ? absint( wp_unslash( $_GET['id'] ) ) : 0;
-$section  = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
+$id       = filter_input( INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT );
+$section  = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only operation.
 $customer = EAC()->customers->get( $id );
 $sections = apply_filters(
 	'eac_customer_view_sections',

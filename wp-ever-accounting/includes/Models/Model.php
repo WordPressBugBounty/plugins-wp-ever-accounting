@@ -1,6 +1,13 @@
 <?php
+/**
+ * Abstract Model class.
+ *
+ * @package EverAccounting\Models
+ */
 
 namespace EverAccounting\Models;
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Abstract class Model.

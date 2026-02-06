@@ -51,6 +51,7 @@ class Note extends Model {
 		'id'        => 'int',
 		'parent_id' => 'int',
 		'author_id' => 'int',
+		'content'   => 'sanitize_textarea',
 	);
 
 	/**

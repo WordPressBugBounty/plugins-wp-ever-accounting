@@ -13,8 +13,7 @@ use EverAccounting\Models\Payment;
 
 defined( 'ABSPATH' ) || exit;
 
-wp_verify_nonce( '_wpnonce' );
-$id      = isset( $_GET['id'] ) ? absint( wp_unslash( $_GET['id'] ) ) : 0;
+$id      = filter_input( INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT );
 $payment = EAC()->payments->get( $id );
 
 ?>

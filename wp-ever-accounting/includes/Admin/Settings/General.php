@@ -78,10 +78,10 @@ class General extends Page {
 			),
 			array(
 				'title'       => __( 'Logo', 'wp-ever-accounting' ),
-				'desc'        => __( 'The logo of your business. This will be used in the invoice, bill, and other documents.', 'wp-ever-accounting' ),
+				'desc'        => __( 'The logo of your business. This will be used in the invoice, bill, and other documents. Upload via Media Library.', 'wp-ever-accounting' ),
 				'id'          => 'eac_business_logo',
 				'type'        => 'text',
-				'placeholder' => 'e.g. http://example.com/logo.png',
+				'placeholder' => '',
 				'default'     => '',
 				'desc_tip'    => true,
 			),

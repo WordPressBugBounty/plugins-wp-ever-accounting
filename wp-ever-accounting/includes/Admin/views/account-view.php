@@ -13,9 +13,9 @@ use EverAccounting\Models\Account;
 
 defined( 'ABSPATH' ) || exit;
 
-wp_verify_nonce( '_wpnonce' );
-$id       = isset( $_GET['id'] ) ? absint( wp_unslash( $_GET['id'] ) ) : 0;
-$section  = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
+
+$id       = filter_input( INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT );
+$section  = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- reason: Readonly parameter.
 $account  = EAC()->accounts->get( $id );
 $sections = apply_filters(
 	'eac_account_view_sections',

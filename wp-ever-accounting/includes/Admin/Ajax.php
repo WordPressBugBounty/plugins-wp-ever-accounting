@@ -603,10 +603,10 @@ class Ajax {
 			$query_args = apply_filters(
 				'eac_export_ajax_query_args',
 				array(
-					'_wpnonce'   => wp_create_nonce( 'eac_download_file' ),
-					'eac_action' => 'download_export_file',
-					'filename'   => $exporter->get_filename(),
-					'type'       => $type,
+					'_wpnonce' => wp_create_nonce( 'eac_download_file' ),
+					'action'   => 'eac_download_export',
+					'filename' => $exporter->get_filename(),
+					'type'     => $type,
 				)
 			);
 			wp_send_json_success(
@@ -620,7 +620,7 @@ class Ajax {
 					),
 					'url'        => add_query_arg(
 						$query_args,
-						admin_url( 'admin.php' )
+						admin_url( 'admin-post.php' )
 					),
 				)
 			);

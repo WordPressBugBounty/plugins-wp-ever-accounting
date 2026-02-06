@@ -10,16 +10,15 @@ use EverAccounting\Models\Bill;
 
 defined( 'ABSPATH' ) || exit;
 
-wp_verify_nonce( '_wpnonce' );
-$id                = isset( $_GET['id'] ) ? absint( wp_unslash( $_GET['id'] ) ) : 0;
+$id                = filter_input( INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT );
 $bill              = EAC()->bills->get( $id );
 $mark_received_url = wp_nonce_url(
 	add_query_arg(
 		array(
-			'eac_action'  => 'bill_action',
-			'id'          => $bill->id,
-			'bill_action' => 'mark_received',
-		)
+			'action' => 'eac_bill_mark_received',
+			'id'     => $bill->id,
+		),
+		admin_url( 'admin-post.php' )
 	),
 	'eac_bill_action'
 );

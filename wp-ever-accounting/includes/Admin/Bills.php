@@ -21,7 +21,7 @@ class Bills {
 	public function __construct() {
 		add_filter( 'eac_purchases_page_tabs', array( __CLASS__, 'register_tabs' ) );
 		add_action( 'admin_post_eac_edit_bill', array( __CLASS__, 'handle_edit' ) );
-		add_action( 'eac_action_bill_action', array( __CLASS__, 'handle_action' ) );
+		add_action( 'admin_post_eac_bill_mark_received', array( __CLASS__, 'handle_mark_received' ) );
 		add_action( 'eac_purchases_page_bills_loaded', array( __CLASS__, 'page_loaded' ) );
 		add_action( 'eac_purchases_page_bills_content', array( __CLASS__, 'page_content' ) );
 		add_action( 'eac_bill_view_sidebar_content', array( __CLASS__, 'bill_notes' ) );
@@ -112,46 +112,35 @@ class Bills {
 	}
 
 	/**
-	 * Handle action.
+	 * Handle mark received action.
 	 *
-	 * @param array $posted Posted data.
-	 *
-	 * @since 1.0.0
+	 * @since 2.2.7
 	 * @return void
 	 */
-	public static function handle_action( $posted ) {
+	public static function handle_mark_received() {
 		check_admin_referer( 'eac_bill_action' );
 		if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
 			wp_die( esc_html__( 'You do not have permission to perform this action.', 'wp-ever-accounting' ) );
 		}
 
-		$id      = isset( $posted['id'] ) ? absint( wp_unslash( $posted['id'] ) ) : 0;
-		$action  = isset( $posted['bill_action'] ) ? sanitize_text_field( wp_unslash( $posted['bill_action'] ) ) : '';
-		$referer = wp_get_referer();
-		// if any of the required fields are missing, bail.
-		if ( ! $id || ! $action ) {
+		$id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
+		if ( ! $id ) {
 			wp_die( esc_html__( 'Invalid request.', 'wp-ever-accounting' ) );
 		}
 
 		$bill = EAC()->bills->get( $id );
 		if ( ! $bill ) {
-			wp_die( esc_html__( 'You attempted to perform an action on an bill that does not exist.', 'wp-ever-accounting' ) );
+			wp_die( esc_html__( 'You attempted to perform an action on a bill that does not exist.', 'wp-ever-accounting' ) );
 		}
 
-		switch ( $action ) {
-			case 'mark_received':
-				$bill->status = 'sent';
-				if ( $bill->save() ) {
-					EAC()->flash->success( __( 'Invoice marked as received.', 'wp-ever-accounting' ) );
-				} else {
-					EAC()->flash->error( __( 'Failed to mark bill as received.', 'wp-ever-accounting' ) );
-				}
-				break;
-			default:
-				do_action( 'eac_bill_action_' . $action, $bill );
+		$bill->status = 'sent';
+		if ( $bill->save() ) {
+			EAC()->flash->success( __( 'Bill marked as received.', 'wp-ever-accounting' ) );
+		} else {
+			EAC()->flash->error( __( 'Failed to mark bill as received.', 'wp-ever-accounting' ) );
 		}
 
-		$referer = remove_query_arg( array( 'eac_action' ), $referer );
+		$referer = add_query_arg( array( 'action' => 'view' ), wp_get_referer() );
 		wp_safe_redirect( $referer );
 		exit;
 	}
@@ -166,7 +155,7 @@ class Bills {
 	 * @return void
 	 */
 	public static function page_loaded( $action ) {
-		global $list_table;
+		global $eac_list_table;
 		switch ( $action ) {
 			case 'add':
 				if ( ! current_user_can( 'eac_edit_bills' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability.
@@ -189,9 +178,9 @@ class Bills {
 				break;
 
 			default:
-				$screen     = get_current_screen();
-				$list_table = new ListTables\Bills();
-				$list_table->prepare_items();
+				$screen         = get_current_screen();
+				$eac_list_table = new ListTables\Bills();
+				$eac_list_table->prepare_items();
 				$screen->add_option(
 					'per_page',
 					array(

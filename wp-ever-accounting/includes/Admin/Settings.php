@@ -654,7 +654,7 @@ class Settings {
 	/**
 	 * Save admin fields.
 	 *
-	 * Loops through the woocommerce options array and outputs each field.
+	 * Loops through the settings options array and outputs each field.
 	 *
 	 * @param array $options Options array to output.
 	 * @param array $data Optional. Data to use for saving. Defaults to $_POST.

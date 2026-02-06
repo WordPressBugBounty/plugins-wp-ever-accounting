@@ -30,24 +30,16 @@ class Notices {
 		$installed_time = absint( get_option( 'eac_install_date' ) );
 		$current_time   = absint( wp_date( 'U' ) );
 
-		if ( ! defined( 'EAC_ESTIMATES_VERSION' ) && is_plugin_active( 'wp-ever-accounting/wp-ever-accounting.php' ) ) {
+		// TODO: Uncomment the below code when Black Friday offer is ended.
+		$black_friday_end_time = strtotime( '2025-12-05 00:00:00' );
+		if ( $current_time < $black_friday_end_time ) {
 			EAC()->notices->add(
 				array(
-					'message'     => __DIR__ . '/views/notices/eac-estimates.php',
-					'notice_id'   => 'eac_estimates_flash50_04062025',
-					'style'       => 'border-left-color: #77B82E;',
-					'dismissible' => true,
-				)
-			);
-		}
-
-		if ( ! defined( 'EAC_WC_VERSION' ) && is_plugin_active( 'wp-ever-accounting/wp-ever-accounting.php' ) && class_exists( 'WooCommerce' ) ) {
-			EAC()->notices->add(
-				array(
-					'message'     => __DIR__ . '/views/notices/eac-woocommerce.php',
-					'notice_id'   => 'eac_woocommerce_flash50_04062025', // Old IDs: eac_woocommerce_early_bird_sale.
-					'style'       => 'border-left-color: #77B82E;',
-					'dismissible' => true,
+					'message'     => __DIR__ . '/views/notices/black-friday.php',
+					'dismissible' => false,
+					'notice_id'   => 'eac_black-friday_promo_2025',
+					'style'       => 'border-left-color: #000000;',
+					'class'       => 'notice-black-friday',
 				)
 			);
 		}

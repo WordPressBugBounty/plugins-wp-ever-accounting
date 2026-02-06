@@ -197,10 +197,10 @@ class Changelog {
 							<h3 class="eac-card__title"><?php esc_html_e( 'Rate Us', 'wp-ever-accounting' ); ?></h3>
 						</div>
 						<div class="eac-card__body">
-							<p><?php echo esc_html__( 'If you like WP Ever Accounting, please consider leaving a review on WordPress.org.', 'wp-ever-accounting' ); ?></p>
+							<p><?php echo esc_html__( 'If you like Ever Accounting, please consider leaving a review on WordPress.org.', 'wp-ever-accounting' ); ?></p>
 						</div>
 						<div class="eac-card__footer">
-							<a href="https://wordpress.org/support/plugin/wp-ever-accounting/reviews/?rate=5#new-post" class="button button-secondary" target="_blank">
+							<a href="https://wordpress.org/support/plugin/wp-ever-accounting/reviews/" class="button button-secondary" target="_blank">
 								<?php echo esc_html__( 'Leave a Review', 'wp-ever-accounting' ); ?>
 							</a>
 						</div>

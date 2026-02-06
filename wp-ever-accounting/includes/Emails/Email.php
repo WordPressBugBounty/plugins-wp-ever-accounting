@@ -1,6 +1,13 @@
 <?php
+/**
+ * Abstract Email class.
+ *
+ * @package EverAccounting\Emails
+ */
 
 namespace EverAccounting\Emails;
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Class Email

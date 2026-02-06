@@ -55,8 +55,8 @@ class Setup {
 	 * @return void
 	 */
 	public function setup_wizard() {
-		$page      = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING );
-		$save_step = filter_input( INPUT_POST, 'save_step', FILTER_SANITIZE_STRING );
+		$page      = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Setup wizard page check.
+		$save_step = isset( $_POST['save_step'] ) ? sanitize_text_field( wp_unslash( $_POST['save_step'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified in individual step handlers.
 		if ( empty( $page ) || 'eac-setup' !== $page ) {
 			return;
 		}
@@ -84,7 +84,7 @@ class Setup {
 		);
 
 		$this->steps = apply_filters( 'eac_setup_wizard_steps', $default_steps );
-		$step        = filter_input( INPUT_GET, 'step', FILTER_SANITIZE_STRING );
+		$step        = isset( $_GET['step'] ) ? sanitize_text_field( wp_unslash( $_GET['step'] ) ) : ''; //phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Setup wizard step navigation.
 		$this->step  = ! empty( $step ) ? sanitize_key( $step ) : current( array_keys( $this->steps ) );
 
 		// TODO: Need to include the scripts and styles.
@@ -246,7 +246,7 @@ class Setup {
 	public function setup_introduction() {
 		?>
 		<h2><?php esc_html_e( 'Welcome!', 'wp-ever-accounting' ); ?></h2>
-		<p><?php esc_html_e( 'Thank you for choosing WP Ever Accounting to manage your accounting! This quick setup wizard will help you configure the basic settings.', 'wp-ever-accounting' ); ?></p>
+		<p><?php esc_html_e( 'Thank you for choosing Ever Accounting to manage your accounting! This quick setup wizard will help you configure the basic settings.', 'wp-ever-accounting' ); ?></p>
 		<p class="eac-setup-actions step">
 			<a href="<?php echo esc_url( $this->get_next_step_link() ); ?>" class="button-primary button button-large button-next"><?php esc_html_e( 'Let\'s Go!', 'wp-ever-accounting' ); ?></a>
 		</p>
@@ -367,34 +367,34 @@ class Setup {
 	 */
 	public function business_settings_save() {
 		check_admin_referer( 'eac_business_setup' );
-		$business_name    = filter_input( INPUT_POST, 'eac_business_name', FILTER_SANITIZE_STRING );
-		$business_email   = filter_input( INPUT_POST, 'eac_business_email', FILTER_SANITIZE_EMAIL );
-		$business_address = filter_input( INPUT_POST, 'eac_business_address', FILTER_SANITIZE_STRING );
-		$business_city    = filter_input( INPUT_POST, 'eac_business_city', FILTER_SANITIZE_STRING );
-		$business_state   = filter_input( INPUT_POST, 'eac_business_state', FILTER_SANITIZE_STRING );
-		$business_zip     = filter_input( INPUT_POST, 'eac_business_zip', FILTER_SANITIZE_STRING );
-		$business_country = filter_input( INPUT_POST, 'eac_business_country', FILTER_SANITIZE_STRING );
+		$business_name    = isset( $_POST['eac_business_name'] ) ? sanitize_text_field( wp_unslash( $_POST['eac_business_name'] ) ) : '';
+		$business_email   = isset( $_POST['eac_business_email'] ) ? sanitize_email( wp_unslash( $_POST['eac_business_email'] ) ) : '';
+		$business_address = isset( $_POST['eac_business_address'] ) ? sanitize_textarea_field( wp_unslash( $_POST['eac_business_address'] ) ) : '';
+		$business_city    = isset( $_POST['eac_business_city'] ) ? sanitize_text_field( wp_unslash( $_POST['eac_business_city'] ) ) : '';
+		$business_state   = isset( $_POST['eac_business_state'] ) ? sanitize_text_field( wp_unslash( $_POST['eac_business_state'] ) ) : '';
+		$business_zip     = isset( $_POST['eac_business_zip'] ) ? sanitize_text_field( wp_unslash( $_POST['eac_business_zip'] ) ) : '';
+		$business_country = isset( $_POST['eac_business_country'] ) ? sanitize_text_field( wp_unslash( $_POST['eac_business_country'] ) ) : '';
 
 		if ( ! empty( $business_name ) ) {
-			update_option( 'eac_business_name', sanitize_text_field( $business_name ) );
+			update_option( 'eac_business_name', $business_name );
 		}
 		if ( ! empty( $business_email ) ) {
-			update_option( 'eac_business_email', sanitize_email( $business_email ) );
+			update_option( 'eac_business_email', $business_email );
 		}
 		if ( ! empty( $business_address ) ) {
-			update_option( 'eac_business_address', sanitize_textarea_field( $business_address ) );
+			update_option( 'eac_business_address', $business_address );
 		}
 		if ( ! empty( $business_city ) ) {
-			update_option( 'eac_business_city', sanitize_text_field( $business_city ) );
+			update_option( 'eac_business_city', $business_city );
 		}
 		if ( ! empty( $business_state ) ) {
-			update_option( 'eac_business_state', sanitize_text_field( $business_state ) );
+			update_option( 'eac_business_state', $business_state );
 		}
 		if ( ! empty( $business_zip ) ) {
-			update_option( 'eac_business_zip', sanitize_text_field( $business_zip ) );
+			update_option( 'eac_business_zip', $business_zip );
 		}
 		if ( ! empty( $business_country ) ) {
-			update_option( 'eac_business_country', sanitize_text_field( $business_country ) );
+			update_option( 'eac_business_country', $business_country );
 		}
 
 		wp_safe_redirect( esc_url_raw( $this->get_next_step_link() ) );
@@ -462,14 +462,16 @@ class Setup {
 		check_admin_referer( 'eac_currency_settings' );
 
 		// Update and save eac_base_currency.
-		$base_currency = filter_input( INPUT_POST, 'eac_base_currency', FILTER_SANITIZE_STRING );
+		$base_currency = isset( $_POST['eac_base_currency'] ) ? sanitize_text_field( wp_unslash( $_POST['eac_base_currency'] ) ) : '';
 
 		if ( ! empty( $base_currency ) ) {
-			update_option( 'eac_base_currency', sanitize_text_field( $base_currency ) );
+			update_option( 'eac_base_currency', $base_currency );
 		}
 
 		// Update and save eac_exchange_rates.
-		$exchange_rates = filter_input( INPUT_POST, 'eac_exchange_rates', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+		$exchange_rates = isset( $_POST['eac_exchange_rates'] ) && is_array( $_POST['eac_exchange_rates'] )
+			? array_map( 'sanitize_text_field', wp_unslash( $_POST['eac_exchange_rates'] ) )
+			: array();
 		if ( ! empty( $exchange_rates ) ) {
 			update_option( 'eac_exchange_rates', $exchange_rates );
 		}

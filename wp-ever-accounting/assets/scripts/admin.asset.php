@@ -1,1 +1,1 @@
-<?php return array('dependencies' => array('eac-money', 'wp-api-fetch'), 'version' => '6f5774578eb00cd90e50');
+<?php return array('dependencies' => array('eac-money', 'wp-api-fetch'), 'version' => 'bf7db9f626b7c8528e40');

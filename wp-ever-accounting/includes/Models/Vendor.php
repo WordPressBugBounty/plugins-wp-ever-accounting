@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
  * Class Vendor.
  *
  * @since   1.1.0
- * @package EAccounting\Models
+ * @package EverAccounting\Models
  */
 class Vendor extends Contact {
 	/**

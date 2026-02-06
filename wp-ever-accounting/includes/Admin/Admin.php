@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
  * Admin class.
  *
  * @since 1.0.0
- * @package StarterPlugin
+ * @package EverAccounting\Admin
  */
 class Admin {
 
@@ -19,8 +19,6 @@ class Admin {
 	 */
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'buffer_start' ), 1 );
-		add_action( 'init', array( $this, 'get_actions' ), 0 );
-		add_action( 'init', array( $this, 'post_actions' ), 0 );
 		add_filter( 'admin_body_class', array( $this, 'body_class' ) );
 		add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ), PHP_INT_MAX );
 		add_filter( 'update_footer', array( $this, 'update_footer' ), PHP_INT_MAX );
@@ -32,40 +30,17 @@ class Admin {
 
 	/**
 	 * Start output buffering.
+	 * Only runs on plugin admin pages to avoid breaking caching.
 	 *
 	 * @since 1.0.0
 	 * @return void
 	 */
 	public function buffer_start() {
+		$screen = get_current_screen();
+		if ( ! $screen || ( false === strpos( $screen->id, 'eac-' ) && false === strpos( $screen->id, 'ever-accounting' ) ) ) {
+			return;
+		}
 		ob_start();
-	}
-
-	/**
-	 * Get actions.
-	 *
-	 * @since 1.0.0
-	 * @return void
-	 */
-	public function get_actions() {
-		$key = ! empty( $_GET['eac_action'] ) ? sanitize_key( wp_unslash( $_GET['eac_action'] ) ) : false;
-
-		if ( ! empty( $key ) && wp_verify_nonce( '_wpnonce' ) ) {
-			do_action( "eac_action_{$key}", $_GET );
-		}
-	}
-
-	/**
-	 * Post actions.
-	 *
-	 * @since 1.0.0
-	 * @return void
-	 */
-	public function post_actions() {
-		$key = ! empty( $_POST['eac_action'] ) ? sanitize_key( wp_unslash( $_POST['eac_action'] ) ) : false;
-
-		if ( ! empty( $key ) && wp_verify_nonce( '_wpnonce' ) ) {
-			do_action( "eac_action_{$key}", $_POST );
-		}
 	}
 
 	/**

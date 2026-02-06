@@ -1,0 +1,102 @@
+{
+  "name": "everaccounting/wp-ever-accounting",
+  "description": "Manage your business finances right from your WordPress dashboard.",
+  "homepage": "https://wpeveraccounting.com",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "keywords": [
+    "wordpress",
+    "plugin"
+  ],
+  "authors": [
+    {
+      "name": "wpeveraccounting",
+      "email": "support@wpeveraccounting.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:byteever/bytekit-plugin.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:byteever/bytekit-models.git"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "byteever/bytekit-models": "^1.0",
+    "byteever/bytekit-plugin": "^1.0",
+    "woocommerce/action-scheduler": "^3.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "EverAccounting\\": ["includes/"]
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/_support/"
+    ]
+  },
+  "require-dev": {
+    "byteever/byteever-sniffs": "^1.1",
+    "codeception/module-asserts": "^1.0",
+    "codeception/module-cli": "^1.0",
+    "codeception/module-db": "^1.0",
+    "codeception/module-filesystem": "^1.0",
+    "codeception/module-phpbrowser": "^1.0",
+    "codeception/module-rest": "^2.0",
+    "codeception/module-webdriver": "^1.0",
+    "codeception/util-universalframework": "^1.0",
+    "lucatume/wp-browser": "<3.5",
+    "roave/security-advisories": "dev-latest"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "scripts": {
+    "post-install-cmd":"@strauss",
+    "post-update-cmd": "@strauss",
+    "makepot": "wp --allow-root i18n make-pot . --include=*.php,assets,includes,templates --slug=wp-ever-accounting",
+    "phpcs": "@php ./vendor/bin/phpcs --standard=phpcs.xml -s -v",
+    "phpcbf": "@php ./vendor/bin/phpcbf --standard=phpcs.xml -v",
+    "test:setup": "bash ./.bin/setup-tests.sh",
+    "test:init": "vendor/bin/codecept init wpbrowser",
+    "test:build": "vendor/bin/codecept build",
+    "test:wpunit": "vendor/bin/codecept run wpunit --",
+    "test:functional": "vendor/bin/codecept run functional --",
+    "test:acceptance": "vendor/bin/codecept run acceptance --",
+    "test:gen:wpunit": "vendor/bin/codecept generate:wpunit wpunit",
+    "test:gen:functional": "vendor/bin/codecept generate:wpunit functional",
+    "test:gen:acceptance": "vendor/bin/codecept generate:cest acceptance",
+    "test": "vendor/bin/codecept run functional --",
+    "strauss": [
+      "test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L https://github.com/BrianHenryIE/strauss/releases/download/0.24.1/strauss.phar",
+      "@php bin/strauss.phar",
+      "find ./vendor/vendor-prefixed -type f -name '*.php' -exec perl -i -pe \"s/'bytekit-textdomain'/'wp-ever-accounting'/g\" {} +"
+    ]
+  },
+  "extra": {
+    "strauss": {
+      "target_directory": "vendor/vendor-prefixed",
+      "namespace_prefix": "EverAccounting\\",
+      "classmap_prefix": "EverAccounting__",
+      "include_modified_date": false,
+      "include_author": false,
+      "delete_vendor_packages": true,
+      "packages": [
+        "byteever/bytekit-plugin",
+        "byteever/bytekit-models"
+      ]
+    }
+  }
+}
