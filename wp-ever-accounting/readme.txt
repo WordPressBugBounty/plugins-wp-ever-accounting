@@ -1,8 +1,8 @@
 === Ever Accounting - Accounting & Invoicing Solution for Small Businesses ===
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
-Tested up to: 6.8
-Stable tag: 2.2.7
+Tested up to: 6.9
+Stable tag: 2.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -329,6 +329,8 @@ Yes, you can contribute to Ever Accounting. We welcome contributions from the co
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.2.8 = (17th February 2026)
+* Compatibility: Check compatible with WordPress 6.9.
 
 = 2.2.7 = (27th November 2025)
 * Fix: Minor issues are addressed.

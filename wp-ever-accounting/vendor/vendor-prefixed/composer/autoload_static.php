@@ -4,7 +4,7 @@
 
 namespace EverAccounting\Composer\Autoload;
 
-class ComposerStaticInit3add78dfe4b28aa874148f24bf56d7f7
+class ComposerStaticInitcc936aaf45f49e21fe04a4fb5d492109
 {
     public static $prefixLengthsPsr4 = array (
         'E' => 
@@ -51,9 +51,9 @@ class ComposerStaticInit3add78dfe4b28aa874148f24bf56d7f7
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3add78dfe4b28aa874148f24bf56d7f7::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3add78dfe4b28aa874148f24bf56d7f7::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit3add78dfe4b28aa874148f24bf56d7f7::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcc936aaf45f49e21fe04a4fb5d492109::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcc936aaf45f49e21fe04a4fb5d492109::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitcc936aaf45f49e21fe04a4fb5d492109::$classMap;
 
         }, null, ClassLoader::class);
     }
