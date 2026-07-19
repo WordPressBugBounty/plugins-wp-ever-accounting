@@ -32,7 +32,15 @@ $expense = EAC()->expenses->get( $id );
 <div class="eac-poststuff">
 
 	<div class="column-1">
-		<div class="eac-card"><?php eac_get_template( 'content-expense.php', array( 'expense' => $expense ) ); ?></div>
+		<div class="eac-card">
+			<?php
+			EAC()->template->render(
+				'content-expense',
+				array( 'expense' => $expense )
+			);
+			?>
+
+		</div>
 		<?php
 		/**
 		 * Fires action to inject custom content in the main column.

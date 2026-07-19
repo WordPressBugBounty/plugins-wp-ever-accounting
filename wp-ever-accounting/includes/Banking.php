@@ -8,16 +8,20 @@ use EverAccounting\Models\Payment;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class Banking
+ * Class Banking.
  *
+ * @since 1.0.0
  * @package EverAccounting
  */
-class Banking {
+class Banking extends B8\Component {
 
 	/**
-	 * Banking constructor.
+	 * Register hooks.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'eac_payment_inserted', array( __CLASS__, 'update_account_balance' ) );
 		add_action( 'eac_payment_deleted', array( __CLASS__, 'update_account_balance' ) );
 		add_action( 'eac_payment_updated', array( __CLASS__, 'update_account_balance' ) );

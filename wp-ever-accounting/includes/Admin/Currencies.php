@@ -2,6 +2,8 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -10,12 +12,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 1.0.0
  * @package EverAccounting\Admin
  */
-class Currencies {
+class Currencies extends Component {
 
 	/**
-	 * Currencies constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'eac_settings_field_exchange_rates', array( __CLASS__, 'exchange_rates_field' ) );
 	}
 

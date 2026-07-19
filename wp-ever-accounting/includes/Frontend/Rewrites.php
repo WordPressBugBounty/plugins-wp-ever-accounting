@@ -5,17 +5,20 @@ namespace EverAccounting\Frontend;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class Rewrites
+ * Class Rewrites.
  *
  * @since 1.0.0
  * @package EverAccounting
  */
-class Rewrites {
+class Rewrites extends \EverAccounting\B8\Component {
 
 	/**
-	 * Rewrites constructor.
+	 * Register hooks.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'query_vars', array( __CLASS__, 'add_query_vars' ), 0 );
 		add_action( 'init', array( __CLASS__, 'add_endpoint' ), 0 );
 		add_action( 'parse_request', array( __CLASS__, 'handle_request' ), PHP_INT_MAX );

@@ -8,6 +8,7 @@ use EverAccounting\Admin\Settings\Purchases;
 use EverAccounting\Admin\Settings\Sales;
 use EverAccounting\Admin\Settings\Taxes;
 use EverAccounting\Admin\Settings\Extensions;
+use EverAccounting\B8\Component;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -17,13 +18,14 @@ defined( 'ABSPATH' ) || exit;
  * @since   1.0.0
  * @package EverAccounting\Admin
  */
-class Settings {
+class Settings extends Component {
 	/**
-	 * Settings constructor.
+	 * Register hooks.
 	 *
-	 * @since 1.0.0
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_settings_page_tabs', array( __CLASS__, 'register_tabs' ), - 1 );
 		add_action( 'eac_settings_page_loaded', array( __CLASS__, 'save_settings' ) );
 	}

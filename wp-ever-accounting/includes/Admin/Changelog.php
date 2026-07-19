@@ -2,6 +2,8 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -10,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
  * @since 2.2.2
  * @package EverAccounting\Admin
  */
-class Changelog {
+class Changelog extends Component {
 
 	/**
 	 * Static array to hold the changelog entries.
@@ -23,9 +25,12 @@ class Changelog {
 	);
 
 	/**
-	 * Changelog constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'admin_init', array( $this, 'redirect_to_changelog' ) );
 		add_filter( 'eac_admin_menus', array( __CLASS__, 'add_changelog_menu' ) );
 		add_filter( 'eac_changelog_page_tabs', array( __CLASS__, 'register_tabs' ) );
@@ -49,7 +54,7 @@ class Changelog {
 
 		// Delete the option to prevent multiple redirects.
 		delete_option( 'eac_version_updated' );
-		$version = EAC()->get_db_version();
+		$version = EAC()->options->get_db_version();
 		if ( ! $version || ! isset( self::$changelog[ $version ] ) || ! is_callable( self::$changelog[ $version ] ) ) {
 			return;
 		}

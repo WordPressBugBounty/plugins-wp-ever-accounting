@@ -5,11 +5,12 @@ namespace EverAccounting;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class Extensions
+ * Class Extensions.
  *
+ * @since 1.0.0
  * @package EverAccounting
  */
-class Extensions {
+class Extensions extends B8\Component {
 
 	/**
 	 * Extensions.
@@ -20,11 +21,12 @@ class Extensions {
 	protected $extensions = array();
 
 	/**
-	 * Extensions constructor.
+	 * Register hooks.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'init', array( $this, 'register_extensions' ) );
 	}
 

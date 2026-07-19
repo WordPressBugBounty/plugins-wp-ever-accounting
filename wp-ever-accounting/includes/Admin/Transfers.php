@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Models\Transfer;
 
 defined( 'ABSPATH' ) || exit;
@@ -12,14 +13,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 2.0.0
  * @package EverAccounting
  */
-class Transfers {
+class Transfers extends Component {
 
 	/**
-	 * Transfers constructor.
+	 * Register hooks.
 	 *
-	 * @since 2.0.0
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_banking_page_tabs', array( __CLASS__, 'register_tabs' ) );
 		add_filter( 'admin_post_eac_edit_transfer', array( __CLASS__, 'handle_edit' ) );
 		add_action( 'eac_banking_page_transfers_loaded', array( __CLASS__, 'page_loaded' ) );

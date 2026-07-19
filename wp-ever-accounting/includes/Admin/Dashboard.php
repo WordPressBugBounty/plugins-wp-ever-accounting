@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Utilities\NumberUtil;
 use EverAccounting\Utilities\ReportsUtil;
 
@@ -13,14 +14,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 1.0.0
  * @package EverAccounting\Admin
  */
-class Dashboard {
+class Dashboard extends Component {
 
 	/**
-	 * Dashboard constructor.
+	 * Register hooks.
 	 *
-	 * @since 1.0.0
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'eac_dashboard_page_content', array( __CLASS__, 'page_content' ) );
 		add_action( 'eac_dashboard_overview_widgets', array( __CLASS__, 'overview_widget' ) );
 		add_filter( 'eac_dashboard_overview_stats', array( __CLASS__, 'overview_stats' ) );

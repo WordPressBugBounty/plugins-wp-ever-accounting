@@ -11,7 +11,17 @@ defined( 'ABSPATH' ) || exit;
  * @since 1.0.0
  * @package EverAccounting\Controllers
  */
-class Currencies {
+class Currencies extends \EverAccounting\B8\Component {
+
+	/**
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
+	 */
+	public function register(): void {
+		// No hooks needed.
+	}
 
 	/**
 	 * Get symbol of currency

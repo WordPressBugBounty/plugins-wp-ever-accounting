@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Models\Bill;
 
 defined( 'ABSPATH' ) || exit;
@@ -11,12 +12,15 @@ defined( 'ABSPATH' ) || exit;
  *
  * @package EverAccounting\Admin
  */
-class Scripts {
+class Scripts extends Component {
 
 	/**
-	 * Scripts constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}

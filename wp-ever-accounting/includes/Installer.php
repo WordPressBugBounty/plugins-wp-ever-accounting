@@ -12,7 +12,8 @@ defined( 'ABSPATH' ) || exit;
  * @since   1.0.0
  * @package EverAccounting
  */
-class Installer {
+class Installer extends B8\Component {
+
 	/**
 	 * Update callbacks.
 	 *
@@ -46,11 +47,12 @@ class Installer {
 	);
 
 	/**
-	 * Construct and initialize the plugin aware trait.
+	 * Register hooks.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'init', array( $this, 'check_update' ), 5 );
 		add_action( 'admin_notices', array( $this, 'update_notice' ) );
 		add_action( 'admin_init', array( $this, 'activation_redirect' ) );
@@ -67,18 +69,18 @@ class Installer {
 	 * @return void
 	 */
 	public function check_update() {
-		$db_version      = EAC()->get_db_version();
-		$current_version = EAC()->get_version();
+		$db_version      = $this->app->options->get_db_version();
+		$current_version = $this->app->version;
 		$requires_update = version_compare( $db_version, $current_version, '<' );
 		$can_install     = ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) && ! defined( 'IFRAME_REQUEST' );
-		if ( $can_install && $requires_update && ! EAC()->queue()->get_next( 'eac_run_update_callback' ) ) {
+		if ( $can_install && $requires_update && ! $this->app->queue->get_next( 'eac_run_update_callback' ) ) {
 			static::install();
 			$update_versions = array_keys( $this->updates );
 			usort( $update_versions, 'version_compare' );
 			if ( ! is_null( $db_version ) && version_compare( $db_version, end( $update_versions ), '<' ) ) {
 				$this->update();
 			} else {
-				EAC()->update_db_version( $current_version );
+				$this->app->options->update_db_version( $current_version, true );
 			}
 		}
 	}
@@ -90,13 +92,13 @@ class Installer {
 	 * @return void
 	 */
 	public function update() {
-		$db_version = EAC()->get_db_version();
+		$db_version = $this->app->options->get_db_version();
 		$loop       = 0;
 		foreach ( $this->updates as $version => $callbacks ) {
 			$callbacks = (array) $callbacks;
 			if ( version_compare( $db_version, $version, '<' ) ) {
 				foreach ( $callbacks as $callback ) {
-					EAC()->queue()->schedule_single(
+					$this->app->queue->schedule_single(
 						time() + $loop,
 						'eac_run_update_callback',
 						array(
@@ -110,13 +112,13 @@ class Installer {
 			++$loop;
 		}
 
-		if ( version_compare( EAC()->get_db_version(), EAC()->get_version(), '<' ) &&
-			! EAC()->queue()->get_next( 'eac_update_db_version' ) ) {
-			EAC()->queue()->schedule_single(
+		if ( version_compare( $this->app->options->get_db_version(), $this->app->version, '<' ) &&
+			! $this->app->queue->get_next( 'eac_update_db_version' ) ) {
+			$this->app->queue->schedule_single(
 				time() + $loop,
 				'eac_update_db_version',
 				array(
-					'version' => EAC()->get_version(),
+					'version' => $this->app->version,
 				)
 			);
 		}
@@ -129,7 +131,7 @@ class Installer {
 	 * @return void
 	 */
 	public function update_notice() {
-		if ( EAC()->queue()->get_next( 'eac_run_update_callback' ) ) {
+		if ( $this->app->queue->get_next( 'eac_run_update_callback' ) ) {
 			?>
 			<div class="notice notice-info is-dismissible">
 				<p><?php esc_html_e( 'Ever Accounting is updating the database in the background. Please wait.', 'wp-ever-accounting' ); ?></p>
@@ -168,7 +170,7 @@ class Installer {
 		if ( is_callable( $callback ) ) {
 			$result = (bool) call_user_func( $callback );
 			if ( $result ) {
-				EAC()->queue()->add(
+				$this->app->queue->add(
 					'eac_run_update_callback',
 					array(
 						'callback' => $callback,
@@ -188,7 +190,7 @@ class Installer {
 	 * @return void
 	 */
 	public function update_db_version( $version ) {
-		EAC()->update_db_version( $version );
+		$this->app->options->update_db_version( $version, true );
 		update_option( 'eac_version_updated', $version );
 	}
 
@@ -206,7 +208,9 @@ class Installer {
 		self::create_roles();
 		self::create_cron_jobs();
 		self::save_settings();
-		EAC()->add_db_version();
+
+		$plugin = Plugin::instance();
+		$plugin->options->update_db_version( $plugin->version, true );
 
 		// Set installation date.
 		add_option( 'eac_install_date', wp_date( 'U' ) );
@@ -757,6 +761,17 @@ KEY expense_id (expense_id)
 		if ( ! wp_next_scheduled( 'eac_hourly_event' ) ) {
 			wp_schedule_event( time(), 'hourly', 'eac_hourly_event' );
 		}
+	}
+
+	/**
+	 * Deactivate the plugin.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function deactivate(): void {
+		$this->app->queue->clear();
+		flush_rewrite_rules();
 	}
 
 	/**

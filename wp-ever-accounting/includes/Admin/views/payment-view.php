@@ -34,7 +34,12 @@ $payment = EAC()->payments->get( $id );
 
 	<div class="column-1">
 		<div class="eac-card">
-			<?php eac_get_template( 'content-payment.php', array( 'payment' => $payment ) ); ?>
+			<?php
+			EAC()->template->render(
+				'content-payment',
+				array( 'payment' => $payment )
+			);
+			?>
 		</div>
 		<?php
 		/**

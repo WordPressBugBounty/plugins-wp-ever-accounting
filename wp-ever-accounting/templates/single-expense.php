@@ -21,6 +21,9 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'eac_page_header' );
 
-eac_get_template( 'content-expense.php', array( 'expense' => $expense ) );
+EAC()->template->render(
+	'content-expense',
+	array( 'expense' => $expense )
+);
 
 do_action( 'eac_page_footer' );

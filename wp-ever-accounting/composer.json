@@ -19,7 +19,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "git@github.com:byteever/bytekit-plugin.git"
+      "url": "git@github.com:byteever/plugin.git"
     },
     {
       "type": "vcs",
@@ -28,14 +28,15 @@
   ],
   "require": {
     "php": ">=7.4",
+    "byteever/plugin": "dev-trunk",
     "byteever/bytekit-models": "^1.0",
-    "byteever/bytekit-plugin": "^1.0",
     "woocommerce/action-scheduler": "^3.7"
   },
   "autoload": {
     "psr-4": {
       "EverAccounting\\": ["includes/"]
-    }
+    },
+    "files": ["includes/functions.php"]
   },
   "autoload-dev": {
     "classmap": [
@@ -64,7 +65,7 @@
     }
   },
   "scripts": {
-    "post-install-cmd":"@strauss",
+    "post-install-cmd": "@strauss",
     "post-update-cmd": "@strauss",
     "makepot": "wp --allow-root i18n make-pot . --include=*.php,assets,includes,templates --slug=wp-ever-accounting",
     "phpcs": "@php ./vendor/bin/phpcs --standard=phpcs.xml -s -v",
@@ -82,19 +83,19 @@
     "strauss": [
       "test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L https://github.com/BrianHenryIE/strauss/releases/download/0.24.1/strauss.phar",
       "@php bin/strauss.phar",
-      "find ./vendor/vendor-prefixed -type f -name '*.php' -exec perl -i -pe \"s/'bytekit-textdomain'/'wp-ever-accounting'/g\" {} +"
+      "@composer dump-autoload --no-scripts"
     ]
   },
   "extra": {
     "strauss": {
-      "target_directory": "vendor/vendor-prefixed",
+      "target_directory": "vendor",
       "namespace_prefix": "EverAccounting\\",
       "classmap_prefix": "EverAccounting__",
       "include_modified_date": false,
       "include_author": false,
-      "delete_vendor_packages": true,
+      "delete_vendor_packages": false,
       "packages": [
-        "byteever/bytekit-plugin",
+        "byteever/plugin",
         "byteever/bytekit-models"
       ]
     }

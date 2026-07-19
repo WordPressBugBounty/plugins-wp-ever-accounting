@@ -1,10 +1,9 @@
 <?php
 /**
- * Core functions
+ * Core functions.
  *
- * @version  1.1.0
- * @category Functions
- * @package  EverAccounting\Functions
+ * @since   1.0.0
+ * @package EverAccounting
  */
 
 use EverAccounting\Utilities\I18nUtil;

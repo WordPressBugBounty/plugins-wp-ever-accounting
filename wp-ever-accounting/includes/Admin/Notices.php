@@ -2,6 +2,8 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -10,14 +12,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 2.1.9
  * @package EverAccounting\Admin\Notices
  */
-class Notices {
+class Notices extends Component {
 
 	/**
-	 * Notices constructor.
+	 * Register hooks.
 	 *
-	 * @since 1.0.0
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'admin_init', array( $this, 'admin_notices' ) );
 	}
 

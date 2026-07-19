@@ -1,10 +1,5 @@
 <?php
 
-// Functions and constants
-
-namespace {
-
-}
 
 
 namespace EverAccounting {
@@ -102,62 +97,193 @@ namespace EverAccounting {
     array (
     ),
   ),
-  'ByteKit\\Admin\\Flash' => 
+  'B8\\App' => 
+  array (
+    'type' => 'class',
+    'classname' => 'App',
+    'isabstract' => true,
+    'namespace' => 'B8',
+    'extends' => 'EverAccounting\\B8\\App',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\Component' => 
+  array (
+    'type' => 'class',
+    'classname' => 'Component',
+    'isabstract' => true,
+    'namespace' => 'B8',
+    'extends' => 'EverAccounting\\B8\\Component',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\Container\\Container' => 
+  array (
+    'type' => 'class',
+    'classname' => 'Container',
+    'isabstract' => false,
+    'namespace' => 'B8\\Container',
+    'extends' => 'EverAccounting\\B8\\Container\\Container',
+    'implements' => 
+    array (
+      0 => 'ArrayAccess',
+    ),
+  ),
+  'B8\\Container\\ContainerException' => 
+  array (
+    'type' => 'class',
+    'classname' => 'ContainerException',
+    'isabstract' => false,
+    'namespace' => 'B8\\Container',
+    'extends' => 'EverAccounting\\B8\\Container\\ContainerException',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\Services\\Cache' => 
+  array (
+    'type' => 'class',
+    'classname' => 'Cache',
+    'isabstract' => false,
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Cache',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\Services\\Filesystem' => 
+  array (
+    'type' => 'class',
+    'classname' => 'Filesystem',
+    'isabstract' => false,
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Filesystem',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\Services\\Flash' => 
   array (
     'type' => 'class',
     'classname' => 'Flash',
     'isabstract' => false,
-    'namespace' => 'ByteKit\\Admin',
-    'extends' => 'EverAccounting\\ByteKit\\Admin\\Flash',
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Flash',
     'implements' => 
     array (
     ),
   ),
-  'ByteKit\\Admin\\Notices' => 
+  'B8\\Services\\Logger' => 
+  array (
+    'type' => 'class',
+    'classname' => 'Logger',
+    'isabstract' => false,
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Logger',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\Services\\Notices' => 
   array (
     'type' => 'class',
     'classname' => 'Notices',
     'isabstract' => false,
-    'namespace' => 'ByteKit\\Admin',
-    'extends' => 'EverAccounting\\ByteKit\\Admin\\Notices',
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Notices',
     'implements' => 
     array (
     ),
   ),
-  'ByteKit\\Plugin' => 
+  'B8\\Services\\Options' => 
   array (
     'type' => 'class',
-    'classname' => 'Plugin',
-    'isabstract' => true,
-    'namespace' => 'ByteKit',
-    'extends' => 'EverAccounting\\ByteKit\\Plugin',
+    'classname' => 'Options',
+    'isabstract' => false,
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Options',
     'implements' => 
     array (
-      0 => 'ByteKit\\Interfaces\\Pluginable',
+      0 => 'ArrayAccess',
     ),
   ),
-  'ByteKit\\Scripts' => 
+  'B8\\Services\\Queue' => 
+  array (
+    'type' => 'class',
+    'classname' => 'Queue',
+    'isabstract' => false,
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Queue',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\Services\\Request' => 
+  array (
+    'type' => 'class',
+    'classname' => 'Request',
+    'isabstract' => false,
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Request',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\Services\\Router' => 
+  array (
+    'type' => 'class',
+    'classname' => 'Router',
+    'isabstract' => false,
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Router',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\Services\\Scripts' => 
   array (
     'type' => 'class',
     'classname' => 'Scripts',
     'isabstract' => false,
-    'namespace' => 'ByteKit',
-    'extends' => 'EverAccounting\\ByteKit\\Scripts',
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Scripts',
     'implements' => 
     array (
-      0 => 'ByteKit\\Interfaces\\Scriptable',
     ),
   ),
-  'ByteKit\\Services' => 
+  'B8\\Services\\Settings' => 
   array (
     'type' => 'class',
-    'classname' => 'Services',
+    'classname' => 'Settings',
     'isabstract' => false,
-    'namespace' => 'ByteKit',
-    'extends' => 'EverAccounting\\ByteKit\\Services',
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Settings',
     'implements' => 
     array (
-      0 => 'ArrayAccess',
+    ),
+  ),
+  'B8\\Services\\Template' => 
+  array (
+    'type' => 'class',
+    'classname' => 'Template',
+    'isabstract' => false,
+    'namespace' => 'B8\\Services',
+    'extends' => 'EverAccounting\\B8\\Services\\Template',
+    'implements' => 
+    array (
+    ),
+  ),
+  'B8\\SettingsUI' => 
+  array (
+    'type' => 'class',
+    'classname' => 'SettingsUI',
+    'isabstract' => false,
+    'namespace' => 'B8',
+    'extends' => 'EverAccounting\\B8\\SettingsUI',
+    'implements' => 
+    array (
     ),
   ),
   'ByteKit\\Models\\Traits\\HasAttributes' => 
@@ -190,34 +316,24 @@ namespace EverAccounting {
       0 => 'EverAccounting\\ByteKit\\Models\\Traits\\HasRelations',
     ),
   ),
-  'ByteKit\\Traits\\HasPlugin' => 
+  'B8\\Traits\\HookableTrait' => 
   array (
     'type' => 'trait',
-    'traitname' => 'HasPlugin',
-    'namespace' => 'ByteKit\\Traits',
+    'traitname' => 'HookableTrait',
+    'namespace' => 'B8\\Traits',
     'use' => 
     array (
-      0 => 'EverAccounting\\ByteKit\\Traits\\HasPlugin',
+      0 => 'EverAccounting\\B8\\Traits\\HookableTrait',
     ),
   ),
-  'ByteKit\\Interfaces\\Pluginable' => 
+  'B8\\Traits\\PathableTrait' => 
   array (
-    'type' => 'interface',
-    'interfacename' => 'Pluginable',
-    'namespace' => 'ByteKit\\Interfaces',
-    'extends' => 
+    'type' => 'trait',
+    'traitname' => 'PathableTrait',
+    'namespace' => 'B8\\Traits',
+    'use' => 
     array (
-      0 => 'EverAccounting\\ByteKit\\Interfaces\\Pluginable',
-    ),
-  ),
-  'ByteKit\\Interfaces\\Scriptable' => 
-  array (
-    'type' => 'interface',
-    'interfacename' => 'Scriptable',
-    'namespace' => 'ByteKit\\Interfaces',
-    'extends' => 
-    array (
-      0 => 'EverAccounting\\ByteKit\\Interfaces\\Scriptable',
+      0 => 'EverAccounting\\B8\\Traits\\PathableTrait',
     ),
   ),
 );

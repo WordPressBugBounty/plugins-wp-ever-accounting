@@ -8,14 +8,17 @@ defined( 'ABSPATH' ) || exit;
  * Class Transactions.
  *
  * @since 1.0.0
- * * @author  Sultan Nasir Uddin <manikdrmc@gmail.com>
- * * @package EverAccounting
+ * @package EverAccounting
  */
-class Transactions {
+class Transactions extends B8\Component {
+
 	/**
-	 * Transactions constructor.
+	 * Register hooks.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'ever_accounting_payment_saved', array( $this, 'reset_report_cache' ) );
 		add_action( 'ever_accounting_payment_deleted', array( $this, 'reset_report_cache' ) );
 		add_action( 'ever_accounting_expense_saved', array( $this, 'reset_report_cache' ) );

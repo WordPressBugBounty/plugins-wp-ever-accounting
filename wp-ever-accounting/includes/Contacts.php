@@ -4,15 +4,23 @@ namespace EverAccounting;
 
 use EverAccounting\Models\Payment;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
- * Class Contacts
+ * Class Contacts.
  *
+ * @since 1.0.0
  * @package EverAccounting
  */
-class Contacts {
+class Contacts extends B8\Component {
 
 	/**
-	 * Contacts constructor.
+	 * Register hooks.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {}
+	public function register(): void {
+		// No hooks needed.
+	}
 }

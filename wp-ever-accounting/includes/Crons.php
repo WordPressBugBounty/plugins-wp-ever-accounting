@@ -10,12 +10,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 1.0.0
  * @package EverAccounting
  */
-class Crons {
+class Crons extends B8\Component {
 
 	/**
-	 * Crons constructor.
+	 * Register hooks.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'eac_hourly_event', array( $this, 'cleanup_scheduled_events' ) );
 	}
 
@@ -25,6 +28,6 @@ class Crons {
 	 * @since 1.0.0
 	 */
 	public function cleanup_scheduled_events() {
-		EAC()->queue()->cleanup();
+		$this->app->queue->cleanup();
 	}
 }

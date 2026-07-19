@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Models\Tax;
 
 defined( 'ABSPATH' ) || exit;
@@ -12,12 +13,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 3.0.0
  * @package EverAccounting\Admin
  */
-class Taxes {
+class Taxes extends Component {
 
 	/**
-	 * TaxRates constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'admin_post_eac_edit_tax', array( __CLASS__, 'handle_edit' ) );
 		add_action( 'eac_settings_taxes_tab_rates_content', array( __CLASS__, 'render_content' ) );
 	}

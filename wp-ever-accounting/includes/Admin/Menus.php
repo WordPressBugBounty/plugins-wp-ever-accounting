@@ -2,6 +2,8 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -10,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
  * @since 2.0.0
  * @package EverAccounting\Admin
  */
-class Menus {
+class Menus extends Component {
 
 	/**
 	 * Main menu slug.
@@ -53,11 +55,12 @@ class Menus {
 	public $current_action = '';
 
 	/**
-	 * Menus constructor.
+	 * Register hooks.
 	 *
-	 * @since 2.0.0
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 	}
 

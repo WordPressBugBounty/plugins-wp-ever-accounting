@@ -39,7 +39,14 @@ $mark_received_url = wp_nonce_url(
 <div class="eac-poststuff">
 
 	<div class="column-1">
-		<div class="eac-card"><?php eac_get_template( 'content-bill.php', array( 'bill' => $bill ) ); ?></div>
+		<div class="eac-card">
+			<?php
+			EAC()->template->render(
+				'content-bill',
+				array( 'bill' => $bill )
+			);
+			?>
+		</div>
 		<?php
 		/**
 		 * Fires action to inject custom content in the main column.

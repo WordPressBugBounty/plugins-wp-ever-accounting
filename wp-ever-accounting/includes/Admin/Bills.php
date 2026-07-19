@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Models\Bill;
 use EverAccounting\Models\DocumentItem;
 use EverAccounting\Models\DocumentTax;
@@ -13,12 +14,15 @@ defined( 'ABSPATH' ) || exit;
  *
  * @package EverAccounting\Admin\Sales
  */
-class Bills {
+class Bills extends Component {
 
 	/**
-	 * Bills constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_purchases_page_tabs', array( __CLASS__, 'register_tabs' ) );
 		add_action( 'admin_post_eac_edit_bill', array( __CLASS__, 'handle_edit' ) );
 		add_action( 'admin_post_eac_bill_mark_received', array( __CLASS__, 'handle_mark_received' ) );

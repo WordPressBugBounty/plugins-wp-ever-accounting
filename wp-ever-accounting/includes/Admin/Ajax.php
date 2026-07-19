@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Models\Bill;
 use EverAccounting\Models\Invoice;
 use EverAccounting\Utilities\FileSystemUtil;
@@ -13,12 +14,15 @@ defined( 'ABSPATH' ) || exit;
  *
  * @package EverAccounting\Admin
  */
-class Ajax {
+class Ajax extends Component {
 
 	/**
-	 * Ajax constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'wp_ajax_eac_json_search', array( $this, 'handle_json_search' ) );
 		add_action( 'wp_ajax_eac_add_note', array( $this, 'handle_add_note' ) );
 		add_action( 'wp_ajax_eac_delete_note', array( $this, 'handle_delete_note' ) );

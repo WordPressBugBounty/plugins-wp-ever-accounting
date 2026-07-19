@@ -6,5 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'EverAccounting\\ByteKit\\Models\\' => array($vendorDir . '/byteever/bytekit-models/src'),
+    'EverAccounting\\B8\\' => array($vendorDir . '/byteever/plugin/src'),
     'EverAccounting\\' => array($baseDir . '/includes'),
 );

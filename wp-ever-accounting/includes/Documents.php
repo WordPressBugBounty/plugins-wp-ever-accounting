@@ -12,16 +12,17 @@ defined( 'ABSPATH' ) || exit;
  * Class Documents.
  *
  * @since   1.0.0
- * @package EverAccounting\Controllers
+ * @package EverAccounting
  */
-class Documents {
+class Documents extends B8\Component {
 
 	/**
-	 * Documents constructor.
+	 * Register hooks.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		// Invoices.
 		add_action( 'eac_payment_inserted', array( __CLASS__, 'invoice_payment_updated' ) );
 		add_action( 'eac_payment_deleted', array( __CLASS__, 'invoice_payment_updated' ) );

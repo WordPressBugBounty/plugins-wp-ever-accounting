@@ -3,9 +3,9 @@
  * Plugin Name:       Ever Accounting
  * Plugin URI:        https://wpeveraccounting.com/
  * Description:       Manage your business finances right from your WordPress dashboard.
- * Version:           2.2.8
+ * Version:           2.3.0
  * Requires at least: 5.0
- * Tested up to:      6.9
+ * Tested up to:      7.0
  * Requires PHP:      7.4
  * Author:            EverAccounting
  * Author URI:        https://wpeveraccounting.com/
@@ -17,7 +17,10 @@
  * @package EverAccounting
  */
 
-defined( 'ABSPATH' ) || exit();
+use EverAccounting\Installer;
+use EverAccounting\Plugin;
+
+defined( 'ABSPATH' ) || exit;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -28,15 +31,29 @@ if ( get_option( 'eaccounting_version' ) ) {
 	delete_option( 'eaccounting_version' );
 }
 
+$data = array(
+	'version'      => '2.3.0',
+	'name'         => 'Ever Accounting',
+	'prefix'       => 'eac',
+	'hook_prefix'  => 'eac',
+	'text_domain'  => 'wp-ever-accounting',
+	'settings_url' => admin_url( 'admin.php?page=eac-settings' ),
+	'review_url'   => 'https://wordpress.org/support/plugin/wp-ever-accounting/reviews/#new-post',
+);
+
+Plugin::create( __FILE__, $data );
+
 /**
  * Main instance of EverAccounting.
  *
  * @since  1.0.0
- * @return EverAccounting\Plugin
+ * @return Plugin
  */
 function EAC() { // phpcs:ignore
-	return EverAccounting\Plugin::create( __FILE__ );
+	return Plugin::instance();
 }
 
-// Instantiate the plugin.
-EAC();
+EAC()->on_activation( array( Installer::class, 'install' ) );
+EAC()->on_deactivation( array( Installer::class, 'deactivate' ) );
+
+EAC()->bootstrap();

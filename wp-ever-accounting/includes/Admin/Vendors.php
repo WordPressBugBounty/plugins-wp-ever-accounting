@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Models\Vendor;
 use EverAccounting\Utilities\ReportsUtil;
 
@@ -13,11 +14,14 @@ defined( 'ABSPATH' ) || exit;
  * @since 3.0.0
  * @package EverAccounting\Admin\Purchases
  */
-class Vendors {
+class Vendors extends Component {
 	/**
-	 * Vendors constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_purchases_page_tabs', array( __CLASS__, 'register_tabs' ) );
 		add_action( 'admin_post_eac_edit_vendor', array( __CLASS__, 'handle_edit' ) );
 		add_action( 'eac_purchases_page_vendors_loaded', array( __CLASS__, 'page_loaded' ) );

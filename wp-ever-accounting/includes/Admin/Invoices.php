@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Models\Invoice;
 
 defined( 'ABSPATH' ) || exit;
@@ -11,12 +12,15 @@ defined( 'ABSPATH' ) || exit;
  *
  * @package EverAccounting\Admin\Sales
  */
-class Invoices {
+class Invoices extends Component {
 
 	/**
-	 * Invoices constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_sales_page_tabs', array( __CLASS__, 'register_tabs' ) );
 		add_action( 'admin_post_eac_edit_invoice', array( __CLASS__, 'handle_edit' ) );
 		add_action( 'admin_post_eac_invoice_mark_sent', array( __CLASS__, 'handle_mark_sent' ) );

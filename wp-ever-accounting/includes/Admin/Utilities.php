@@ -2,6 +2,8 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -10,7 +12,16 @@ defined( 'ABSPATH' ) || exit;
  * @since 1.0.0
  * @package EverAccounting\Admin
  */
-class Utilities {
+class Utilities extends Component {
+	/**
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
+	 */
+	public function register(): void {
+	}
+
 	/**
 	 * Get admin menus.
 	 *

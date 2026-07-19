@@ -2,6 +2,8 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -10,14 +12,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 1.0.0
  * @package EverAccounting\Admin
  */
-class Admin {
+class Admin extends Component {
 
 	/**
-	 * Admin constructor.
+	 * Register hooks.
 	 *
-	 * @since 1.0.0
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'admin_init', array( $this, 'buffer_start' ), 1 );
 		add_filter( 'admin_body_class', array( $this, 'body_class' ) );
 		add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ), PHP_INT_MAX );
@@ -72,7 +75,7 @@ class Admin {
 			$text = sprintf(
 			/* translators: %s: Plugin name */
 				__( 'Thank you for using %s!', 'wp-ever-accounting' ),
-				'<strong>' . esc_html( EAC()->get_name() ) . '</strong>',
+				'<strong>' . esc_html( EAC()->get( 'name' ) ) . '</strong>',
 			);
 			if ( EAC()->review_url ) {
 				$text .= sprintf(
@@ -97,7 +100,7 @@ class Admin {
 	public function update_footer( $footer_text ) {
 		if ( in_array( get_current_screen()->id, Utilities::get_screen_ids(), true ) ) {
 			/* translators: 1: Plugin version */
-			$footer_text = sprintf( esc_html__( 'Version %s', 'wp-ever-accounting' ), EAC()->get_version() );
+			$footer_text = sprintf( esc_html__( 'Version %s', 'wp-ever-accounting' ), EAC()->version );
 		}
 
 		return $footer_text;

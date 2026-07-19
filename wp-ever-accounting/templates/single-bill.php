@@ -23,6 +23,9 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'eac_page_header' );
 
-eac_get_template( 'content-bill.php', array( 'bill' => $bill ) );
+EAC()->template->render(
+	'content-bill',
+	array( 'bill' => $bill )
+);
 
 do_action( 'eac_page_footer' );

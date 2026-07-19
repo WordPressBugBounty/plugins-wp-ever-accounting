@@ -16,7 +16,17 @@ defined( 'ABSPATH' ) || exit;
  * @package EverAccounting
  * @subpackage Controllers
  */
-class Transfers {
+class Transfers extends \EverAccounting\B8\Component {
+
+	/**
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
+	 */
+	public function register(): void {
+		// No hooks needed.
+	}
 
 	/**
 	 * Get an item from the database.

@@ -2,6 +2,8 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -9,14 +11,15 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since 1.0.0
  */
-class Importers {
+class Importers extends Component {
 
 	/**
-	 * Importer constructor.
+	 * Register hooks.
 	 *
-	 * @since 1.0.0
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_tools_page_tabs', array( __CLASS__, 'register_tabs' ), - 1 );
 		add_action( 'eac_tools_page_import_content', array( __CLASS__, 'customers_import' ) );
 		add_action( 'eac_tools_page_import_content', array( __CLASS__, 'vendors_import' ) );
@@ -67,7 +70,7 @@ class Importers {
 						printf(
 							/* translators: %s: import type */
 							esc_html__( 'Import customers from CSV file. Download a %1$s sample file %2$s to learn how to format the CSV file.', 'wp-ever-accounting' ),
-							'<a href="' . esc_url( EAC()->get_dir_url( 'samples/import/customers.csv' ) ) . '" download>',
+							'<a href="' . esc_url( EAC()->plugin_url( 'samples/import/customers.csv' ) ) . '" download>',
 							'</a>'
 						);
 						?>
@@ -103,7 +106,7 @@ class Importers {
 						printf(
 						/* translators: %s: import type */
 							esc_html__( 'Import categories from CSV file. Download a %1$s sample file %2$s to learn how to format the CSV file.', 'wp-ever-accounting' ),
-							'<a href="' . esc_url( EAC()->get_dir_url( 'samples/import/categories.csv' ) ) . '" download>',
+							'<a href="' . esc_url( EAC()->plugin_url( 'samples/import/categories.csv' ) ) . '" download>',
 							'</a>'
 						);
 						?>
@@ -139,7 +142,7 @@ class Importers {
 						printf(
 						/* translators: %s: import type */
 							esc_html__( 'Import vendors from CSV file. Download a %1$s sample file %2$s to learn how to format the CSV file.', 'wp-ever-accounting' ),
-							'<a href="' . esc_url( EAC()->get_dir_url( 'samples/import/vendors.csv' ) ) . '" download>',
+							'<a href="' . esc_url( EAC()->plugin_url( 'samples/import/vendors.csv' ) ) . '" download>',
 							'</a>'
 						);
 						?>
@@ -175,7 +178,7 @@ class Importers {
 						printf(
 						/* translators: %s: import type */
 							esc_html__( 'Import taxes from CSV file. Download a %1$s sample file %2$s to learn how to format the CSV file.', 'wp-ever-accounting' ),
-							'<a href="' . esc_url( EAC()->get_dir_url( 'samples/import/taxes.csv' ) ) . '" download>',
+							'<a href="' . esc_url( EAC()->plugin_url( 'samples/import/taxes.csv' ) ) . '" download>',
 							'</a>'
 						);
 						?>
@@ -211,7 +214,7 @@ class Importers {
 						printf(
 						/* translators: %s: import type */
 							esc_html__( 'Import items from CSV file. Download a %1$s sample file %2$s to learn how to format the CSV file.', 'wp-ever-accounting' ),
-							'<a href="' . esc_url( EAC()->get_dir_url( 'samples/import/items.csv' ) ) . '" download>',
+							'<a href="' . esc_url( EAC()->plugin_url( 'samples/import/items.csv' ) ) . '" download>',
 							'</a>'
 						);
 						?>
@@ -247,7 +250,7 @@ class Importers {
 						printf(
 						/* translators: %s: import type */
 							esc_html__( 'Import accounts from CSV file. Download a %1$s sample file %2$s to learn how to format the CSV file.', 'wp-ever-accounting' ),
-							'<a href="' . esc_url( EAC()->get_dir_url( 'samples/import/accounts.csv' ) ) . '" download>',
+							'<a href="' . esc_url( EAC()->plugin_url( 'samples/import/accounts.csv' ) ) . '" download>',
 							'</a>'
 						);
 						?>
@@ -283,7 +286,7 @@ class Importers {
 						printf(
 						/* translators: %s: import type */
 							esc_html__( 'Import transfers from CSV file. Download a %1$s sample file %2$s to learn how to format the CSV file.', 'wp-ever-accounting' ),
-							'<a href="' . esc_url( EAC()->get_dir_url( 'samples/import/transfers.csv' ) ) . '" download>',
+							'<a href="' . esc_url( EAC()->plugin_url( 'samples/import/transfers.csv' ) ) . '" download>',
 							'</a>'
 						);
 						?>
@@ -319,7 +322,7 @@ class Importers {
 						printf(
 						/* translators: %s: import type */
 							esc_html__( 'Import expenses from CSV file. Download a %1$s sample file %2$s to learn how to format the CSV file.', 'wp-ever-accounting' ),
-							'<a href="' . esc_url( EAC()->get_dir_url( 'samples/import/expenses.csv' ) ) . '" download>',
+							'<a href="' . esc_url( EAC()->plugin_url( 'samples/import/expenses.csv' ) ) . '" download>',
 							'</a>'
 						);
 						?>
@@ -355,7 +358,7 @@ class Importers {
 						printf(
 						/* translators: %s: import type */
 							esc_html__( 'Import payments from CSV file. Download a %1$s sample file %2$s to learn how to format the CSV file.', 'wp-ever-accounting' ),
-							'<a href="' . esc_url( EAC()->get_dir_url( 'samples/import/payments.csv' ) ) . '" download>',
+							'<a href="' . esc_url( EAC()->plugin_url( 'samples/import/payments.csv' ) ) . '" download>',
 							'</a>'
 						);
 						?>

@@ -5,17 +5,20 @@ namespace EverAccounting\Frontend;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class Frontend
+ * Class Frontend.
  *
  * @since 1.0.0
  * @package EverAccounting
  */
-class Frontend {
+class Frontend extends \EverAccounting\B8\Component {
 
 	/**
-	 * Frontend constructor.
+	 * Register hooks.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'eac_page_header', array( __CLASS__, 'render_page_header' ) );
 		add_action( 'eac_page_footer', array( __CLASS__, 'render_page_footer' ) );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
@@ -33,7 +36,9 @@ class Frontend {
 	 */
 	public static function render_page_header() {
 		wp_enqueue_style( 'eac-frontend' );
-		eac_get_template( 'site-header.php' );
+		EAC()->template->render(
+			'site-header'
+		);
 	}
 
 	/**
@@ -43,7 +48,9 @@ class Frontend {
 	 * @return void
 	 */
 	public static function render_page_footer() {
-		eac_get_template( 'site-footer.php' );
+		EAC()->template->render(
+			'site-footer',
+		);
 	}
 
 	/**
@@ -71,7 +78,10 @@ class Frontend {
 			wp_die( esc_html__( 'You attempted to view an invoice that does not exist.', 'wp-ever-accounting' ) );
 		}
 
-		eac_get_template( 'single-invoice.php', array( 'invoice' => $invoice ) );
+		EAC()->template->render(
+			'single-invoice',
+			array( 'invoice' => $invoice )
+		);
 	}
 
 	/**
@@ -89,7 +99,10 @@ class Frontend {
 			wp_die( esc_html__( 'You attempted to view a bill that does not exist.', 'wp-ever-accounting' ) );
 		}
 
-		eac_get_template( 'single-bill.php', array( 'bill' => $bill ) );
+		EAC()->template->render(
+			'single-bill',
+			array( 'bill' => $bill )
+		);
 	}
 
 	/**
@@ -107,7 +120,10 @@ class Frontend {
 			wp_die( esc_html__( 'You attempted to view a payment that does not exist.', 'wp-ever-accounting' ) );
 		}
 
-		eac_get_template( 'single-payment.php', array( 'payment' => $payment ) );
+		EAC()->template->render(
+			'single-payment',
+			array( 'payment' => $payment )
+		);
 	}
 
 	/**
@@ -125,6 +141,9 @@ class Frontend {
 			wp_die( esc_html__( 'You attempted to view an expense that does not exist.', 'wp-ever-accounting' ) );
 		}
 
-		eac_get_template( 'single-expense.php', array( 'expense' => $expense ) );
+		EAC()->template->render(
+			'single-expense',
+			array( 'expense' => $expense )
+		);
 	}
 }

@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Models\Account;
 use EverAccounting\Utilities\ReportsUtil;
 
@@ -13,14 +14,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 3.0.0
  * @package EverAccounting\Admin\Banking
  */
-class Accounts {
+class Accounts extends Component {
 
 	/**
-	 * Accounts constructor.
+	 * Register hooks.
 	 *
-	 * @since 2.0.0
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_banking_page_tabs', array( __CLASS__, 'register_tabs' ) );
 		add_action( 'admin_post_eac_edit_account', array( __CLASS__, 'handle_edit' ) );
 		add_action( 'eac_banking_page_accounts_loaded', array( __CLASS__, 'page_loaded' ) );

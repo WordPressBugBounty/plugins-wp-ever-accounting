@@ -2,6 +2,8 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -10,12 +12,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 1.0.0
  * @package EverAccounting\Admin
  */
-class Reports {
+class Reports extends Component {
 
 	/**
-	 * Reports constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_reports_page_tabs', array( __CLASS__, 'register_tabs' ) );
 		add_action( 'eac_reports_page_sales_content', array( __CLASS__, 'sales_report' ) );
 		add_action( 'eac_reports_page_expenses_content', array( __CLASS__, 'expenses_report' ) );

@@ -8,14 +8,17 @@ defined( 'ABSPATH' ) || exit;
  * Class Transfers.
  *
  * @since 1.0.0
- * @author  Sultan Nasir Uddin <manikdrmc@gmail.com>
  * @package EverAccounting
  */
-class Transfers {
+class Transfers extends B8\Component {
+
 	/**
-	 * Transfers constructor.
+	 * Register hooks.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {}
+	public function register(): void {
+		// No hooks needed.
+	}
 }

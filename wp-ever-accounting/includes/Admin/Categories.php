@@ -2,6 +2,7 @@
 
 namespace EverAccounting\Admin;
 
+use EverAccounting\B8\Component;
 use EverAccounting\Models\Category;
 
 defined( 'ABSPATH' ) || exit;
@@ -13,12 +14,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 3.0.0
  * @package EverAccounting\Admin
  */
-class Categories {
+class Categories extends Component {
 
 	/**
-	 * Categories constructor.
+	 * Register hooks.
+	 *
+	 * @since 2.2.8
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_settings_page_tabs', array( __CLASS__, 'register_tabs' ) );
 		add_action( 'admin_post_eac_edit_category', array( __CLASS__, 'handle_edit' ) );
 		add_action( 'eac_settings_page_categories_content', array( __CLASS__, 'render_content' ) );

@@ -89,29 +89,29 @@ class Setup {
 
 		// TODO: Need to include the scripts and styles.
 		// Enqueue styles.
-		EAC()->scripts->enqueue_style( 'eac-admin', EAC()->get_assets_url( 'css/admin.css' ) );
-		EAC()->scripts->enqueue_style( 'eac-setup', EAC()->get_assets_url( 'css/setup.css' ), array( 'install', 'common' ) );
+		EAC()->scripts->enqueue_style( 'eac-admin', EAC()->assets_url( 'css/admin.css' ) );
+		EAC()->scripts->enqueue_style( 'eac-setup', EAC()->assets_url( 'css/setup.css' ), array( 'install', 'common' ) );
 
 		// Enqueue scripts.
 		// 3rd party scripts.
-		EAC()->scripts->register_script( 'eac-chartjs', EAC()->get_assets_url( 'js/chartjs.js' ), array( 'jquery' ), false );
-		EAC()->scripts->register_script( 'eac-inputmask', EAC()->get_assets_url( 'js/inputmask.js' ), array( 'jquery' ), false );
-		EAC()->scripts->register_script( 'eac-select2', EAC()->get_assets_url( 'js/select2.js' ), array( 'jquery' ), false );
-		EAC()->scripts->register_script( 'eac-tiptip', EAC()->get_assets_url( 'js/tiptip.js' ), array( 'jquery' ), false );
-		EAC()->scripts->register_script( 'eac-printthis', EAC()->get_assets_url( 'js/printthis.js' ), array( 'jquery' ), false );
+		EAC()->scripts->register_script( 'eac-chartjs', EAC()->assets_url( 'js/chartjs.js' ), array( 'jquery' ), false );
+		EAC()->scripts->register_script( 'eac-inputmask', EAC()->assets_url( 'js/inputmask.js' ), array( 'jquery' ), false );
+		EAC()->scripts->register_script( 'eac-select2', EAC()->assets_url( 'js/select2.js' ), array( 'jquery' ), false );
+		EAC()->scripts->register_script( 'eac-tiptip', EAC()->assets_url( 'js/tiptip.js' ), array( 'jquery' ), false );
+		EAC()->scripts->register_script( 'eac-printthis', EAC()->assets_url( 'js/printthis.js' ), array( 'jquery' ), false );
 
 		// Packages.
-		EAC()->scripts->register_script( 'eac-money', EAC()->get_assets_url( 'client/money.js' ), array( 'jquery' ), false );
+		EAC()->scripts->register_script( 'eac-money', EAC()->assets_url( 'client/money.js' ), array( 'jquery' ), false );
 
 		// Plugins.
-		EAC()->scripts->register_script( 'eac-modal', EAC()->get_assets_url( 'js/modal.js' ), array( 'jquery' ), false );
-		EAC()->scripts->register_script( 'eac-form', EAC()->get_assets_url( 'js/form.js' ), array( 'jquery' ), false );
-		EAC()->scripts->register_script( 'eac-api', EAC()->get_assets_url( 'js/api.js' ), array( 'wp-backbone' ), false );
+		EAC()->scripts->register_script( 'eac-modal', EAC()->assets_url( 'js/modal.js' ), array( 'jquery' ), false );
+		EAC()->scripts->register_script( 'eac-form', EAC()->assets_url( 'js/form.js' ), array( 'jquery' ), false );
+		EAC()->scripts->register_script( 'eac-api', EAC()->assets_url( 'js/api.js' ), array( 'wp-backbone' ), false );
 
 		// Plugin scripts.
-		EAC()->scripts->register_script( 'eac-admin', EAC()->get_assets_url( 'js/admin.js' ), array( 'jquery', 'eac-inputmask', 'eac-select2', 'eac-printthis', 'eac-tiptip', 'jquery-ui-datepicker', 'jquery-ui-tooltip', 'eac-money', 'wp-ajax-response' ), false );
+		EAC()->scripts->register_script( 'eac-admin', EAC()->assets_url( 'js/admin.js' ), array( 'jquery', 'eac-inputmask', 'eac-select2', 'eac-printthis', 'eac-tiptip', 'jquery-ui-datepicker', 'jquery-ui-tooltip', 'eac-money', 'wp-ajax-response' ), false );
 
-		EAC()->scripts->enqueue_script( 'eac-setup', EAC()->get_assets_url( 'js/setup.js' ), array( 'jquery', 'eac-admin' ), false );
+		EAC()->scripts->enqueue_script( 'eac-setup', EAC()->assets_url( 'js/setup.js' ), array( 'jquery', 'eac-admin' ), false );
 
 		if ( ! empty( $save_step ) && isset( $this->steps[ $this->step ]['handler'] ) ) {
 			call_user_func( $this->steps[ $this->step ]['handler'], $this );

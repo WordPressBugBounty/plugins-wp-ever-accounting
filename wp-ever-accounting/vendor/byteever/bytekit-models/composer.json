@@ -1,0 +1,57 @@
+{
+  "name": "byteever/bytekit-models",
+  "description": "A package to manage models in WordPress.",
+  "type": "library",
+  "license": "GPL-3.0-or-later",
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Sultan Nasir Uddin",
+      "email": "manikdrmc@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "byteever/byteever-sniffs": "dev-master",
+    "lucatume/wp-browser": "<3.5",
+    "codeception/module-asserts": "^1.0",
+    "codeception/module-phpbrowser": "^1.0",
+    "codeception/module-webdriver": "^1.0",
+    "codeception/module-db": "^1.0",
+    "codeception/module-filesystem": "^1.0",
+    "codeception/module-cli": "^1.0",
+    "codeception/util-universalframework": "^1.0",
+    "codeception/module-rest": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ByteKit\\Models\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {}
+  },
+  "scripts": {
+    "phpcs": "@php ./vendor/bin/phpcs --standard=phpcs.xml -s -v",
+    "phpcbf": "@php ./vendor/bin/phpcbf --standard=phpcs.xml -v",
+    "test:setup": "bash bin/install-test-env.sh",
+    "test:build": "vendor/bin/codecept build",
+    "test:wpunit": "vendor/bin/codecept run wpunit --",
+    "test:functional": "vendor/bin/codecept run functional --",
+    "test:acceptance": "vendor/bin/codecept run acceptance --",
+    "test:gen:wpunit": "vendor/bin/codecept generate:wpunit wpunit",
+    "test:gen:functional": "vendor/bin/codecept generate:wpunit functional",
+    "test:gen:acceptance": "vendor/bin/codecept generate:acceptance acceptance",
+    "test": "vendor/bin/codecept run wpunit"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "process-timeout": 0,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

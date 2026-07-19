@@ -54,11 +54,11 @@ function eac_get_template_part( $slug, $name = null ) {
  */
 function eac_locate_template( $template_name, $template_path = '', $default_path = '' ) {
 	if ( ! $template_path ) {
-		$template_path = EAC()->get_template_path();
+		$template_path = EAC()->templates_path();
 	}
 
 	if ( ! $default_path ) {
-		$default_path = EAC()->get_template_path();
+		$default_path = EAC()->templates_path();
 	}
 
 	// Look within passed path within the theme - this is priority.

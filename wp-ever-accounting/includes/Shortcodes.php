@@ -8,17 +8,17 @@ defined( 'ABSPATH' ) || exit;
  * Class Shortcodes.
  *
  * @since 1.0.0
- * * @author  Sultan Nasir Uddin <manikdrmc@gmail.com>
- * * @package EverAccounting
+ * @package EverAccounting
  */
-class Shortcodes {
+class Shortcodes extends B8\Component {
 
 	/**
-	 * Shortcodes constructor.
+	 * Register hooks.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'query_vars', array( $this, 'add_query_vars' ), 99 );
 		add_shortcode( 'eac_payment', array( $this, 'render_payment' ) );
 		add_shortcode( 'eac_expense', array( $this, 'render_expense' ) );
@@ -67,6 +67,7 @@ class Shortcodes {
 
 		ob_start();
 		eac_get_template( 'payment.php', array( 'payment' => $payment ) );
+
 
 		return ob_get_clean();
 	}

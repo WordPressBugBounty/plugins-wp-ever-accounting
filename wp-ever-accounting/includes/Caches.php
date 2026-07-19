@@ -10,12 +10,15 @@ defined( 'ABSPATH' ) || exit;
  * @since 2.0.0
  * @package EverAccounting
  */
-class Caches {
+class Caches extends B8\Component {
 
 	/**
-	 * Cache constructor.
+	 * Register hooks.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_action( 'eac_payment_saved', array( $this, 'clear_payment_cache' ) );
 		add_action( 'eac_payment_deleted', array( $this, 'clear_payment_cache' ) );
 		add_action( 'eac_expense_saved', array( $this, 'clear_expense_cache' ) );

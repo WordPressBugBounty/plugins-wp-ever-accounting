@@ -1,0 +1,20 @@
+= 1.0.4 =
+* Downgrade PHP version to 7.4
+
+= 1.0.3 =
+* Allow saving metadata with metadata array.
+
+= 1.0.2 =
+* Change wp_date() to DateTime class for better date handling.
+
+= 1.0.1 =
+* Enhanced cast_timestamp method to handle always return null if the value is not a valid timestamp.
+
+= 1.0.0 =
+* Calling meta values with meta__ is now deprecated. Use __ before the meta key instead.
+* To override the default attribute getter and setter methods, use the new get_{attribute_name}_attribute and set_{attribute_name}_attribute.
+* Query args __neq is added to the list of query args to query for not equal values.
+* UPDATED_AT constant and its value 'updated_at' changed to DATE_UPDATED and its value 'date_updated'.
+* CREATED_AT constant and its value 'created_at' changed to DATE_CREATED and its value 'date_created'.
+* CREATOR_ID constant and its value 'creator_id' changed to AUTHOR_ID and its value 'author_id'.
+* has_timestamps() properties default value changed to false.

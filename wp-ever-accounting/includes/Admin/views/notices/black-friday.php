@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <div class="notice-body">
 	<div class="notice-icon">
-		<img src="<?php echo esc_attr( EAC()->get_assets_url( 'images/black-friday-icon.png' ) ); ?>" alt="Ever Accounting Black Friday Promo" />
+		<img src="<?php echo esc_attr( EAC()->assets_url( 'build/images/black-friday-icon.png' ) ); ?>" alt="Ever Accounting Black Friday Promo" />
 	</div>
 	<div class="notice-content">
 		<h3>

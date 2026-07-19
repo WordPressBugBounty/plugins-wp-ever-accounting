@@ -8,14 +8,17 @@ defined( 'ABSPATH' ) || exit;
  * Class Currencies.
  *
  * @since 1.0.0
- * @package EverAccounting\Controllers
+ * @package EverAccounting
  */
-class Currencies {
+class Currencies extends B8\Component {
 
 	/**
-	 * Constructor.
+	 * Register hooks.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
-	public function __construct() {
+	public function register(): void {
 		add_filter( 'eac_currencies', array( __CLASS__, 'add_exchange_rates' ) );
 	}
 

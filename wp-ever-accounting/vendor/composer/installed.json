@@ -33,7 +33,11 @@
             "time": "2025-05-13T04:00:03+00:00",
             "type": "library",
             "installation-source": "dist",
-            "autoload": [],
+            "autoload": {
+                "psr-4": {
+                    "EverAccounting\\ByteKit\\Models\\": "src/"
+                }
+            },
             "autoload-dev": {
                 "psr-4": []
             },
@@ -86,92 +90,43 @@
                 "source": "https://github.com/byteever/bytekit-models/tree/v1.0.5",
                 "issues": "https://github.com/byteever/bytekit-models/issues"
             },
+            "abandoned": true,
             "install-path": "../byteever/bytekit-models"
         },
         {
-            "name": "byteever/bytekit-plugin",
-            "version": "v1.0.2",
-            "version_normalized": "1.0.2.0",
+            "name": "byteever/plugin",
+            "version": "dev-trunk",
+            "version_normalized": "dev-trunk",
             "source": {
                 "type": "git",
-                "url": "git@github.com:byteever/bytekit-plugin.git",
-                "reference": "794ec9834ecac6cead6b1064a605ff930864950b"
+                "url": "git@github.com:byteever/plugin.git",
+                "reference": "10a12c5d685f04a28132defc863e7493e0085308"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/byteever/bytekit-plugin/zipball/794ec9834ecac6cead6b1064a605ff930864950b",
-                "reference": "794ec9834ecac6cead6b1064a605ff930864950b",
+                "url": "https://api.github.com/repos/byteever/plugin/zipball/10a12c5d685f04a28132defc863e7493e0085308",
+                "reference": "10a12c5d685f04a28132defc863e7493e0085308",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4"
             },
-            "require-dev": {
-                "byteever/byteever-sniffs": "dev-master",
-                "codeception/module-asserts": "^1.0",
-                "codeception/module-cli": "^1.0",
-                "codeception/module-db": "^1.0",
-                "codeception/module-filesystem": "^1.0",
-                "codeception/module-phpbrowser": "^1.0",
-                "codeception/module-rest": "^2.0",
-                "codeception/module-webdriver": "^1.0",
-                "codeception/util-universalframework": "^1.0",
-                "lucatume/wp-browser": "<3.5"
-            },
-            "time": "2025-02-27T09:59:41+00:00",
+            "time": "2026-06-08T11:53:43+00:00",
             "type": "library",
             "installation-source": "dist",
-            "autoload": [],
-            "scripts": {
-                "phpcs": [
-                    "@php ./vendor/bin/phpcs --standard=phpcs.xml -s -v"
-                ],
-                "phpcbf": [
-                    "@php ./vendor/bin/phpcbf --standard=phpcs.xml -v"
-                ],
-                "test:setup": [
-                    "bash bin/install-test-env.sh"
-                ],
-                "test:build": [
-                    "vendor/bin/codecept build"
-                ],
-                "test:wpunit": [
-                    "vendor/bin/codecept run wpunit --"
-                ],
-                "test:functional": [
-                    "vendor/bin/codecept run functional --"
-                ],
-                "test:acceptance": [
-                    "vendor/bin/codecept run acceptance --"
-                ],
-                "test:gen:wpunit": [
-                    "vendor/bin/codecept generate:wpunit wpunit"
-                ],
-                "test:gen:functional": [
-                    "vendor/bin/codecept generate:wpunit functional"
-                ],
-                "test:gen:acceptance": [
-                    "vendor/bin/codecept generate:acceptance acceptance"
-                ],
-                "test": [
-                    "vendor/bin/codecept run --"
-                ]
+            "autoload": {
+                "psr-4": {
+                    "EverAccounting\\B8\\": "src/"
+                }
             },
             "license": [
-                "GPL-3.0-or-later"
+                "GPL-2.0-or-later"
             ],
-            "authors": [
-                {
-                    "name": "Sultan Nasir Uddin",
-                    "email": "manikdrmc@gmail.com"
-                }
-            ],
-            "description": "A set of related classes to kick start WordPress plugin development.",
             "support": {
-                "source": "https://github.com/byteever/bytekit-plugin/tree/v1.0.2",
-                "issues": "https://github.com/byteever/bytekit-plugin/issues"
+                "source": "https://github.com/byteever/plugin/tree/1.0.0",
+                "issues": "https://github.com/byteever/plugin/issues"
             },
-            "install-path": "../byteever/bytekit-plugin"
+            "install-path": "../byteever/plugin"
         },
         {
             "name": "woocommerce/action-scheduler",
