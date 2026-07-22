@@ -3,7 +3,7 @@
  * Plugin Name:       Ever Accounting
  * Plugin URI:        https://wpeveraccounting.com/
  * Description:       Manage your business finances right from your WordPress dashboard.
- * Version:           2.3.0
+ * Version:           2.3.1
  * Requires at least: 5.0
  * Tested up to:      7.0
  * Requires PHP:      7.4
@@ -32,7 +32,7 @@ if ( get_option( 'eaccounting_version' ) ) {
 }
 
 $data = array(
-	'version'      => '2.3.0',
+	'version'      => '2.3.1',
 	'name'         => 'Ever Accounting',
 	'prefix'       => 'eac',
 	'hook_prefix'  => 'eac',

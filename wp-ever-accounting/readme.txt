@@ -2,7 +2,7 @@
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
 Tested up to: 7.0
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -329,6 +329,9 @@ Yes, you can contribute to Ever Accounting. We welcome contributions from the co
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.3.1 = (22nd July 2026)
+* Fix: Fixed a cron scheduling.
+
 = 2.3.0 = (19th July 2026)
 * Enhance: Modernize the plugin architecture to improve maintainability and extensibility.
 * Enhance: Improve the admin interface with a more modular and consistent structure.

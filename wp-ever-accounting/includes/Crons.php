@@ -28,6 +28,6 @@ class Crons extends B8\Component {
 	 * @since 1.0.0
 	 */
 	public function cleanup_scheduled_events() {
-		$this->app->queue->cleanup();
+		wp_clear_scheduled_hook( 'eac_hourly_event' );
 	}
 }
