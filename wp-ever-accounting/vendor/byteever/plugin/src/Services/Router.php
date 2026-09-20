@@ -72,8 +72,8 @@ class Router
     /**
      * Register a GET route.
      *
-     * @param string                               $route   Route pattern.
-     * @param callable|string|array<string, mixed> $handler Route handler or configuration array.
+     * @param string                                                           $route   Route pattern.
+     * @param callable|string|array{class-string, string}|array<string, mixed> $handler Route handler, controller method pair or configuration array.
      *
      * @since 1.0.0
      * @return self
@@ -85,8 +85,8 @@ class Router
     /**
      * Register a POST route.
      *
-     * @param string                               $route   Route pattern.
-     * @param callable|string|array<string, mixed> $handler Route handler or configuration array.
+     * @param string                                                           $route   Route pattern.
+     * @param callable|string|array{class-string, string}|array<string, mixed> $handler Route handler, controller method pair or configuration array.
      *
      * @since 1.0.0
      * @return self
@@ -98,8 +98,8 @@ class Router
     /**
      * Register a PUT route.
      *
-     * @param string                               $route   Route pattern.
-     * @param callable|string|array<string, mixed> $handler Route handler or configuration array.
+     * @param string                                                           $route   Route pattern.
+     * @param callable|string|array{class-string, string}|array<string, mixed> $handler Route handler, controller method pair or configuration array.
      *
      * @since 1.0.0
      * @return self
@@ -111,8 +111,8 @@ class Router
     /**
      * Register a DELETE route.
      *
-     * @param string                               $route   Route pattern.
-     * @param callable|string|array<string, mixed> $handler Route handler or configuration array.
+     * @param string                                                           $route   Route pattern.
+     * @param callable|string|array{class-string, string}|array<string, mixed> $handler Route handler, controller method pair or configuration array.
      *
      * @since 1.0.0
      * @return self
@@ -124,8 +124,8 @@ class Router
     /**
      * Register a PATCH route.
      *
-     * @param string                               $route   Route pattern.
-     * @param callable|string|array<string, mixed> $handler Route handler or configuration array.
+     * @param string                                                           $route   Route pattern.
+     * @param callable|string|array{class-string, string}|array<string, mixed> $handler Route handler, controller method pair or configuration array.
      *
      * @since 1.0.0
      * @return self
@@ -264,9 +264,9 @@ class Router
     /**
      * Register a route.
      *
-     * @param string          $method  HTTP method.
-     * @param string          $route   Route pattern.
-     * @param callable|string $handler Route handler (callable or controller method name).
+     * @param string                                                           $method  HTTP method.
+     * @param string                                                           $route   Route pattern.
+     * @param callable|string|array{class-string, string}|array<string, mixed> $handler Route handler, controller method pair or configuration array.
      *
      * @since 1.0.0
      * @return self

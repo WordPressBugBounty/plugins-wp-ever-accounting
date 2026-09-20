@@ -45,7 +45,7 @@ jQuery( document ).ready( ( $ ) => {
 		onAddItem( e ) {
 			const self = this;
 			const params = e.params.data;
-			const nextIndex = _.uniqueId();
+			const nextIndex = _.uniqueId( 'new_' );
 			self.block();
 			$( e.target ).val( null ).trigger( 'change' );
 			const exchange_rate =
@@ -63,7 +63,7 @@ jQuery( document ).ready( ( $ ) => {
 
 				if ( item.taxes ) {
 					item.taxes.forEach( function ( tax ) {
-						const taxIndex = _.uniqueId();
+						const taxIndex = _.uniqueId( 'new_' );
 						data[ 'items[' + nextIndex + '][taxes][' + taxIndex + '][tax_id]' ] =
 							tax.id;
 						data[ 'items[' + nextIndex + '][taxes][' + taxIndex + '][name]' ] =
@@ -95,7 +95,7 @@ jQuery( document ).ready( ( $ ) => {
 			const params = e.params.data;
 			const $row = $( e.target ).closest( 'tr' );
 			const rowIndex = $row.data( 'index' );
-			const nextIndex = _.uniqueId();
+			const nextIndex = _.uniqueId( 'new_' );
 			const data = {
 				...self.getValues(),
 				[ 'items[' + rowIndex + '][taxes][' + nextIndex + '][tax_id]' ]: params.id,
@@ -198,21 +198,34 @@ jQuery( document ).ready( ( $ ) => {
 						const $form = $( e.target ).closest( 'form' );
 						const $amount = $form.find( ':input[id="amount"]' );
 						const exchange_rate = parseFloat( $( e.target ).val() );
-						$amount.val(
-							money.convert( bill.due_amount, bill.currency, exchange_rate )
-						);
+						const radixPoint = $amount.inputmask( 'option', 'radixPoint' ) || '.';
+						$amount
+							.val(
+								String(
+									money.convert( bill.due_amount, bill.currency, exchange_rate )
+								).replace( '.', radixPoint )
+							)
+							.trigger( 'input' );
 					},
 
 					onSubmit( e ) {
 						e.preventDefault();
 						const self = this;
+						if ( self.submitting ) {
+							return;
+						}
+						self.submitting = true;
+						const $submit = self.$( ':submit' ).prop( 'disabled', true );
 						const data = self.getValues();
+						const $normalized = self.$( 'input[type="hidden"][name="amount"]' );
 						apiFetch( {
 							path: 'eac/v1/expenses',
 							method: 'POST',
 							data: {
 								...data,
-								amount: money.unformat( data.amount, data.currency ),
+								amount: $normalized.length
+									? parseFloat( $normalized.val() ) || 0
+									: money.unformat( data.amount, data.currency ),
 								editable: false,
 							},
 						} )
@@ -221,6 +234,8 @@ jQuery( document ).ready( ( $ ) => {
 								location.reload();
 							} )
 							.catch( function ( error ) {
+								self.submitting = false;
+								$submit.prop( 'disabled', false );
 								if ( error.message ) {
 									alert( error.message );
 								} else {

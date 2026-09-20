@@ -357,26 +357,26 @@ class Document extends Model {
 	*/
 
 	/**
-	 * Get max number.
+	 * Get the highest sequence number used under a prefix.
+	 *
+	 * @param string $prefix Number prefix to match.
 	 *
 	 * @since 1.0.0
-	 * @return string
+	 * @return int
 	 */
-	public function get_max_number() {
+	public function get_max_number( $prefix = '' ) {
 		global $wpdb;
-		$number = $wpdb->get_var(
+
+		$start = mb_strlen( $prefix ) + 1;
+
+		return (int) $wpdb->get_var(
 			$wpdb->prepare(
-				"SELECT number FROM {$wpdb->prefix}{$this->table} WHERE type = %s AND number IS NOT NULL AND number != '' ORDER BY number DESC", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Already prepared.
-				esc_sql( $this->type )
+				"SELECT MAX( CAST( SUBSTRING( `number`, %d ) AS UNSIGNED ) ) FROM {$wpdb->prefix}{$this->table} WHERE `type` = %s AND `number` LIKE %s AND SUBSTRING( `number`, %d ) REGEXP '^[0-9]+$'", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Already prepared.
+				$start,
+				$this->type,
+				$wpdb->esc_like( $prefix ) . '%',
+				$start
 			)
 		);
-
-		// if number is not empty, using regular expression to extract the number.
-		if ( ! empty( $number ) ) {
-			preg_match( '/\d+$/', $number, $matches );
-			$number = ! empty( $matches ) ? $matches[0] : 0;
-		}
-
-		return (int) $number;
 	}
 }

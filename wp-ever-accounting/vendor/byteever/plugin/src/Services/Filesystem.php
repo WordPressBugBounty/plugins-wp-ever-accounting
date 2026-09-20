@@ -32,18 +32,23 @@ class Filesystem
      * Constructor.
      *
      * @since 1.0.0
-     * @throws \Exception If the filesystem fails to initialize.
      */
     public function __construct()
     {
         global $wp_filesystem;
-        if (!$wp_filesystem instanceof \WP_Filesystem_Base) {
+        $connected = $wp_filesystem instanceof \WP_Filesystem_Base && !$wp_filesystem->errors->has_errors();
+        if (!$connected) {
             require_once ABSPATH . 'wp-admin/includes/file.php';
-            if (false === WP_Filesystem()) {
-                throw new \Exception('The WordPress filesystem could not be initialized.');
-            }
+            $connected = (bool) WP_Filesystem();
         }
-        $this->fs = $wp_filesystem;
+        if ($connected) {
+            $this->fs = $wp_filesystem;
+        } else {
+            // FTP/SSH hosts cannot connect without credentials; direct access still works for the plugin's own paths.
+            require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
+            require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
+            $this->fs = new \WP_Filesystem_Direct(false);
+        }
         $this->direct = $this->fs instanceof \WP_Filesystem_Direct;
     }
     /**
@@ -204,21 +209,11 @@ class Filesystem
         $file_info = wp_check_filetype($file);
         $mime_type = !empty($file_info['type']) ? $file_info['type'] : 'application/octet-stream';
         $file_size = $this->size($file);
-        if (function_exists('gc_enable')) {
-            gc_enable();
+        while (ob_get_level() > 0) {
+            ob_end_clean();
         }
-        // phpcs:disable WordPress.PHP.IniSet.Risky, WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_apache_setenv, Squiz.PHP.DiscouragedFunctions.Discouraged -- Required for file streaming.
-        if (function_exists('apache_setenv')) {
-            @apache_setenv('no-gzip', '1');
-        }
-        @ini_set('zlib.output_compression', 'Off');
-        @ini_set('output_buffering', 'Off');
-        @ini_set('output_handler', '');
-        ignore_user_abort(true);
-        set_time_limit(0);
-        // phpcs:enable WordPress.PHP.IniSet.Risky, WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_apache_setenv, Squiz.PHP.DiscouragedFunctions.Discouraged
         nocache_headers();
-        header('Content-Type: ' . $mime_type . '; charset=utf-8');
+        header('Content-Type: ' . $mime_type);
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         header('Content-Length: ' . $file_size);
         readfile($real_path);
@@ -246,7 +241,7 @@ class Filesystem
         }
         $htaccess = $path . '/.htaccess';
         if (!$this->exists($htaccess)) {
-            $this->put($htaccess, "deny from all\n");
+            $this->put($htaccess, "<IfModule mod_authz_core.c>\nRequire all denied\n</IfModule>\n<IfModule !mod_authz_core.c>\ndeny from all\n</IfModule>\n");
         }
         $index = $path . '/index.php';
         if (!$this->exists($index)) {

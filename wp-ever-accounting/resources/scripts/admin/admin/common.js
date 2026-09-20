@@ -110,7 +110,17 @@ jQuery( document ).ready( ( $ ) => {
 				const $form = $input.closest( 'form' );
 				const $source = $form.find( $input.data( 'source' ) );
 				const originalName = $input.attr( 'name' );
-				const originalValue = $input.val() || '';
+				const existingMask = this.inputmask;
+				const originalValue = existingMask
+					? String( existingMask.unmaskedvalue() || '' ).replace(
+							existingMask.opts.radixPoint,
+							'.'
+					  )
+					: $input.val() || '';
+
+				if ( existingMask ) {
+					existingMask.remove();
+				}
 
 				const maskOptions = money.getCurrencyMaskOptions( $input.data( 'currency' ) );
 

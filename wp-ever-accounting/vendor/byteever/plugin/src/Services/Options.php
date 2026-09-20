@@ -42,9 +42,6 @@ class Options implements \ArrayAccess
         $this->app = $app;
         $this->prefix = $this->app->option_prefix . '_';
     }
-    // ==============================================
-    // Basic CRUD Operations
-    // ==============================================
     /**
      * Add an option.
      *
@@ -115,9 +112,6 @@ class Options implements \ArrayAccess
     {
         return get_option($this->key($key), '__OPTION_HAS_FALLBACK__') !== '__OPTION_HAS_FALLBACK__';
     }
-    // ==============================================
-    // Database Version Helpers
-    // ==============================================
     /**
      * Get the database version.
      *
@@ -126,7 +120,7 @@ class Options implements \ArrayAccess
      */
     public function get_db_version(): string
     {
-        return $this->get('db_version', '1.0.0');
+        return $this->get('db_version', '0.0.0');
     }
     /**
      * Update the database version.
@@ -142,9 +136,6 @@ class Options implements \ArrayAccess
     {
         return $force ? $this->update('db_version', $version, true) : $this->add('db_version', $version, true);
     }
-    // ==============================================
-    // Cleanup Operations
-    // ==============================================
     /**
      * Delete all plugin options.
      *
@@ -168,9 +159,6 @@ class Options implements \ArrayAccess
         wp_cache_delete('notoptions', 'options');
         return (int) $deleted;
     }
-    // ==============================================
-    // Utility Methods
-    // ==============================================
     /**
      * Get the prefixed option key.
      *
@@ -188,9 +176,6 @@ class Options implements \ArrayAccess
         }
         return $clean_prefix . '_' . $key;
     }
-    // ==============================================
-    // ArrayAccess Implementation
-    // ==============================================
     /**
      * Get the offset value.
      *

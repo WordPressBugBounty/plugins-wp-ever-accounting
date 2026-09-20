@@ -155,8 +155,8 @@ class Transfer extends Model {
 		$from_account_id = $this->from_account_id ? $this->from_account_id : ( $this->expense && $this->expense->account_id ? $this->expense->account_id : 0 );
 		$to_account_id   = $this->to_account_id ? $this->to_account_id : ( $this->payment && $this->payment->account_id ? $this->payment->account_id : 0 );
 		// Prepare vars.
-		$from_account = Account::find( $this->from_account_id );
-		$to_account   = Account::find( $this->to_account_id );
+		$from_account = Account::find( $from_account_id );
+		$to_account   = Account::find( $to_account_id );
 		$expense      = Expense::make( $this->expense_id );
 		$payment      = Payment::make( $this->payment_id );
 

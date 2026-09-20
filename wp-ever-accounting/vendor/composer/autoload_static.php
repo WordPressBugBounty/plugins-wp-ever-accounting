@@ -6,10 +6,6 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit3690562e021e62a1056edbf482f090f8
 {
-    public static $files = array (
-        'd6353773bdc851da7943447cdc0429b2' => __DIR__ . '/../..' . '/includes/functions.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
         'E' =>
         array (
@@ -140,7 +136,6 @@ class ComposerStaticInit3690562e021e62a1056edbf482f090f8
         'EverAccounting\\B8\\Services\\Scripts' => __DIR__ . '/..' . '/byteever/plugin/src/Services/Scripts.php',
         'EverAccounting\\B8\\Services\\Settings' => __DIR__ . '/..' . '/byteever/plugin/src/Services/Settings.php',
         'EverAccounting\\B8\\Services\\Template' => __DIR__ . '/..' . '/byteever/plugin/src/Services/Template.php',
-        'EverAccounting\\B8\\SettingsUI' => __DIR__ . '/..' . '/byteever/plugin/src/SettingsUI.php',
         'EverAccounting\\B8\\Traits\\HookableTrait' => __DIR__ . '/..' . '/byteever/plugin/src/Traits/HookableTrait.php',
         'EverAccounting\\B8\\Traits\\PathableTrait' => __DIR__ . '/..' . '/byteever/plugin/src/Traits/PathableTrait.php',
         'EverAccounting\\Banking' => __DIR__ . '/../..' . '/includes/Banking.php',

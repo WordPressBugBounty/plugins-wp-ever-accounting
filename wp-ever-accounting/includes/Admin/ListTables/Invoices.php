@@ -138,7 +138,7 @@ class Invoices extends ListTable {
 				$payment->delete();
 			}
 			$invoice         = EAC()->invoices->get( $id );
-			$invoice->status = 'canceled';
+			$invoice->status = 'cancelled';
 			if ( $invoice->save() ) {
 				++$performed;
 			}

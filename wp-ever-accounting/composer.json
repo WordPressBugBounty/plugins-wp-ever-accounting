@@ -35,8 +35,7 @@
   "autoload": {
     "psr-4": {
       "EverAccounting\\": ["includes/"]
-    },
-    "files": ["includes/functions.php"]
+    }
   },
   "autoload-dev": {
     "classmap": [

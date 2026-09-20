@@ -21,7 +21,7 @@ class Expenses {
 	 * @return void
 	 */
 	public static function render() {
-		$year  = ! empty( $_GET['year'] ) ? absint( wp_unslash( $_GET['year'] ) ) : wp_date( 'Y' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only operation.
+		$year  = ! empty( $_GET['year'] ) ? absint( wp_unslash( $_GET['year'] ) ) : ReportsUtil::get_current_year(); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only operation.
 		$data  = ReportsUtil::get_expenses_report( $year );
 		$chart = array(
 			'type'     => 'line',

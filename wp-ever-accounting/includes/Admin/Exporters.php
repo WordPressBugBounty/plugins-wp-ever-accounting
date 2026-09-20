@@ -71,10 +71,11 @@ class Exporters extends Component {
 			wp_die( esc_html__( 'You do not have permission to export.', 'wp-ever-accounting' ) );
 		}
 
-		if ( ! empty( $filename ) ) {
-			$exporter->set_filename( $filename );
+		if ( ! preg_match( '/^' . preg_quote( $exporter->export_type, '/' ) . '-\d{14}-[A-Za-z0-9]{8}\.csv$/', $filename ) ) {
+			wp_die( esc_html__( 'Invalid export file.', 'wp-ever-accounting' ) );
 		}
 
+		$exporter->set_filename( $filename );
 		$exporter->export();
 		exit;
 	}

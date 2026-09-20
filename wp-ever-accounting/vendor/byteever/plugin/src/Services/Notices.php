@@ -7,8 +7,8 @@ defined('ABSPATH') || exit;
 /**
  * Handles admin notices.
  *
- * Registers, displays, and persists admin notices, storing per-user
- * dismissals in user meta so dismissed notices stay hidden.
+ * Registers, displays, and persists admin notices. A dismissal is stored
+ * site-wide, so a notice dismissed by one user stays hidden for everyone.
  *
  * @since 1.0.0
  * @package \B8
@@ -33,9 +33,16 @@ class Notices
      * Script handle.
      *
      * @since 1.0.0
-     * @var string
+     * @var non-empty-string
      */
     protected string $script_handle;
+    /**
+     * Style handle, also the class the notice markup carries.
+     *
+     * @since 1.2.0
+     * @var non-empty-string
+     */
+    protected string $style_handle;
     /**
      * The notices.
      *
@@ -61,6 +68,7 @@ class Notices
         $this->app = $app;
         $this->ajax_action = $this->app->hook_prefix . '_dismiss_notice';
         $this->script_handle = $this->app->short_name . '-dismiss-notices';
+        $this->style_handle = $this->app->short_name . '-notice';
         $this->dismissed_key = $this->app->option_prefix . '_dismissed_notices';
     }
     /**
@@ -79,8 +87,8 @@ class Notices
     /**
      * Get the active notices.
      *
-     * Returns notices filtered by should_display() with processed messages.
-     * Useful for REST API responses in React-based admin pages.
+     * Consumes what it returns: a notice is removed from the queue once
+     * prepared, so a second call does not return it again.
      *
      * @since 1.0.0
      * @return array<int, array<string, mixed>> Array of prepared notice objects.
@@ -124,7 +132,7 @@ class Notices
             return;
         }
         wp_enqueue_script($this->script_handle);
-        wp_enqueue_style('b8-components');
+        wp_enqueue_style($this->style_handle);
         foreach ($notices as $notice) {
             $classes = array_filter(wp_parse_list($notice['class']));
             $message = $notice['message'];
@@ -146,6 +154,7 @@ class Notices
     public function register_scripts(): void
     {
         wp_register_script($this->script_handle, false, array('jquery'), $this->app->version, true);
+        wp_register_style($this->style_handle, plugin_dir_url(dirname(__DIR__) . '/App.php') . 'assets/notice.css', array(), App::FW_VERSION);
         ob_start();
         ?>
 		<script>
@@ -175,6 +184,10 @@ class Notices
         $notice_id = isset($_POST['notice_id']) ? sanitize_text_field(wp_unslash($_POST['notice_id'])) : '';
         if (empty($notice_id)) {
             wp_send_json_error();
+        }
+        $capability = $this->notices[$notice_id]['capability'] ?? 'manage_options';
+        if ($capability && !current_user_can($capability)) {
+            wp_send_json_error('Invalid request');
         }
         $this->dismiss($notice_id);
         wp_send_json_success();

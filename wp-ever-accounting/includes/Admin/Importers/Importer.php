@@ -56,6 +56,14 @@ abstract class Importer {
 	protected $start_time = 0;
 
 	/**
+	 * Error messages of the rows that failed in the current step.
+	 *
+	 * @since 2.3.2
+	 * @var string[]
+	 */
+	protected $errors = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @param string $file File path.
@@ -93,16 +101,14 @@ abstract class Importer {
 		}
 
 		$this->start_time = time();
-		$rows             = $this->rows;
-
-		if ( ! empty( $this->position ) && $this->position < count( $rows ) ) {
-			$rows = array_slice( $rows, $this->position, $this->position );
-		}
-
-		$imported = 0;
+		$rows             = array_slice( $this->rows, $this->position );
+		$imported         = 0;
 		foreach ( $rows as $row ) {
 			++$this->position;
-			if ( ! is_wp_error( $this->import_item( $row ) ) ) {
+			$result = $this->import_item( $row );
+			if ( is_wp_error( $result ) ) {
+				$this->errors[] = $result->get_error_message();
+			} else {
 				++$imported;
 			}
 			if ( $this->time_exceeded() || $this->memory_exceeded() ) {
@@ -142,6 +148,16 @@ abstract class Importer {
 	 */
 	public function get_position() {
 		return $this->position;
+	}
+
+	/**
+	 * Get the error messages of the rows that failed in the current step.
+	 *
+	 * @since 2.3.2
+	 * @return string[]
+	 */
+	public function get_errors() {
+		return $this->errors;
 	}
 
 	/**

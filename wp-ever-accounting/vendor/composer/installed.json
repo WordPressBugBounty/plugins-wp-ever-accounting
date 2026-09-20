@@ -100,18 +100,18 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:byteever/plugin.git",
-                "reference": "10a12c5d685f04a28132defc863e7493e0085308"
+                "reference": "edb1b467324501492f50dc0af87a54e971a26627"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/byteever/plugin/zipball/10a12c5d685f04a28132defc863e7493e0085308",
-                "reference": "10a12c5d685f04a28132defc863e7493e0085308",
+                "url": "https://api.github.com/repos/byteever/plugin/zipball/edb1b467324501492f50dc0af87a54e971a26627",
+                "reference": "edb1b467324501492f50dc0af87a54e971a26627",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4"
             },
-            "time": "2026-06-08T11:53:43+00:00",
+            "time": "2026-09-19T05:59:28+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -123,7 +123,7 @@
                 "GPL-2.0-or-later"
             ],
             "support": {
-                "source": "https://github.com/byteever/plugin/tree/1.0.0",
+                "source": "https://github.com/byteever/plugin/tree/trunk",
                 "issues": "https://github.com/byteever/plugin/issues"
             },
             "install-path": "../byteever/plugin"

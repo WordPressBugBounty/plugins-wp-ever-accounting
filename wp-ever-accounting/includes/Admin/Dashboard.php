@@ -54,7 +54,7 @@ class Dashboard extends Component {
 		if ( ! current_user_can( 'eac_read_reports' ) ) { // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability.
 			return;
 		}
-		$report   = ReportsUtil::get_profits_report( wp_date( 'Y' ), true );
+		$report   = ReportsUtil::get_profits_report( ReportsUtil::get_current_year(), true );
 		$profits  = array_sum( $report['profits'] );
 		$payments = array_sum( $report['payments'] );
 		$delta    = $profits > 0 && $payments > 0 ? ( $profits / $payments ) * 100 : 0;

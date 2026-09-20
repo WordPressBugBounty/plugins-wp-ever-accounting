@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ever Accounting 2.3.1\n"
+"Project-Id-Version: Ever Accounting 2.3.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-ever-accounting\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-22T05:27:43+00:00\n"
+"POT-Creation-Date: 2026-09-20T12:54:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-ever-accounting\n"
@@ -446,52 +446,58 @@ msgstr ""
 msgid "Payment added successfully."
 msgstr ""
 
-#: includes/Admin/Ajax.php:595
+#: includes/Admin/Ajax.php:596
 #: includes/Admin/Exporters.php:67
 msgid "Invalid export type."
 msgstr ""
 
-#: includes/Admin/Ajax.php:600
+#: includes/Admin/Ajax.php:601
 msgid "You do not have enough privileges to export this."
 msgstr ""
 
 #. translators: %d: total items.
-#: includes/Admin/Ajax.php:622
+#: includes/Admin/Ajax.php:627
 #, php-format
 msgid "Total %d items exported"
 msgstr ""
 
-#: includes/Admin/Ajax.php:650
-#: includes/Admin/Ajax.php:725
+#: includes/Admin/Ajax.php:656
+#: includes/Admin/Ajax.php:731
 msgid "You do not have permission to import."
 msgstr ""
 
-#: includes/Admin/Ajax.php:654
-#: includes/Admin/Ajax.php:698
+#: includes/Admin/Ajax.php:660
+#: includes/Admin/Ajax.php:704
 msgid "Missing import file. Please provide an import file."
 msgstr ""
 
-#: includes/Admin/Ajax.php:660
-#: includes/Admin/Ajax.php:675
+#: includes/Admin/Ajax.php:666
+#: includes/Admin/Ajax.php:681
 msgid "Something went wrong during the upload process, please try again."
 msgstr ""
 
-#: includes/Admin/Ajax.php:666
+#: includes/Admin/Ajax.php:672
 msgid "The file you uploaded does not appear to be a CSV file."
 msgstr ""
 
-#: includes/Admin/Ajax.php:707
+#: includes/Admin/Ajax.php:713
 msgid "Invalid import type."
 msgstr ""
 
-#: includes/Admin/Ajax.php:716
+#: includes/Admin/Ajax.php:722
 msgid "The file does not exist."
 msgstr ""
 
 #. translators: %d: imported items.
-#: includes/Admin/Ajax.php:740
+#: includes/Admin/Ajax.php:754
 #, php-format
 msgid "%d items imported."
+msgstr ""
+
+#. translators: %s: error messages.
+#: includes/Admin/Ajax.php:757
+#, php-format
+msgid "Some rows were skipped: %s"
 msgstr ""
 
 #: includes/Admin/Bills.php:44
@@ -1038,15 +1044,15 @@ msgid "Attachment"
 msgstr ""
 
 #: includes/Admin/Exporters.php:48
-#: includes/Admin/Exporters.php:98
-#: includes/Admin/Exporters.php:120
-#: includes/Admin/Exporters.php:142
-#: includes/Admin/Exporters.php:164
-#: includes/Admin/Exporters.php:186
-#: includes/Admin/Exporters.php:208
-#: includes/Admin/Exporters.php:230
-#: includes/Admin/Exporters.php:252
-#: includes/Admin/Exporters.php:274
+#: includes/Admin/Exporters.php:99
+#: includes/Admin/Exporters.php:121
+#: includes/Admin/Exporters.php:143
+#: includes/Admin/Exporters.php:165
+#: includes/Admin/Exporters.php:187
+#: includes/Admin/Exporters.php:209
+#: includes/Admin/Exporters.php:231
+#: includes/Admin/Exporters.php:253
+#: includes/Admin/Exporters.php:275
 msgid "Export"
 msgstr ""
 
@@ -1054,75 +1060,79 @@ msgstr ""
 msgid "You do not have permission to export."
 msgstr ""
 
-#: includes/Admin/Exporters.php:93
+#: includes/Admin/Exporters.php:75
+msgid "Invalid export file."
+msgstr ""
+
+#: includes/Admin/Exporters.php:94
 msgid "Export Customers"
 msgstr ""
 
-#: includes/Admin/Exporters.php:97
+#: includes/Admin/Exporters.php:98
 msgid "Export customers from this site as CSV file. Exported file can be imported into other site."
 msgstr ""
 
-#: includes/Admin/Exporters.php:115
+#: includes/Admin/Exporters.php:116
 msgid "Export Vendors"
 msgstr ""
 
-#: includes/Admin/Exporters.php:119
+#: includes/Admin/Exporters.php:120
 msgid "Export vendors from this site as CSV file. Exported file can be imported into other site."
 msgstr ""
 
-#: includes/Admin/Exporters.php:137
+#: includes/Admin/Exporters.php:138
 msgid "Export Categories"
 msgstr ""
 
-#: includes/Admin/Exporters.php:141
+#: includes/Admin/Exporters.php:142
 msgid "Export categories from this site as CSV file. Exported file can be imported into other site."
 msgstr ""
 
-#: includes/Admin/Exporters.php:159
+#: includes/Admin/Exporters.php:160
 msgid "Export Taxes"
 msgstr ""
 
-#: includes/Admin/Exporters.php:163
+#: includes/Admin/Exporters.php:164
 msgid "Export taxes from this site as CSV file. Exported file can be imported into other site."
 msgstr ""
 
-#: includes/Admin/Exporters.php:181
+#: includes/Admin/Exporters.php:182
 msgid "Export Items"
 msgstr ""
 
-#: includes/Admin/Exporters.php:185
+#: includes/Admin/Exporters.php:186
 msgid "Export items from this site as CSV file. Exported file can be imported into other site."
 msgstr ""
 
-#: includes/Admin/Exporters.php:203
+#: includes/Admin/Exporters.php:204
 msgid "Export Accounts"
 msgstr ""
 
-#: includes/Admin/Exporters.php:207
+#: includes/Admin/Exporters.php:208
 msgid "Export accounts from this site as CSV file. Exported file can be imported into other site."
 msgstr ""
 
-#: includes/Admin/Exporters.php:225
+#: includes/Admin/Exporters.php:226
 msgid "Export Transfers"
 msgstr ""
 
-#: includes/Admin/Exporters.php:229
+#: includes/Admin/Exporters.php:230
 msgid "Export transfers from this site as CSV file. Exported file can be imported into other site."
 msgstr ""
 
-#: includes/Admin/Exporters.php:247
+#: includes/Admin/Exporters.php:248
 msgid "Export Payments"
 msgstr ""
 
-#: includes/Admin/Exporters.php:251
+#: includes/Admin/Exporters.php:252
 msgid "Export payments from this site as CSV file. Exported file can be imported into other site."
 msgstr ""
 
-#: includes/Admin/Exporters.php:269
+#: includes/Admin/Exporters.php:270
 msgid "Export Expenses"
 msgstr ""
 
-#: includes/Admin/Exporters.php:273
+#: includes/Admin/Exporters.php:274
 msgid "Export expenses from this site as CSV file. Exported file can be imported into other site."
 msgstr ""
 
@@ -4865,17 +4875,17 @@ msgstr ""
 msgid "Ever Accounting is updating the database in the background. Please wait."
 msgstr ""
 
-#: includes/Installer.php:551
+#: includes/Installer.php:552
 msgctxt "User role"
 msgid "Accounting Auditor"
 msgstr ""
 
-#: includes/Installer.php:552
+#: includes/Installer.php:553
 msgctxt "User role"
 msgid "Accounting Manager"
 msgstr ""
 
-#: includes/Installer.php:553
+#: includes/Installer.php:554
 msgctxt "User role"
 msgid "Accountant"
 msgstr ""

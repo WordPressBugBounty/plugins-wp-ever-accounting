@@ -588,6 +588,7 @@ class Ajax extends Component {
 		check_ajax_referer( 'eac_ajax_export' );
 		$type     = isset( $_POST['type'] ) ? sanitize_text_field( wp_unslash( $_POST['type'] ) ) : '';
 		$step     = isset( $_POST['step'] ) ? absint( wp_unslash( $_POST['step'] ) ) : 1;
+		$filename = isset( $_POST['filename'] ) ? sanitize_file_name( wp_unslash( $_POST['filename'] ) ) : '';
 		$exporter = Exporters::get_exporter( $type );
 
 		// if exporter is not found, or exporter class is not extended with Exporter class, return error.
@@ -598,6 +599,10 @@ class Ajax extends Component {
 		$exporter = new $exporter();
 		if ( ! $exporter->can_export() ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'You do not have enough privileges to export this.', 'wp-ever-accounting' ) ) );
+		}
+
+		if ( $step > 1 && preg_match( '/^' . preg_quote( $exporter->export_type, '/' ) . '-\d{14}-[A-Za-z0-9]{8}\.csv$/', $filename ) ) {
+			$exporter->set_filename( $filename );
 		}
 
 		$exporter->process_step( $step );
@@ -632,6 +637,7 @@ class Ajax extends Component {
 			wp_send_json_success(
 				array(
 					'step'       => ++$step,
+					'filename'   => $exporter->get_filename(),
 					'percentage' => $exporter->get_percent_complete(),
 				)
 			);
@@ -727,26 +733,44 @@ class Ajax extends Component {
 			);
 		}
 
+		$log              = empty( $position ) ? array() : get_user_option( "{$type}_import_log" );
 		$imported         = $importer->import();
+		$errors           = $importer->get_errors();
 		$position         = $importer->get_position();
 		$percent_complete = $importer->get_percent_complete();
+		$log              = wp_parse_args(
+			is_array( $log ) ? $log : array(),
+			array(
+				'imported' => 0,
+				'errors'   => array(),
+			)
+		);
+		$log['imported'] += $imported;
+		$log['errors']    = array_slice( array_merge( $log['errors'], $errors ), 0, 5 );
 
 		if ( 100 <= $percent_complete ) {
-			delete_user_option( get_current_user_id(), "{$type}_import_log_imported" );
+			delete_user_option( get_current_user_id(), "{$type}_import_log" );
+			// translators: %d: imported items.
+			$message = sprintf( esc_html__( '%d items imported.', 'wp-ever-accounting' ), absint( $log['imported'] ) );
+			if ( ! empty( $log['errors'] ) ) {
+				// translators: %s: error messages.
+				$message .= ' ' . sprintf( esc_html__( 'Some rows were skipped: %s', 'wp-ever-accounting' ), esc_html( implode( '; ', array_unique( $log['errors'] ) ) ) );
+			}
 			wp_send_json_success(
 				array(
 					'position' => 'done',
-					// translators: %d: imported items.
-					'message'  => sprintf( esc_html__( '%d items imported.', 'wp-ever-accounting' ), absint( $imported ) ),
+					'message'  => $message,
 				)
 			);
 
 			return;
 		}
 
+		update_user_option( get_current_user_id(), "{$type}_import_log", $log );
+
 		wp_send_json_success(
 			array(
-				'position'   => $position + 1,
+				'position'   => $position,
 				'percentage' => $percent_complete,
 			)
 		);

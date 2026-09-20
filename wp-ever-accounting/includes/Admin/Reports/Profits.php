@@ -21,7 +21,7 @@ class Profits {
 	 * @return void
 	 */
 	public static function render() {
-		$year  = ! empty( $_GET['year'] ) ? absint( $_GET['year'] ) : wp_date( 'Y' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only operation.
+		$year  = ! empty( $_GET['year'] ) ? absint( $_GET['year'] ) : ReportsUtil::get_current_year(); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only operation.
 		$data  = ReportsUtil::get_profits_report( $year );
 		$chart = array(
 			'labels'   => array_keys( $data['payments'] ),

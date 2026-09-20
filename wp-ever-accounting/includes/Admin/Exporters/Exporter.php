@@ -128,14 +128,16 @@ abstract class Exporter {
 	}
 
 	/**
-	 * Generate and return a filename.
+	 * Return the filename, generating one on first use.
 	 *
 	 * @return string
 	 */
 	public function get_filename() {
-		$date = wp_date( 'Ymdhis' );
+		if ( empty( $this->filename ) ) {
+			$this->set_filename( sprintf( '%s-%s-%s', $this->export_type, wp_date( 'YmdHis' ), wp_generate_password( 8, false ) ) );
+		}
 
-		return sanitize_file_name( "{$this->export_type}-$date.csv" );
+		return $this->filename;
 	}
 
 	/**

@@ -1,8 +1,8 @@
 === Ever Accounting - Accounting & Invoicing Solution for Small Businesses ===
 Contributors: everaccounting, manikmist09
 Tags: accounting, invoice, CRM, business, finance
-Tested up to: 7.0
-Stable tag: 2.3.1
+Tested up to: 7.1
+Stable tag: 2.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -329,6 +329,19 @@ Yes, you can contribute to Ever Accounting. We welcome contributions from the co
 38. Settings: Add/Edit Category.
 
 == Changelog ==
+= 2.3.2 = (20th September 2026)
+* Fix: CSV export downloaded an empty file.
+* Fix: Adding a line to a saved invoice or bill with many lines replaced existing lines and miscalculated the total.
+* Fix: Submitting the payment form twice on an invoice or bill created duplicate payments.
+* Fix: Payment amount from the invoice and bill payment form was misread when the decimal separator is a comma.
+* Fix: Invoices cancelled in bulk received an unknown status and could still take payments.
+* Fix: Document and transaction numbers were wrong when the prefix ends in digits or the sequence outgrows the minimum digits. Each prefix now keeps its own sequence.
+* Fix: Reports and the dashboard used the wrong period when the financial year does not start in January.
+* Fix: Importing transfers failed; rows skipped during any import are now reported with the reason.
+* Fix: Public invoice, bill, payment and expense pages returned 404 after activation from WP-CLI or the network admin.
+* Fix: REST API dates with a half-hour timezone offset lost the minutes.
+* Compatibility: Tested with WordPress 7.1.
+
 = 2.3.1 = (22nd July 2026)
 * Fix: Fixed a cron scheduling.
 

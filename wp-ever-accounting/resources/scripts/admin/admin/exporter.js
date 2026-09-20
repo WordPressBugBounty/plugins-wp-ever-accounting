@@ -18,6 +18,7 @@ jQuery( document ).ready( ( $ ) => {
 		this.action = 'eac_ajax_export';
 		this.nonce = this.$form.data( 'nonce' );
 		this.type = this.$form.data( 'type' );
+		this.filename = '';
 		const plugin = this;
 
 		/**
@@ -40,6 +41,7 @@ jQuery( document ).ready( ( $ ) => {
 
 			// Reset previous states
 			plugin.reset();
+			plugin.filename = '';
 
 			// Add spinner to the submit button
 			plugin.$submit.parent( 'p' ).append( '<span class="spinner is-active"></span>' );
@@ -65,6 +67,7 @@ jQuery( document ).ready( ( $ ) => {
 					_wpnonce: plugin.nonce,
 					type: plugin.type,
 					step,
+					filename: plugin.filename,
 				},
 				success( res ) {
 					if ( res.step === 'done' ) {
@@ -76,6 +79,8 @@ jQuery( document ).ready( ( $ ) => {
 						window.location = res.url;
 						return false;
 					}
+
+					plugin.filename = res.filename || plugin.filename;
 
 					// Update progress bar width
 					plugin.$form.find( '.eac-progress div' ).animate(

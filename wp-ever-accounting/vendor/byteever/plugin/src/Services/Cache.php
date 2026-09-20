@@ -210,10 +210,12 @@ class Cache
             return wp_cache_flush_group($this->app->cache_group);
         }
         global $wpdb;
-        $prefix = $this->prefix . '%';
-        $query = $wpdb->prepare("DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s", '_transient_' . $prefix, '_transient_timeout_' . $prefix);
-        return false !== $wpdb->query($query);
-        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- bulk transient cleanup by prefix; no core API and caching a flush is moot.
+        $pattern = $wpdb->esc_like($this->prefix) . '%';
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- bulk transient cleanup by prefix; no core API, object cache evicted below.
+        $deleted = $wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s", '_transient_' . $pattern, '_transient_timeout_' . $pattern));
+        wp_cache_delete('alloptions', 'options');
+        wp_cache_delete('notoptions', 'options');
+        return false !== $deleted;
     }
     /**
      * Get the prefixed cache key.

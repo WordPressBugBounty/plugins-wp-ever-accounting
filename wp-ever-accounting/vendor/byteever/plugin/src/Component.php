@@ -12,6 +12,8 @@ defined('ABSPATH') || exit;
  *
  * @since   1.0.0
  * @package \B8
+ *
+ * @template TApp of App
  */
 abstract class Component
 {
@@ -19,7 +21,7 @@ abstract class Component
      * Application instance.
      *
      * @since 1.0.0
-     * @var App
+     * @var TApp
      */
     protected App $app;
     /**
@@ -33,7 +35,7 @@ abstract class Component
      * Constructor.
      *
      * @since 1.0.0
-     * @param App $app Application instance.
+     * @param TApp $app Application instance.
      */
     public function __construct(App $app)
     {

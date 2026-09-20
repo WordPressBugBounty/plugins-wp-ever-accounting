@@ -286,7 +286,7 @@ class Controller extends \WP_REST_Controller {
 		if ( is_numeric( $date ) ) {
 			$timestamp = (int) $date;
 		} elseif ( 1 === preg_match( '/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(Z|((-|\+)\d{2}:\d{2}))$/', $date, $date_bits ) ) {
-			$offset    = ! empty( $date_bits[7] ) ? iso8601_timezone_to_offset( $date_bits[7] ) : wc_timezone_offset();
+			$offset    = iso8601_timezone_to_offset( str_replace( ':', '', $date_bits[7] ) );
 			$timestamp = gmmktime( $date_bits[4], $date_bits[5], $date_bits[6], $date_bits[2], $date_bits[3], $date_bits[1] ) - $offset;
 		} elseif ( ! empty( $date ) && false !== strtotime( $date ) ) {
 			$timestamp = get_gmt_from_date( gmdate( 'Y-m-d H:i:s', strtotime( $date ) ), 'U' );

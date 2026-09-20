@@ -101,9 +101,13 @@ class Template
      *
      * @since 1.0.0
      * @return string
+     * @throws Exception If the template name traverses outside the base path.
      */
     protected function resolve_file_path($template, $base_path = ''): string
     {
+        if (0 !== validate_file($template)) {
+            throw new Exception(esc_html("The template [{$template}] is not a valid path!"));
+        }
         $template = str_replace('.', DIRECTORY_SEPARATOR, $template);
         if (empty($base_path)) {
             $base_path = $this->app->templates_path();

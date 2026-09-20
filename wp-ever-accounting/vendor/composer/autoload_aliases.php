@@ -275,17 +275,6 @@ namespace EverAccounting {
     array (
     ),
   ),
-  'B8\\SettingsUI' => 
-  array (
-    'type' => 'class',
-    'classname' => 'SettingsUI',
-    'isabstract' => false,
-    'namespace' => 'B8',
-    'extends' => 'EverAccounting\\B8\\SettingsUI',
-    'implements' => 
-    array (
-    ),
-  ),
   'ByteKit\\Models\\Traits\\HasAttributes' => 
   array (
     'type' => 'trait',

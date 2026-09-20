@@ -402,14 +402,7 @@ class Queue
          * @param string $url The AJAX URL.
          */
         $url = apply_filters($this->hook_prefix . '_queue_query_url', $url);
-        $args = array(
-            'timeout' => 5,
-            'blocking' => false,
-            'body' => array(),
-            'cookies' => isset($_COOKIE) ? wp_unslash($_COOKIE) : array(),
-            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Cookies are forwarded as-is to authenticate the loopback request.
-            'sslverify' => apply_filters('https_local_ssl_verify', false),
-        );
+        $args = array('timeout' => 5, 'blocking' => false, 'body' => array(), 'cookies' => map_deep(wp_unslash($_COOKIE), 'sanitize_text_field'), 'sslverify' => apply_filters('https_local_ssl_verify', false));
         /**
          * Filters the wp_remote_post arguments for queue dispatch.
          *
@@ -501,6 +494,18 @@ class Queue
                  */
                 do_action($this->hook_prefix . '_action_failed', $action['id'], $action['hook'], $action['args'], $e->getMessage());
             } else {
+                /**
+                 * Filters the seconds to wait before retrying a failed action.
+                 *
+                 * Multiplied by the attempt count, so retries back off.
+                 *
+                 * @since 1.0.0
+                 *
+                 * @param int                  $delay  Base delay in seconds. Default 60.
+                 * @param array<string, mixed> $action Action data.
+                 */
+                $delay = (int) apply_filters($this->hook_prefix . '_queue_retry_delay', 60, $action);
+                $action['schedule'] = time() + $delay * $action['attempts'];
                 $data = $this->get_queue_data();
                 $data['actions'][] = $action;
                 $this->update_queue_data($data);
@@ -619,7 +624,7 @@ class Queue
      */
     protected function is_processing(): bool
     {
-        if (get_site_transient($this->identifier . '_process_lock')) {
+        if (get_transient($this->identifier . '_process_lock')) {
             return true;
         }
         return false;
@@ -641,7 +646,7 @@ class Queue
          * @param int $duration Lock duration in seconds. Default 60.
          */
         $lock_duration = apply_filters($this->hook_prefix . '_queue_lock_time', 60);
-        set_site_transient($this->identifier . '_process_lock', microtime(), $lock_duration);
+        set_transient($this->identifier . '_process_lock', microtime(), $lock_duration);
         /**
          * Fires when the queue processing is locked.
          *
@@ -657,7 +662,7 @@ class Queue
      */
     protected function unlock_process(): void
     {
-        delete_site_transient($this->identifier . '_process_lock');
+        delete_transient($this->identifier . '_process_lock');
         /**
          * Fires when the queue processing is unlocked.
          *

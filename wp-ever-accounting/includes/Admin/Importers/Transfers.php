@@ -27,6 +27,8 @@ class Transfers extends Importer {
 		$protected = array(
 			'id',
 			'type',
+			'expense_id',
+			'payment_id',
 			'date_updated',
 		);
 

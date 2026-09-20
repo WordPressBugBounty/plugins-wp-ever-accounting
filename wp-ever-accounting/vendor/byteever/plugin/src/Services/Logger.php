@@ -189,12 +189,10 @@ class Logger
     {
         $upload_dir = wp_upload_dir();
         $log_dir = $upload_dir['basedir'] . '/' . $this->app->slug;
-        if (!$this->app->fs->exists($log_dir)) {
+        if (!$this->app->fs->exists($log_dir . '/.htaccess')) {
             $this->app->fs->protect($log_dir);
         }
-        $auth_key = defined('AUTH_KEY') ? AUTH_KEY : 'default-key';
-        $hash = substr(md5($auth_key), 0, 8);
-        $filename = sprintf('%s-%s.log', $this->name, $hash);
+        $filename = sprintf('%s-%s.log', $this->name, wp_hash($this->name . $log_dir));
         return $log_dir . '/' . $filename;
     }
     /**

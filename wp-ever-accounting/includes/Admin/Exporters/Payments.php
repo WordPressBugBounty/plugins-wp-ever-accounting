@@ -59,8 +59,9 @@ class Payments extends Exporter {
 
 		$args = apply_filters( 'eac_export_payments_args', $args );
 
-		$items = EAC()->payments->query( $args );
-		$rows  = array();
+		$items       = EAC()->payments->query( $args );
+		$this->total = EAC()->payments->query( $args, true );
+		$rows        = array();
 
 		foreach ( $items as $item ) {
 			$row = array();

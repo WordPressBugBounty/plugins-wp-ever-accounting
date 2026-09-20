@@ -89,6 +89,18 @@ class Container implements ArrayAccess
         $this->set($name, $value);
     }
     /**
+     * Whether a container property is bound.
+     *
+     * @param string $name Property name.
+     *
+     * @since 1.0.0
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return $this->has($name);
+    }
+    /**
      * Call a container binding.
      *
      * Enables: $app->utilities(), $app->request(), etc.

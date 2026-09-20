@@ -111,7 +111,6 @@ return array(
     'EverAccounting\\B8\\Services\\Scripts' => $vendorDir . '/byteever/plugin/src/Services/Scripts.php',
     'EverAccounting\\B8\\Services\\Settings' => $vendorDir . '/byteever/plugin/src/Services/Settings.php',
     'EverAccounting\\B8\\Services\\Template' => $vendorDir . '/byteever/plugin/src/Services/Template.php',
-    'EverAccounting\\B8\\SettingsUI' => $vendorDir . '/byteever/plugin/src/SettingsUI.php',
     'EverAccounting\\B8\\Traits\\HookableTrait' => $vendorDir . '/byteever/plugin/src/Traits/HookableTrait.php',
     'EverAccounting\\B8\\Traits\\PathableTrait' => $vendorDir . '/byteever/plugin/src/Traits/PathableTrait.php',
     'EverAccounting\\Banking' => $baseDir . '/includes/Banking.php',

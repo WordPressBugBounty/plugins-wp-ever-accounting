@@ -75,7 +75,7 @@ $mark_received_url = wp_nonce_url(
 					<a href="<?php echo esc_url( $mark_received_url ); ?>" class="button button-primary button-small button-block">
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Mark Received', 'wp-ever-accounting' ); ?>
 					</a>
-				<?php elseif ( ! $bill->is_status( 'draft' ) && ! $bill->is_paid() && current_user_can( 'eac_edit_bills' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
+				<?php elseif ( ! $bill->is_status( 'draft' ) && ! $bill->is_status( 'cancelled' ) && ! $bill->is_paid() && current_user_can( 'eac_edit_bills' ) ) : // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Reason: This is a custom capability. ?>
 					<a href="#" class="button button-primary button-small button-block eac-add-bill-payment" data-id="<?php echo esc_attr( $bill->id ); ?>" data-due="<?php echo esc_attr( $bill->get_due_amount() ); ?>" data-currency="<?php echo esc_attr( $bill->currency ); ?>">
 						<span class="dashicons dashicons-money-alt"></span> <?php esc_html_e( 'Add Payment', 'wp-ever-accounting' ); ?>
 					</a>
@@ -161,7 +161,7 @@ $mark_received_url = wp_nonce_url(
 
 			<div class="eac-form-field">
 				<label for="amount"><?php esc_html_e( 'Amount', 'wp-ever-accounting' ); ?>&nbsp;<abbr title="required"></abbr></label>
-				<input type="text" name="amount" id="amount" class="eac_amount" value="<?php echo esc_attr( $bill->get_due_amount() ); ?>" data-currncy="<?php echo esc_attr( $bill->currency ); ?>" required>
+				<input type="text" name="amount" id="amount" class="eac_amount" value="<?php echo esc_attr( $bill->get_due_amount() ); ?>" data-currency="<?php echo esc_attr( $bill->currency ); ?>" required>
 			</div>
 
 			<div class="eac-form-field">

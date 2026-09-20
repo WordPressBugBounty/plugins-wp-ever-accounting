@@ -218,6 +218,7 @@ class Installer extends B8\Component {
 
 		// Force a flush of rewrite rules even if the corresponding hook isn't initialized yet.
 		if ( ! has_action( 'eac_flush_rewrite_rules' ) ) {
+			Frontend\Rewrites::add_endpoint();
 			flush_rewrite_rules();
 		}
 

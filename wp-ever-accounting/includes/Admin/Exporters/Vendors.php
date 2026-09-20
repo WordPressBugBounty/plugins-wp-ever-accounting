@@ -59,8 +59,9 @@ class Vendors extends Exporter {
 
 		$args = apply_filters( 'eac_export_vendors_args', $args );
 
-		$items = EAC()->vendors->query( $args );
-		$rows  = array();
+		$items       = EAC()->vendors->query( $args );
+		$this->total = EAC()->vendors->query( $args, true );
+		$rows        = array();
 
 		foreach ( $items as $item ) {
 			$row = array();

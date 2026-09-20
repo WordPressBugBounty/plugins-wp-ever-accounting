@@ -38,9 +38,9 @@ class Transfers extends Exporter {
 	 * @return array
 	 */
 	public function get_columns() {
-		$hidden = array( 'id', 'user_id', 'parent_id', 'created_via' );
+		$hidden = array( 'id', 'user_id', 'parent_id', 'created_via', 'expense_id', 'payment_id' );
 
-		return array_diff( ( new Transfer() )->get_columns(), $hidden );
+		return array_merge( array( 'from_account_id', 'to_account_id' ), array_diff( ( new Transfer() )->get_columns(), $hidden ) );
 	}
 
 	/**
@@ -59,13 +59,20 @@ class Transfers extends Exporter {
 
 		$args = apply_filters( 'eac_export_transfers_args', $args );
 
-		$items = EAC()->transfers->query( $args );
-		$rows  = array();
+		$items       = EAC()->transfers->query( $args );
+		$this->total = EAC()->transfers->query( $args, true );
+		$rows        = array();
 
 		foreach ( $items as $item ) {
 			$row = array();
 			foreach ( $this->get_columns() as $column ) {
 				switch ( $column ) {
+					case 'from_account_id':
+						$value = $item->expense ? $item->expense->account_id : null;
+						break;
+					case 'to_account_id':
+						$value = $item->payment ? $item->payment->account_id : null;
+						break;
 					default:
 						$value = isset( $item->{$column} ) ? $item->{$column} : null;
 				}

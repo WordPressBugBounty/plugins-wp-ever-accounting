@@ -96,6 +96,26 @@ class ReportsUtil {
 	}
 
 	/**
+	 * Get the calendar year in which the current financial year started.
+	 *
+	 * @since 2.3.2
+	 * @return int
+	 */
+	public static function get_current_year() {
+		$year  = (int) wp_date( 'Y' );
+		$start = get_option( 'eac_year_start_date', '01-01' );
+		$dates = explode( '-', $start );
+		$month = ! empty( $dates[0] ) ? absint( $dates[0] ) : 1;
+		$day   = ! empty( $dates[1] ) ? absint( $dates[1] ) : 1;
+
+		if ( (int) wp_date( 'md' ) < (int) sprintf( '%02d%02d', $month, $day ) ) {
+			--$year;
+		}
+
+		return $year;
+	}
+
+	/**
 	 * Get financial start date.
 	 *
 	 * @param string $year Year.
@@ -105,14 +125,14 @@ class ReportsUtil {
 	 */
 	public static function get_year_start_date( $year = '' ) {
 		if ( empty( $year ) ) {
-			$year = gmdate( 'Y' );
+			$year = self::get_current_year();
 		}
 
 		$year_start = get_option( 'eac_year_start_date', '01-01' );
 		$dates      = explode( '-', $year_start );
 		$month      = ! empty( $dates[0] ) ? $dates[0] : '01';
 		$day        = ! empty( $dates[1] ) ? $dates[1] : '01';
-		$year       = empty( $year ) ? (int) wp_date( 'Y' ) : absint( $year );
+		$year       = absint( $year );
 
 		return gmdate( 'Y-m-d 00:00:00', mktime( 0, 0, 0, absint( $month ), absint( $day ), $year ) );
 	}
@@ -127,7 +147,7 @@ class ReportsUtil {
 	 */
 	public static function get_year_end_date( $year = '' ) {
 		if ( empty( $year ) ) {
-			$year = wp_date( 'Y' );
+			$year = self::get_current_year();
 		}
 
 		$start_date = self::get_year_start_date( $year );
@@ -289,7 +309,7 @@ class ReportsUtil {
 		global $wpdb;
 		$reports     = get_transient( 'eac_payments_report' );
 		$reports     = ! is_array( $reports ) ? array() : $reports;
-		$year        = empty( $year ) ? wp_date( 'Y' ) : $year;
+		$year        = empty( $year ) ? self::get_current_year() : $year;
 		$start_date  = self::get_year_start_date( $year );
 		$end_date    = self::get_year_end_date( $year );
 		$date_format = 'M, y';
@@ -378,7 +398,7 @@ class ReportsUtil {
 		global $wpdb;
 		$reports     = get_transient( 'get_expenses_report' );
 		$reports     = ! is_array( $reports ) ? array() : $reports;
-		$year        = empty( $year ) ? wp_date( 'Y' ) : $year;
+		$year        = empty( $year ) ? self::get_current_year() : $year;
 		$start_date  = self::get_year_start_date( $year );
 		$end_date    = self::get_year_end_date( $year );
 		$date_format = 'M, y';
@@ -468,7 +488,7 @@ class ReportsUtil {
 		global $wpdb;
 		$reports     = get_transient( 'get_profits_report' );
 		$reports     = ! is_array( $reports ) ? array() : $reports;
-		$year        = empty( $year ) ? wp_date( 'Y' ) : $year;
+		$year        = empty( $year ) ? self::get_current_year() : $year;
 		$start_date  = self::get_year_start_date( $year );
 		$end_date    = self::get_year_end_date( $year );
 		$date_format = 'M, y';
@@ -556,7 +576,7 @@ class ReportsUtil {
 	 * @return array Chart data.
 	 */
 	public static function annualize_data( $data, $year = null, $date_format = 'M, y' ) {
-		$year       = empty( $year ) ? wp_date( 'Y' ) : absint( $year );
+		$year       = empty( $year ) ? self::get_current_year() : absint( $year );
 		$start_date = self::get_year_start_date( $year );
 		$end_date   = self::get_year_end_date( $year );
 		$months     = array_fill_keys( self::get_months_in_range( $start_date, $end_date, $date_format ), 0 );
